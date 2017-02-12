@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:800" rel="stylesheet">
 </head>
 <script src="/assets/js/vendor/font.js"></script>
-<body class="flex-l3-jc-ac-">
+<body id="zu-watch" class="flex-l3-jc-ac-">
   <section class="left">
     <div id="recommend">
       <h2>Or you can Cheat ...</h2>
@@ -44,25 +44,57 @@
     </div>
     <div id="save">
       <h2>Your Brothers & Sisters</h2>
-      <div class="bottom-box rabbit-box" class="flex-l4-">
+      <div class="bottom-box rabbit-box flex-l4-">
         <div id="save-1" class="save-box">
           <div class="delete-btn">
             <img src="/assets/img/common/icons/delete.svg" alt="">
+          </div>
+          <div class="preview-show-body {{ save.saveA.a }}">
+            <img class="preview-1" 
+                 src="/assets/img/main/rabbits/e{{ save.saveA.a }}.svg" alt="">
+            <img class="preview-2" 
+                 src="/assets/img/main/rabbits/f{{ save.saveA.b }}.svg" alt="">
+            <img class="preview-3" 
+                 src="/assets/img/main/rabbits/y{{ save.saveA.c }}.svg" alt="">
           </div>
         </div>
         <div id="save-2" class="save-box">
           <div class="delete-btn">
             <img src="/assets/img/common/icons/delete.svg" alt="">
           </div>
+          <div class="preview-show-body {{ save.saveB.a }}">
+            <img class="preview-1" 
+                 src="/assets/img/main/rabbits/e{{ save.saveB.a }}.svg" alt="">
+            <img class="preview-2" 
+                 src="/assets/img/main/rabbits/f{{ save.saveB.b }}.svg" alt="">
+            <img class="preview-3" 
+                 src="/assets/img/main/rabbits/y{{ save.saveB.c }}.svg" alt="">
+          </div>
         </div>
         <div id="save-3" class="save-box">
           <div class="delete-btn">
             <img src="/assets/img/common/icons/delete.svg" alt="">
           </div>
+          <div class="preview-show-body {{ save.saveC.a }}">
+            <img class="preview-1" 
+                 src="/assets/img/main/rabbits/e{{ save.saveC.a }}.svg" alt="">
+            <img class="preview-2" 
+                 src="/assets/img/main/rabbits/f{{ save.saveC.b }}.svg" alt="">
+            <img class="preview-3" 
+                 src="/assets/img/main/rabbits/y{{ save.saveC.c }}.svg" alt="">
+          </div>
         </div>
         <div id="save-4" class="save-box">
           <div class="delete-btn">
             <img src="/assets/img/common/icons/delete.svg" alt="">
+          </div>
+          <div class="preview-show-body {{ save.saveD.a }}">
+            <img class="preview-1" 
+                 src="/assets/img/main/rabbits/e{{ save.saveD.a }}.svg" alt="">
+            <img class="preview-2" 
+                 src="/assets/img/main/rabbits/f{{ save.saveD.b }}.svg" alt="">
+            <img class="preview-3" 
+                 src="/assets/img/main/rabbits/y{{ save.saveD.c }}.svg" alt="">
           </div>
         </div>
       </div>
@@ -72,9 +104,12 @@
     <div id="preview">
       <div class="top-box preview-show">
         <div class="preview-show-body">
-          <img id="preview-1" src="/assets/img/main/rabbits/e1.svg" alt="">
-          <img id="preview-2" src="/assets/img/main/rabbits/f1.svg" alt="">
-          <img id="preview-3" src="/assets/img/main/rabbits/y1.svg" alt="">
+          <img class="preview-1" 
+               src="/assets/img/main/rabbits/e{{ preview.now.a }}.svg" alt="">
+          <img class="preview-2" 
+               src="/assets/img/main/rabbits/f{{ preview.now.b }}.svg" alt="">
+          <img class="preview-3" 
+               src="/assets/img/main/rabbits/y{{ preview.now.c }}.svg" alt="">
         </div>
       </div>
       <div class="bottom-box preview-btns">

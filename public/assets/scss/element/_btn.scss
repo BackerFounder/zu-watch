@@ -22,21 +22,21 @@
 
 .rabbit-btn {
 	background-image: $g;
-	border-radius: 17px;
-	line-height: 34px;
-	height: 34px;
+	border-radius: 23px;
+	line-height: 46px;
+	height: 46px;
 	box-shadow: 0 7px 15px 0 rgba(88,16,109, .49);
 }
 
 .step-btn {
-	flex: 0 0 34px;
-	width: 34px;
+	flex: 0 0 46px;
+	width: 46px;
 	margin: 5px;
 }
 
 .save-btn {
 	margin: 5px;
-	width: 130px;
+	width: 160px;
 	max-width: calc( 100% - 100px ); 
 }
 

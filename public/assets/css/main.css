@@ -278,21 +278,21 @@ a {
 
 .rabbit-btn {
   background-image: linear-gradient(to bottom, #B678C3 0%, #7F4390 100%);
-  border-radius: 17px;
-  line-height: 34px;
-  height: 34px;
+  border-radius: 23px;
+  line-height: 46px;
+  height: 46px;
   box-shadow: 0 7px 15px 0 rgba(88, 16, 109, 0.49); }
 
 .step-btn {
-  -webkit-flex: 0 0 34px;
-  -ms-flex: 0 0 34px;
-  flex: 0 0 34px;
-  width: 34px;
+  -webkit-flex: 0 0 46px;
+  -ms-flex: 0 0 46px;
+  flex: 0 0 46px;
+  width: 46px;
   margin: 5px; }
 
 .save-btn {
   margin: 5px;
-  width: 130px;
+  width: 160px;
   max-width: calc( 100% - 100px); }
 
 .code-btn {
@@ -383,13 +383,36 @@ h2 {
     -webkit-animation: None 5s linear 0s infinite both;
     animation: None 5s linear 0s infinite both; }
 
-#preview-1 {
+#save .preview-show-body img.preview-2 {
+  -webkit-filter: drop-shadow(0 0 0 transparent);
+  filter: drop-shadow(0 0 0 transparent); }
+
+#save .preview-show-body.null {
+  display: none; }
+
+#save-1 .preview-show-body img {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s; }
+
+#save-2 .preview-show-body img {
+  -webkit-animation-delay: .5s;
+  animation-delay: .5s; }
+
+#save-3 .preview-show-body img {
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s; }
+
+#save-4 .preview-show-body img {
+  -webkit-animation-delay: -3s;
+  animation-delay: -3s; }
+
+img.preview-1 {
   width: 36%;
   top: 17%;
   -webkit-animation-name: A;
   animation-name: A; }
 
-#preview-2 {
+img.preview-2 {
   width: 55%;
   top: 43%;
   -webkit-animation-name: B;
@@ -397,7 +420,7 @@ h2 {
   -webkit-filter: drop-shadow(0 7px 0 rgba(0, 0, 0, 0.2));
   filter: drop-shadow(0 7px 0 rgba(0, 0, 0, 0.2)); }
 
-#preview-3 {
+img.preview-3 {
   width: 40%;
   -webkit-animation-name: C;
   animation-name: C;
