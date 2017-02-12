@@ -1,0 +1,66 @@
+[class*='btn'] {
+	cursor: pointer;
+	user-select: none;
+  text-align: center;  
+}
+
+.calltoaction-btn {
+  display: inline-block;
+  width: 120px;
+  visibility: visible;
+	@media screen and (max-width: $breakpoint-nav-transform) {
+		position: fixed;
+		top: 5px;
+		right: 3%;
+	}
+}
+
+
+.delete-btn {
+	display: none;
+}
+
+.rabbit-btn {
+	background-image: $g;
+	border-radius: 17px;
+	line-height: 34px;
+	height: 34px;
+	box-shadow: 0 7px 15px 0 rgba(88,16,109, .49);
+}
+
+.step-btn {
+	flex: 0 0 34px;
+	width: 34px;
+	margin: 5px;
+}
+
+.save-btn {
+	margin: 5px;
+	width: 130px;
+	max-width: calc( 100% - 100px ); 
+}
+
+.code-btn {
+	display: inline-block;
+	vertical-align: middle;
+	width: calc( 50% - 10px );
+	margin: 5px;
+	line-height: 40px;
+	background-color: rgba(0,0,0,.2);
+	font-size: 15px;
+	letter-spacing: .5px;
+	border-radius: 5px;
+}
+
+.share-btn {
+	width: calc( 100% - 10px );
+	margin: 5px;
+	line-height: 40px;
+	font-size: 15px;
+	letter-spacing: .5px;
+	background-color: $main;
+	border-radius: 20px;
+	i {
+		margin-right: 5px;
+	}
+}

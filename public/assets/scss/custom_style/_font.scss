@@ -1,0 +1,15 @@
+//font-size
+h1 { font-size: 30px }
+h2 { font-size: 15px }
+h3 { font-size: 17px }
+span { font-size: 13px }
+p { font-size: 14px }
+@media screen and (max-width:$breakpoint-medium) {
+
+}
+@media screen and (max-width:$breakpoint-small) {
+
+}
+@media screen and (max-width:$breakpoint-xsmall) {
+
+}

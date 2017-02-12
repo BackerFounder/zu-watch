@@ -1,0 +1,184 @@
+@charset "UTF-8";
+// ========= 客製化區 =========
+@import 'custom_style/variables'; // 變數
+@import 'custom_style/font'; // landing page layout
+// ========= base =========
+@import 'base/reset'; // doppler reset
+@import 'base/dophlex'; // dopplex
+// ========= element =========
+@import 'element/btn'; // btn & calltoaction
+@import 'element/nav';
+
+body {
+	background-color: $main;
+	color: $sup;
+	font-family: 'Libre Franklin', sans-serif;
+}
+
+img {
+	width: 100%;
+}
+
+section {
+	max-width: 450px;
+}
+
+// height: 84px
+h2 {
+	margin-bottom: 5px;
+	padding: 0 13px;
+	margin-top: 10px;
+	letter-spacing: .5px;
+}
+#save, #code-and-share {
+	h2 { margin-top: 20px; }
+}
+
+.rabbit-box {
+	background-color: $sup;
+	border-radius: 13px;
+	box-shadow: 0 13px 35px 0 rgba(88,16,109, .49);
+}
+
+.left { text-align: left }
+.right { text-align: right }
+.mid { text-align: center }
+
+.top-box {
+	padding: 10px 10px;
+	height: 496px;
+}
+.bottom-box {
+	height: calc( 100vh - 585px - #{$flex-child-spacing * 2});
+	max-height: 120px;
+}
+
+.recommend-style {
+	box-shadow: 0 10px 20px 0 rgba(0,0,0,.14);
+}
+.recommend-random {
+	border-radius: 14%;
+}
+
+.preview-show {
+	position: relative;
+	margin: 43px 0; 
+}
+.preview-show-body {
+	position: relative;
+	top: 5%;
+	margin: 0 auto;
+	width: 90%;
+	height: 90%;
+	img {
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin: auto;
+		animation: None 5s linear 0s infinite both;
+	}
+}
+
+#preview-1 { 
+	width: 36%;
+	top: 17%;
+	animation-name: A;
+}
+#preview-2 { 
+	width: 55%; 
+	top: 43%;
+	animation-name: B;
+	filter: drop-shadow(0 7px 0 rgba(0,0,0,.2));
+}
+#preview-3 { 
+	width: 40%; 
+	animation-name: C;
+	top: 68%;
+}
+
+@keyframes A {
+		 0% { transform: translate3d(0,0,0) }
+	  20% { transform: translate3d(5%,0,0) }
+	  30% { transform: translate3d(5%,0,0) }
+	  40% { transform: translate3d(-5%,0,0) }
+	  50% { transform: translate3d(-5%,0,0) }
+	  60% { transform: translate3d(0,0,0) }
+	  80% { transform: translate3d(0,5%,0) }
+	  90% { transform: translate3d(0,-5%,0) }
+	 100% { transform: translate3d(0,0,0) }
+}
+@keyframes B {
+		 0% { transform: translate3d(0,0,0) }
+	  20% { transform: translate3d(1%,0,0) }
+	  30% { transform: translate3d(1%,0,0) }
+	  40% { transform: translate3d(-1%,0,0) }
+	  50% { transform: translate3d(-1%,0,0) }
+	  60% { transform: translate3d(0,0,0) }
+	  80% { transform: translate3d(0,0%,0) }
+	  90% { transform: translate3d(0,0%,0) }
+	 100% { transform: translate3d(0,0,0) }
+}
+@keyframes C {
+		 0% { transform: translate3d(0,0,0) }
+	  20% { transform: translate3d(-5%,0,0) }
+	  30% { transform: translate3d(-5%,0,0) }
+	  40% { transform: translate3d(5%,0,0) }
+	  50% { transform: translate3d(5%,0,0) }
+	  60% { transform: translate3d(0,0,0) }
+	  80% { transform: translate3d(0,-100%,0) }
+	  90% { transform: translate3d(0,100%,0) }
+	 100% { transform: translate3d(0,0,0) }
+}
+
+//preview-btns
+.preview-btns {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	padding-bottom: 20px;
+}
+#next {
+	transform: rotate3d(0,1,0,180deg);
+}
+
+//elements-tabbar
+.elements-tabbar {
+	width: 100%;
+	height: 50px;
+	color: rgba(0,0,0,.2);
+}
+.elements-tab-btn {
+	transition: 0.3s ease;
+	padding-bottom: 10px;
+}
+.elements-tab-btn:hover {
+	padding-bottom: 10px;
+}
+.elements-tab-btn.active {
+	color: $main;
+	box-shadow: 0 2px 0 0 $main;
+}
+
+.elements-content {
+	height: calc( 100% - 50px );
+}
+.elements-content-box {
+	height: 100%;
+	overflow: auto;
+	display: none;
+	background-color: #fff;
+	border-radius: 15px;
+	box-shadow: 0 10px 20px 0 rgba(0,0,0,.2);
+}
+.elements-content-box.active {
+	display: flex;
+}
+
+.e-c-b-c {
+	padding: 2%;
+}
+
+#code-and-share>div {
+	padding: 10px;
+	font-size: 0;
+}
