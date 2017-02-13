@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="133px" height="106px" viewBox="0 0 133 106" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Oval 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M67.3046875,105.625278 C104.031623,105.625278 133,98.3941146 133,69.95145 C133,41.5087854 127.349609,0.972934407 65.8886719,0.015903157 C4.42773438,-0.941128093 0,41.5087854 0,69.95145 C0,98.3941146 30.5777516,105.625278 67.3046875,105.625278 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Oval-3">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#353535" xlink:href="#path-1"></use>
+            <path d="M67.9375,38.3457031 C92.238029,38.3457031 111,30.300529 111,6 C111,-18.300529 91.300529,-38 67,-38 C42.699471,-38 23,-18.300529 23,6 C23,30.300529 43.636971,38.3457031 67.9375,38.3457031 Z" stroke="#979797" stroke-width="7" mask="url(#mask-2)"></path>
+        </g>
+    </g>
+</svg>

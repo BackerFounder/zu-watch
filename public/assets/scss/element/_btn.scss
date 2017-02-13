@@ -17,7 +17,12 @@
 
 
 .delete-btn {
-	display: none;
+	// display: none;
+	position: absolute;
+	width: 15px;
+	top: 5px;
+	right: 5px;
+	z-index: 2;
 }
 
 .rabbit-btn {
@@ -26,6 +31,10 @@
 	line-height: 46px;
 	height: 46px;
 	box-shadow: 0 7px 15px 0 rgba(88,16,109, .49);
+}
+.rabbit-btn.null {
+	pointer-events: none;
+	opacity: .4;
 }
 
 .step-btn {
@@ -38,6 +47,11 @@
 	margin: 5px;
 	width: 160px;
 	max-width: calc( 100% - 100px ); 
+	transition: .2s ease;
+}
+.save-btn:active {
+	box-shadow: 0 4px 6px 0 rgba(88,16,109, .49);
+	transform: translateY(3px);
 }
 
 .code-btn {

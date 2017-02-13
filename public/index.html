@@ -22,34 +22,42 @@
     <div id="recommend">
       <h2>Or you can Cheat ...</h2>
       <div class="top-box rabbit-box flex-l2-">
-        <div class="recommend-style">
+        <div v-on:click="elementChange('7', '3', '3')"
+             class="btn recommend-style">
           <img src="/assets/img/main/recommend/r-1.png" alt="">
         </div>
-        <div class="recommend-style">
+        <div v-on:click="elementChange('2', '2', '1')"
+             class="btn recommend-style">
           <img src="/assets/img/main/recommend/r-2.png" alt="">
         </div>
-        <div class="recommend-style">
+        <div v-on:click="elementChange('3', '4', '3')"
+             class="btn recommend-style">
           <img src="/assets/img/main/recommend/r-3.png" alt="">
         </div>
-        <div class="recommend-style">
+        <div v-on:click="elementChange('4', '6', '3')"
+             class="btn recommend-style">
           <img src="/assets/img/main/recommend/r-4.png" alt="">
         </div>
-        <div class="recommend-style">
+        <div v-on:click="elementChange('1', '1', '3')"
+             class="btn recommend-style">
           <img src="/assets/img/main/recommend/r-5.png" alt="">
         </div>
-        <div class="recommend-style recommend-random">
+        <div v-on:click="randomElements"
+             class="btn recommend-style recommend-random">
           <img src="/assets/img/main/recommend/r-6.png" alt="">
         </div>
       </div>
     </div>
     <div id="save">
       <h2>Your Brothers & Sisters</h2>
-      <div class="bottom-box rabbit-box flex-l4-">
-        <div id="save-1" class="save-box">
-          <div class="delete-btn">
+      <div class="bottom-box rabbit-box flex-l4-jfs-">
+        <div id="save-1" class="save-box {{ save.saveA.a }}">
+          <div v-on:click="deleteElementsFromSave('saveA')"
+               class="delete-btn">
             <img src="/assets/img/common/icons/delete.svg" alt="">
           </div>
-          <div class="preview-show-body {{ save.saveA.a }}">
+          <div v-on:click="callSave('saveA')"
+               class="btn preview-show-body">
             <img class="preview-1" 
                  src="/assets/img/main/rabbits/e{{ save.saveA.a }}.svg" alt="">
             <img class="preview-2" 
@@ -58,11 +66,13 @@
                  src="/assets/img/main/rabbits/y{{ save.saveA.c }}.svg" alt="">
           </div>
         </div>
-        <div id="save-2" class="save-box">
-          <div class="delete-btn">
+        <div id="save-2" class="save-box {{ save.saveB.a }}">
+          <div v-on:click="deleteElementsFromSave('saveB')"
+               class="delete-btn">
             <img src="/assets/img/common/icons/delete.svg" alt="">
           </div>
-          <div class="preview-show-body {{ save.saveB.a }}">
+          <div v-on:click="callSave('saveB')"
+               class="btn preview-show-body">
             <img class="preview-1" 
                  src="/assets/img/main/rabbits/e{{ save.saveB.a }}.svg" alt="">
             <img class="preview-2" 
@@ -71,11 +81,13 @@
                  src="/assets/img/main/rabbits/y{{ save.saveB.c }}.svg" alt="">
           </div>
         </div>
-        <div id="save-3" class="save-box">
-          <div class="delete-btn">
+        <div id="save-3" class="save-box {{ save.saveC.a }}">
+          <div v-on:click="deleteElementsFromSave('saveC')"
+               class="delete-btn">
             <img src="/assets/img/common/icons/delete.svg" alt="">
           </div>
-          <div class="preview-show-body {{ save.saveC.a }}">
+          <div v-on:click="callSave('saveC')"
+               class="btn preview-show-body">
             <img class="preview-1" 
                  src="/assets/img/main/rabbits/e{{ save.saveC.a }}.svg" alt="">
             <img class="preview-2" 
@@ -84,11 +96,13 @@
                  src="/assets/img/main/rabbits/y{{ save.saveC.c }}.svg" alt="">
           </div>
         </div>
-        <div id="save-4" class="save-box">
-          <div class="delete-btn">
+        <div id="save-4" class="save-box {{ save.saveD.a }}">
+          <div v-on:click="deleteElementsFromSave('saveD')"
+               class="delete-btn">
             <img src="/assets/img/common/icons/delete.svg" alt="">
           </div>
-          <div class="preview-show-body {{ save.saveD.a }}">
+          <div v-on:click="callSave('saveD')"
+               class="btn preview-show-body">
             <img class="preview-1" 
                  src="/assets/img/main/rabbits/e{{ save.saveD.a }}.svg" alt="">
             <img class="preview-2" 
@@ -113,13 +127,18 @@
         </div>
       </div>
       <div class="bottom-box preview-btns">
-        <div id="prev" class="rabbit-btn step-btn">
+        <div v-on:click="undoElements()"
+             id="prev" 
+             class="rabbit-btn step-btn {{ preview.prev.a }}">
           <i class="fa fa-undo"></i>
         </div>
-        <div id="save" class="rabbit-btn save-btn">
+        <div v-on:click="saveElements"
+             id="save" class="rabbit-btn save-btn">
           SAVE
         </div>
-        <div id="next" class="rabbit-btn step-btn">
+        <div v-on:click="nextElements()"
+             id="next" 
+             class="rabbit-btn step-btn {{ preview.next.a }}">
           <i class="fa fa-undo"></i>
         </div>
       </div>
@@ -135,61 +154,102 @@
           <div data-tab="eyes" class="elements-tab-btn">Eyes</div>
         </div>
         <div class="elements-content">
-          <div data-tab="face" class="elements-content-box flex-l3-jfs- active">
-            <div class="e-c-b-c">
+          <div data-tab="face" class="elements-content-box flex-l3-jfs-afs- active">
+            <div v-on:click="elementChange('', '1', '')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/f1.svg" alt="">
             </div>
-            <div class="e-c-b-c">
+            <div v-on:click="elementChange('', '2', '')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/f2.svg" alt="">
             </div>
-            <div class="e-c-b-c">
+            <div v-on:click="elementChange('', '3', '')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/f3.svg" alt="">
             </div>
-            <div class="e-c-b-c">
+            <div v-on:click="elementChange('', '4', '')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/f4.svg" alt="">
             </div>
-            <div class="e-c-b-c">
+            <div v-on:click="elementChange('', '5', '')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/f5.svg" alt="">
             </div>
-            <div class="e-c-b-c">
+            <div v-on:click="elementChange('', '6', '')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/f6.svg" alt="">
             </div>
-            <div class="e-c-b-c">
+            <div v-on:click="elementChange('', '7', '')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/f7.svg" alt="">
             </div>
+            <div v-on:click="elementChange('', '8', '')"
+                 class="e-c-b-c">
+              <img src="/assets/img/main/rabbits/f8.svg" alt="">
+            </div>
+            <div v-on:click="elementChange('', '9', '')"
+                 class="e-c-b-c">
+              <img src="/assets/img/main/rabbits/f9.svg" alt="">
+            </div>
           </div>
-          <div data-tab="ears" class="elements-content-box flex-l3-jfs-">
-            <div class="e-c-b-c">
+          <div data-tab="ears" class="elements-content-box flex-l3-jfs-afs-">
+            <div v-on:click="elementChange('1', '', '')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/e1.svg" alt="">
             </div>
-            <div class="e-c-b-c">
+            <div v-on:click="elementChange('2', '', '')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/e2.svg" alt="">
             </div>
-            <div class="e-c-b-c">
+            <div v-on:click="elementChange('3', '', '')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/e3.svg" alt="">
             </div>
-            <div class="e-c-b-c">
+            <div v-on:click="elementChange('4', '', '')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/e4.svg" alt="">
             </div>
-            <div class="e-c-b-c">
+            <div v-on:click="elementChange('5', '', '')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/e5.svg" alt="">
             </div>
-            <div class="e-c-b-c">
+            <div v-on:click="elementChange('6', '', '')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/e6.svg" alt="">
             </div>
-            <div class="e-c-b-c">
+            <div v-on:click="elementChange('7', '', '')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/e7.svg" alt="">
             </div>
+            <div v-on:click="elementChange('8', '', '')"
+                 class="e-c-b-c">
+              <img src="/assets/img/main/rabbits/e8.svg" alt="">
+            </div>
+            <div v-on:click="elementChange('9', '', '')"
+                 class="e-c-b-c">
+              <img src="/assets/img/main/rabbits/e9.svg" alt="">
+            </div>
+            <div v-on:click="elementChange('10', '', '')"
+                 class="e-c-b-c">
+              <img src="/assets/img/main/rabbits/e10.svg" alt="">
+            </div>
           </div>
-          <div data-tab="eyes" class="elements-content-box flex-l3-jfs-">
-            <div class="e-c-b-c">
+          <div data-tab="eyes" class="elements-content-box flex-l3-jfs-afs-">
+            <div v-on:click="elementChange('', '', '1')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/y1.svg" alt="">
             </div>
-            <div class="e-c-b-c">
+            <div v-on:click="elementChange('', '', '2')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/y2.svg" alt="">
             </div>
-            <div class="e-c-b-c">
+            <div v-on:click="elementChange('', '', '3')"
+                 class="e-c-b-c">
               <img src="/assets/img/main/rabbits/y3.svg" alt="">
+            </div>
+            <div v-on:click="elementChange('', '', '4')"
+                 class="e-c-b-c">
+              <img src="/assets/img/main/rabbits/y4.svg" alt="">
             </div>
           </div>
         </div>
