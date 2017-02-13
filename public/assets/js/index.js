@@ -6,6 +6,7 @@ $(window).load(function() {
 		$(".elements-tab-btn[data-tab='" + t + "']").addClass('active')
 		$(".elements-content-box[data-tab='" + t + "']").addClass('active')
 	});
+	$('section').removeClass('hide')
 })
 
 

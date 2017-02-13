@@ -335,13 +335,46 @@ a {
 body {
   background-color: #9763A7;
   color: #ECECEC;
-  font-family: 'Libre Franklin', sans-serif; }
+  font-family: 'Libre Franklin', sans-serif;
+  overflow: hidden; }
 
 img {
   width: 100%; }
 
 section {
   max-width: 450px; }
+  section .bottom-box, section .top-box, section h2 {
+    opacity: 1;
+    transition: 2s ease;
+    -webkit-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    transform: translateY(0%); }
+  section h2 {
+    transition-delay: 1.3s; }
+
+section.hide .bottom-box, section.hide .top-box, section.hide h2 {
+  opacity: 0;
+  -webkit-transform: translateY(5%);
+  -ms-transform: translateY(5%);
+  transform: translateY(5%); }
+
+section.mid .bottom-box {
+  transition-delay: 0s; }
+
+section.mid .top-box {
+  transition-delay: .2s; }
+
+section.left .bottom-box {
+  transition-delay: .4s; }
+
+section.left .top-box {
+  transition-delay: .6s; }
+
+section.right .bottom-box {
+  transition-delay: .4s; }
+
+section.right .top-box {
+  transition-delay: .6s; }
 
 h2 {
   margin-bottom: 5px;

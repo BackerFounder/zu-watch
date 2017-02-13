@@ -13,6 +13,7 @@ body {
 	background-color: $main;
 	color: $sup;
 	font-family: 'Libre Franklin', sans-serif;
+	overflow: hidden;
 }
 
 img {
@@ -21,6 +22,44 @@ img {
 
 section {
 	max-width: 450px;
+	.bottom-box, .top-box, h2 {
+		opacity: 1;
+		transition: 2s ease;
+		transform: translateY(0%);
+	}
+	h2 {
+		transition-delay: 1.3s;
+	}
+}
+section.hide {
+	.bottom-box, .top-box, h2 {
+		opacity: 0;
+		transform: translateY(5%);
+	}
+}
+section.mid {
+	.bottom-box {
+		transition-delay: 0s;
+	}
+	.top-box {
+		transition-delay: .2s;
+	}
+}
+section.left {
+	.bottom-box {
+		transition-delay: .4s;
+	}
+	.top-box {
+		transition-delay: .6s;
+	}
+}
+section.right {
+	.bottom-box {
+		transition-delay: .4s;
+	}
+	.top-box {
+		transition-delay: .6s;
+	}
 }
 
 // height: 84px
