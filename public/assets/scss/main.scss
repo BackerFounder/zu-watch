@@ -85,12 +85,20 @@ h2 {
 
 .top-box {
 	padding: 10px 10px;
-	height: 496px;
+	height: calc( 100vh - 120px - 106px );
+	max-height: 496px;
+	overflow: auto;	
 }
 .bottom-box {
-	height: calc( 100vh - 585px - #{$flex-child-spacing * 2});
-	max-height: 120px;
+	height: 120px;
 	overflow: hidden;
+}
+
+.mid .top-box {
+	overflow: visible;	
+}
+.mid .top-box::-webkit-scrollbar {
+  width: 0;
 }
 
 .recommend-style {
@@ -197,6 +205,7 @@ img.preview-3 {
 	justify-content: center;
 	align-items: flex-end;
 	padding-bottom: 20px;
+	cursor: auto;
 }
 #next {
 	transform: rotate3d(0,1,0,180deg);
@@ -247,7 +256,105 @@ img.preview-3 {
 	transition: .2s ease
 }
 
+
 #code-and-share>div {
 	padding: 10px;
 	font-size: 0;
+}
+
+.code-section {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: $sup;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	border-radius: 15px;
+	transition: .3s ease;
+	h3 {
+		color: rgba(0,0,0,.2);
+		font-size: 12px;
+		letter-spacing: .5px;
+	}
+}
+.code-section-area {
+	background-color: rgba(0,0,0,.05);
+	line-height: 40px;
+	height: 40px;
+	width: 100%;
+	padding: 0 10px;
+	overflow: auto;
+	margin-top: 5px;
+	color: $main;
+	font-size: 12px;
+	text-align: center;
+	&::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+	}
+}
+.code-section-btn-area {
+	margin-top: 12px;
+}
+.code-section-btn-area .btn {
+	display: inline-block;
+	font-size: 15px;
+	width: 100px;
+	line-height: 27px;
+	border-radius: 15px;
+	margin: 0 5px;
+}
+.code-section-copy {
+	background-color: #88CDE4;
+}
+.code-section-render {
+	background-color: #88CDE4;	
+}
+.code-section-copy, .code-section-render {
+	position: relative;
+	vertical-align: top;
+	overflow: hidden;
+	&.success:after {
+		content: 'Success!';
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-size: 15px;
+		width: 100px;
+		line-height: 27px;
+		border-radius: 15px;
+		color: #fff;
+		background-color: #9DEB92;
+		color: #567653;
+		z-index: 2;
+		animation: sc 1.4s ease 0s 1 both;
+	}
+}
+@keyframes sc {
+		0% { transform: translateY(100%) }
+ 	 20% { transform: translateY(0%) }
+ 	 80% { transform: translateY(0%) }
+ 	100% { transform: translateY(-100%) }
+}
+.code-section-cancel {
+	background-color: rgba(0,0,0,.2);
+}
+.generate-code-section {
+	transform: translateX(100%);
+	opacity: 0;
+	pointer-events: none;
+}
+.input-code-section {
+	transform: translateX(-100%);
+	opacity: 0;
+	pointer-events: none;
+}
+.input-code-section.active, .generate-code-section.active {
+	transform: translateX(0%);
+	opacity: 1;
+	pointer-events: visible;
 }

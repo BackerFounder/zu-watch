@@ -1,4 +1,5 @@
 $(window).load(function() {
+	
 	$(".elements-tab-btn").click(function() {
 		var t = $(this).attr('data-tab')
 		$(".elements-tab-btn").removeClass('active')
@@ -6,16 +7,40 @@ $(window).load(function() {
 		$(".elements-tab-btn[data-tab='" + t + "']").addClass('active')
 		$(".elements-content-box[data-tab='" + t + "']").addClass('active')
 	});
+	$(".code-section-cancel[data-code]").click(function() {
+		var t = $(this).attr('data-code')
+		$(".code-section[data-code='" + t + "']").removeClass('active')
+	})
+
+	$(".code-btn[data-code]").click(function() {
+		var t = $(this).attr('data-code')
+		$(".code-section[data-code='" + t + "']").addClass('active')
+	})
+
 	$('section').removeClass('hide')
+	
+	// 暫時先放這
+	var clipboard = new Clipboard('.code-section-copy', {
+    text: function() {
+        return localStorage['fullPage']
+    }
+	});
+	clipboard.on('success', function(e) {
+    $('.generate-code-section').removeClass('active')
+	});
+
+	clipboard.on('error', function(e) {
+    alert('Error')
+	});
+
 })
 
 
 
 $(document).ready(function() {
-   // vue
-  var ZuWatch = new Vue ({
+  // vue
+  ZuWatch = new Vue ({
     el: '#zu-watch',
-
     data: {
       preview: {
       	prev: {
@@ -59,7 +84,7 @@ $(document).ready(function() {
     },
 
     ready: function() {
-      this.fetchData()
+    	this.fetchData()
     },
     computed: {
 			previewChange: function() {
@@ -70,7 +95,12 @@ $(document).ready(function() {
     },
     methods: {
     	fetchData: function() {
-    		var self = this
+    		var url = window.location.toString().split("/?")[1]
+    		if ( url.length > 0 ) {
+    			this.$data = JSON.parse(atob(url))
+    		} else {
+    			this.$data = JSON.parse(atob(localStorage['fullPage']))
+    		}
     	},
     	elementChange: function(a,b,c) {
     		this.previewChange
@@ -80,6 +110,8 @@ $(document).ready(function() {
     			this.preview.now.b = b
     		if (c)
     			this.preview.now.c = c
+    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    		window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	randomElements: function() {
     		this.previewChange
@@ -89,8 +121,11 @@ $(document).ready(function() {
   			this.preview.now.a = a[Math.floor((Math.random() * 10) + 5)]
   			this.preview.now.b = b[Math.floor((Math.random() * 10) + 5)]
   			this.preview.now.c = c[Math.floor((Math.random() * 10) + 5)]
+  			localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+  			window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	saveElements: function() {
+    		// 檢查物件有無為空不用三個部位檢查，檢查一個就好
     		var checkA = this.save.saveA.a
     		var checkB = this.save.saveB.a
     		var checkC = this.save.saveC.a
@@ -106,6 +141,8 @@ $(document).ready(function() {
 	    				this.save[b[i]].a = this.preview.now.a
 	    				this.save[b[i]].b = this.preview.now.b
 	    				this.save[b[i]].c = this.preview.now.c
+	    				localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+	    				window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
 	    				return
 	    			}
 	    		}
@@ -115,11 +152,15 @@ $(document).ready(function() {
     		this.preview.now.a = this.save[saveN].a
     		this.preview.now.b = this.save[saveN].b
     		this.preview.now.c = this.save[saveN].c
+    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    		window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	deleteElementsFromSave: function(saveN) {
     		this.save[saveN].a = null
     		this.save[saveN].b = null
     		this.save[saveN].c = null
+    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    		window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	undoElements: function() {
     		this.preview.next.a = this.preview.now.a
@@ -131,6 +172,8 @@ $(document).ready(function() {
     		this.preview.prev.a = null
     		this.preview.prev.b = null
     		this.preview.prev.c = null
+    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    		window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	nextElements: function() {
     		this.previewChange
@@ -140,6 +183,21 @@ $(document).ready(function() {
     		this.preview.next.a = null
     		this.preview.next.b = null
     		this.preview.next.c = null
+    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    		window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+    	},
+    	generateCode: function() {
+    		var c = btoa(JSON.stringify(this.$data))
+    		$('.generate-code-section .code-section-area').text(c)
+    		window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'])
+    	},
+    	inputCode: function() {
+    		if ( $('input.code-section-area').val() !== '' ) {
+    			this.$data = JSON.parse(atob($('input.code-section-area').val()))
+    			localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    			$('input.code-section-area').val("")
+    			$('.input-code-section').removeClass('active')
+    		}
     	}
     }
   })

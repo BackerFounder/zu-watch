@@ -5,10 +5,11 @@ h3 { font-size: 17px }
 span { font-size: 13px }
 p { font-size: 14px }
 @media screen and (max-width:$breakpoint-medium) {
-
+	[class*="btn"] {
+		font-size: 12px!important;
+	}
 }
 @media screen and (max-width:$breakpoint-small) {
-
 }
 @media screen and (max-width:$breakpoint-xsmall) {
 

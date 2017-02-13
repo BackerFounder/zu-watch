@@ -11,7 +11,7 @@
   <meta content="" property="og:site_name">
   <meta content="" property="og:description">
   <meta content="/assets/img/common/facebook.png" property="og:image">
-  <link href=/"assets/img/common/favicon.png" rel="shortcut icon">
+  <link href="/assets/img/common/favicon.png" rel="shortcut icon">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:800" rel="stylesheet">
@@ -258,13 +258,39 @@
     <div id="code-and-share">
       <h2>Rabbit's Code</h2>
       <div class="bottom-box rabbit-box">
-        <div class="code-btn input-btn">
+        <div data-code="input"
+             class="code-btn input-btn">
           Input Code
         </div>
-        <div class="code-btn generate-btn">
+        <div v-on:click="generateCode"
+             data-code="generate"
+             class="code-btn generate-btn">
           Generate Code
         </div>
-        <div class="share-btn">
+        <div data-code="generate"
+             class="code-section generate-code-section">
+          <h3>Generate Code</h3>
+          <div class="code-section-area">
+          </div>
+          <div class="code-section-btn-area">
+            <div data-code="generate"
+                 class="btn code-section-cancel">Cancel</div>
+            <div class="btn code-section-copy">Copy</div>
+          </div>
+        </div>
+        <div data-code="input"
+             class="code-section input-code-section">
+          <h3>Input Code</h3>
+          <input class="code-section-area" type="text">
+          <div class="code-section-btn-area">
+            <div data-code="input" 
+                 class="btn code-section-cancel">Cancel</div>
+            <div v-on:click="inputCode"
+                 class="btn code-section-render">Render</div>
+          </div>
+        </div>
+        <div onclick="fbShare()"
+             class="share-btn">
           <i class="fa fa-facebook-official"></i>
           Share Your Rabbit
         </div>
@@ -275,5 +301,12 @@
 <script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>
 <script src="/assets/js/vendor/vue.min.js"></script>
 <script src="/assets/js/animateNumber.js"></script>
+<script src="/assets/js/vendor/clipboard.min.js"></script>
 <script src="/assets/js/index.js"></script>
+<script>
+  var fbhtml_url = window.location.toString()
+  function fbShare() {
+    window.open('http://www.facebook.com/sharer/sharer.php?u='+fbhtml_url);return false;  
+  }
+</script>
 </html>
