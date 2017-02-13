@@ -57,7 +57,7 @@ $(document).ready(function() {
       }
     },
 
-    created: function() {
+    ready: function() {
       this.fetchData()
     },
     computed: {
