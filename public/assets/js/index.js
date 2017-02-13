@@ -95,12 +95,7 @@ $(document).ready(function() {
     },
     methods: {
     	fetchData: function() {
-    		var url = window.location.toString().split("/?")[1]
-    		if ( url.length > 0 ) {
-    			this.$data = JSON.parse(atob(url))
-    		} else {
-    			this.$data = JSON.parse(atob(localStorage['fullPage']))
-    		}
+  			this.$data = JSON.parse(atob(localStorage['fullPage']))
     	},
     	elementChange: function(a,b,c) {
     		this.previewChange
@@ -111,7 +106,7 @@ $(document).ready(function() {
     		if (c)
     			this.preview.now.c = c
     		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
-    		window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	randomElements: function() {
     		this.previewChange
@@ -122,7 +117,7 @@ $(document).ready(function() {
   			this.preview.now.b = b[Math.floor((Math.random() * 10) + 5)]
   			this.preview.now.c = c[Math.floor((Math.random() * 10) + 5)]
   			localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
-  			window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+  			// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	saveElements: function() {
     		// 檢查物件有無為空不用三個部位檢查，檢查一個就好
@@ -142,7 +137,7 @@ $(document).ready(function() {
 	    				this.save[b[i]].b = this.preview.now.b
 	    				this.save[b[i]].c = this.preview.now.c
 	    				localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
-	    				window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+	    				// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
 	    				return
 	    			}
 	    		}
@@ -153,14 +148,14 @@ $(document).ready(function() {
     		this.preview.now.b = this.save[saveN].b
     		this.preview.now.c = this.save[saveN].c
     		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
-    		window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	deleteElementsFromSave: function(saveN) {
     		this.save[saveN].a = null
     		this.save[saveN].b = null
     		this.save[saveN].c = null
     		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
-    		window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	undoElements: function() {
     		this.preview.next.a = this.preview.now.a
@@ -173,7 +168,7 @@ $(document).ready(function() {
     		this.preview.prev.b = null
     		this.preview.prev.c = null
     		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
-    		window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	nextElements: function() {
     		this.previewChange
@@ -184,12 +179,12 @@ $(document).ready(function() {
     		this.preview.next.b = null
     		this.preview.next.c = null
     		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
-    		window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	generateCode: function() {
     		var c = btoa(JSON.stringify(this.$data))
     		$('.generate-code-section .code-section-area').text(c)
-    		window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'])
+    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'])
     	},
     	inputCode: function() {
     		if ( $('input.code-section-area').val() !== '' ) {
