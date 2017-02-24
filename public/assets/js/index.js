@@ -43,43 +43,15 @@ $(document).ready(function() {
     el: '#zu-watch',
     data: {
       preview: {
-      	prev: {
-      		a: null,
-      		b: null,
-      		c: null,
-      	},
-      	now: {
-      		a: 1,
-      		b: 1,
-      		c: 1,
-      	},
-      	next: {
-      		a: null,
-      		b: null,
-      		c: null,
-      	}
+      	prev: { a: null, b: null, c: null },
+      	now:  { a: 1, 	 b: 1, 	  c: 1    },
+      	next: { a: null, b: null, c: null }
       },
       save: {
-      	saveA: {
-      		a: null,
-      		b: null,
-      		c: null
-      	},
-      	saveB: {
-      		a: null,
-      		b: null,
-      		c: null
-      	},
-      	saveC: {
-      		a: null,
-      		b: null,
-      		c: null
-      	},
-      	saveD: {
-      		a: null,
-      		b: null,
-      		c: null
-      	}
+      	saveA: { a: null, b: null, c: null },
+      	saveB: { a: null, b: null, c: null },
+      	saveC: { a: null, b: null, c: null },
+      	saveD: { a: null, b: null, c: null }
       }
     },
 
