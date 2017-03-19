@@ -4,310 +4,41 @@
   <meta charset="UTF-8">
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Rabbit | kerekr</title>
-  <meta content="" name="keywords">
-  <meta content="Design Your Rabbit!" name="description">
-  <meta content="" property="og:title">
-  <meta content="" property="og:site_name">
-  <meta content="" property="og:description">
+  <title>Zǔ WATCH | Build Your Own Watch</title>
+  <meta content="zuwatch, zu-watch, 組錶" name="keywords">
+  <meta content="Your first configurable watch for every style you carry." name="description">
+  <meta content="Zǔ WATCH | Build Your Own Watch" property="og:title">
+  <meta content="Zǔ WATCH | Build Your Own Watch" property="og:site_name">
+  <meta content="Your first configurable watch for every style you carry." property="og:description">
   <meta content="/assets/img/common/facebook.png" property="og:image">
-  <link href="/assets/img/common/favicon.png" rel="shortcut icon">
+  <link href="http://static.wixstatic.com/media/495b64_5c92ae34812c48b1bd0b81f1a8180d64.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/495b64_5c92ae34812c48b1bd0b81f1a8180d64.png" rel="shortcut icon">
   <link rel="stylesheet" href="/assets/css/main.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin:800" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700|Rubik:400,500,700" rel="stylesheet">
 </head>
 <script src="/assets/js/vendor/font.js"></script>
-<body id="zu-watch" class="flex-l3-jc-ac-">
-  <section class="left hide"> 
-    <div id="recommend">
-      <h2>Or you can Cheat ...</h2>
-      <div class="top-box rabbit-box flex-l2-">
-        <div v-on:click="elementChange('7', '3', '3')"
-             class="btn recommend-style">
-          <img src="/assets/img/main/recommend/r-1.png" alt="">
-        </div>
-        <div v-on:click="elementChange('2', '2', '1')"
-             class="btn recommend-style">
-          <img src="/assets/img/main/recommend/r-2.png" alt="">
-        </div>
-        <div v-on:click="elementChange('3', '4', '3')"
-             class="btn recommend-style">
-          <img src="/assets/img/main/recommend/r-3.png" alt="">
-        </div>
-        <div v-on:click="elementChange('4', '6', '3')"
-             class="btn recommend-style">
-          <img src="/assets/img/main/recommend/r-4.png" alt="">
-        </div>
-        <div v-on:click="elementChange('1', '1', '3')"
-             class="btn recommend-style">
-          <img src="/assets/img/main/recommend/r-5.png" alt="">
-        </div>
-        <div v-on:click="randomElements"
-             class="btn recommend-style recommend-random">
-          <img src="/assets/img/main/recommend/r-6.png" alt="">
-        </div>
-      </div>
+<body id="index">
+  <div class="index-bg">
+    <div class="index-bg-basic show"></div>
+    <div class="index-bg-double"></div>
+    <div class="index-bg-pro"></div>
+  </div>
+  <div class="index-content">
+    <a class="zu-title" href="/">
+      <h1>Zu WATCH</h1>
+      <span class="subtitle">BUILD YOUR OWN WATCH</span>
+    </a>
+    <div class="index-action">
+      <h2>Choose The Reward</h2>
+      <a data-hover-show="index-bg-basic" class="btn" href="/build.html">Zu WATCH / Basic</a>
+      <a data-hover-show="index-bg-double" class="btn" href="/build.html">Zu WATCH / Double</a>
+      <a data-hover-show="index-bg-pro" class="btn" href="/build.html">Zu WATCH / Pro</a>
     </div>
-    <div id="save">
-      <h2>Your Brothers & Sisters</h2>
-      <div class="bottom-box rabbit-box flex-l4-jfs-">
-        <div id="save-1" class="save-box {{ save.saveA.a }}">
-          <div v-on:click="deleteElementsFromSave('saveA')"
-               class="delete-btn">
-            <img src="/assets/img/common/icons/delete.svg" alt="">
-          </div>
-          <div v-on:click="callSave('saveA')"
-               class="btn preview-show-body">
-            <img class="preview-1" 
-                 src="/assets/img/main/rabbits/e{{ save.saveA.a }}.svg" alt="">
-            <img class="preview-2" 
-                 src="/assets/img/main/rabbits/f{{ save.saveA.b }}.svg" alt="">
-            <img class="preview-3" 
-                 src="/assets/img/main/rabbits/y{{ save.saveA.c }}.svg" alt="">
-          </div>
-        </div>
-        <div id="save-2" class="save-box {{ save.saveB.a }}">
-          <div v-on:click="deleteElementsFromSave('saveB')"
-               class="delete-btn">
-            <img src="/assets/img/common/icons/delete.svg" alt="">
-          </div>
-          <div v-on:click="callSave('saveB')"
-               class="btn preview-show-body">
-            <img class="preview-1" 
-                 src="/assets/img/main/rabbits/e{{ save.saveB.a }}.svg" alt="">
-            <img class="preview-2" 
-                 src="/assets/img/main/rabbits/f{{ save.saveB.b }}.svg" alt="">
-            <img class="preview-3" 
-                 src="/assets/img/main/rabbits/y{{ save.saveB.c }}.svg" alt="">
-          </div>
-        </div>
-        <div id="save-3" class="save-box {{ save.saveC.a }}">
-          <div v-on:click="deleteElementsFromSave('saveC')"
-               class="delete-btn">
-            <img src="/assets/img/common/icons/delete.svg" alt="">
-          </div>
-          <div v-on:click="callSave('saveC')"
-               class="btn preview-show-body">
-            <img class="preview-1" 
-                 src="/assets/img/main/rabbits/e{{ save.saveC.a }}.svg" alt="">
-            <img class="preview-2" 
-                 src="/assets/img/main/rabbits/f{{ save.saveC.b }}.svg" alt="">
-            <img class="preview-3" 
-                 src="/assets/img/main/rabbits/y{{ save.saveC.c }}.svg" alt="">
-          </div>
-        </div>
-        <div id="save-4" class="save-box {{ save.saveD.a }}">
-          <div v-on:click="deleteElementsFromSave('saveD')"
-               class="delete-btn">
-            <img src="/assets/img/common/icons/delete.svg" alt="">
-          </div>
-          <div v-on:click="callSave('saveD')"
-               class="btn preview-show-body">
-            <img class="preview-1" 
-                 src="/assets/img/main/rabbits/e{{ save.saveD.a }}.svg" alt="">
-            <img class="preview-2" 
-                 src="/assets/img/main/rabbits/f{{ save.saveD.b }}.svg" alt="">
-            <img class="preview-3" 
-                 src="/assets/img/main/rabbits/y{{ save.saveD.c }}.svg" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="mid hide">
-    <div id="preview">
-      <div class="top-box preview-show">
-        <div class="preview-show-body">
-          <img class="preview-1" 
-               src="/assets/img/main/rabbits/e{{ preview.now.a }}.svg" alt="">
-          <img class="preview-2" 
-               src="/assets/img/main/rabbits/f{{ preview.now.b }}.svg" alt="">
-          <img class="preview-3" 
-               src="/assets/img/main/rabbits/y{{ preview.now.c }}.svg" alt="">
-        </div>
-      </div>
-      <div class="bottom-box preview-btns">
-        <div v-on:click="undoElements()"
-             id="prev" 
-             class="rabbit-btn step-btn {{ preview.prev.a }}">
-          <i class="fa fa-undo"></i>
-        </div>
-        <div v-on:click="saveElements"
-             id="save" class="rabbit-btn save-btn">
-          SAVE
-        </div>
-        <div v-on:click="nextElements()"
-             id="next" 
-             class="rabbit-btn step-btn {{ preview.next.a }}">
-          <i class="fa fa-undo"></i>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="right hide">
-    <div id="elements">
-      <h2>Elements of the Rabbit</h2>
-      <div class="top-box rabbit-box">
-        <div class="elements-tabbar flex-l5-ac-jfs-">
-          <div data-tab="face" class="elements-tab-btn active">Face</div>
-          <div data-tab="ears" class="elements-tab-btn">Ears</div>
-          <div data-tab="eyes" class="elements-tab-btn">Eyes</div>
-        </div>
-        <div class="elements-content">
-          <div data-tab="face" class="elements-content-box flex-l3-jfs-afs- active">
-            <div v-on:click="elementChange('', '1', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/f1.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('', '2', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/f2.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('', '3', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/f3.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('', '4', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/f4.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('', '5', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/f5.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('', '6', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/f6.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('', '7', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/f7.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('', '8', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/f8.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('', '9', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/f9.svg" alt="">
-            </div>
-          </div>
-          <div data-tab="ears" class="elements-content-box flex-l3-jfs-afs-">
-            <div v-on:click="elementChange('1', '', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/e1.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('2', '', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/e2.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('3', '', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/e3.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('4', '', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/e4.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('5', '', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/e5.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('6', '', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/e6.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('7', '', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/e7.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('8', '', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/e8.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('9', '', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/e9.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('10', '', '')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/e10.svg" alt="">
-            </div>
-          </div>
-          <div data-tab="eyes" class="elements-content-box flex-l3-jfs-afs-">
-            <div v-on:click="elementChange('', '', '1')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/y1.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('', '', '2')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/y2.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('', '', '3')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/y3.svg" alt="">
-            </div>
-            <div v-on:click="elementChange('', '', '4')"
-                 class="e-c-b-c">
-              <img src="/assets/img/main/rabbits/y4.svg" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="code-and-share">
-      <h2>Rabbit's Code</h2>
-      <div class="bottom-box rabbit-box">
-        <div data-code="input"
-             class="code-btn input-btn">
-          Input Code
-        </div>
-        <div v-on:click="generateCode"
-             data-code="generate"
-             class="code-btn generate-btn">
-          Generate Code
-        </div>
-        <div data-code="generate"
-             class="code-section generate-code-section">
-          <h3>Generate Code</h3>
-          <div class="code-section-area">
-          </div>
-          <div class="code-section-btn-area">
-            <div data-code="generate"
-                 class="btn code-section-cancel">Cancel</div>
-            <div class="btn code-section-copy">Copy</div>
-          </div>
-        </div>
-        <div data-code="input"
-             class="code-section input-code-section">
-          <h3>Input Code</h3>
-          <input class="code-section-area" type="text">
-          <div class="code-section-btn-area">
-            <div data-code="input" 
-                 class="btn code-section-cancel">Cancel</div>
-            <div v-on:click="inputCode"
-                 class="btn code-section-render">Render</div>
-          </div>
-        </div>
-        <div onclick="fbShare()"
-             class="share-btn">
-          <i class="fa fa-facebook-official"></i>
-          Share Your Rabbit
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
 </body>
 <script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>
 <script src="/assets/js/vendor/vue.min.js"></script>
 <script src="/assets/js/animateNumber.js"></script>
 <script src="/assets/js/vendor/clipboard.min.js"></script>
 <script src="/assets/js/index.js"></script>
-<script>
-  var fbhtml_url = window.location.toString()
-  function fbShare() {
-    window.open('http://www.facebook.com/sharer/sharer.php?u='+fbhtml_url);
-    return false;  
-  }
-</script>
 </html>

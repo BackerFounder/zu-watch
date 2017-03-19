@@ -25,14 +25,18 @@
 	z-index: 2;
 }
 
-.rabbit-btn {
-	background-image: $g;
-	border-radius: 23px;
+.zuwatch-btn {
+	background-color: #fff;
 	line-height: 46px;
 	height: 46px;
-	box-shadow: 0 7px 15px 0 rgba(88,16,109, .49);
+	color: rgba(0,0,0,.9);
+	box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+	i { 
+		margin-right: 5px;
+		color: rgba(0,0,0,.5);
+	}
 }
-.rabbit-btn.null {
+.zuwatch-btn.null {
 	pointer-events: none;
 	opacity: .4;
 }

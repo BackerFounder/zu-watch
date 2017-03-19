@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:og='http://ogp.me/ns#'>
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Zǔ WATCH | Build Your Own Watch</title>
+  <meta content="zuwatch, zu-watch, 組錶" name="keywords">
+  <meta content="Your first configurable watch for every style you carry." name="description">
+  <meta content="Zǔ WATCH | Build Your Own Watch" property="og:title">
+  <meta content="Zǔ WATCH | Build Your Own Watch" property="og:site_name">
+  <meta content="Your first configurable watch for every style you carry." property="og:description">
+  <meta content="/assets/img/common/facebook.png" property="og:image">
+  <link href="http://static.wixstatic.com/media/495b64_5c92ae34812c48b1bd0b81f1a8180d64.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/495b64_5c92ae34812c48b1bd0b81f1a8180d64.png" rel="shortcut icon">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700|Rubik:400,500,700" rel="stylesheet">
+</head>
+<script src="/assets/js/vendor/font.js"></script>
+<body id="zu-watch">
+  <div class="build-bg"></div>
+  <div class="zu-title flex-ac-jc-">
+    <a href="/">
+      <h1>Zu WATCH</h1>
+      <span class="subtitle">BUILD YOUR OWN WATCH</span>
+    </a>
+  </div>
+  <div class="content flex-l3-jc-ac-">
+    <section class="left hide"> 
+      <div id="recommend">
+        <h2>Hot Styling</h2>
+        <div class="top-box normal-box flex-afs-">
+          <!--<div v-on:click="elementChange('', '', '')"
+              class="btn recommend-style">
+              <b>DESIGN</b>
+          </div> -->
+          <div v-on:click="randomElements"
+              class="btn recommend-style recommend-random">
+              <b>Random</b>
+              <i class="fa fa-random" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <div id="save">
+        <h2>Your Style</h2>
+        <div class="bottom-box normal-box flex-l4-jfs-">
+          <div id="save-1" class="save-box {{ save.saveA.a }}">
+            <div v-on:click="deleteElementsFromSave('saveA')"
+                class="delete-btn">
+              <img src="/assets/img/common/icons/delete.svg" alt="">
+            </div>
+            <div v-on:click="callSave('saveA')"
+                class="btn preview-show-body">
+              <img class="preview-1"
+                  src="/assets/img/main/product/pv-case/{{ save.saveA.a }}.png" alt="">
+              <img class="preview-2"
+                  src="/assets/img/main/product/pv-dial/{{ save.saveA.b }}.png" alt="">
+              <img class="preview-3"
+                  src="/assets/img/main/product/pv-strap/{{ save.saveA.c }}.png" alt="">
+            </div>
+          </div>
+          <div id="save-2" class="save-box {{ save.saveB.a }}">
+            <div v-on:click="deleteElementsFromSave('saveB')"
+                class="delete-btn">
+              <img src="/assets/img/common/icons/delete.svg" alt="">
+            </div>
+            <div v-on:click="callSave('saveB')"
+                class="btn preview-show-body">
+              <img class="preview-1"
+                  src="/assets/img/main/product/pv-case/{{ save.saveB.a }}.png" alt="">
+              <img class="preview-2"
+                  src="/assets/img/main/product/pv-dial/{{ save.saveB.b }}.png" alt="">
+              <img class="preview-3"
+                  src="/assets/img/main/product/pv-strap/{{ save.saveB.c }}.png" alt="">
+            </div>
+          </div>
+          <div id="save-3" class="save-box {{ save.saveC.a }}">
+            <div v-on:click="deleteElementsFromSave('saveC')"
+                class="delete-btn">
+              <img src="/assets/img/common/icons/delete.svg" alt="">
+            </div>
+            <div v-on:click="callSave('saveC')"
+                class="btn preview-show-body">
+              <img class="preview-1"
+                  src="/assets/img/main/product/pv-case/{{ save.saveC.a }}.png" alt="">
+              <img class="preview-2"
+                  src="/assets/img/main/product/pv-dial/{{ save.saveC.b }}.png" alt="">
+              <img class="preview-3"
+                  src="/assets/img/main/product/pv-strap/{{ save.saveC.c }}.png" alt="">
+            </div>
+          </div>
+          <div id="save-4" class="save-box {{ save.saveD.a }}">
+            <div v-on:click="deleteElementsFromSave('saveD')"
+                class="delete-btn">
+              <img src="/assets/img/common/icons/delete.svg" alt="">
+            </div>
+            <div v-on:click="callSave('saveD')"
+                class="btn preview-show-body">
+              <img class="preview-1"
+                  src="/assets/img/main/product/pv-case/{{ save.saveD.a }}.png" alt="">
+              <img class="preview-2"
+                  src="/assets/img/main/product/pv-dial/{{ save.saveD.b }}.png" alt="">
+              <img class="preview-3"
+                  src="/assets/img/main/product/pv-strap/{{ save.saveD.c }}.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="mid hide">
+      <div id="preview">
+        <div class="top-box preview-show">
+          <div class="preview-show-body">
+            <img class="preview-1"
+                src="/assets/img/main/product/pv-case/{{ preview.now.a }}.png" alt="">
+            <img class="preview-2"
+                src="/assets/img/main/product/pv-dial/{{ preview.now.b }}.png" alt="">
+            <img class="preview-3"
+                src="/assets/img/main/product/pv-strap/{{ preview.now.c }}.png" alt="">
+          </div>
+        </div>
+        <div class="bottom-box preview-btns">
+          <div v-on:click="undoElements()"
+              id="prev" 
+              class="zuwatch-btn step-btn {{ preview.prev.a }}">
+            <i class="fa fa-undo"></i>
+          </div>
+          <div v-on:click="saveElements"
+              id="save" class="zuwatch-btn save-btn">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            SAVE
+          </div>
+          <div v-on:click=""
+              id="addtocart" class="zuwatch-btn save-btn">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            CART
+          </div>
+          <div v-on:click="nextElements()"
+              id="next" 
+              class="zuwatch-btn step-btn {{ preview.next.a }}">
+            <i class="fa fa-undo"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="right hide">
+      <div id="elements">
+        <h2>Elements of the Watch</h2>
+        <div class="top-box normal-box">
+          <div class="elements-tabbar flex-l5-ac-jfs-">
+            <div data-tab="case" class="elements-tab-btn active">Case</div>
+            <div data-tab="dial" class="elements-tab-btn">Dial</div>
+            <div data-tab="strap" class="elements-tab-btn">Strap</div>
+          </div>
+          <div class="elements-content">
+            <div data-tab="case" class="elements-content-box flex-l3-jfs-afs- active">
+              <div v-for="c in case" v-on:click="elementChange(c, '', '')"
+                  class="e-c-b-c">
+                <img src="/assets/img/main/product/case/{{ c }}.png" alt="">
+              </div>
+            </div>
+            <div data-tab="dial" class="elements-content-box flex-l3-jfs-afs-">
+              <div v-for="d in dial" v-on:click="elementChange('', d, '')"
+                  class="e-c-b-c">
+                <img src="/assets/img/main/product/dial/{{ d }}.png" alt="">
+              </div>
+            </div>
+            <div data-tab="strap" class="elements-content-box flex-l3-jfs-afs-">
+              <div v-for="s in strap" v-on:click="elementChange('', '', s)"
+                  class="e-c-b-c">
+                <img src="/assets/img/main/product/strap/{{ s }}.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="code-and-share">
+        <h2>Cart</h2>
+        <div class="bottom-box normal-box">
+          <div data-code="input"
+              class="code-btn input-btn">
+            Input Code
+          </div>
+          <div v-on:click="generateCode"
+              data-code="generate"
+              class="code-btn generate-btn">
+            Generate Code
+          </div>
+          <div data-code="generate"
+              class="code-section generate-code-section">
+            <h3>Generate Code</h3>
+            <div class="code-section-area">
+            </div>
+            <div class="code-section-btn-area">
+              <div data-code="generate"
+                  class="btn code-section-cancel">Cancel</div>
+              <div class="btn code-section-copy">Copy</div>
+            </div>
+          </div>
+          <div data-code="input"
+              class="code-section input-code-section">
+            <h3>Input Code</h3>
+            <input class="code-section-area" type="text">
+            <div class="code-section-btn-area">
+              <div data-code="input" 
+                  class="btn code-section-cancel">Cancel</div>
+              <div v-on:click="inputCode"
+                  class="btn code-section-render">Render</div>
+            </div>
+          </div>
+          <div onclick="fbShare()"
+              class="share-btn">
+            <i class="fa fa-facebook-official"></i>
+            Share Your Rabbit
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+<script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>
+<script src="/assets/js/vendor/vue.min.js"></script>
+<script src="/assets/js/animateNumber.js"></script>
+<script src="/assets/js/vendor/clipboard.min.js"></script>
+<script src="/assets/js/build.js"></script>
+<script>
+  var fbhtml_url = window.location.toString()
+  function fbShare() {
+    window.open('http://www.facebook.com/sharer/sharer.php?u='+fbhtml_url);
+    return false;  
+  }
+</script>
+</html>
