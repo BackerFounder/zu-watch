@@ -16,7 +16,7 @@ map '/' do
 end
 
 
-map '/build' do
+map '/build.html' do
     run lambda { |env|
       [
         200,
