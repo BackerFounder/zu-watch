@@ -17,7 +17,10 @@ $(window).load(function() {
 		$(".code-section[data-code='" + t + "']").addClass('active')
 	})
 
-	$('section').removeClass('hide')
+  $('.index-action .btn').click(function () {
+    $('#index').fadeOut(300);
+    $('section').removeClass('hide')
+  })
 	
 	// 暫時先放這
 	var clipboard = new Clipboard('.code-section-copy', {
@@ -105,18 +108,18 @@ $(document).ready(function() {
       },
       cart: {
         basic: {
-          a: null,
-          b: null,
-          c: null
+          a1: null,
+          b1: null,
+          c1: null
         },
-        double: {
-          a: null,
+        pro: {
+          a1: null,
           b1: null,
           b2: null,
           c1: null,
           c2: null
         },
-        pro: {
+        double: {
           a1: null,
           a2: null,
           b1: null,
@@ -156,9 +159,12 @@ $(document).ready(function() {
 
     methods: {
     	fetchData: function() {
-  			// this.$data = JSON.parse(atob(localStorage['fullPage']))
+  			this.$data = JSON.parse(atob(localStorage['fullPage']))
     	},
-    	elementChange: function(a,b,c) {
+      chooseStatus: function(type) {
+        this.status = type
+      },
+    	elementChange: function(a, b, c) {
     		this.previewChange
     		if (a)
     			this.preview.now.a = a
@@ -170,6 +176,106 @@ $(document).ready(function() {
     		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
     		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
+      elementAddCart: function(a, b, c) {
+        if ( this.status == 'basic' ) {
+          if (a) {
+            this.cart.basic.a1 = a
+          }
+          if (b) {
+            this.cart.basic.b1 = b
+          }
+          if (c) {
+            this.cart.basic.c1 = c
+          }
+        }
+        else if ( this.status == 'pro' ) {
+          if (a) {
+            this.cart.pro.a1 = a
+          }
+          if (b) {
+            if ( this.cart.pro.b1 == null ) {
+              this.cart.pro.b1 = b
+            }
+            else if ( this.cart.pro.b2 == null ) {
+              this.cart.pro.b2 = b
+            }
+            else {
+              this.cart.pro.b2 = b
+            }
+          }
+          if (c) {
+            if ( this.cart.pro.c1 == null ) {
+              this.cart.pro.c1 = c
+            }
+            else if ( this.cart.pro.c2 == null ) {
+              this.cart.pro.c2 = c
+            }
+            else {
+              this.cart.pro.c2 = c
+            }
+          }
+        }
+        else if ( this.status == 'double' ) {
+          if (a) {
+            if ( this.cart.double.a1 == null ) {
+              this.cart.double.a1 = a
+            }
+            else if ( this.cart.double.a2 == null ) {
+              this.cart.double.a2 = a
+            }
+            else {
+              this.cart.double.a2 = a
+            }
+          }
+          if (b) {
+            var check1 = this.cart.double.b1
+            var check2 = this.cart.double.b2
+            var check3 = this.cart.double.b3
+            var check4 = this.cart.double.b4
+            var check5 = this.cart.double.b5
+            var a = Object.keys(this.cart.double)
+            if( check1 && check2 && check3 && check4 && check5 ) {
+              this.cart.double.b5 = b
+            }
+            else {
+              for (var i = 0; i <= 4; i ++ ) {
+                if ( !this.cart.double[ a[i+2] ] ) {
+                  this.cart.double[ a[i+2] ] = b
+                  localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+                  // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+                  break
+                }
+              }
+            }
+          }
+          if (c) {
+            var check1 = this.cart.double.c1
+            var check2 = this.cart.double.c2
+            var check3 = this.cart.double.c3
+            var check4 = this.cart.double.c4
+            var check5 = this.cart.double.c5
+            var a = Object.keys(this.cart.double)
+            if( check1 && check2 && check3 && check4 && check5 ) {
+              this.cart.double.c5 = c
+            }
+            else {
+              for (var i = 0; i <= 4; i ++ ) {
+                if ( !this.cart.double[ a[i+7] ] ) {
+                  this.cart.double[ a[i+7] ] = c
+                  localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+                  // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+                  break
+                }
+              }
+            }
+          }
+        }
+        localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+        // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+      },
+      deleteCartElement: function(type, item) {
+        this.cart[type][item] = null;
+      },
     	randomElements: function() {
     		this.previewChange
     		var a = this.case

@@ -23,6 +23,9 @@
 	top: 5px;
 	right: 5px;
 	z-index: 2;
+	&.null {
+		display: none;
+	}
 }
 
 .zuwatch-btn {
@@ -31,9 +34,12 @@
 	height: 46px;
 	color: rgba(0,0,0,.9);
 	box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
-	i { 
+	i {
 		margin-right: 5px;
 		color: rgba(0,0,0,.5);
+	}
+	&#prev i, &#next i {
+		margin-right: 0;
 	}
 }
 .zuwatch-btn.null {
@@ -54,7 +60,6 @@
 	transition: .2s ease;
 }
 .save-btn:active {
-	box-shadow: 0 4px 6px 0 rgba(88,16,109, .49);
 	transform: translateY(3px);
 }
 

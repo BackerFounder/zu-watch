@@ -17,28 +17,401 @@
   <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700|Rubik:400,500,700" rel="stylesheet">
 </head>
 <script src="/assets/js/vendor/font.js"></script>
-<body id="index">
-  <div class="index-bg">
-    <div class="index-bg-basic show"></div>
-    <div class="index-bg-double"></div>
-    <div class="index-bg-pro"></div>
+<body id="zu-watch">
+  <div id="index">
+    <div class="index-bg">
+      <div class="index-bg-basic show"></div>
+      <div class="index-bg-pro"></div>
+      <div class="index-bg-double"></div>
+    </div>
+    <div class="index-content">
+      <a class="zu-title" href="/">
+        <h2>Zu WATCH</h2>
+        <span class="subtitle">BUILD YOUR OWN WATCH</span>
+      </a>
+      <div class="index-action">
+        <h2>Choose The Reward</h2>
+        <div data-hover-show="index-bg-basic"
+             v-on:click="chooseStatus('basic')"
+             class="btn"
+             href="/build.html">Zu WATCH / Basic</div>
+        <div data-hover-show="index-bg-pro"
+             v-on:click="chooseStatus('pro')"
+             class="btn"
+             href="/build.html">Zu WATCH / Pro</div>
+        <div data-hover-show="index-bg-double"
+             v-on:click="chooseStatus('double')"
+             class="btn"
+             href="/build.html">Zu WATCH / Double</div>
+      </div>
+    </div>
   </div>
-  <div class="index-content">
-    <a class="zu-title" href="/">
+  <div class="build-bg"></div>
+  <div class="zu-title flex-ac-jc-">
+    <a href="/">
       <h1>Zu WATCH</h1>
       <span class="subtitle">BUILD YOUR OWN WATCH</span>
     </a>
-    <div class="index-action">
-      <h2>Choose The Reward</h2>
-      <a data-hover-show="index-bg-basic" class="btn" href="/build.html">Zu WATCH / Basic</a>
-      <a data-hover-show="index-bg-double" class="btn" href="/build.html">Zu WATCH / Double</a>
-      <a data-hover-show="index-bg-pro" class="btn" href="/build.html">Zu WATCH / Pro</a>
-    </div>
+  </div>
+  <div class="content flex-l3-jc-ac-">
+    <section class="left hide">
+      <div id="recommend">
+        <h2>Hot Styling</h2>
+        <div class="top-box normal-box flex-afs-">
+          <!--<div v-on:click="elementChange('', '', '')"
+              class="btn recommend-style">
+              <b>DESIGN</b>
+          </div> -->
+          <div v-on:click="randomElements"
+              class="btn recommend-style recommend-random">
+              <b>Random</b>
+              <i class="fa fa-random" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <div id="save">
+        <h2>Your Style</h2>
+        <div class="bottom-box normal-box flex-l4-jfs-">
+          <div id="save-1" class="save-box {{ save.saveA.a }}">
+            <div v-on:click="deleteElementsFromSave('saveA')"
+                class="delete-btn">
+              <img src="/assets/img/common/icons/delete.svg" alt="">
+            </div>
+            <div v-on:click="callSave('saveA')"
+                class="btn preview-show-body">
+              <img class="preview-1"
+                  :src="'/assets/img/main/product/pv-case/' + save.saveA.a + '.png'" alt="">
+              <img class="preview-2"
+                  :src="'/assets/img/main/product/pv-dial/' + save.saveA.b + '.png'" alt="">
+              <img class="preview-3"
+                  :src="'/assets/img/main/product/pv-strap/' + save.saveA.c + '.png'" alt="">
+            </div>
+          </div>
+          <div id="save-2" class="save-box {{ save.saveB.a }}">
+            <div v-on:click="deleteElementsFromSave('saveB')"
+                class="delete-btn">
+              <img src="/assets/img/common/icons/delete.svg" alt="">
+            </div>
+            <div v-on:click="callSave('saveB')"
+                class="btn preview-show-body">
+              <img class="preview-1"
+                  :src="'/assets/img/main/product/pv-case/' + save.saveB.a + '.png'" alt="">
+              <img class="preview-2"
+                  :src="'/assets/img/main/product/pv-dial/' + save.saveB.b + '.png'" alt="">
+              <img class="preview-3"
+                  :src="'/assets/img/main/product/pv-strap/' + save.saveB.c + '.png'" alt="">
+            </div>
+          </div>
+          <div id="save-3" class="save-box {{ save.saveC.a }}">
+            <div v-on:click="deleteElementsFromSave('saveC')"
+                class="delete-btn">
+              <img src="/assets/img/common/icons/delete.svg" alt="">
+            </div>
+            <div v-on:click="callSave('saveC')"
+                class="btn preview-show-body">
+              <img class="preview-1"
+                  :src="'/assets/img/main/product/pv-case/' + save.saveC.a + '.png'" alt="">
+              <img class="preview-2"
+                  :src="'/assets/img/main/product/pv-dial/' + save.saveC.b + '.png'" alt="">
+              <img class="preview-3"
+                  :src="'/assets/img/main/product/pv-strap/' + save.saveC.c + '.png'" alt="">
+            </div>
+          </div>
+          <div id="save-4" class="save-box {{ save.saveD.a }}">
+            <div v-on:click="deleteElementsFromSave('saveD')"
+                class="delete-btn">
+              <img src="/assets/img/common/icons/delete.svg" alt="">
+            </div>
+            <div v-on:click="callSave('saveD')"
+                class="btn preview-show-body">
+              <img class="preview-1"
+                  :src="'/assets/img/main/product/pv-case/' + save.saveD.a + '.png'" alt="">
+              <img class="preview-2"
+                  :src="'/assets/img/main/product/pv-dial/' + save.saveD.b + '.png'" alt="">
+              <img class="preview-3"
+                  :src="'/assets/img/main/product/pv-strap/' + save.saveD.c + '.png'" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="mid hide">
+      <div id="preview">
+        <div class="mockup-btns">
+          <div class="mockup-btn">WOMAN</div>
+          <div class="mockup-btn">MAN</div>
+        </div>
+        <div class="top-box preview-show">
+          <div class="preview-show-body">
+            <img class="preview-1"
+                :src="'/assets/img/main/product/pv-case/' + preview.now.a + '.png'" alt="">
+            <img class="preview-2"
+                :src="'/assets/img/main/product/pv-dial/' + preview.now.b + '.png'" alt="">
+            <img class="preview-3"
+                :src="'/assets/img/main/product/pv-strap/' + preview.now.c + '.png'" alt="">
+          </div>
+        </div>
+        <div class="bottom-box preview-btns">
+          <div v-on:click="undoElements()"
+               id="prev" 
+               class="zuwatch-btn step-btn {{ preview.prev.a }}">
+            <i class="fa fa-undo"></i>
+          </div>
+          <div v-on:click="saveElements"
+               id="save" class="zuwatch-btn save-btn">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            SAVE
+          </div>
+          <div v-on:click="elementAddCart(preview.now.a, preview.now.b, preview.now.c)"
+               id="addtocart" class="zuwatch-btn save-btn">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            CART
+          </div>
+          <div v-on:click="nextElements()"
+               id="next" 
+               class="zuwatch-btn step-btn {{ preview.next.a }}">
+            <i class="fa fa-undo"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="right hide">
+      <div id="elements">
+        <div class="top-box normal-box">
+          <div class="elements-tabbar flex-ac-jfs-">
+            <div data-tab="case" class="elements-tab-btn active">Case</div>
+            <div data-tab="dial" class="elements-tab-btn">Dial</div>
+            <div data-tab="strap" class="elements-tab-btn">Strap</div>
+          </div>
+          <div class="elements-content">
+            <div data-tab="case" class="elements-content-box flex-l3-jfs-afs- active">
+              <div v-for="c in case"
+                   class="e-c-b-c">
+                <div :data-selected="c" 
+                     class="element-selected"></div>
+                <img  v-on:click="elementChange(c, '', '')"
+                      :src="'/assets/img/main/product/case/' + c + '.png'" alt="">
+                <div v-on:click="elementAddCart(c, '', '')"
+                     class="add-this-btn">Add this</div>
+              </div>
+            </div>
+            <div data-tab="dial" class="elements-content-box flex-l3-jfs-afs-">
+              <div v-for="d in dial"
+                   class="e-c-b-c">
+                <div :data-selected="d" 
+                     class="element-selected"></div>
+                <img v-on:click="elementChange('', d, '')"
+                     :src="'/assets/img/main/product/dial/' + d + '.png'" alt="">
+                <div v-on:click="elementAddCart('', d, '')"
+                     class="add-this-btn">Add this</div>
+              </div>
+            </div>
+            <div data-tab="strap" class="elements-content-box flex-l3-jfs-afs-">
+              <div v-for="s in strap"
+                   class="e-c-b-c">
+                <div :data-selected="s" 
+                     class="element-selected"></div>
+                <img v-on:click="elementChange('', '', s)"
+                     :src="'/assets/img/main/product/strap/' + s + '.png'" alt="">
+                <div v-on:click="elementAddCart('', '', s)"
+                     class="add-this-btn">Add this</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="code-and-share">
+        <h2>Cart</h2>
+        <div v-if=" status === 'basic' " class="bottom-box normal-box">
+          <h2>Zu WATCH / Basic</h2>
+          <div class="cart-content flex-l4-jfs-afs-">
+            <div>
+              <div v-on:click="deleteCartElement('basic', 'a1')"
+                   class="delete-btn {{ cart.basic.a1 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange(cart.basic.a1, '', '')"
+                   :src="'/assets/img/main/product/case/' + cart.basic.a1 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('basic', 'b1')"
+                   class="delete-btn {{ cart.basic.b1 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', cart.basic.b1, '')"
+                   :src="'/assets/img/main/product/dial/' + cart.basic.b1 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('basic', 'c1')"
+                   class="delete-btn {{ cart.basic.c1 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', '', cart.basic.c1)"
+                   :src="'/assets/img/main/product/strap/' + cart.basic.c1 + '.png'" alt="">
+            </div>
+          </div>
+        </div>
+        <div v-if=" status === 'pro' " class="bottom-box normal-box">
+          <h2>Zu WATCH / Pro</h2>
+          <div class="cart-content flex-l4-jfs-afs-">
+            <div>
+              <div v-on:click="deleteCartElement('pro', 'a1')"
+                   class="delete-btn {{ cart.pro.a1 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange( cart.pro.a1, '', '')"
+                   :src="'/assets/img/main/product/case/' + cart.pro.a1 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('pro', 'b1')"
+                   class="delete-btn {{ cart.pro.b1 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', cart.pro.b1, '')"
+                   :src="'/assets/img/main/product/dial/' + cart.pro.b1 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('pro', 'b2')"
+                   class="delete-btn {{ cart.pro.b2 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', cart.pro.b2, '')"
+                   :src="'/assets/img/main/product/dial/' + cart.pro.b2 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('pro', 'c1')"
+                   class="delete-btn {{ cart.pro.c1 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', '', cart.pro.c1)"
+                   :src="'/assets/img/main/product/strap/' + cart.pro.c1 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('pro', 'c2')"
+                   class="delete-btn {{ cart.pro.c2 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', '', cart.pro.c2)"
+                   :src="'/assets/img/main/product/strap/' + cart.pro.c2 + '.png'" alt="">
+            </div>
+          </div>
+        </div>
+        <div v-if=" status === 'double' " class="bottom-box normal-box">
+          <h2>Zu WATCH / Double</h2>
+          <div class="cart-content flex-l4-jfs-afs-">
+            <div>
+              <div v-on:click="deleteCartElement('double', 'a1')"
+                   class="delete-btn {{ cart.double.a1 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange( cart.double.a1, '', '')"
+                   :src="'/assets/img/main/product/case/' + cart.double.a1 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('double', 'a2')"
+                   class="delete-btn {{ cart.double.a2 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange( cart.double.a2, '', '')"
+                   :src="'/assets/img/main/product/case/' + cart.double.a2 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('double', 'b1')"
+                   class="delete-btn {{ cart.double.b1 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', cart.double.b1, '')"
+                   :src="'/assets/img/main/product/dial/' + cart.double.b1 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('double', 'b2')"
+                   class="delete-btn {{ cart.double.b2 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', cart.double.b2, '')"
+                   :src="'/assets/img/main/product/dial/' + cart.double.b2 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('double', 'b3')"
+                   class="delete-btn {{ cart.double.b3 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', cart.double.b3, '')"
+                   :src="'/assets/img/main/product/dial/' + cart.double.b3 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('double', 'b4')"
+                   class="delete-btn {{ cart.double.b4 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', cart.double.b4, '')"
+                   :src="'/assets/img/main/product/dial/' + cart.double.b4 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('double', 'b5')"
+                   class="delete-btn {{ cart.double.b5 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', cart.double.b5, '')"
+                   :src="'/assets/img/main/product/dial/' + cart.double.b5 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('double', 'c1')"
+                   class="delete-btn {{ cart.double.c1 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', '', cart.double.c1)"
+                   :src="'/assets/img/main/product/strap/' + cart.double.c1 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('double', 'c2')"
+                   class="delete-btn {{ cart.double.c2 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', '', cart.double.c2)"
+                   :src="'/assets/img/main/product/strap/' + cart.double.c2 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('double', 'c3')"
+                   class="delete-btn {{ cart.double.c3 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', '', cart.double.c3)"
+                   :src="'/assets/img/main/product/strap/' + cart.double.c3 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('double', 'c4')"
+                   class="delete-btn {{ cart.double.c4 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', '', cart.double.c4)"
+                   :src="'/assets/img/main/product/strap/' + cart.double.c4 + '.png'" alt="">
+            </div>
+            <div>
+              <div v-on:click="deleteCartElement('double', 'c5')"
+                   class="delete-btn {{ cart.double.c5 }}">
+                <img src="/assets/img/common/icons/delete.svg" alt="">
+              </div>
+              <img v-on:click="elementChange('', '', cart.double.c5)"
+                   :src="'/assets/img/main/product/strap/' + cart.double.c5 + '.png'" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </body>
 <script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>
-<script src="/assets/js/vendor/vue.min.js"></script>
-<script src="/assets/js/animateNumber.js"></script>
+<!-- <script src="/assets/js/vendor/vue.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
 <script src="/assets/js/vendor/clipboard.min.js"></script>
 <script src="/assets/js/index.js"></script>
+<script src="/assets/js/build.js"></script>
+<script>
+  var fbhtml_url = window.location.toString()
+  function fbShare() {
+    window.open('http://www.facebook.com/sharer/sharer.php?u='+fbhtml_url);
+    return false;  
+  }
+</script>
 </html>
