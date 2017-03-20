@@ -42,18 +42,7 @@ $(document).ready(function() {
   ZuWatch = new Vue ({
     el: '#zu-watch',
     data: {
-      status: 'Basic',
-      preview: {
-      	prev: { a: null, b: null, c: null },
-      	now:  { a: 'ca-01', b: 'zu-01-b', c: 'lc-01' },
-      	next: { a: null, b: null, c: null }
-      },
-      save: {
-      	saveA: { a: null, b: null, c: null },
-      	saveB: { a: null, b: null, c: null },
-      	saveC: { a: null, b: null, c: null },
-      	saveD: { a: null, b: null, c: null }
-      },
+      status: 'basic',
       case: [
         'ca-01',
         'ca-02',
@@ -102,19 +91,69 @@ $(document).ready(function() {
         'ny-01',
         'ny-02',
         'ny-03'
-      ]
+      ],
+      preview: {
+        prev: { a: null, b: null, c: null },
+        now:  { a: 'ca-01', b: 'zu-01-b', c: 'lc-01' },
+        next: { a: null, b: null, c: null }
+      },
+      save: {
+        saveA: { a: null, b: null, c: null },
+        saveB: { a: null, b: null, c: null },
+        saveC: { a: null, b: null, c: null },
+        saveD: { a: null, b: null, c: null }
+      },
+      cart: {
+        basic: {
+          a: null,
+          b: null,
+          c: null
+        },
+        double: {
+          a: null,
+          b1: null,
+          b2: null,
+          c1: null,
+          c2: null
+        },
+        pro: {
+          a1: null,
+          a2: null,
+          b1: null,
+          b2: null,
+          b3: null,
+          b4: null,
+          b5: null,
+          c1: null,
+          c2: null,
+          c3: null,
+          c4: null,
+          c5: null
+        }
+      }
     },
 
     ready: function() {
     	this.fetchData()
     },
+
     computed: {
 			previewChange: function() {
     		this.preview.prev.a = this.preview.now.a
     		this.preview.prev.b = this.preview.now.b
     		this.preview.prev.c = this.preview.now.c
-    	}
+    	},
+      whichElementSelected: function() {
+        var a = this.preview.now.a
+        var b = this.preview.now.b
+        var c = this.preview.now.c
+        $('[data-selected]').removeClass('active');
+        $('[data-selected=' + a +']').addClass('active');
+        $('[data-selected=' + b +']').addClass('active');
+        $('[data-selected=' + c +']').addClass('active');
+      }
     },
+
     methods: {
     	fetchData: function() {
   			// this.$data = JSON.parse(atob(localStorage['fullPage']))
@@ -127,6 +166,7 @@ $(document).ready(function() {
     			this.preview.now.b = b
     		if (c)
     			this.preview.now.c = c
+        this.whichElementSelected
     		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
     		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
@@ -141,6 +181,7 @@ $(document).ready(function() {
   			this.preview.now.a = a[Math.floor((Math.random() * aN))]
   			this.preview.now.b = b[Math.floor((Math.random() * bN))]
   			this.preview.now.c = c[Math.floor((Math.random() * cN))]
+        this.whichElementSelected
   			localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
   			// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
@@ -161,6 +202,7 @@ $(document).ready(function() {
 	    				this.save[b[i]].a = this.preview.now.a
 	    				this.save[b[i]].b = this.preview.now.b
 	    				this.save[b[i]].c = this.preview.now.c
+              this.whichElementSelected
 	    				localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
 	    				// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
 	    				return
@@ -172,6 +214,7 @@ $(document).ready(function() {
     		this.preview.now.a = this.save[saveN].a
     		this.preview.now.b = this.save[saveN].b
     		this.preview.now.c = this.save[saveN].c
+        this.whichElementSelected
     		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
     		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
@@ -192,6 +235,7 @@ $(document).ready(function() {
     		this.preview.prev.a = null
     		this.preview.prev.b = null
     		this.preview.prev.c = null
+        this.whichElementSelected
     		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
     		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
@@ -203,6 +247,7 @@ $(document).ready(function() {
     		this.preview.next.a = null
     		this.preview.next.b = null
     		this.preview.next.c = null
+        this.whichElementSelected
     		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
     		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},

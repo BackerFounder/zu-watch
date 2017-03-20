@@ -4,11 +4,19 @@
 	left: 0;
 	width: 100%;
 	height: 100vh;
-	background-color: rgba(0,0,0,.8);
 	background-size: cover;
 	background-position: center;
-	// background-image: url('../img/main/bg/build.jpg');
+	background-image: url('../img/main/bg/basic.jpg');
 	z-index: -1;
+	&:after {
+		display: block;
+		content: '';
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-color: rgba(0,0,0,.6);
+	}
 }
 section {
 	max-width: 450px;
@@ -122,13 +130,29 @@ h2 {
 		margin-left: 5px;
 	}
 }
-.recommend-random {
 
+// mockup
+.mockup-btns {
+	height: 43px;
+	margin-bottom: 8px;
+	.mockup-btn {
+		display: inline-block;
+		width: 120px;
+		line-height: 30px;
+		height: 30px;
+		font-size: 13px!important;
+		border-radius: 15px;
+		box-shadow: inset 0 0 0 2px rgba(255,255,255,.8);
+		margin: 0 3px;
+		&:hover {
+			background-color: #fff;
+			color: rgba(0,0,0,.7);
+		}
+	}
 }
-
 .preview-show {
 	position: relative;
-	margin: 43px 0;
+	margin: 0px 0 43px;
 }
 .preview-show-body {
 	position: relative;
@@ -204,7 +228,7 @@ img.preview-3 {
 	padding-bottom: 10px;
 }
 .elements-tab-btn.active {
-	color: $main;
+	color: rgba(0,0,0,.7);
 	box-shadow: 0 2px 0 0 $main;
 }
 
@@ -216,7 +240,6 @@ img.preview-3 {
 	overflow: auto;
 	display: none;
 	background-color: #fff;
-	border-radius: 15px;
 	box-shadow: 0 10px 20px 0 rgba(0,0,0,.2);
 	align-content: flex-start;
 }
@@ -225,9 +248,10 @@ img.preview-3 {
 }
 
 .e-c-b-c:hover {
-	box-shadow: 0 0 0 2px $main;
+	box-shadow: 0 0 0 2px rgba(0,0,0,.1);
 }
 .e-c-b-c {
+	position: relative;
 	border-radius: 5px;
 	padding: 2%;
 	min-height: 90px;
@@ -235,6 +259,23 @@ img.preview-3 {
 	transition: .2s ease
 }
 
+.element-selected {
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	background-color: #fff;
+	right: 5px;
+	top: 5px;
+	border-radius: 8px;
+	transition: .3s ease;
+	box-shadow: inset 0 0 0 0px #7ED321,
+							inset 0 0 0 0px #fff;
+}
+.element-selected.active {
+	background-color: #7ED321;
+	box-shadow: inset 0 0 0 2px #7ED321,
+							inset 0 0 0 4px #fff;
+}
 
 #code-and-share>div {
 	padding: 10px;
@@ -337,3 +378,4 @@ img.preview-3 {
 	opacity: 1;
 	pointer-events: visible;
 }
+
