@@ -23,17 +23,17 @@ $(window).load(function() {
   })
 	
 	// 暫時先放這
-	var clipboard = new Clipboard('.code-section-copy', {
+	var clipboard = new Clipboard('#code-result-copy', {
     text: function() {
-        return localStorage['fullPage']
+        return $('#code-result').text()
     }
 	});
 	clipboard.on('success', function(e) {
-    $('.generate-code-section').removeClass('active')
+    alert('複製成功')
 	});
 
 	clipboard.on('error', function(e) {
-    alert('Error')
+    alert('複製失敗再試一次>_<！')
 	});
 
 })
@@ -46,55 +46,57 @@ $(document).ready(function() {
     el: '#zu-watch',
     data: {
       status: 'basic',
-      case: [
-        'ca-01',
-        'ca-02',
-        'ca-03'
-      ],
-      dial: [
-        'zu-01-b',
-        'zu-01-w',
-        'zu-02-b',
-        'zu-02-w',
-        'zu-03-b',
-        'zu-03-w',
-        'zu-04-b',
-        'zu-04-w',
-        'zu-05-b',
-        'zu-05-w',
-        'zu-06-b',
-        'zu-06-w',
-        'zu-07-b',
-        'zu-07-w',
-        'zu-08-b',
-        'zu-08-w',
-        'zu-09-b',
-        'zu-09-w',
-        'zu-10-b',
-        'zu-10-w',
-        'zu-11-b',
-        'zu-11-w'
-      ],
-      strap: [
-        'lc-01',
-        'lc-02',
-        'lc-03',
-        'lc-04',
-        'lc-05',
-        'lf-01',
-        'lf-02',
-        'lf-03',
-        'lf-04',
-        'me-01',
-        'me-02',
-        'me-03',
-        'nl-01',
-        'nl-02',
-        'nl-03',
-        'ny-01',
-        'ny-02',
-        'ny-03'
-      ],
+      elements: {
+        case: [
+          'ca-01',
+          'ca-02',
+          'ca-03'
+        ],
+        dial: [
+          'zu-01-b',
+          'zu-01-w',
+          'zu-02-b',
+          'zu-02-w',
+          'zu-03-b',
+          'zu-03-w',
+          'zu-04-b',
+          'zu-04-w',
+          'zu-05-b',
+          'zu-05-w',
+          'zu-06-b',
+          'zu-06-w',
+          'zu-07-b',
+          'zu-07-w',
+          'zu-08-b',
+          'zu-08-w',
+          'zu-09-b',
+          'zu-09-w',
+          'zu-10-b',
+          'zu-10-w',
+          'zu-11-b',
+          'zu-11-w'
+        ],
+        strap: [
+          'lc-01',
+          'lc-02',
+          'lc-03',
+          'lc-04',
+          'lc-05',
+          'lf-01',
+          'lf-02',
+          'lf-03',
+          'lf-04',
+          'me-01',
+          'me-02',
+          'me-03',
+          'nl-01',
+          'nl-02',
+          'nl-03',
+          'ny-01',
+          'ny-02',
+          'ny-03'
+        ],
+      },
       preview: {
         prev: { a: null, b: null, c: null },
         now:  { a: 'ca-01', b: 'zu-01-b', c: 'lc-01' },
@@ -159,7 +161,7 @@ $(document).ready(function() {
 
     methods: {
     	fetchData: function() {
-  			this.$data = JSON.parse(atob(localStorage['fullPage']))
+  			// this.$data = JSON.parse(atob(localStorage['fullPage']))
     	},
       chooseStatus: function(type) {
         this.status = type
@@ -278,12 +280,12 @@ $(document).ready(function() {
       },
     	randomElements: function() {
     		this.previewChange
-    		var a = this.case
-        var aN = this.case.length
-    		var b = this.dial
-        var bN = this.dial.length
-    		var c = this.strap
-        var cN = this.strap.length
+    		var a = this.elements.case
+        var aN = this.elements.case.length
+    		var b = this.elements.dial
+        var bN = this.elements.dial.length
+    		var c = this.elements.strap
+        var cN = this.elements.strap.length
   			this.preview.now.a = a[Math.floor((Math.random() * aN))]
   			this.preview.now.b = b[Math.floor((Math.random() * bN))]
   			this.preview.now.c = c[Math.floor((Math.random() * cN))]

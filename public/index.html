@@ -185,7 +185,7 @@
           </div>
           <div class="elements-content">
             <div data-tab="case" class="elements-content-box flex-l3-jfs-afs- active">
-              <div v-for="c in case"
+              <div v-for="c in elements.case"
                    class="e-c-b-c">
                 <div :data-selected="c" 
                      class="element-selected"></div>
@@ -196,7 +196,7 @@
               </div>
             </div>
             <div data-tab="dial" class="elements-content-box flex-l3-jfs-afs-">
-              <div v-for="d in dial"
+              <div v-for="d in elements.dial"
                    class="e-c-b-c">
                 <div :data-selected="d" 
                      class="element-selected"></div>
@@ -207,7 +207,7 @@
               </div>
             </div>
             <div data-tab="strap" class="elements-content-box flex-l3-jfs-afs-">
-              <div v-for="s in strap"
+              <div v-for="s in elements.strap"
                    class="e-c-b-c">
                 <div :data-selected="s" 
                      class="element-selected"></div>
@@ -221,7 +221,10 @@
         </div>
       </div>
       <div id="code-and-share">
-        <h2>Cart</h2>
+        <h2>
+          Cart
+          <div id="cart-code-btn">Output</div>
+        </h2>
         <div v-if=" status === 'basic' " class="bottom-box normal-box">
           <h2>Zu WATCH / Basic</h2>
           <div class="cart-content flex-l4-jfs-afs-">
@@ -399,6 +402,102 @@
         </div>
       </div>
     </section>
+  </div>
+  <div id="output-popup">
+    <div class="close"></div>
+    <div class="content">
+      <div class="close">
+        <img src="/assets/img/common/icons/delete.svg" alt="">
+      </div>
+      <div v-if=" status === 'basic' " class="">
+        <h2>Zu WATCH / Basic</h2>
+        <div class="flex-l5-m3-jfs-afs-">
+          <div>
+            <img :src="'/assets/img/main/product/case/' + cart.basic.a1 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/dial/' + cart.basic.b1 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/strap/' + cart.basic.c1 + '.png'" alt="">
+          </div>
+        </div>
+      </div>
+      <div v-if=" status === 'pro' " class="">
+        <h2>Zu WATCH / Pro</h2>
+        <div class="flex-l5-m3-jfs-afs-">
+          <div>
+            <img :src="'/assets/img/main/product/case/' + cart.pro.a1 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/dial/' + cart.pro.b1 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/dial/' + cart.pro.b2 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/strap/' + cart.pro.c1 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/strap/' + cart.pro.c2 + '.png'" alt="">
+          </div>
+        </div>
+      </div>
+      <div v-if=" status === 'double' " class="">
+        <h2>Zu WATCH / Double</h2>
+        <div class="flex-l5-m3-jfs-afs-">
+          <div>
+            <img :src="'/assets/img/main/product/case/' + cart.double.a1 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/case/' + cart.double.a2 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/dial/' + cart.double.b1 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/dial/' + cart.double.b2 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/dial/' + cart.double.b3 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/dial/' + cart.double.b4 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/dial/' + cart.double.b5 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/strap/' + cart.double.c1 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/strap/' + cart.double.c2 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/strap/' + cart.double.c3 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/strap/' + cart.double.c4 + '.png'" alt="">
+          </div>
+          <div>
+            <img :src="'/assets/img/main/product/strap/' + cart.double.c5 + '.png'" alt="">
+          </div>
+        </div>
+      </div>
+      <h2>Your Code</h2>
+      <h3 id="code-result">
+        <div v-if=" status === 'basic' ">
+          Basic<br>【 C: {{ cart.basic.a1 }} 】<br>【 D: {{ cart.basic.b1 }} 】<br>【 S: {{ cart.basic.c1 }} 】
+        </div>
+        <div v-if=" status === 'pro' ">
+          Pro<br>【 C: {{ cart.pro.a1 }} 】<br>【 D: {{ cart.pro.b1 }} / {{ cart.pro.b2 }} 】<br>【 S: {{ cart.pro.c1 }} / {{ cart.pro.c2 }} 】
+        </div>
+        <div v-if=" status === 'double' ">
+          Double<br>【 C: {{ cart.double.a1 }} / {{ cart.double.a2 }} 】<br>【 D: {{ cart.double.b1 }} / {{ cart.double.b2 }} / {{ cart.double.b3 }} / {{ cart.double.b4 }} / {{ cart.double.b5 }} 】<br>【 S: {{ cart.double.c1 }} / {{ cart.double.c2 }} / {{ cart.double.c3 }} / {{ cart.double.c4 }} / {{ cart.double.c5 }} 】
+        </div>
+      </h3>
+      <div id="code-result-copy" class="btn">Copy</div>
+    </div>
   </div>
 </body>
 <script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>

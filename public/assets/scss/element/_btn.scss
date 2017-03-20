@@ -15,7 +15,6 @@
 	}
 }
 
-
 .delete-btn {
 	// display: none;
 	position: absolute;
@@ -101,4 +100,22 @@
 		background-color: rgba(0,0,0,.8);
 		color: #fff;
 	}
+}
+
+#cart-code-btn {
+	cursor: pointer;
+	position: absolute;
+	border: 2px solid #FFCFB2;
+	color: #FFCFB2;
+	font-family: $fontp;
+	box-shadow: 0 2px 0px 0 #E1A480;
+	text-align: center;
+	width: 80px;
+	height: 25px;
+	font-size: 12px;
+	line-height: 23px;
+	background-color: rgba(0,0,0,.75);
+	right: 5px;
+	top: 5px;
+	border-radius: 30px;
 }
