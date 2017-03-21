@@ -156,7 +156,8 @@ $(document).ready(function() {
         $('[data-selected=' + a +']').addClass('active');
         $('[data-selected=' + b +']').addClass('active');
         $('[data-selected=' + c +']').addClass('active');
-      }
+      },
+
     },
 
     methods: {
@@ -359,6 +360,26 @@ $(document).ready(function() {
     		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
     		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
+      calcElementsInCart: function() {
+        var status = this.status
+        var total_counts = Object.values(this.cart[status]).length
+        var array = Object.values(this.cart[status])
+        var counts = 0
+        array.forEach(function(e) {
+          if ( e !== null ) {
+            counts++
+          }
+        })
+        if ( total_counts !== counts ) {
+          $('#cart-code-btn').removeClass('ok')
+          $('#cart-code-btn .pg').css( 'width', ((counts/total_counts)*100) + '%' )
+          return counts + '/' + total_counts
+        } else {
+          $('#cart-code-btn').addClass('ok')
+          $('#cart-code-btn .pg').css( 'width', ((counts/total_counts)*100) + '%' )
+          return 'Output'
+        }
+      },
     	generateCode: function() {
     		var c = btoa(JSON.stringify(this.$data))
     		$('.generate-code-section .code-section-area').text(c)

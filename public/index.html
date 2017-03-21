@@ -223,7 +223,10 @@
       <div id="code-and-share">
         <h2>
           Cart
-          <div id="cart-code-btn">Output</div>
+          <div id="cart-code-btn">
+            <div class="pg"></div>
+            {{ calcElementsInCart() }}
+          </div>
         </h2>
         <div v-if=" status === 'basic' " class="bottom-box normal-box">
           <h2>Zu WATCH / Basic</h2>
