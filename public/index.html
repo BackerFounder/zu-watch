@@ -12,7 +12,7 @@
   <meta content="Your first configurable watch for every style you carry." property="og:description">
   <meta content="/assets/img/common/facebook.png" property="og:image">
   <link href="http://static.wixstatic.com/media/495b64_5c92ae34812c48b1bd0b81f1a8180d64.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/495b64_5c92ae34812c48b1bd0b81f1a8180d64.png" rel="shortcut icon">
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/main.css?v=m">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700|Rubik:400,500,700" rel="stylesheet">
 </head>
@@ -53,7 +53,7 @@
       <span class="subtitle">BUILD YOUR OWN WATCH</span>
     </a>
   </div>
-  <div class="content flex-l3-jc-ac-">
+  <div class="content flex-jc-ac-">
     <section class="left hide">
       <div id="recommend">
         <h2>Hot Styling</h2>
@@ -153,9 +153,15 @@
         </div>
         <div class="bottom-box preview-btns">
           <div v-on:click="undoElements()"
-               id="prev" 
+               id="prev"
                class="zuwatch-btn step-btn {{ preview.prev.a }}">
             <i class="fa fa-undo"></i>
+          </div>
+          <div id="Random"
+               v-on:click="randomElements"
+               class="zuwatch-btn save-btn">
+            <i class="fa fa-random" aria-hidden="true"></i>
+            Random
           </div>
           <div v-on:click="saveElements"
                id="save" class="zuwatch-btn save-btn">
@@ -168,7 +174,7 @@
             CART
           </div>
           <div v-on:click="nextElements()"
-               id="next" 
+               id="next"
                class="zuwatch-btn step-btn {{ preview.next.a }}">
             <i class="fa fa-undo"></i>
           </div>
@@ -187,7 +193,7 @@
             <div data-tab="case" class="elements-content-box flex-l3-jfs-afs- active">
               <div v-for="c in elements.case"
                    class="e-c-b-c">
-                <div :data-selected="c" 
+                <div :data-selected="c"
                      class="element-selected"></div>
                 <img  v-on:click="elementChange(c, '', '')"
                       :src="'/assets/img/main/product/case/' + c + '.png'" alt="">
@@ -198,7 +204,7 @@
             <div data-tab="dial" class="elements-content-box flex-l3-jfs-afs-">
               <div v-for="d in elements.dial"
                    class="e-c-b-c">
-                <div :data-selected="d" 
+                <div :data-selected="d"
                      class="element-selected"></div>
                 <img v-on:click="elementChange('', d, '')"
                      :src="'/assets/img/main/product/dial/' + d + '.png'" alt="">
@@ -209,7 +215,7 @@
             <div data-tab="strap" class="elements-content-box flex-l3-jfs-afs-">
               <div v-for="s in elements.strap"
                    class="e-c-b-c">
-                <div :data-selected="s" 
+                <div :data-selected="s"
                      class="element-selected"></div>
                 <img v-on:click="elementChange('', '', s)"
                      :src="'/assets/img/main/product/strap/' + s + '.png'" alt="">
@@ -222,6 +228,9 @@
       </div>
       <div id="code-and-share">
         <h2>
+          <div id="cart-back">
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </div>
           Cart
           <div id="cart-code-btn">
             <div class="pg"></div>
@@ -230,7 +239,7 @@
         </h2>
         <div v-if=" status === 'basic' " class="bottom-box normal-box">
           <h2>Zu WATCH / Basic</h2>
-          <div class="cart-content flex-l4-jfs-afs-">
+          <div class="cart-content flex-l4-m3-jfs-afs-">
             <div>
               <div v-on:click="deleteCartElement('basic', 'a1')"
                    class="delete-btn {{ cart.basic.a1 }}">
@@ -259,7 +268,7 @@
         </div>
         <div v-if=" status === 'pro' " class="bottom-box normal-box">
           <h2>Zu WATCH / Pro</h2>
-          <div class="cart-content flex-l4-jfs-afs-">
+          <div class="cart-content flex-l4-m3-jfs-afs-">
             <div>
               <div v-on:click="deleteCartElement('pro', 'a1')"
                    class="delete-btn {{ cart.pro.a1 }}">
@@ -304,7 +313,7 @@
         </div>
         <div v-if=" status === 'double' " class="bottom-box normal-box">
           <h2>Zu WATCH / Double</h2>
-          <div class="cart-content flex-l4-jfs-afs-">
+          <div class="cart-content flex-l4-m3-jfs-afs-">
             <div>
               <div v-on:click="deleteCartElement('double', 'a1')"
                    class="delete-btn {{ cart.double.a1 }}">
@@ -504,16 +513,16 @@
   </div>
 </body>
 <script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>
-<!-- <script src="/assets/js/vendor/vue.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
+<script src="/assets/js/vendor/vue.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script> -->
 <script src="/assets/js/vendor/clipboard.min.js"></script>
-<script src="/assets/js/index.js"></script>
-<script src="/assets/js/build.js"></script>
+<script src="/assets/js/index.js?v=m"></script>
+<script src="/assets/js/build.js?v=m"></script>
 <script>
   var fbhtml_url = window.location.toString()
   function fbShare() {
     window.open('http://www.facebook.com/sharer/sharer.php?u='+fbhtml_url);
-    return false;  
+    return false;
   }
 </script>
 </html>

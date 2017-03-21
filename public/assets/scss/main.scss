@@ -18,15 +18,22 @@ body {
 	font-family: $fontp;
 	font-family: $fontt;
 	text-align: center;
+	overflow: hidden;
 }
 
 body>.content {
 	min-height: 100vh;
+	@media screen and ( max-width: 768px ) {
+		min-height: 0;
+	}
 }
 
 h1 {
 	font-size: 26px;
 	color: rgba(255,255,255,.95);
+	@media screen and ( max-width: 768px ){
+		font-size: 17px;
+	}
 }
 
 
@@ -34,7 +41,15 @@ h1 {
 	height: auto;
 	padding: 10px 0;
 }
-.zu-title a { display: block }
+.zu-title a { 
+	display: block;
+	@media screen and ( max-width: 768px ){
+		margin: 0 5px;
+		span  {
+			display: none;
+		}
+	}
+}
 
 span.subtitle {
 	font-size: 12px;

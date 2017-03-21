@@ -17,10 +17,6 @@ $(window).load(function() {
 		$(".code-section[data-code='" + t + "']").addClass('active')
 	})
 
-  $('.index-action .btn').click(function () {
-    $('#index').fadeOut(300);
-    $('section').removeClass('hide')
-  })
 	
 	// 暫時先放這
 	var clipboard = new Clipboard('#code-result-copy', {
@@ -362,11 +358,12 @@ $(document).ready(function() {
     	},
       calcElementsInCart: function() {
         var status = this.status
-        var total_counts = Object.values(this.cart[status]).length
-        var array = Object.values(this.cart[status])
+        var cart = this.cart
+        var array = Object.keys(this.cart[status])
+        var total_counts = array.length
         var counts = 0
-        array.forEach(function(e) {
-          if ( e !== null ) {
+        array.forEach(function(e, i) {
+          if ( cart[status][array[i]] !== null ) {
             counts++
           }
         })

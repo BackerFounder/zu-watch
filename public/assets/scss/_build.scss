@@ -34,6 +34,14 @@ section.hide {
 		transform: translateY(5%);
 	}
 }
+
+.mid, .right, .left {
+	width: calc( 33% - 10px );
+	margin: 5px;
+}
+
+
+#Random { display: none; }
 section.mid {
 	.mockup-btns {
 		transition-delay: .2s;
@@ -44,14 +52,63 @@ section.mid {
 	.top-box {
 		transition-delay: .2s;
 	}
+	@media screen and ( max-width: 768px ){
+		margin: 0;
+		width: 100%;
+		height: auto;
+		flex: 0 0 100%;
+		.top-box {
+			height: calc( 100vh - 297px );
+			margin: 0 0 30px;
+		}
+		.bottom-box {
+			height: auto;
+			padding-bottom: 0;
+		}
+		#Random {
+			display: inline-block;
+			font-size: 12px;
+		}
+		.zuwatch-btn {
+			line-height: 29px;
+			height: 29px;
+			i { margin-right: 2px; }
+		}
+		.step-btn {
+			width: 30px;
+			flex: 0 0 30px;
+		}
+		#save { display: none; }
+	}
 }
 section.left {
+	text-align: left;
 	.bottom-box {
 		transition-delay: .4s;
 	}
 	.top-box {
 		transition-delay: .6s;
 	}
+	@media screen and ( max-width: 768px ){
+		position: absolute;
+		width: 100%;
+		height: 100vh;
+		overflow: auto;
+		top: 0;
+		left: 0;
+		margin: 0;
+		z-index: 10;
+		background-color: rgba(0,0,0,.9);
+		transform: translateX(-100%);
+	}
+}
+#cart-back {
+	display: none;
+	position: absolute;
+	left: 20px;
+	width: 30px;
+	top: 0px;
+	font-size: 15px;
 }
 section.right {
 	.bottom-box {
@@ -59,6 +116,60 @@ section.right {
 	}
 	.top-box {
 		transition-delay: .6s;
+	}
+	@media screen and ( max-width: 768px ){
+		position: relative;
+		top: 0;
+		width: 100%;
+		right: 0;
+		margin: 0px 0;
+		#cart-back {
+			display: block;
+		}
+		.top-box {
+			display: flex;
+			flex-direction: column;
+			height: auto;
+			min-height: 0;
+			.elements-content {
+				flex: 0 0 auto;
+				height: 150px;
+				box-shadow: 0 0 0 0 rgba(0,0,0,0);
+				overflow-x: auto;
+				-webkit-overflow-scrolling: touch;
+				.elements-content-box {
+					flex-wrap: nowrap;
+					.e-c-b-c {
+						flex-basis: auto;
+						width: 24%;
+					}
+				}
+			}
+		}
+		#code-and-share {
+			position: fixed;
+			width: 90%;
+			height: 100vh;
+			top: 0;
+			right: 0;
+			transform: translateX(100%);
+			transition-delay: 0;
+			transition: .4s;
+			overflow-y: auto;
+			&>h2 { margin-top: 0; }
+		}
+		#code-and-share.active {
+			transform: translateX(0%);
+		}
+		.bottom-box {
+			height: calc( 100% - 37px );
+			overflow: visible;
+			-webkit-overflow-scrolling: touch;
+			.cart-content {
+				overflow: visible;
+				height: auto;
+			}
+		}
 	}
 }
 
@@ -81,15 +192,11 @@ h2 {
 							0 1px 2px 0 rgba(0,0,0,.1);
 }
 
-.left { text-align: left }
-.right { text-align: right }
-.mid { text-align: center }
-
 .top-box {
 	// padding: 10px 10px;
 	height: calc( 100vh - 120px - 106px );
 	max-height: 496px;
-	overflow: auto;	
+	overflow: auto;
 }
 .right .top-box {
 	height: calc( 100vh - 120px - 69px );
@@ -101,7 +208,7 @@ h2 {
 }
 
 .mid .top-box {
-	overflow: visible;	
+	overflow: visible;
 }
 .mid .top-box::-webkit-scrollbar {
   width: 0;
@@ -155,6 +262,23 @@ h2 {
 			color: rgba(0,0,0,.7);
 		}
 	}
+	@media screen and (max-width: 768px) {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 11;
+		background-color: rgba(0,0,0,.7);
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		display: none;
+		.mockup-btn {
+			margin: 10px 0;
+		}
+	}
 }
 .preview-show {
 	position: relative;
@@ -172,6 +296,10 @@ h2 {
 		right: 0;
 		margin: auto;
 		animation: None 5s linear 0s infinite both;
+	}
+	@media screen and (max-width: 768px) {
+		padding-top: 0;
+		height: 100%;
 	}
 }
 #save .preview-show-body {
@@ -191,19 +319,19 @@ h2 {
 	100% { opacity: 1; transform: translateY(0%)   }
 }
 
-img.preview-1 { 
+img.preview-1 {
 	z-index: 2;
 	height: 100%;
 	width: auto;
 	top: 0;
 }
-img.preview-2 { 
+img.preview-2 {
 	z-index: 3;
 	height: 100%;
 	width: auto;
 	top: 0;
 }
-img.preview-3 { 
+img.preview-3 {
 	z-index: 1;
 	height: 100%;
 	width: auto;
@@ -376,7 +504,7 @@ img.preview-3 {
 	background-color: #88CDE4;
 }
 .code-section-render {
-	background-color: #88CDE4;	
+	background-color: #88CDE4;
 }
 .code-section-copy, .code-section-render {
 	position: relative;
