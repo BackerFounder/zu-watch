@@ -553,6 +553,11 @@
       </div>
     </div>
   </div>
+  <div id="preload" style="display: none;">
+     <img v-for="c in elements.case" :src="'/assets/img/main/product/pv-case/' + c + '.png'" alt="">
+     <img v-for="d in elements.dial" :src="'/assets/img/main/product/pv-dial/' + d + '.png'" alt="">
+     <img v-for="s in elements.strap" :src="'/assets/img/main/product/pv-strap/' + s + '.png'" alt="">
+  </div>
 </body>
 <script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>
 <!-- <script src="/assets/js/vendor/vue.min.js"></script> -->
