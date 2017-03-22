@@ -153,6 +153,9 @@
           <div class="hotstyle-btn">
             <i class="fa fa-star-o" aria-hidden="true"></i>
           </div>
+          <div class="seecart-btn">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          </div>
           <div class="mockup-btn">
             <i class="fa fa-eye" aria-hidden="true"></i>
           </div>
@@ -173,11 +176,16 @@
                class="zuwatch-btn step-btn {{ preview.prev.a }}">
             <i class="fa fa-undo"></i>
           </div>
-          <div id="Random"
+          <div id="random"
                v-on:click="randomElements"
                class="zuwatch-btn save-btn">
             <i class="fa fa-random" aria-hidden="true"></i>
             Random
+          </div>
+          <div id="my_random"
+               v-on:click="randomMyElements"
+               class="zuwatch-btn save-btn active">
+            My Ramdom
           </div>
           <div v-on:click="saveElements"
                id="save" class="zuwatch-btn save-btn">
@@ -186,8 +194,8 @@
           </div>
           <div v-on:click="elementAddCart(preview.now.a, preview.now.b, preview.now.c)"
                id="addtocart" class="zuwatch-btn save-btn">
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-            CART
+            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            Add to Cart
           </div>
           <div v-on:click="nextElements()"
                id="next"

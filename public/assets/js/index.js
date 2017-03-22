@@ -20,13 +20,17 @@ $('#output-popup .close').click(function(){
 
 
 // mobile
-$('body').on('click', '#addtocart, .add-this-btn' , function () {
+
+// add to cart
+$('body').on('click', '.seecart-btn' , function () {
 	$('#code-and-share').addClass('active')
 })
 $('#cart-back').click( function () {
 	$('#code-and-share').removeClass('active')
 })
 
+
+// hotsyle
 $('#mobile-tools .hotstyle-btn').click( function () {
 	$('section.left').addClass('active')
 })

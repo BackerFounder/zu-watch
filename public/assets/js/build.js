@@ -183,18 +183,34 @@ $(document).ready(function() {
       elementAddCart: function(a, b, c) {
         if ( this.status == 'basic' ) {
           if (a) {
-            this.cart.basic.a1 = a
+            if ( this.cart.basic.a1 == null ) {
+              this.cart.basic.a1 = a;
+            } else {
+              alert('Please delete any Case in your Cart')
+            }
           }
           if (b) {
-            this.cart.basic.b1 = b
+            if ( this.cart.basic.b1 == null ) {
+              this.cart.basic.b1 = b;
+            } else {
+              alert('Please delete any Dial in your Cart')
+            }
           }
           if (c) {
-            this.cart.basic.c1 = c
+            if ( this.cart.basic.c1 == null ) {
+              this.cart.basic.c1 = c;
+            } else {
+              alert('Please delete any Strap in your Cart')
+            }
           }
         }
         else if ( this.status == 'pro' ) {
           if (a) {
-            this.cart.pro.a1 = a
+            if ( this.cart.pro.a1 == null ) {
+              this.cart.pro.a1 = a;
+            } else {
+              alert('Please delete any Case in your Cart')
+            }
           }
           if (b) {
             if ( this.cart.pro.b1 == null ) {
@@ -204,7 +220,7 @@ $(document).ready(function() {
               this.cart.pro.b2 = b
             }
             else {
-              this.cart.pro.b2 = b
+              alert('Please delete any Dail in your Cart')
             }
           }
           if (c) {
@@ -215,7 +231,7 @@ $(document).ready(function() {
               this.cart.pro.c2 = c
             }
             else {
-              this.cart.pro.c2 = c
+              alert('Please delete any Strap in your Cart')
             }
           }
         }
@@ -228,7 +244,7 @@ $(document).ready(function() {
               this.cart.double.a2 = a
             }
             else {
-              this.cart.double.a2 = a
+              alert('Please delete any Case in your Cart')
             }
           }
           if (b) {
@@ -239,7 +255,7 @@ $(document).ready(function() {
             var check5 = this.cart.double.b5
             var a = Object.keys(this.cart.double)
             if( check1 && check2 && check3 && check4 && check5 ) {
-              this.cart.double.b5 = b
+              alert('Please delete any Dial in your Cart')
             }
             else {
               for (var i = 0; i <= 4; i ++ ) {
@@ -260,7 +276,7 @@ $(document).ready(function() {
             var check5 = this.cart.double.c5
             var a = Object.keys(this.cart.double)
             if( check1 && check2 && check3 && check4 && check5 ) {
-              this.cart.double.c5 = c
+              alert('Please delete any Strap in your Cart')
             }
             else {
               for (var i = 0; i <= 4; i ++ ) {
@@ -295,6 +311,10 @@ $(document).ready(function() {
   			localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
   			// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
+      randomMyElements: function() {
+        this.previewChange
+        var a = this.cart.basic
+      },
     	saveElements: function() {
     		// 檢查物件有無為空不用三個部位檢查，檢查一個就好
     		var checkA = this.save.saveA.a

@@ -521,7 +521,10 @@ section.hide .mockup-btns, section.hide .bottom-box, section.hide .top-box, sect
   width: calc( 33% - 10px);
   margin: 5px; }
 
-#Random {
+#my_random {
+  display: none; }
+
+#random {
   display: none; }
 
 @media screen and (max-width: 992px) {
@@ -538,7 +541,10 @@ section.hide .mockup-btns, section.hide .bottom-box, section.hide .top-box, sect
     section.mid .bottom-box {
       height: auto;
       padding-bottom: 0; }
-    section.mid #Random {
+    section.mid #random.active {
+      display: inline-block;
+      font-size: 12px; }
+    section.mid #my_random.active {
       display: inline-block;
       font-size: 12px; }
     section.mid .zuwatch-btn {
@@ -561,7 +567,7 @@ section.left {
   @media screen and (max-width: 992px) {
     section.left {
       position: absolute;
-      width: 90%;
+      width: 100%;
       height: 100vh;
       overflow: auto;
       top: 0;
@@ -668,7 +674,7 @@ section.left {
       width: 13%; }
     section.right #code-and-share {
       position: fixed;
-      width: 90%;
+      width: 100%;
       height: 100vh;
       top: 0;
       right: 0;
@@ -1247,8 +1253,10 @@ img.preview-3 {
       top: 0;
       left: 0;
       width: 100%;
-      height: 41px; }
+      height: 41px;
+      pointer-events: none; }
       #mobile-tools div {
+        pointer-events: visible;
         font-size: 22px;
         line-height: 41px;
         width: 41px;
@@ -1256,6 +1264,8 @@ img.preview-3 {
       #mobile-tools .hotstyle-btn {
         float: left; }
       #mobile-tools .mockup-btn {
+        float: right; }
+      #mobile-tools .seecart-btn {
         float: right; } }
 
 #mockup-area {
@@ -1271,6 +1281,7 @@ img.preview-3 {
     position: absolute;
     top: 0;
     left: 0;
+    height: 100%;
     width: 100%;
     line-height: 50px;
     z-index: 3; }
