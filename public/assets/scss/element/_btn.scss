@@ -103,7 +103,6 @@
 }
 
 #cart-code-btn {
-	position: relative;
 	cursor: pointer;
 	position: absolute;
 	color: #fff;
@@ -113,7 +112,7 @@
 	font-size: 12px;
 	line-height: 25px;
 	right: 5px;
-	top: 7px;
+	top: 6px;
 	pointer-events: none;
 	background-color: rgba(0,0,0,.8);
 	box-shadow: inset 0 0 0 2px rgba(0,0,0,.2);
@@ -132,6 +131,33 @@
 		color: #fff;
 		animation: bring 1.5s ease 0s infinite both;
 	}
+}
+#random-this-cart {
+	cursor: pointer;
+	position: absolute;
+	color: #fff;
+	font-family: $fontp;
+	text-align: center;
+	width: 80px;
+	font-size: 12px;
+	line-height: 25px;
+	right: 90px;
+	top: 6px;
+	display: none;
+	background-color: #E89547;
+	box-shadow: inset 0 -3px 0 0 rgba(0,0,0,.07);
+	img {
+		height: 15px;
+		width: auto;
+		vertical-align: middle;
+		margin-right: 2px;
+	}
+	&.ok {
+		display: block;
+	}
+}
+@media screen and (max-width: 992px ) {
+	#random-this-cart.ok { display: none; }
 }
 
 @keyframes bring {

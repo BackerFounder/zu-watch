@@ -180,6 +180,136 @@ $(document).ready(function() {
     		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
     		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
+      randomElements: function() {
+        this.previewChange
+        var a = this.elements.case
+        var aN = this.elements.case.length
+        var b = this.elements.dial
+        var bN = this.elements.dial.length
+        var c = this.elements.strap
+        var cN = this.elements.strap.length
+        this.preview.now.a = a[Math.floor((Math.random() * aN))]
+        this.preview.now.b = b[Math.floor((Math.random() * bN))]
+        this.preview.now.c = c[Math.floor((Math.random() * cN))]
+        this.whichElementSelected
+        localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+        // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+      },
+    	saveElements: function() {
+    		// 檢查物件有無為空不用三個部位檢查，檢查一個就好
+    		var checkA = this.save.saveA.a
+    		var checkB = this.save.saveB.a
+    		var checkC = this.save.saveC.a
+    		var checkD = this.save.saveD.a
+    		var a = [ checkA, checkB, checkC, checkD ]
+    		var b = [ 'saveA', 'saveB', 'saveC', 'saveD' ]
+    		if( checkA && checkB && checkC && checkD ) {
+    			alert('Sorry... There is no space...')
+    		}
+    		else {
+	    		for ( i = 0; i <= 3; i ++ ) {
+	    			if ( !a[i] ) {
+	    				this.save[b[i]].a = this.preview.now.a
+	    				this.save[b[i]].b = this.preview.now.b
+	    				this.save[b[i]].c = this.preview.now.c
+              this.whichElementSelected
+	    				localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+	    				// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+	    				return
+	    			}
+	    		}
+	    	}
+    	},
+    	callSave: function(saveN) {
+    		this.preview.now.a = this.save[saveN].a
+    		this.preview.now.b = this.save[saveN].b
+    		this.preview.now.c = this.save[saveN].c
+        this.whichElementSelected
+    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+    	},
+    	deleteElementsFromSave: function(saveN) {
+    		this.save[saveN].a = null
+    		this.save[saveN].b = null
+    		this.save[saveN].c = null
+    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+    	},
+    	undoElements: function() {
+    		this.preview.next.a = this.preview.now.a
+    		this.preview.next.b = this.preview.now.b
+    		this.preview.next.c = this.preview.now.c
+    		this.preview.now.a = this.preview.prev.a
+    		this.preview.now.b = this.preview.prev.b
+    		this.preview.now.c = this.preview.prev.c
+    		this.preview.prev.a = null
+    		this.preview.prev.b = null
+    		this.preview.prev.c = null
+        this.whichElementSelected
+    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+    	},
+    	nextElements: function() {
+    		this.previewChange
+    		this.preview.now.a = this.preview.next.a
+    		this.preview.now.b = this.preview.next.b
+    		this.preview.now.c = this.preview.next.c
+    		this.preview.next.a = null
+    		this.preview.next.b = null
+    		this.preview.next.c = null
+        this.whichElementSelected
+    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+    	},
+      calcElementsInCart: function() {
+        var status = this.status
+        var cart = this.cart
+        var array = Object.keys(this.cart[status])
+        var total_counts = array.length
+        var counts = 0
+        var case_counts = 0
+        var case_total = 0
+        var dial_counts = 0
+        var dial_total = 0
+        var strap_counts = 0
+        var strap_total = 0
+        var self = this
+        array.forEach(function(e, i) {
+          if ( e.indexOf('a') !== -1 ) {
+            if ( cart[status][e] !== null ) {
+              case_counts++
+            }
+            case_total++
+            self.elementsCounts.case = case_counts.toString() + '/' + case_total.toString()
+          }
+          else if ( e.indexOf('b') !== -1 ) {
+            if ( cart[status][e] !== null ) {
+              dial_counts++
+            }
+            dial_total++
+            self.elementsCounts.dial = dial_counts.toString() + '/' + dial_total.toString()
+          }
+          else if ( e.indexOf('c') !== -1 ) {
+            if ( cart[status][e] !== null ) {
+              strap_counts++
+            }
+            strap_total++
+            self.elementsCounts.strap = strap_counts.toString() + '/' + strap_total.toString()
+          }
+          counts = case_counts + dial_counts + strap_counts
+        })
+        if ( total_counts !== counts ) {
+          $('#cart-code-btn').removeClass('ok')
+          $('#random-this-cart').removeClass('ok')
+          $('#cart-code-btn .pg').css( 'width', ((counts/total_counts)*100) + '%' )
+          return counts + '/' + total_counts
+        } else {
+          $('#cart-code-btn').addClass('ok')
+          $('#random-this-cart').addClass('ok')
+          $('#cart-code-btn .pg').css( 'width', ((counts/total_counts)*100) + '%' )
+          return 'Output'
+        }
+      },
       elementAddCart: function(a, b, c) {
         if ( this.status == 'basic' ) {
           if (a) {
@@ -296,137 +426,31 @@ $(document).ready(function() {
       deleteCartElement: function(type, item) {
         this.cart[type][item] = null;
       },
-    	randomElements: function() {
-    		this.previewChange
-    		var a = this.elements.case
-        var aN = this.elements.case.length
-    		var b = this.elements.dial
-        var bN = this.elements.dial.length
-    		var c = this.elements.strap
-        var cN = this.elements.strap.length
-  			this.preview.now.a = a[Math.floor((Math.random() * aN))]
-  			this.preview.now.b = b[Math.floor((Math.random() * bN))]
-  			this.preview.now.c = c[Math.floor((Math.random() * cN))]
-        this.whichElementSelected
-  			localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
-  			// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
-    	},
-      randomMyElements: function() {
+      randomCartElements: function() {
         this.previewChange
-        
-      },
-    	saveElements: function() {
-    		// 檢查物件有無為空不用三個部位檢查，檢查一個就好
-    		var checkA = this.save.saveA.a
-    		var checkB = this.save.saveB.a
-    		var checkC = this.save.saveC.a
-    		var checkD = this.save.saveD.a
-    		var a = [ checkA, checkB, checkC, checkD ]
-    		var b = [ 'saveA', 'saveB', 'saveC', 'saveD' ]
-    		if( checkA && checkB && checkC && checkD ) {
-    			alert('Sorry... There is no space...')
-    		}
-    		else {
-	    		for ( i = 0; i <= 3; i ++ ) {
-	    			if ( !a[i] ) {
-	    				this.save[b[i]].a = this.preview.now.a
-	    				this.save[b[i]].b = this.preview.now.b
-	    				this.save[b[i]].c = this.preview.now.c
-              this.whichElementSelected
-	    				localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
-	    				// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
-	    				return
-	    			}
-	    		}
-	    	}
-    	},
-    	callSave: function(saveN) {
-    		this.preview.now.a = this.save[saveN].a
-    		this.preview.now.b = this.save[saveN].b
-    		this.preview.now.c = this.save[saveN].c
-        this.whichElementSelected
-    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
-    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
-    	},
-    	deleteElementsFromSave: function(saveN) {
-    		this.save[saveN].a = null
-    		this.save[saveN].b = null
-    		this.save[saveN].c = null
-    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
-    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
-    	},
-    	undoElements: function() {
-    		this.preview.next.a = this.preview.now.a
-    		this.preview.next.b = this.preview.now.b
-    		this.preview.next.c = this.preview.now.c
-    		this.preview.now.a = this.preview.prev.a
-    		this.preview.now.b = this.preview.prev.b
-    		this.preview.now.c = this.preview.prev.c
-    		this.preview.prev.a = null
-    		this.preview.prev.b = null
-    		this.preview.prev.c = null
-        this.whichElementSelected
-    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
-    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
-    	},
-    	nextElements: function() {
-    		this.previewChange
-    		this.preview.now.a = this.preview.next.a
-    		this.preview.now.b = this.preview.next.b
-    		this.preview.now.c = this.preview.next.c
-    		this.preview.next.a = null
-    		this.preview.next.b = null
-    		this.preview.next.c = null
-        this.whichElementSelected
-    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
-    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
-    	},
-      calcElementsInCart: function() {
-        var status = this.status
-        var cart = this.cart
-        var array = Object.keys(this.cart[status])
-        var total_counts = array.length
-        var counts = 0
-        var case_counts = 0
-        var case_total = 0
-        var dial_counts = 0
-        var dial_total = 0
-        var strap_counts = 0
-        var strap_total = 0
-        var self = this
-        array.forEach(function(e, i) {
-          if ( e.indexOf('a') !== -1 ) {
-            if ( cart[status][e] !== null ) {
-              case_counts++
-            }
-            case_total++
-            self.elementsCounts.case = case_counts.toString() + '/' + case_total.toString()
-          }
-          else if ( e.indexOf('b') !== -1 ) {
-            if ( cart[status][e] !== null ) {
-              dial_counts++
-            }
-            dial_total++
-            self.elementsCounts.dial = dial_counts.toString() + '/' + dial_total.toString()
-          }
-          else if ( e.indexOf('c') !== -1 ) {
-            if ( cart[status][e] !== null ) {
-              strap_counts++
-            }
-            strap_total++
-            self.elementsCounts.strap = strap_counts.toString() + '/' + strap_total.toString()
-          }
-          counts = case_counts + dial_counts + strap_counts
-        })
-        if ( total_counts !== counts ) {
-          $('#cart-code-btn').removeClass('ok')
-          $('#cart-code-btn .pg').css( 'width', ((counts/total_counts)*100) + '%' )
-          return counts + '/' + total_counts
-        } else {
-          $('#cart-code-btn').addClass('ok')
-          $('#cart-code-btn .pg').css( 'width', ((counts/total_counts)*100) + '%' )
-          return 'Output'
+        if ( this.status == 'pro' ) {
+          var b = [ this.cart.pro.b1, this.cart.pro.b2 ]
+          var bN = 2
+          var c = [ this.cart.pro.c1, this.cart.pro.c2 ]
+          var cN = 2
+          this.preview.now.a = this.cart.pro.a1
+          this.preview.now.b = b[Math.floor((Math.random() * bN))]
+          this.preview.now.c = c[Math.floor((Math.random() * cN))]
         }
+        else if ( this.status == 'double' ) {
+          var a = [ this.cart.double.a1, this.cart.double.a2 ]
+          var aN = 2
+          var b = [ this.cart.double.b1, this.cart.double.b2, this.cart.double.b3, this.cart.double.b4, this.cart.double.b5 ]
+          var bN = 5
+          var c = [ this.cart.double.c1, this.cart.double.c2, this.cart.double.c3, this.cart.double.c4, this.cart.double.c5 ]
+          var cN = 5
+          this.preview.now.a = a[Math.floor((Math.random() * aN))]
+          this.preview.now.b = b[Math.floor((Math.random() * bN))]
+          this.preview.now.c = c[Math.floor((Math.random() * cN))]
+        }
+        this.whichElementSelected
+        localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+        // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
       },
     	generateCode: function() {
     		var c = btoa(JSON.stringify(this.$data))
