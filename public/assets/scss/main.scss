@@ -22,8 +22,9 @@ body {
 }
 
 body>.content {
-	min-height: 100vh;
-	@media screen and ( max-width: 768px ) {
+	height: calc( 100vh - 91px );
+	@media screen and ( max-width: 992px ) {
+		height: auto;
 		min-height: 0;
 	}
 }
@@ -31,7 +32,7 @@ body>.content {
 h1 {
 	font-size: 26px;
 	color: rgba(255,255,255,.95);
-	@media screen and ( max-width: 768px ){
+	@media screen and ( max-width: 992px ){
 		font-size: 17px;
 	}
 }
@@ -43,7 +44,7 @@ h1 {
 }
 .zu-title a { 
 	display: block;
-	@media screen and ( max-width: 768px ){
+	@media screen and ( max-width: 992px ){
 		margin: 0 5px;
 		span  {
 			display: none;

@@ -6,52 +6,6 @@
 	height: 100vh;
 	background-size: cover;
 	background-position: center;
-	background-image: url('../img/main/product/pv-case/null.png');
-	background-image: url('../img/main/product/pv-case/ca-01.png');
-	background-image: url('../img/main/product/pv-case/ca-02.png');
-	background-image: url('../img/main/product/pv-case/ca-03.png');
-	background-image: url('../img/main/product/pv-dial/null.png');
-	background-image: url('../img/main/product/pv-dial/zu-01-b.png');
-	background-image: url('../img/main/product/pv-dial/zu-01-w.png');	
-	background-image: url('../img/main/product/pv-dial/zu-02-b.png');	
-	background-image: url('../img/main/product/pv-dial/zu-02-w.png');	
-	background-image: url('../img/main/product/pv-dial/zu-03-b.png');	
-	background-image: url('../img/main/product/pv-dial/zu-03-w.png');	
-	background-image: url('../img/main/product/pv-dial/zu-04-b.png');	
-	background-image: url('../img/main/product/pv-dial/zu-05-b.png');	
-	background-image: url('../img/main/product/pv-dial/zu-06-b.png');	
-	background-image: url('../img/main/product/pv-dial/zu-07-b.png');	
-	background-image: url('../img/main/product/pv-dial/zu-08-b.png');	
-	background-image: url('../img/main/product/pv-dial/zu-09-b.png');	
-	background-image: url('../img/main/product/pv-dial/zu-10-b.png');	
-	background-image: url('../img/main/product/pv-dial/zu-11-b.png');	
-	background-image: url('../img/main/product/pv-dial/zu-04-w.png');	
-	background-image: url('../img/main/product/pv-dial/zu-05-w.png');	
-	background-image: url('../img/main/product/pv-dial/zu-06-w.png');	
-	background-image: url('../img/main/product/pv-dial/zu-07-w.png');	
-	background-image: url('../img/main/product/pv-dial/zu-08-w.png');	
-	background-image: url('../img/main/product/pv-dial/zu-09-w.png');	
-	background-image: url('../img/main/product/pv-dial/zu-10-w.png');	
-	background-image: url('../img/main/product/pv-dial/zu-11-w.png');
-	background-image: url('../img/main/product/pv-strap/lc-01.png');
-	background-image: url('../img/main/product/pv-strap/lc-02.png');
-	background-image: url('../img/main/product/pv-strap/lc-03.png');
-	background-image: url('../img/main/product/pv-strap/lc-04.png');
-	background-image: url('../img/main/product/pv-strap/lc-05.png');
-	background-image: url('../img/main/product/pv-strap/lf-01.png');
-	background-image: url('../img/main/product/pv-strap/lf-02.png');
-	background-image: url('../img/main/product/pv-strap/lf-03.png');
-	background-image: url('../img/main/product/pv-strap/lf-04.png');
-	background-image: url('../img/main/product/pv-strap/me-01.png');
-	background-image: url('../img/main/product/pv-strap/me-02.png');
-	background-image: url('../img/main/product/pv-strap/me-03.png');
-	background-image: url('../img/main/product/pv-strap/nl-01.png');
-	background-image: url('../img/main/product/pv-strap/nl-02.png');
-	background-image: url('../img/main/product/pv-strap/nl-03.png');
-	background-image: url('../img/main/product/pv-strap/null.png');
-	background-image: url('../img/main/product/pv-strap/ny-01.png');
-	background-image: url('../img/main/product/pv-strap/ny-02.png');
-	background-image: url('../img/main/product/pv-strap/ny-03.png');
 	z-index: -1;
 	&:after {
 		display: block;
@@ -67,11 +21,11 @@ section {
 	max-width: 450px;
 	.mockup-btns, .bottom-box, .top-box, h2 {
 		opacity: 1;
-		transition: 2s ease;
+		transition: .6s ease;
 		transform: translateY(0%);
 	}
-	h2 {
-		transition-delay: 1.3s;
+	@media screen and ( max-width: 992px ) {
+		max-width: 100%;
 	}
 }
 section.hide {
@@ -89,16 +43,7 @@ section.hide {
 
 #Random { display: none; }
 section.mid {
-	.mockup-btns {
-		transition-delay: .2s;
-	}
-	.bottom-box {
-		transition-delay: 0s;
-	}
-	.top-box {
-		transition-delay: .2s;
-	}
-	@media screen and ( max-width: 768px ){
+	@media screen and ( max-width: 992px ){
 		margin: 0;
 		width: 100%;
 		height: auto;
@@ -125,19 +70,16 @@ section.mid {
 			flex: 0 0 30px;
 		}
 		#save { display: none; }
+		#mockup-back {
+			display: block;
+		}
 	}
 }
 section.left {
 	text-align: left;
-	.bottom-box {
-		transition-delay: .4s;
-	}
-	.top-box {
-		transition-delay: .6s;
-	}
-	@media screen and ( max-width: 768px ){
+	@media screen and ( max-width: 992px ){
 		position: absolute;
-		width: 100%;
+		width: 90%;
 		height: 100vh;
 		overflow: auto;
 		top: 0;
@@ -146,9 +88,20 @@ section.left {
 		z-index: 10;
 		background-color: rgba(0,0,0,.9);
 		transform: translateX(-100%);
+		transition: .3s ease;
+		.top-box {
+			height: calc( 100vh - 37px )
+		}
+		&.active {
+			transform: translateX(0%);
+		}
+		#save { display: none }
+		#recommend-back {
+			display: block;
+		}
 	}
 }
-#cart-back {
+#cart-back, #cart-bigger {
 	display: none;
 	position: absolute;
 	left: 20px;
@@ -156,14 +109,40 @@ section.left {
 	top: 0px;
 	font-size: 15px;
 }
+#cart-bigger {
+	display: block;
+	width: 120px;
+	left: 0;
+	span {
+		display: none;
+		font-size: 12px;
+		font-family: $fontp;
+		&.b { display: inline; }
+	}
+	&.active span.s { display: inline; }
+	&.active span.b { display: none; }
+	&.active i { transform: rotate(180deg) }
+}
+#recommend-back {
+	display: none;
+	position: absolute;
+	right: 20px;
+	width: 30px;
+	top: 0px;
+	font-size: 15px;	
+}
+#mockup-back {
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	font-size: 40px;
+	display: none
+}
 section.right {
-	.bottom-box {
-		transition-delay: .4s;
-	}
-	.top-box {
-		transition-delay: .6s;
-	}
-	@media screen and ( max-width: 768px ){
+	@media screen and ( max-width: 992px ){
 		position: relative;
 		top: 0;
 		width: 100%;
@@ -171,6 +150,9 @@ section.right {
 		margin: 0px 0;
 		#cart-back {
 			display: block;
+		}
+		#cart-bigger {
+			display: none;
 		}
 		.top-box {
 			display: flex;
@@ -185,12 +167,12 @@ section.right {
 				-webkit-overflow-scrolling: touch;
 				.elements-content-box {
 					flex-wrap: nowrap;
-					.e-c-b-c {
-						flex-basis: auto;
-						width: 24%;
-					}
 				}
 			}
+		}
+		.e-c-b-c {
+			flex-basis: auto;
+			width: 13%;
 		}
 		#code-and-share {
 			position: fixed;
@@ -217,6 +199,11 @@ section.right {
 			}
 		}
 	}
+	@media screen and ( max-width: 500px ){
+		.e-c-b-c {
+			width: 24%;
+		}
+	}
 }
 
 // height: 84px
@@ -238,15 +225,46 @@ h2 {
 							0 1px 2px 0 rgba(0,0,0,.1);
 }
 
-.top-box {
+.left .top-box {
 	// padding: 10px 10px;
-	height: calc( 100vh - 120px - 106px );
+	height: calc( 100vh - 120px - 106px - 129px );
 	max-height: 496px;
 	overflow: auto;
+	@media screen and ( max-width: 992px ) {
+		max-height: 100%;
+	}
+}
+.mid .top-box {
+	// padding: 10px 10px;
+	height: calc( 100vh - 51px - 91px - 43px - 76px );
+	max-height: 496px;
+	overflow: auto;
+	@media screen and ( max-width: 992px ) {
+		max-height: 100%;
+	}
+}
+.mid .bottom-box {
+	height: auto;
+	padding-bottom: 0;
 }
 .right .top-box {
-	height: calc( 100vh - 120px - 69px );
+	height: calc( 100vh - 120px - 69px - 129px );
 	max-height: 533px;
+	@media screen and ( max-width: 992px ) {
+		max-height: 100%;
+	}
+}
+@media screen and ( min-width: 992px ) {
+	.bigger.right .top-box {
+		height: calc( 100vh - 120px - 69px - 129px - 250px );
+		max-height: 283px;
+	}
+	.bigger.right .bottom-box {
+		height: 400px;
+		.cart-content {
+			height: calc( 400px - 37px );
+		}
+	}
 }
 .bottom-box {
 	height: 150px;
@@ -308,19 +326,24 @@ h2 {
 			color: rgba(0,0,0,.7);
 		}
 	}
-	@media screen and (max-width: 768px) {
+	@media screen and (max-width: 992px) {
 		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 100%;
+		height: 100vh;
 		z-index: 11;
 		background-color: rgba(0,0,0,.7);
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		display: flex;
-		display: none;
+		transform: translateY(-100%)!important;
+		transition: .3s ease 0s!important;
+		margin-bottom: 0;
+		&.active {
+			transform: translateY(0%)!important;
+		}
 		.mockup-btn {
 			margin: 10px 0;
 		}
@@ -335,7 +358,7 @@ h2 {
 	top: 5%;
 	margin: 0 auto;
 	width: 90%;
-	padding-top: 100%;
+	height: 100%;
 	img {
 		position: absolute;
 		left: 0;
@@ -343,7 +366,7 @@ h2 {
 		margin: auto;
 		animation: None 5s linear 0s infinite both;
 	}
-	@media screen and (max-width: 768px) {
+	@media screen and (max-width: 992px) {
 		padding-top: 0;
 		height: 100%;
 	}
@@ -413,6 +436,21 @@ img.preview-3 {
 }
 .elements-tab-btn {
 	transition: 0.3s ease;
+	b {
+		display: inline-block;
+		background-color: rgba(0, 0, 0, 0.8);
+		color: #fff;
+		font-family: $fontp;
+		font-size: 12px;
+		width: 35px;
+		line-height: 20px;
+		border-radius: 20px;
+		height: 20px;
+		margin-left: 5px;
+		margin-top: 8px;
+		vertical-align: top;
+		opacity: .3;
+	}
 }
 .elements-tab-btn:hover {
 }
@@ -420,6 +458,7 @@ img.preview-3 {
 	color: rgba(0,0,0,.7);
 	background-color: rgba(0,0,0,0);
 	box-shadow: 0 2px 0 0 $main;
+	b { opacity: 1; }
 }
 
 .elements-content {
@@ -662,4 +701,82 @@ img.preview-3 {
 	line-height: 30px;
 	font-size: 13px;
 	font-family: $fontp;
+}
+
+/// mobile
+#mobile-tools {
+	display: none;
+	@media screen and (max-width: 992px) {
+		display: block;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 41px;
+		div { 
+			font-size: 22px;
+			line-height: 41px;
+			width: 41px;
+			text-align: center;
+		}
+		.hotstyle-btn { float: left; }
+		.mockup-btn { float: right; }
+	}
+}
+
+#mockup-area {
+	position: fixed;
+	display: none;
+	left: 0;
+	top: 0;
+	height: 100vh;
+	width: 100%;
+	background-color: rgba(0,0,0,.8);
+	z-index: 12;
+	.back {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		line-height: 50px;
+		z-index: 3;
+	}
+	.wrap {
+		font-size: 0;
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	.wrap>img {
+		position: relative;
+		left: 0;
+		top: 0;
+		width: 100%;
+		z-index: 2;
+	}
+	.wrap .mockup-woman {
+		position: absolute;
+	}
+	.watch {
+		position: absolute;
+		top: 13.7vw;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		width: 16.5%;
+		z-index: 1;
+		transform: translateX(2.5%);
+	}
+	.watch img {
+		position: relative;
+		width: 100%;
+	}
+	.watch img.ab {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	.watch img.d { z-index: 3; }
+	.watch img.c { z-index: 2; }
+	.watch img.s { z-index: 1; }
 }

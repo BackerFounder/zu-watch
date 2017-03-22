@@ -131,6 +131,11 @@ $(document).ready(function() {
           c4: null,
           c5: null
         }
+      },
+      elementsCounts: {
+        case: '',
+        dial: '',
+        strap: ''
       }
     },
 
@@ -362,10 +367,36 @@ $(document).ready(function() {
         var array = Object.keys(this.cart[status])
         var total_counts = array.length
         var counts = 0
+        var case_counts = 0
+        var case_total = 0
+        var dial_counts = 0
+        var dial_total = 0
+        var strap_counts = 0
+        var strap_total = 0
+        var self = this
         array.forEach(function(e, i) {
-          if ( cart[status][array[i]] !== null ) {
-            counts++
+          if ( e.indexOf('a') !== -1 ) {
+            if ( cart[status][e] !== null ) {
+              case_counts++
+            }
+            case_total++
+            self.elementsCounts.case = case_counts.toString() + '/' + case_total.toString()
           }
+          else if ( e.indexOf('b') !== -1 ) {
+            if ( cart[status][e] !== null ) {
+              dial_counts++
+            }
+            dial_total++
+            self.elementsCounts.dial = dial_counts.toString() + '/' + dial_total.toString()
+          }
+          else if ( e.indexOf('c') !== -1 ) {
+            if ( cart[status][e] !== null ) {
+              strap_counts++
+            }
+            strap_total++
+            self.elementsCounts.strap = strap_counts.toString() + '/' + strap_total.toString()
+          }
+          counts = case_counts + dial_counts + strap_counts
         })
         if ( total_counts !== counts ) {
           $('#cart-code-btn').removeClass('ok')

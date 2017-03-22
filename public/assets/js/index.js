@@ -26,3 +26,40 @@ $('body').on('click', '#addtocart, .add-this-btn' , function () {
 $('#cart-back').click( function () {
 	$('#code-and-share').removeClass('active')
 })
+
+$('#mobile-tools .hotstyle-btn').click( function () {
+	$('section.left').addClass('active')
+})
+
+$('#recommend-back').click( function () {
+	$('section.left').removeClass('active')
+})
+
+
+// mockup type select
+$('#mobile-tools .mockup-btn').click( function () {
+	$('.mockup-btns').addClass('active')
+})
+
+$('#mockup-back').click( function () {
+	$('.mockup-btns').removeClass('active')
+})
+
+// mockup show
+$('.mockup-btns .mockup-btn').click(function() {
+	$('.mockup-btns').removeClass('active')
+	var t = $(this).attr('data-who')
+	$('#mockup-area').fadeIn(300);
+	$('.wrap>img').css('opacity', '0');
+	$('.wrap>img.mockup-' + t).css('opacity', '1');
+})
+
+$('#mockup-area .back').click( function () {
+	$('#mockup-area').fadeOut(300);
+})
+
+// s -> b
+$('#cart-bigger').click(function(){
+	$(this).toggleClass('active')
+	$('section.right').toggleClass('bigger')
+})

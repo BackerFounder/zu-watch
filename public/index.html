@@ -56,7 +56,12 @@
   <div class="content flex-jc-ac-">
     <section class="left hide">
       <div id="recommend">
-        <h2>Hot Styling</h2>
+        <h2>
+          Hot Styling
+          <div id="recommend-back">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          </div>
+        </h2>
         <div class="top-box normal-box flex-afs-">
           <!--<div v-on:click="elementChange('', '', '')"
               class="btn recommend-style">
@@ -138,8 +143,19 @@
     <section class="mid hide">
       <div id="preview">
         <div class="mockup-btns">
-          <div class="mockup-btn">WOMAN</div>
-          <div class="mockup-btn">MAN</div>
+          <div data-who="woman" class="mockup-btn">WOMAN</div>
+          <div data-who="man" class="mockup-btn">MAN</div>
+          <div id="mockup-back">
+            <i class="fa fa-angle-up" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div id="mobile-tools">
+          <div class="hotstyle-btn">
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          </div>
+          <div class="mockup-btn">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+          </div>
         </div>
         <div class="top-box preview-show">
           <div class="preview-show-body">
@@ -185,9 +201,15 @@
       <div id="elements">
         <div class="top-box normal-box">
           <div class="elements-tabbar flex-ac-jfs-">
-            <div data-tab="case" class="elements-tab-btn active">Case</div>
-            <div data-tab="dial" class="elements-tab-btn">Dial</div>
-            <div data-tab="strap" class="elements-tab-btn">Strap</div>
+            <div data-tab="case" class="elements-tab-btn active">
+              Case<b>{{ elementsCounts.case }}</b>
+            </div>
+            <div data-tab="dial" class="elements-tab-btn">
+              Dial<b>{{ elementsCounts.dial }}</b>
+            </div>
+            <div data-tab="strap" class="elements-tab-btn">
+              Strap<b>{{ elementsCounts.strap }}</b>
+            </div>
           </div>
           <div class="elements-content">
             <div data-tab="case" class="elements-content-box flex-l3-jfs-afs- active">
@@ -230,6 +252,11 @@
         <h2>
           <div id="cart-back">
             <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </div>
+          <div id="cart-bigger" class="btn">
+            <i class="fa fa-angle-up" aria-hidden="true"></i>
+            <span class="b">Get Bigger!</span>
+            <span class="s">Get Smaller</span>
           </div>
           Cart
           <div id="cart-code-btn">
@@ -511,10 +538,25 @@
       <div id="code-result-copy" class="btn">Copy</div>
     </div>
   </div>
+  <div id="mockup-area">
+    <div class="back btn">BACK</div>
+    <div class="wrap">
+      <img class="mockup-man" src="assets/img/main/mockup/man.png" alt="">
+      <img class="mockup-woman" src="assets/img/main/mockup/woman.png" alt="">
+      <div class="watch">
+        <img class="c"
+             :src="'/assets/img/main/product/pv-case/' + preview.now.a + '.png'" alt="">
+        <img class="ab d"
+             :src="'/assets/img/main/product/pv-dial/' + preview.now.b + '.png'" alt="">
+        <img class="ab s"
+             :src="'/assets/img/main/product/pv-strap/' + preview.now.c + '.png'" alt="">
+      </div>
+    </div>
+  </div>
 </body>
 <script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>
-<script src="/assets/js/vendor/vue.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script> -->
+<!-- <script src="/assets/js/vendor/vue.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
 <script src="/assets/js/vendor/clipboard.min.js"></script>
 <script src="/assets/js/index.js?v=m"></script>
 <script src="/assets/js/build.js?v=m"></script>
