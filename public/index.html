@@ -222,6 +222,7 @@
           <div class="elements-content">
             <div data-tab="case" class="elements-content-box flex-l3-jfs-afs- active">
               <div v-for="c in elements.case"
+                   :data-selected="c"
                    class="e-c-b-c">
                 <div :data-selected="c"
                      class="element-selected"></div>
@@ -233,6 +234,7 @@
             </div>
             <div data-tab="dial" class="elements-content-box flex-l3-jfs-afs-">
               <div v-for="d in elements.dial"
+                   :data-selected="d"
                    class="e-c-b-c">
                 <div :data-selected="d"
                      class="element-selected"></div>
@@ -244,6 +246,7 @@
             </div>
             <div data-tab="strap" class="elements-content-box flex-l3-jfs-afs-">
               <div v-for="s in elements.strap"
+                   :data-selected="s"
                    class="e-c-b-c">
                 <div :data-selected="s"
                      class="element-selected"></div>

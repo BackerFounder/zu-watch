@@ -491,6 +491,9 @@ img.preview-3 {
 	box-shadow: 0 0 0 2px rgba(255,255,255,0);
 	transition: .2s ease
 }
+.e-c-b-c.active {
+	order: -1;
+}
 
 .element-selected {
 	position: absolute;
@@ -527,6 +530,7 @@ img.preview-3 {
 .cart-content {
 	height: calc( 150px - 37px );
 	overflow: auto;
+	align-content: flex-start;
 	>div {
 		position: relative;
 		text-align: left;

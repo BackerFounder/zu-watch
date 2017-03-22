@@ -313,7 +313,7 @@ $(document).ready(function() {
     	},
       randomMyElements: function() {
         this.previewChange
-        var a = this.cart.basic
+        
       },
     	saveElements: function() {
     		// 檢查物件有無為空不用三個部位檢查，檢查一個就好

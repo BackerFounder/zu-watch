@@ -1010,6 +1010,11 @@ img.preview-3 {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0);
   transition: .2s ease; }
 
+.e-c-b-c.active {
+  -webkit-order: -1;
+  -ms-flex-order: -1;
+  order: -1; }
+
 .element-selected {
   position: absolute;
   width: 15px;
@@ -1038,7 +1043,10 @@ img.preview-3 {
 
 .cart-content {
   height: calc( 150px - 37px);
-  overflow: auto; }
+  overflow: auto;
+  -webkit-align-content: flex-start;
+  -ms-flex-line-pack: start;
+  align-content: flex-start; }
   .cart-content > div {
     position: relative;
     text-align: left;
