@@ -967,7 +967,7 @@ img.preview-3 {
   width: auto;
   top: 0; }
 
-div.preview-3 {
+div.preview-1, div.preview-2, div.preview-3 {
   position: absolute;
   left: 0;
   right: 0;
@@ -975,9 +975,20 @@ div.preview-3 {
   padding-left: 100%;
   height: 100%;
   margin: auto;
-  background-image: url("../img/main/product/pv-strap.png");
   background-repeat: no-repeat;
   transition: 0s ease; }
+
+div.preview-1 {
+  z-index: 2;
+  background-image: url("../img/main/product/pv-case.png"); }
+
+div.preview-2 {
+  z-index: 3;
+  background-image: url("../img/main/product/pv-dial.png"); }
+
+div.preview-3 {
+  z-index: 1;
+  background-image: url("../img/main/product/pv-strap.png"); }
 
 .preview-btns {
   display: -webkit-flex;

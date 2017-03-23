@@ -25,11 +25,11 @@ $(window).load(function() {
     }
 	});
 	clipboard.on('success', function(e) {
-    alert('複製成功')
+    alert('Copy Success!')
 	});
 
 	clipboard.on('error', function(e) {
-    alert('複製失敗再試一次>_<！')
+    alert('Error Q_Q')
 	});
 
 })
@@ -162,6 +162,24 @@ $(document).ready(function() {
     },
 
     filters: {
+      casePreviewSprite: function(v) {
+        var target = v
+        var array = this.elements.case
+        var n = array.indexOf(v)
+        var l = array.length
+        var bgs = 'background-size: auto ' + ( 100 * l ) + '%;'
+        var bgp = 'background-position: center ' + ( 100 * n / ( l - 1 ) ) + '%;'
+        return bgs + bgp
+      },
+      dialPreviewSprite: function(v) {
+        var target = v
+        var array = this.elements.dial
+        var n = array.indexOf(v)
+        var l = array.length
+        var bgs = 'background-size: auto ' + ( 100 * l ) + '%;'
+        var bgp = 'background-position: center ' + ( 100 * n / ( l - 1 ) ) + '%;'
+        return bgs + bgp
+      },
       strapPreviewSprite: function(v) {
         var target = v
         var array = this.elements.strap
@@ -169,7 +187,6 @@ $(document).ready(function() {
         var l = array.length
         var bgs = 'background-size: auto ' + ( 100 * l ) + '%;'
         var bgp = 'background-position: center ' + ( 100 * n / ( l - 1 ) ) + '%;'
-        console.log(bgs)
         return bgs + bgp
       }
     },
