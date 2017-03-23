@@ -67,6 +67,10 @@
 		margin: 0 10px;
 		box-shadow: 0 2px 5px 0 rgba(0,0,0,.4);
 		transition: .3s ease;
+		@media screen and ( max-width: 992px ) {
+			display: block;
+			margin: 5px auto;
+		}
 	}
 	div:hover {
 		background-color: rgba(0,0,0,.7);

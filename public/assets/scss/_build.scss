@@ -201,8 +201,14 @@ section.right {
 				overflow: visible;
 				height: auto;
 				flex-wrap: nowrap;
-				div {
-					flex-basis: 70px;
+				&>div {
+					flex-basis: auto;
+					width: auto;
+					height: 93px;
+					&>img{
+						width: auto;
+						height: 100%;
+					}
 				}
 			}
 		}
@@ -552,6 +558,7 @@ div.preview-3 {
 		text-align: left;
 		padding: 15px 0 0;
 		order: -1;
+		transition: .3s ease;
 	}
 	>div.null {
 		order: initial;
@@ -746,10 +753,14 @@ div.preview-3 {
 			pointer-events: visible;
 			font-size: 22px;
 			line-height: 41px;
-			width: 41px;
+			width: 13%;
+			max-width: 60px;
 			text-align: center;
 		}
-		.gobackindex-btn { float: left; }
+		.gobackindex-btn { 
+			float: left; 
+			font-size: 18px;
+		}
 		.hotstyle-btn { float: left; }
 		.mockup-btn { float: right; }
 		.seecart-btn { float: right; }
