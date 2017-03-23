@@ -951,6 +951,18 @@ img.preview-3 {
   width: auto;
   top: 0; }
 
+div.preview-3 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding-left: 100%;
+  height: 100%;
+  margin: auto;
+  background-image: url("../img/main/product/pv-strap.png");
+  background-repeat: no-repeat;
+  transition: 0s ease; }
+
 .preview-btns {
   display: -webkit-flex;
   display: -ms-flexbox;

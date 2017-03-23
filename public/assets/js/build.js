@@ -161,6 +161,19 @@ $(document).ready(function() {
 
     },
 
+    filters: {
+      strapPreviewSprite: function(v) {
+        var target = v
+        var array = this.elements.strap
+        var n = array.indexOf(v)
+        var l = array.length
+        var bgs = 'background-size: auto ' + ( 100 * l ) + '%;'
+        var bgp = 'background-position: center ' + ( 100 * n / ( l - 1 ) ) + '%;'
+        console.log(bgs)
+        return bgs + bgp
+      }
+    },
+
     methods: {
     	fetchData: function() {
   			// this.$data = JSON.parse(atob(localStorage['fullPage']))
@@ -464,8 +477,11 @@ $(document).ready(function() {
     			$('input.code-section-area').val("")
     			$('.input-code-section').removeClass('active')
     		}
-    	}
-    }
-  })
+    	},
+
+    } // methods end
+
+  }) // vue.js object end
+
 }); // document ready end
 
