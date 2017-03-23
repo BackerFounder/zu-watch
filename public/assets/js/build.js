@@ -177,6 +177,7 @@ $(document).ready(function() {
     methods: {
     	fetchData: function() {
   			// this.$data = JSON.parse(atob(localStorage['fullPage']))
+        this.whichElementSelected
     	},
       chooseStatus: function(type) {
         this.status = type

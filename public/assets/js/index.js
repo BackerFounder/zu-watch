@@ -11,6 +11,12 @@ $('.index-action .btn').click(function () {
   $('body').css('overflow', 'auto')
 })
 
+$('.gobackindex-btn').click(function() {
+	$('#index').fadeIn(300);
+  $('section').addClass('hide')
+  $('body').css('overflow', 'hidden')
+})
+
 $('#cart-code-btn').click(function(){
 	$('#output-popup').fadeIn(300);
 })
@@ -22,7 +28,7 @@ $('#output-popup .close').click(function(){
 // mobile
 
 // add to cart
-$('body').on('click', '.seecart-btn' , function () {
+$('body').on('click', '.seecart-btn, .add-this-btn, #addtocart' , function () {
 	$('#code-and-share').addClass('active')
 })
 $('#cart-back').click( function () {

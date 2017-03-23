@@ -12,7 +12,7 @@
   <meta content="Your first configurable watch for every style you carry." property="og:description">
   <meta content="/assets/img/common/facebook.png" property="og:image">
   <link href="http://static.wixstatic.com/media/495b64_5c92ae34812c48b1bd0b81f1a8180d64.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/495b64_5c92ae34812c48b1bd0b81f1a8180d64.png" rel="shortcut icon">
-  <link rel="stylesheet" href="/assets/css/main.css?v=m">
+  <link rel="stylesheet" href="/assets/css/main.css?v=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700|Rubik:400,500,700" rel="stylesheet">
 </head>
@@ -150,6 +150,9 @@
           </div>
         </div>
         <div id="mobile-tools">
+          <div class="gobackindex-btn">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          </div>
           <div class="hotstyle-btn">
             <i class="fa fa-star-o" aria-hidden="true"></i>
           </div>
@@ -290,8 +293,8 @@
         </h2>
         <div v-if=" status === 'basic' " class="bottom-box normal-box">
           <h2>Zu WATCH / Basic</h2>
-          <div class="cart-content flex-l4-m3-jfs-afs-">
-            <div>
+          <div class="cart-content flex-l4-jfs-afs-">
+            <div class="cart-item {{ cart.basic.a1 }}">
               <div v-on:click="deleteCartElement('basic', 'a1')"
                    class="delete-btn {{ cart.basic.a1 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -300,7 +303,7 @@
                    :src="'/assets/img/main/product/case/' + cart.basic.a1 + '.png'"
                    :srcset="'/assets/img/main-mobile/product/case/' + cart.basic.a1 + '.png 850w'" alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.basic.b1 }}">
               <div v-on:click="deleteCartElement('basic', 'b1')"
                    class="delete-btn {{ cart.basic.b1 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -309,7 +312,7 @@
                    :src="'/assets/img/main/product/dial/' + cart.basic.b1 + '.png'"
                    :srcset="'/assets/img/main-mobile/product/dial/' + cart.basic.b1 + '.png 850w'" alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.basic.c1 }}">
               <div v-on:click="deleteCartElement('basic', 'c1')"
                    class="delete-btn {{ cart.basic.c1 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -322,8 +325,8 @@
         </div>
         <div v-if=" status === 'pro' " class="bottom-box normal-box">
           <h2>Zu WATCH / Pro</h2>
-          <div class="cart-content flex-l4-m3-jfs-afs-">
-            <div>
+          <div class="cart-content flex-l4-jfs-afs-">
+            <div class="cart-item {{ cart.pro.a1 }}">
               <div v-on:click="deleteCartElement('pro', 'a1')"
                    class="delete-btn {{ cart.pro.a1 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -333,7 +336,7 @@
                    :srcset="'/assets/img/main-mobile/product/case/' + cart.pro.a1 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.pro.b1 }}">
               <div v-on:click="deleteCartElement('pro', 'b1')"
                    class="delete-btn {{ cart.pro.b1 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -343,7 +346,7 @@
                    :srcset="'/assets/img/main-mobile/product/dial/' + cart.pro.b1 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.pro.b2 }}">
               <div v-on:click="deleteCartElement('pro', 'b2')"
                    class="delete-btn {{ cart.pro.b2 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -353,7 +356,7 @@
                    :srcset="'/assets/img/main-mobile/product/dial/' + cart.pro.b2 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.pro.c1 }}">
               <div v-on:click="deleteCartElement('pro', 'c1')"
                    class="delete-btn {{ cart.pro.c1 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -363,7 +366,7 @@
                    :srcset="'/assets/img/main-mobile/product/strap/' + cart.pro.c1 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.pro.c2 }}">
               <div v-on:click="deleteCartElement('pro', 'c2')"
                    class="delete-btn {{ cart.pro.c2 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -377,8 +380,8 @@
         </div>
         <div v-if=" status === 'double' " class="bottom-box normal-box">
           <h2>Zu WATCH / Double</h2>
-          <div class="cart-content flex-l4-m3-jfs-afs-">
-            <div>
+          <div class="cart-content flex-l4-jfs-afs-">
+            <div class="cart-item {{ cart.double.a1 }}">
               <div v-on:click="deleteCartElement('double', 'a1')"
                    class="delete-btn {{ cart.double.a1 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -388,7 +391,7 @@
                    :srcset="'/assets/img/main-mobile/product/case/' + cart.double.a1 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.double.a2 }}">
               <div v-on:click="deleteCartElement('double', 'a2')"
                    class="delete-btn {{ cart.double.a2 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -398,7 +401,7 @@
                    :srcset="'/assets/img/main-mobile/product/case/' + cart.double.a2 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.double.b1 }}">
               <div v-on:click="deleteCartElement('double', 'b1')"
                    class="delete-btn {{ cart.double.b1 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -408,7 +411,7 @@
                    :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b1 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.double.b2 }}">
               <div v-on:click="deleteCartElement('double', 'b2')"
                    class="delete-btn {{ cart.double.b2 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -418,7 +421,7 @@
                    :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b2 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.double.b3 }}">
               <div v-on:click="deleteCartElement('double', 'b3')"
                    class="delete-btn {{ cart.double.b3 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -428,7 +431,7 @@
                    :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b3 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.double.b4 }}">
               <div v-on:click="deleteCartElement('double', 'b4')"
                    class="delete-btn {{ cart.double.b4 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -438,7 +441,7 @@
                    :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b4 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.double.b5 }}">
               <div v-on:click="deleteCartElement('double', 'b5')"
                    class="delete-btn {{ cart.double.b5 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -448,7 +451,7 @@
                    :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b5 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.double.c1 }}">
               <div v-on:click="deleteCartElement('double', 'c1')"
                    class="delete-btn {{ cart.double.c1 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -458,7 +461,7 @@
                    :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c1 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.double.c2 }}">
               <div v-on:click="deleteCartElement('double', 'c2')"
                    class="delete-btn {{ cart.double.c2 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -468,7 +471,7 @@
                    :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c2 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.double.c3 }}">
               <div v-on:click="deleteCartElement('double', 'c3')"
                    class="delete-btn {{ cart.double.c3 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -478,7 +481,7 @@
                    :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c3 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.double.c4 }}">
               <div v-on:click="deleteCartElement('double', 'c4')"
                    class="delete-btn {{ cart.double.c4 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -488,7 +491,7 @@
                    :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c4 + '.png 850w'"
                    alt="">
             </div>
-            <div>
+            <div class="cart-item {{ cart.double.c5 }}">
               <div v-on:click="deleteCartElement('double', 'c5')"
                    class="delete-btn {{ cart.double.c5 }}">
                 <img src="/assets/img/common/icons/delete.svg" alt="">
@@ -668,8 +671,8 @@
 <!-- <script src="/assets/js/vendor/vue.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
 <script src="/assets/js/vendor/clipboard.min.js"></script>
-<script src="/assets/js/index.js?v=m"></script>
-<script src="/assets/js/build.js?v=m"></script>
+<script src="/assets/js/index.js?v=1.0"></script>
+<script src="/assets/js/build.js?v=1.0"></script>
 <script>
   var fbhtml_url = window.location.toString()
   function fbShare() {
