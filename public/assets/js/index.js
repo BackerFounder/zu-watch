@@ -11,7 +11,8 @@ $('.index-action .btn').click(function () {
   $('body').css('overflow', 'auto')
 })
 
-$('.gobackindex-btn').click(function() {
+$('.gobackindex-btn, .zu-title a').click(function(e) {
+	e.preventDefault()
 	$('#index').fadeIn(300);
   $('section').addClass('hide')
   $('body').css('overflow', 'hidden')
