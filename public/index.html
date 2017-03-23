@@ -657,12 +657,18 @@
            srcset="/assets/img/main-mobile/mockup/woman.png 850w"
            alt="">
       <div class="watch">
-        <img class="c"
+        <!-- <img class="c"
              :src="'/assets/img/main/product/pv-case/' + preview.now.a + '.png'" alt="">
         <img class="ab d"
              :src="'/assets/img/main/product/pv-dial/' + preview.now.b + '.png'" alt="">
         <div :style="preview.now.c | strapPreviewSprite"
-              class="preview-3"></div>
+              class="preview-3"></div -->
+        <div :style="preview.now.a | casePreviewSprite"
+             class="preview-1"></div>
+        <div :style="preview.now.b | dialPreviewSprite"
+             class="preview-2"></div>
+        <div :style="preview.now.c | strapPreviewSprite"
+             class="preview-3"></div>
     </div>
   </div>
   <div id="preload" style="display: none;">

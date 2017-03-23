@@ -1389,7 +1389,8 @@ div.preview-3 {
     z-index: 1;
     -webkit-transform: translateX(2.5%);
     -ms-transform: translateX(2.5%);
-    transform: translateX(2.5%); }
+    transform: translateX(2.5%);
+    padding-top: 31.15%; }
   #mockup-area .watch img {
     position: relative;
     width: 100%; }
