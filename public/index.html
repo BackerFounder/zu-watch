@@ -229,7 +229,9 @@
                 <div :data-selected="c"
                      class="element-selected"></div>
                 <img  v-on:click="elementChange(c, '', '')"
-                      :src="'/assets/img/main/product/case/' + c + '.png'" alt="">
+                      :src="'/assets/img/main/product/case/' + c + '.png'"
+                      :srcset="'/assets/img/main-mobile/product/case/' + c + '.png 850w'"
+                      alt="">
                 <div v-on:click="elementAddCart(c, '', '')"
                      class="add-this-btn">Add this</div>
               </div>
@@ -241,7 +243,9 @@
                 <div :data-selected="d"
                      class="element-selected"></div>
                 <img v-on:click="elementChange('', d, '')"
-                     :src="'/assets/img/main/product/dial/' + d + '.png'" alt="">
+                     :src="'/assets/img/main/product/dial/' + d + '.png'"
+                     :srcset="'/assets/img/main-mobile/product/dial/' + d + '.png 850w'"
+                     alt="">
                 <div v-on:click="elementAddCart('', d, '')"
                      class="add-this-btn">Add this</div>
               </div>
@@ -253,7 +257,9 @@
                 <div :data-selected="s"
                      class="element-selected"></div>
                 <img v-on:click="elementChange('', '', s)"
-                     :src="'/assets/img/main/product/strap/' + s + '.png'" alt="">
+                     :src="'/assets/img/main/product/strap/' + s + '.png'"
+                     :srcset="'/assets/img/main-mobile/product/strap/' + s + '.png 850w'"
+                     alt="">
                 <div v-on:click="elementAddCart('', '', s)"
                      class="add-this-btn">Add this</div>
               </div>
@@ -291,7 +297,8 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange(cart.basic.a1, '', '')"
-                   :src="'/assets/img/main/product/case/' + cart.basic.a1 + '.png'" alt="">
+                   :src="'/assets/img/main/product/case/' + cart.basic.a1 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/case/' + cart.basic.a1 + '.png 850w'" alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('basic', 'b1')"
@@ -299,7 +306,8 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', cart.basic.b1, '')"
-                   :src="'/assets/img/main/product/dial/' + cart.basic.b1 + '.png'" alt="">
+                   :src="'/assets/img/main/product/dial/' + cart.basic.b1 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/dial/' + cart.basic.b1 + '.png 850w'" alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('basic', 'c1')"
@@ -307,7 +315,8 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', '', cart.basic.c1)"
-                   :src="'/assets/img/main/product/strap/' + cart.basic.c1 + '.png'" alt="">
+                   :src="'/assets/img/main/product/strap/' + cart.basic.c1 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/strap/' + cart.basic.c1 + '.png 850w'" alt="">
             </div>
           </div>
         </div>
@@ -320,7 +329,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange( cart.pro.a1, '', '')"
-                   :src="'/assets/img/main/product/case/' + cart.pro.a1 + '.png'" alt="">
+                   :src="'/assets/img/main/product/case/' + cart.pro.a1 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/case/' + cart.pro.a1 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('pro', 'b1')"
@@ -328,7 +339,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', cart.pro.b1, '')"
-                   :src="'/assets/img/main/product/dial/' + cart.pro.b1 + '.png'" alt="">
+                   :src="'/assets/img/main/product/dial/' + cart.pro.b1 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/dial/' + cart.pro.b1 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('pro', 'b2')"
@@ -336,7 +349,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', cart.pro.b2, '')"
-                   :src="'/assets/img/main/product/dial/' + cart.pro.b2 + '.png'" alt="">
+                   :src="'/assets/img/main/product/dial/' + cart.pro.b2 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/dial/' + cart.pro.b2 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('pro', 'c1')"
@@ -344,7 +359,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', '', cart.pro.c1)"
-                   :src="'/assets/img/main/product/strap/' + cart.pro.c1 + '.png'" alt="">
+                   :src="'/assets/img/main/product/strap/' + cart.pro.c1 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/strap/' + cart.pro.c1 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('pro', 'c2')"
@@ -352,7 +369,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', '', cart.pro.c2)"
-                   :src="'/assets/img/main/product/strap/' + cart.pro.c2 + '.png'" alt="">
+                   :src="'/assets/img/main/product/strap/' + cart.pro.c2 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/strap/' + cart.pro.c2 + '.png 850w'"
+                   alt="">
             </div>
           </div>
         </div>
@@ -365,7 +384,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange( cart.double.a1, '', '')"
-                   :src="'/assets/img/main/product/case/' + cart.double.a1 + '.png'" alt="">
+                   :src="'/assets/img/main/product/case/' + cart.double.a1 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/case/' + cart.double.a1 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('double', 'a2')"
@@ -373,7 +394,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange( cart.double.a2, '', '')"
-                   :src="'/assets/img/main/product/case/' + cart.double.a2 + '.png'" alt="">
+                   :src="'/assets/img/main/product/case/' + cart.double.a2 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/case/' + cart.double.a2 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('double', 'b1')"
@@ -381,7 +404,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', cart.double.b1, '')"
-                   :src="'/assets/img/main/product/dial/' + cart.double.b1 + '.png'" alt="">
+                   :src="'/assets/img/main/product/dial/' + cart.double.b1 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b1 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('double', 'b2')"
@@ -389,7 +414,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', cart.double.b2, '')"
-                   :src="'/assets/img/main/product/dial/' + cart.double.b2 + '.png'" alt="">
+                   :src="'/assets/img/main/product/dial/' + cart.double.b2 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b2 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('double', 'b3')"
@@ -397,7 +424,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', cart.double.b3, '')"
-                   :src="'/assets/img/main/product/dial/' + cart.double.b3 + '.png'" alt="">
+                   :src="'/assets/img/main/product/dial/' + cart.double.b3 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b3 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('double', 'b4')"
@@ -405,7 +434,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', cart.double.b4, '')"
-                   :src="'/assets/img/main/product/dial/' + cart.double.b4 + '.png'" alt="">
+                   :src="'/assets/img/main/product/dial/' + cart.double.b4 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b4 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('double', 'b5')"
@@ -413,7 +444,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', cart.double.b5, '')"
-                   :src="'/assets/img/main/product/dial/' + cart.double.b5 + '.png'" alt="">
+                   :src="'/assets/img/main/product/dial/' + cart.double.b5 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b5 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('double', 'c1')"
@@ -421,7 +454,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', '', cart.double.c1)"
-                   :src="'/assets/img/main/product/strap/' + cart.double.c1 + '.png'" alt="">
+                   :src="'/assets/img/main/product/strap/' + cart.double.c1 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c1 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('double', 'c2')"
@@ -429,7 +464,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', '', cart.double.c2)"
-                   :src="'/assets/img/main/product/strap/' + cart.double.c2 + '.png'" alt="">
+                   :src="'/assets/img/main/product/strap/' + cart.double.c2 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c2 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('double', 'c3')"
@@ -437,7 +474,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', '', cart.double.c3)"
-                   :src="'/assets/img/main/product/strap/' + cart.double.c3 + '.png'" alt="">
+                   :src="'/assets/img/main/product/strap/' + cart.double.c3 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c3 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('double', 'c4')"
@@ -445,7 +484,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', '', cart.double.c4)"
-                   :src="'/assets/img/main/product/strap/' + cart.double.c4 + '.png'" alt="">
+                   :src="'/assets/img/main/product/strap/' + cart.double.c4 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c4 + '.png 850w'"
+                   alt="">
             </div>
             <div>
               <div v-on:click="deleteCartElement('double', 'c5')"
@@ -453,7 +494,9 @@
                 <img src="/assets/img/common/icons/delete.svg" alt="">
               </div>
               <img v-on:click="elementChange('', '', cart.double.c5)"
-                   :src="'/assets/img/main/product/strap/' + cart.double.c5 + '.png'" alt="">
+                   :src="'/assets/img/main/product/strap/' + cart.double.c5 + '.png'"
+                   :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c5 + '.png 850w'"
+                   alt="">
             </div>
           </div>
         </div>
@@ -470,13 +513,19 @@
         <h2>Zu WATCH / Basic</h2>
         <div class="flex-l5-m3-jfs-afs-">
           <div>
-            <img :src="'/assets/img/main/product/case/' + cart.basic.a1 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/case/' + cart.basic.a1 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/case/' + cart.basic.a1 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/dial/' + cart.basic.b1 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/dial/' + cart.basic.b1 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/dial/' + cart.basic.b1 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/strap/' + cart.basic.c1 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/strap/' + cart.basic.c1 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/strap/' + cart.basic.c1 + '.png 850w'"
+                 alt="">
           </div>
         </div>
       </div>
@@ -484,19 +533,29 @@
         <h2>Zu WATCH / Pro</h2>
         <div class="flex-l5-m3-jfs-afs-">
           <div>
-            <img :src="'/assets/img/main/product/case/' + cart.pro.a1 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/case/' + cart.pro.a1 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/case/' + cart.pro.a1 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/dial/' + cart.pro.b1 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/dial/' + cart.pro.b1 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/dial/' + cart.pro.b1 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/dial/' + cart.pro.b2 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/dial/' + cart.pro.b2 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/dial/' + cart.pro.b2 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/strap/' + cart.pro.c1 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/strap/' + cart.pro.c1 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/strap/' + cart.pro.c1 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/strap/' + cart.pro.c2 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/strap/' + cart.pro.c2 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/strap/' + cart.pro.c2 + '.png 850w'"
+                 alt="">
           </div>
         </div>
       </div>
@@ -504,40 +563,64 @@
         <h2>Zu WATCH / Double</h2>
         <div class="flex-l5-m3-jfs-afs-">
           <div>
-            <img :src="'/assets/img/main/product/case/' + cart.double.a1 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/case/' + cart.double.a1 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/case/' + cart.double.a1 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/case/' + cart.double.a2 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/case/' + cart.double.a2 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/case/' + cart.double.a2 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/dial/' + cart.double.b1 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/dial/' + cart.double.b1 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b1 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/dial/' + cart.double.b2 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/dial/' + cart.double.b2 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b2 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/dial/' + cart.double.b3 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/dial/' + cart.double.b3 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b3 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/dial/' + cart.double.b4 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/dial/' + cart.double.b4 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b4 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/dial/' + cart.double.b5 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/dial/' + cart.double.b5 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b5 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/strap/' + cart.double.c1 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/strap/' + cart.double.c1 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c1 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/strap/' + cart.double.c2 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/strap/' + cart.double.c2 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c2 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/strap/' + cart.double.c3 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/strap/' + cart.double.c3 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c3 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/strap/' + cart.double.c4 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/strap/' + cart.double.c4 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c4 + '.png 850w'"
+                 alt="">
           </div>
           <div>
-            <img :src="'/assets/img/main/product/strap/' + cart.double.c5 + '.png'" alt="">
+            <img :src="'/assets/img/main/product/strap/' + cart.double.c5 + '.png'"
+                 :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c5 + '.png 850w'"
+                 alt="">
           </div>
         </div>
       </div>
@@ -559,8 +642,14 @@
   <div id="mockup-area">
     <div class="back btn">BACK</div>
     <div class="wrap">
-      <img class="mockup-man" src="assets/img/main/mockup/man.png" alt="">
-      <img class="mockup-woman" src="assets/img/main/mockup/woman.png" alt="">
+      <img class="mockup-man"
+           src="/assets/img/main/mockup/man.png"
+           srcset="/assets/img/main-mobile/mockup/man.png 850w"
+           alt="">
+      <img class="mockup-woman"
+           src="/assets/img/main/mockup/woman.png"
+           srcset="/assets/img/main-mobile/mockup/woman.png 850w"
+           alt="">
       <div class="watch">
         <img class="c"
              :src="'/assets/img/main/product/pv-case/' + preview.now.a + '.png'" alt="">
