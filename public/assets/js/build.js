@@ -347,21 +347,27 @@ $(document).ready(function() {
             if ( this.cart.basic.a1 == null ) {
               this.cart.basic.a1 = a;
             } else {
-              alert('Please delete any Case in your Cart')
+              if ( confirm("Do you want to replace with this Case?")) {
+                this.cart.basic.a1 = a
+              }
             }
           }
           if (b) {
             if ( this.cart.basic.b1 == null ) {
               this.cart.basic.b1 = b;
             } else {
-              alert('Please delete any Dial in your Cart')
+              if ( confirm("Do you want to replace with this Dial?")) {
+                this.cart.basic.b1 = b
+              }
             }
           }
           if (c) {
             if ( this.cart.basic.c1 == null ) {
               this.cart.basic.c1 = c;
             } else {
-              alert('Please delete any Strap in your Cart')
+              if ( confirm("Do you want to replace with this Strap?")) {
+                this.cart.basic.c1 = c
+              }
             }
           }
         }
@@ -370,7 +376,9 @@ $(document).ready(function() {
             if ( this.cart.pro.a1 == null ) {
               this.cart.pro.a1 = a;
             } else {
-              alert('Please delete any Case in your Cart')
+              if ( confirm("Do you want to replace with this Case?")) {
+                this.cart.pro.a1 = a;
+              }
             }
           }
           if (b) {
@@ -381,7 +389,9 @@ $(document).ready(function() {
               this.cart.pro.b2 = b
             }
             else {
-              alert('Please delete any Dail in your Cart')
+              if ( confirm("Do you want to replace with this Dial?")) {
+                this.cart.pro.b2 = b;
+              }
             }
           }
           if (c) {
@@ -392,7 +402,9 @@ $(document).ready(function() {
               this.cart.pro.c2 = c
             }
             else {
-              alert('Please delete any Strap in your Cart')
+              if ( confirm("Do you want to replace with this Strap?")) {
+                this.cart.pro.c2 = c;
+              }
             }
           }
         }
@@ -405,7 +417,9 @@ $(document).ready(function() {
               this.cart.double.a2 = a
             }
             else {
-              alert('Please delete any Case in your Cart')
+              if ( confirm("Do you want to replace with this Case?")) {
+                this.cart.double.a2 = a;
+              }
             }
           }
           if (b) {
@@ -416,7 +430,9 @@ $(document).ready(function() {
             var check5 = this.cart.double.b5
             var a = Object.keys(this.cart.double)
             if( check1 && check2 && check3 && check4 && check5 ) {
-              alert('Please delete any Dial in your Cart')
+              if ( confirm("Do you want to replace with this Dial?")) {
+                this.cart.double.b5 = b;
+              }
             }
             else {
               for (var i = 0; i <= 4; i ++ ) {
@@ -437,7 +453,9 @@ $(document).ready(function() {
             var check5 = this.cart.double.c5
             var a = Object.keys(this.cart.double)
             if( check1 && check2 && check3 && check4 && check5 ) {
-              alert('Please delete any Strap in your Cart')
+              if ( confirm("Do you want to replace with this Strap?")) {
+                this.cart.double.c5 = c;
+              }
             }
             else {
               for (var i = 0; i <= 4; i ++ ) {
