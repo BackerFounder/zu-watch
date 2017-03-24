@@ -726,6 +726,9 @@ section.left {
       section.right .bottom-box .cart-content {
         overflow: visible;
         height: auto;
+        -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
         -webkit-flex-wrap: nowrap;
         -ms-flex-wrap: nowrap;
         flex-wrap: nowrap; }
@@ -733,11 +736,7 @@ section.left {
           -webkit-flex-basis: auto;
           -ms-flex-preferred-size: auto;
           flex-basis: auto;
-          width: auto;
-          height: 93px; }
-          section.right .bottom-box .cart-content > div > img {
-            width: auto;
-            height: 100%; } }
+          width: 80px; } }
 
 @media screen and (max-width: 500px) {
   section.right .e-c-b-c {
@@ -1114,12 +1113,11 @@ div.preview-3 {
     -ms-flex-order: -1;
     order: -1;
     transition: .3s ease;
-    will-change: width; }
+    will-change: all; }
     @media screen and (max-width: 992px) {
       .cart-content > div {
         -webkit-animation: widthBigger .5s ease 0s 1 both;
-        animation: widthBigger .5s ease 0s 1 both;
-        will-change: height; }
+        animation: widthBigger .5s ease 0s 1 both; }
         .cart-content > div > img {
           -webkit-animation: scaleBigger .5s ease 0s 1 both;
           animation: scaleBigger .5s ease 0s 1 both; } }
@@ -1141,24 +1139,39 @@ div.preview-3 {
 
 @-webkit-keyframes widthBigger {
   0% {
-    height: 0;
+    -webkit-flex-basis: 0;
+    flex-basis: 0;
+    width: 0;
     opacity: 0; }
   50% {
-    height: 93px;
+    -webkit-flex-basis: 80px;
+    flex-basis: 80px;
+    width: 80px;
     opacity: 0; }
   100% {
-    height: 93px;
+    -webkit-flex-basis: 80px;
+    flex-basis: 80px;
+    width: 80px;
     opacity: 1; } }
 
 @keyframes widthBigger {
   0% {
-    height: 0;
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    width: 0;
     opacity: 0; }
   50% {
-    height: 93px;
+    -webkit-flex-basis: 80px;
+    -ms-flex-preferred-size: 80px;
+    flex-basis: 80px;
+    width: 80px;
     opacity: 0; }
   100% {
-    height: 93px;
+    -webkit-flex-basis: 80px;
+    -ms-flex-preferred-size: 80px;
+    flex-basis: 80px;
+    width: 80px;
     opacity: 1; } }
 
 @-webkit-keyframes scaleBigger {

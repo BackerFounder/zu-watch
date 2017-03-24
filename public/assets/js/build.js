@@ -157,8 +157,29 @@ $(document).ready(function() {
         $('[data-selected=' + a +']').addClass('active');
         $('[data-selected=' + b +']').addClass('active');
         $('[data-selected=' + c +']').addClass('active');
-      },
+      }
+    },
 
+    watch: {
+      status: function() {
+        // After v-if render to bind her elements
+        $(".cart-item").each(function() {
+          this.observer = new MutationObserver(observeItemChange);
+          var config = {
+            attributes: true,
+            childList: false,
+            characterData: false,
+            subtree: false
+          };
+          this.observer.observe(this, config);
+        });
+        function observeItemChange(mutations) {
+          if ( mutations[0].target.className.indexOf("null") == -1 ) {
+            var d = mutations[0].target.offsetLeft - mutations[0].target.offsetWidth
+            $('#code-and-share .bottom-box').animate( { scrollLeft: d }, 400);
+          }
+        }
+      }
     },
 
     filters: {
