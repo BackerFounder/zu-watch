@@ -38,6 +38,12 @@ $('#output-popup .close').click(function(){
 	$('#output-popup').fadeOut(300);
 })
 
+$("#chill").click(function() {
+	console.log('ff')
+	$(this).toggleClass('active')
+	$('div.preview-1, div.preview-2, div.preview-3').toggleClass('active')
+})
+
 
 // mobile
 // add to cart

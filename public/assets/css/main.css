@@ -466,7 +466,7 @@ a {
 
 .index-action {
   position: absolute;
-  bottom: 10vh;
+  bottom: 15vh;
   left: 0;
   right: 0;
   margin: auto;
@@ -510,6 +510,26 @@ a {
   position: relative;
   z-index: 1; }
 
+#chill {
+  position: absolute;
+  right: 15px;
+  top: 46px;
+  font-size: 12px;
+  font-family: "Rubik", sans-serif;
+  padding-left: 15px;
+  pointer-events: visible;
+  z-index: 2; }
+  #chill i {
+    top: 1px;
+    left: 0;
+    position: absolute;
+    opacity: 1; }
+  #chill i + i {
+    opacity: 1; }
+
+#chill.active i + i {
+  opacity: 0; }
+
 .build-bg {
   position: fixed;
   top: 0;
@@ -535,7 +555,8 @@ section {
     transition: .6s ease;
     -webkit-transform: translateY(0%);
     -ms-transform: translateY(0%);
-    transform: translateY(0%); }
+    transform: translateY(0%);
+    pointer-events: visible; }
   @media screen and (max-width: 992px) {
     section {
       max-width: 100%; } }
@@ -563,7 +584,8 @@ section.hide .mockup-btns, section.hide .bottom-box, section.hide .top-box, sect
     height: auto;
     -webkit-flex: 0 0 100%;
     -ms-flex: 0 0 100%;
-    flex: 0 0 100%; }
+    flex: 0 0 100%;
+    pointer-events: none; }
     section.mid .top-box {
       height: calc( 100vh - 297px);
       margin: 0 0 30px; }
@@ -975,7 +997,10 @@ div.preview-1, div.preview-2, div.preview-3 {
   height: 100%;
   margin: auto;
   background-repeat: no-repeat;
-  transition: 0s ease; }
+  transition: 0s ease-in-out; }
+
+div.preview-1.active, div.preview-2.active, div.preview-3.active {
+  transition: 2s ease-in-out; }
 
 div.preview-1 {
   z-index: 2;
@@ -1395,7 +1420,7 @@ div.preview-3 {
   @media screen and (max-width: 992px) {
     #mobile-tools {
       display: block;
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;

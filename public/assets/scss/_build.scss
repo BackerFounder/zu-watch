@@ -23,6 +23,7 @@ section {
 		opacity: 1;
 		transition: .6s ease;
 		transform: translateY(0%);
+		pointer-events: visible;
 	}
 	@media screen and ( max-width: 992px ) {
 		max-width: 100%;
@@ -48,6 +49,7 @@ section.mid {
 		width: 100%;
 		height: auto;
 		flex: 0 0 100%;
+		pointer-events: none;
 		.top-box {
 			height: calc( 100vh - 297px );
 			margin: 0 0 30px;
@@ -425,7 +427,10 @@ div.preview-1, div.preview-2, div.preview-3 {
 	height: 100%;
 	margin: auto;
 	background-repeat: no-repeat;
-	transition: 0s ease;
+	transition: 0s ease-in-out;
+}
+div.preview-1, div.preview-2, div.preview-3 {
+	&.active { transition: 2s ease-in-out; }
 }
 div.preview-1 {
 	z-index: 2;
@@ -771,7 +776,7 @@ div.preview-3 {
 	display: none;
 	@media screen and (max-width: 992px) {
 		display: block;
-		position: fixed;
+		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
