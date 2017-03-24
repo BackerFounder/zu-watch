@@ -828,14 +828,16 @@ h2 {
 #recommend .top-box {
   -webkit-align-content: flex-start;
   -ms-flex-line-pack: start;
-  align-content: flex-start; }
+  align-content: flex-start;
+  background-color: black; }
 
 .recommend-style {
-  margin: 0;
-  -webkit-flex: 1 0 50%;
-  -ms-flex: 1 0 50%;
-  flex: 1 0 50%;
-  width: 50%;
+  cursor: pointer;
+  margin: 4px 4px 0;
+  -webkit-flex: 0 0 calc( 100% - 8px);
+  -ms-flex: 0 0 calc( 100% - 8px);
+  flex: 0 0 calc( 100% - 8px);
+  width: calc( 100% - 10px);
   min-width: 150px;
   height: 90px;
   background-image: url("../img/main/bg/index-bg-pro.jpg");
@@ -850,7 +852,8 @@ h2 {
   align-items: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
-  justify-content: center; }
+  justify-content: center;
+  opacity: .85; }
   .recommend-style i, .recommend-style b {
     color: rgba(255, 255, 255, 0.9);
     font-size: 30px;
@@ -860,6 +863,12 @@ h2 {
   .recommend-style i {
     font-size: 20px;
     margin-left: 5px; }
+  .recommend-style:hover {
+    opacity: 1; }
+
+@media screen and (max-width: 992px) {
+  .recommend-random {
+    display: none; } }
 
 .mockup-btns {
   height: 43px;

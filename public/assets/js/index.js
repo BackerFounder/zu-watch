@@ -61,7 +61,7 @@ $('#mobile-tools .hotstyle-btn').click( function () {
 	$('section.left').addClass('active')
 })
 
-$('#recommend-back').click( function () {
+$('#recommend-back, .recommend-style').click( function () {
 	$('section.left').removeClass('active')
 })
 
