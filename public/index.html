@@ -30,7 +30,7 @@
         <span class="subtitle">BUILD YOUR OWN WATCH</span>
       </a>
       <div class="index-action">
-        <h2>Choose The Reward</h2>
+        <h2>Choose your Zu WATCH SET:</h2>
         <div data-hover-show="index-bg-basic"
              v-on:click="chooseStatus('basic')"
              class="btn">Zu WATCH / Basic</div>
@@ -54,7 +54,7 @@
     <section class="left hide">
       <div id="recommend">
         <h2>
-          Hot Styling
+          Style
           <div id="recommend-back">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
           </div>
@@ -204,11 +204,11 @@
           </div>
         </div>
         <div class="bottom-box preview-btns">
-          <div v-on:click="undoElements()"
+          <!-- <div v-on:click="undoElements()"
                id="prev"
                class="zuwatch-btn step-btn {{ preview.prev.a }}">
             <i class="fa fa-undo"></i>
-          </div>
+          </div>-->
           <div id="random"
                v-on:click="randomElements"
                class="zuwatch-btn save-btn active">
@@ -230,11 +230,11 @@
             <i class="fa fa-plus-circle" aria-hidden="true"></i>
             Add to Cart
           </div>
-          <div v-on:click="nextElements()"
+          <!-- <div v-on:click="nextElements()"
                id="next"
                class="zuwatch-btn step-btn {{ preview.next.a }}">
             <i class="fa fa-undo"></i>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -305,8 +305,8 @@
           </div>
           <div id="cart-bigger" class="btn">
             <i class="fa fa-angle-up" aria-hidden="true"></i>
-            <span class="b">Get Bigger!</span>
-            <span class="s">Get Smaller</span>
+            <span class="b"></span>
+            <span class="s"></span>
           </div>
           Cart
           <div v-on:click="randomCartElements"
