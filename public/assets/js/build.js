@@ -49,28 +49,28 @@ $(document).ready(function() {
           { code: 'ca-03', name: 'Rose Gold Case' },
         ],
         dial: [
-          { code: 'zu-01-b', name: 'SIMPLE' },
-          { code: 'zu-01-w', name: 'SIMPLE' },
-          { code: 'zu-02-b', name: 'GENTRY' },
-          { code: 'zu-02-w', name: 'GENTRY' },
-          { code: 'zu-03-b', name: 'PRECISION' },
-          { code: 'zu-03-w', name: 'PRECISION' },
-          { code: 'zu-04-b', name: 'LIGHT' },
-          { code: 'zu-04-w', name: 'LIGHT' },
-          { code: 'zu-05-b', name: 'MARBLE' },
-          { code: 'zu-05-w', name: 'MARBLE' },
-          { code: 'zu-06-b', name: 'AMIABLE' },
-          { code: 'zu-06-w', name: 'AMIABLE' },
-          { code: 'zu-07-b', name: 'ROMAN' },
-          { code: 'zu-07-w', name: 'ROMAN' },
-          { code: 'zu-08-b', name: 'KALEIDOSCOPE' },
-          { code: 'zu-08-w', name: 'KALEIDOSCOPE' },
-          { code: 'zu-09-b', name: 'FLOW' },
-          { code: 'zu-09-w', name: 'FLOW' },
-          { code: 'zu-10-b', name: 'GRILLES' },
-          { code: 'zu-10-w', name: 'GRILLES' },
-          { code: 'zu-11-b', name: 'SPACE ODDITY' },
-          { code: 'zu-11-w', name: 'EXPLORER' }
+          { code: 'zu-01-b', name: 'Simple-Black' },
+          { code: 'zu-01-w', name: 'Simple-White' },
+          { code: 'zu-02-b', name: 'Gentry-Black' },
+          { code: 'zu-02-w', name: 'Gentry-White' },
+          { code: 'zu-03-b', name: 'Precision-Black' },
+          { code: 'zu-03-w', name: 'Precision-White' },
+          { code: 'zu-04-b', name: 'Light-Black' },
+          { code: 'zu-04-w', name: 'Light-White' },
+          { code: 'zu-05-b', name: 'Marble-Black' },
+          { code: 'zu-05-w', name: 'Marble-White' },
+          { code: 'zu-06-b', name: 'Amiable-Black' },
+          { code: 'zu-06-w', name: 'Amiable-White' },
+          { code: 'zu-07-b', name: 'Roman-Black' },
+          { code: 'zu-07-w', name: 'Roman-White' },
+          { code: 'zu-08-b', name: 'Kaleidoscope-Black' },
+          { code: 'zu-08-w', name: 'Kaleidoscope-White' },
+          { code: 'zu-09-b', name: 'Flow-Black' },
+          { code: 'zu-09-w', name: 'Flow-White' },
+          { code: 'zu-10-b', name: 'Grilles-Black' },
+          { code: 'zu-10-w', name: 'Grilles-White' },
+          { code: 'zu-11-b', name: 'Space Oddity' },
+          { code: 'zu-11-w', name: 'Explorer' }
         ],
         strap: [
           { code: 'lc-01', name: 'Classic Black' },
@@ -182,7 +182,7 @@ $(document).ready(function() {
         });
         function observeItemChange(mutations) {
           if ( mutations[0].target.className.indexOf("null") == -1 ) {
-            var d = mutations[0].target.offsetLeft - mutations[0].target.offsetWidth
+            var d = mutations[0].target.offsetLeft - 80
             $('#code-and-share .bottom-box').animate( { scrollLeft: d }, 400);
           }
         }

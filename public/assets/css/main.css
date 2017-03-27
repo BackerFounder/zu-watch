@@ -628,7 +628,7 @@ section.hide .mockup-btns, section.hide .bottom-box, section.hide .top-box, sect
     flex: 0 0 100%;
     pointer-events: none; }
     section.mid .top-box {
-      height: calc( 100vh - 297px);
+      height: calc( 100vh - 320px);
       margin: 0 0 30px; }
     section.mid .bottom-box {
       height: auto;
@@ -759,7 +759,7 @@ section.left {
         -webkit-flex: 0 0 auto;
         -ms-flex: 0 0 auto;
         flex: 0 0 auto;
-        height: 150px;
+        height: 173px;
         box-shadow: 0 0 0 0 transparent;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch; }
@@ -1129,7 +1129,7 @@ div.preview-3 {
   display: inline-block;
   margin-top: 8px;
   font-size: 12px;
-  height: 25px;
+  height: 30px;
   letter-spacing: 0;
   font-family: "Rubik", sans-serif;
   color: rgba(0, 0, 0, 0.65); }
