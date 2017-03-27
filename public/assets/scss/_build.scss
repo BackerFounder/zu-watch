@@ -519,6 +519,15 @@ div.preview-3 {
 	box-shadow: 0 0 0 2px rgba(255,255,255,0);
 	transition: .2s ease
 }
+.e-c-b-c span {
+	display: inline-block;
+	margin-top: 8px;
+	font-size: 12px;
+	height: 25px;
+	letter-spacing: 0;
+	font-family: $fontp;
+	color: rgba(0,0,0,.65);
+}
 .e-c-b-c.active {
 	// order: -1;
 }

@@ -257,43 +257,46 @@
             <div class="elements-content">
               <div data-tab="case" class="elements-content-box flex-l3-jfs-afs- active">
                 <div v-for="c in elements.case"
-                     :data-selected="c"
-                     v-on:click="elementChange(c, '', '')"
+                     :data-selected="c.code"
+                     v-on:click="elementChange(c.code, '', '')"
                      class="e-c-b-c">
-                  <div :data-selected="c"
+                  <div :data-selected="c.code"
                        class="element-selected"></div>
-                  <img :src="'/assets/img/main/product/case/' + c + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/case/' + c + '.png 850w'"
+                  <img :src="'/assets/img/main/product/case/' + c.code + '.png'"
+                       :srcset="'/assets/img/main-mobile/product/case/' + c.code + '.png 850w'"
                        alt="">
-                  <div v-on:click="elementAddCart(c, '', '')"
+                  <span>{{ c.name }}</span>
+                  <div v-on:click="elementAddCart(c.code, '', '')"
                        class="add-this-btn">Add this</div>
                 </div>
               </div>
               <div data-tab="dial" class="elements-content-box flex-l3-jfs-afs-">
                 <div v-for="d in elements.dial"
-                     :data-selected="d"
-                     v-on:click="elementChange('', d, '')"
+                     :data-selected="d.code"
+                     v-on:click="elementChange('', d.code, '')"
                      class="e-c-b-c">
-                  <div :data-selected="d"
+                  <div :data-selected="d.code"
                        class="element-selected"></div>
-                  <img :src="'/assets/img/main/product/dial/' + d + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/dial/' + d + '.png 850w'"
+                  <img :src="'/assets/img/main/product/dial/' + d.code + '.png'"
+                       :srcset="'/assets/img/main-mobile/product/dial/' + d.code + '.png 850w'"
                        alt="">
-                  <div v-on:click="elementAddCart('', d, '')"
+                  <span>{{ d.name }}</span>
+                  <div v-on:click="elementAddCart('', d.code, '')"
                        class="add-this-btn">Add this</div>
                 </div>
               </div>
               <div data-tab="strap" class="elements-content-box flex-l3-jfs-afs-">
                 <div v-for="s in elements.strap"
-                     :data-selected="s"
-                     v-on:click="elementChange('', '', s)"
+                     :data-selected="s.code"
+                     v-on:click="elementChange('', '', s.code)"
                      class="e-c-b-c">
-                  <div :data-selected="s"
+                  <div :data-selected="s.code"
                        class="element-selected"></div>
-                  <img :src="'/assets/img/main/product/strap/' + s + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/strap/' + s + '.png 850w'"
+                  <img :src="'/assets/img/main/product/strap/' + s.code + '.png'"
+                       :srcset="'/assets/img/main-mobile/product/strap/' + s.code + '.png 850w'"
                        alt="">
-                  <div v-on:click="elementAddCart('', '', s)"
+                  <span>{{ s.name }}</span>
+                  <div v-on:click="elementAddCart('', '', s.code)"
                        class="add-this-btn">Add this</div>
                 </div>
               </div>

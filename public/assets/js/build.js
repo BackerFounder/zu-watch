@@ -44,54 +44,57 @@ $(document).ready(function() {
       status: 'basic',
       elements: {
         case: [
-          'ca-01',
-          'ca-02',
-          'ca-03'
+          { code: 'ca-01', name: 'Silver Case' },
+          { code: 'ca-02', name: 'Black Case' },
+          { code: 'ca-03', name: 'Rose Gold Case' },
         ],
         dial: [
-          'zu-01-b',
-          'zu-01-w',
-          'zu-02-b',
-          'zu-02-w',
-          'zu-03-b',
-          'zu-03-w',
-          'zu-04-b',
-          'zu-04-w',
-          'zu-05-b',
-          'zu-05-w',
-          'zu-06-b',
-          'zu-06-w',
-          'zu-07-b',
-          'zu-07-w',
-          'zu-08-b',
-          'zu-08-w',
-          'zu-09-b',
-          'zu-09-w',
-          'zu-10-b',
-          'zu-10-w',
-          'zu-11-b',
-          'zu-11-w'
+          { code: 'zu-01-b', name: 'SIMPLE' },
+          { code: 'zu-01-w', name: 'SIMPLE' },
+          { code: 'zu-02-b', name: 'GENTRY' },
+          { code: 'zu-02-w', name: 'GENTRY' },
+          { code: 'zu-03-b', name: 'PRECISION' },
+          { code: 'zu-03-w', name: 'PRECISION' },
+          { code: 'zu-04-b', name: 'LIGHT' },
+          { code: 'zu-04-w', name: 'LIGHT' },
+          { code: 'zu-05-b', name: 'MARBLE' },
+          { code: 'zu-05-w', name: 'MARBLE' },
+          { code: 'zu-06-b', name: 'AMIABLE' },
+          { code: 'zu-06-w', name: 'AMIABLE' },
+          { code: 'zu-07-b', name: 'ROMAN' },
+          { code: 'zu-07-w', name: 'ROMAN' },
+          { code: 'zu-08-b', name: 'KALEIDOSCOPE' },
+          { code: 'zu-08-w', name: 'KALEIDOSCOPE' },
+          { code: 'zu-09-b', name: 'FLOW' },
+          { code: 'zu-09-w', name: 'FLOW' },
+          { code: 'zu-10-b', name: 'GRILLES' },
+          { code: 'zu-10-w', name: 'GRILLES' },
+          { code: 'zu-11-b', name: 'SPACE ODDITY' },
+          { code: 'zu-11-w', name: 'EXPLORER' }
         ],
         strap: [
-          'lc-01',
-          'lc-02',
-          'lc-03',
-          'lc-04',
-          'lc-05',
-          'lf-01',
-          'lf-02',
-          'lf-03',
-          'lf-04',
-          'me-01',
-          'me-02',
-          'me-03',
-          'nl-01',
-          'nl-02',
-          'nl-03',
-          'ny-01',
-          'ny-02',
-          'ny-03'
+          { code: 'lc-01', name: 'Classic Black' },
+          { code: 'lc-02', name: 'Classic White' },
+          { code: 'lc-03', name: 'Classic Apricot' },
+          { code: 'lc-04', name: 'Classic Gray' },
+          { code: 'lc-05', name: 'Classic Blue' },
+          { code: 'lf-01', name: 'Formal Black' },
+          { code: 'lf-02', name: 'Formal White' },
+          { code: 'lf-03', name: 'Formal Blue' },
+          { code: 'lf-04', name: 'Formal Mulberry' },
+          { code: 'me-01', name: 'Mesh Silver' },
+          { code: 'me-02', name: 'Mesh Black' },
+          { code: 'me-03', name: 'Mesh Rose Gold' },
+          { code: 'nl-01', name: 'Nato Black' },
+          { code: 'nl-02', name: 'Nato Chocolate' },
+          { code: 'nl-03', name: 'Nato Brown' },
+          { code: 'ny-01', name: 'Nylon Black' },
+          { code: 'ny-02', name: 'Nylon Gray' },
+          { code: 'ny-03', name: 'Nylon Army Green' }
         ],
+        caseCodeArray: [],
+        dialCodeArray: [],
+        strapCodeArray: []
       },
       preview: {
         prev: { a: null, b: null, c: null },
@@ -189,7 +192,7 @@ $(document).ready(function() {
     filters: {
       casePreviewSprite: function(v) {
         var target = v
-        var array = this.elements.case
+        var array = this.elements.caseCodeArray
         var n = array.indexOf(v)
         var l = array.length
         var bgs = 'background-size: auto ' + ( 100 * l ) + '%;'
@@ -198,7 +201,7 @@ $(document).ready(function() {
       },
       dialPreviewSprite: function(v) {
         var target = v
-        var array = this.elements.dial
+        var array = this.elements.dialCodeArray
         var n = array.indexOf(v)
         var l = array.length
         var bgs = 'background-size: auto ' + ( 100 * l ) + '%;'
@@ -207,7 +210,7 @@ $(document).ready(function() {
       },
       strapPreviewSprite: function(v) {
         var target = v
-        var array = this.elements.strap
+        var array = this.elements.strapCodeArray
         var n = array.indexOf(v)
         var l = array.length
         var bgs = 'background-size: auto ' + ( 100 * l ) + '%;'
@@ -222,6 +225,21 @@ $(document).ready(function() {
         this.whichElementSelected
         var path = document.location.pathname.split("/")[1]
         $('[data-hover-show="index-bg-' + path + '"]').click()
+        var caseCodeArray = []
+        var dialCodeArray = []
+        var strapCodeArray = []
+        this.elements.case.forEach(function(e){
+          caseCodeArray.push(e.code)
+        })
+        this.elements.dial.forEach(function(e){
+          dialCodeArray.push(e.code)
+        })
+        this.elements.strap.forEach(function(e){
+          strapCodeArray.push(e.code)
+        })
+        this.elements.caseCodeArray = caseCodeArray
+        this.elements.dialCodeArray = dialCodeArray
+        this.elements.strapCodeArray = strapCodeArray
     	},
       chooseStatus: function(type) {
         this.status = type
@@ -242,11 +260,11 @@ $(document).ready(function() {
       randomElements: function() {
         $('div.preview-1, div.preview-2, div.preview-3').addClass('active')
         this.previewChange
-        var a = this.elements.case
+        var a = this.elements.caseCodeArray
         var aN = this.elements.case.length
-        var b = this.elements.dial
+        var b = this.elements.dialCodeArray
         var bN = this.elements.dial.length
-        var c = this.elements.strap
+        var c = this.elements.strapCodeArray
         var cN = this.elements.strap.length
         this.preview.now.a = a[Math.floor((Math.random() * aN))]
         this.preview.now.b = b[Math.floor((Math.random() * bN))]

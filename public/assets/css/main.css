@@ -360,7 +360,7 @@ a {
   font-family: "Rubik", sans-serif;
   font-size: 12px;
   line-height: 20px;
-  margin-top: 8px; }
+  margin-top: 4px; }
   .add-this-btn:hover {
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff; }
@@ -1124,6 +1124,15 @@ div.preview-3 {
   min-height: 90px;
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0);
   transition: .2s ease; }
+
+.e-c-b-c span {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  height: 25px;
+  letter-spacing: 0;
+  font-family: "Rubik", sans-serif;
+  color: rgba(0, 0, 0, 0.65); }
 
 .element-selected {
   position: absolute;
