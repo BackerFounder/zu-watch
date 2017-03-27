@@ -1459,7 +1459,8 @@ div.preview-3 {
         line-height: 41px;
         width: 13%;
         max-width: 60px;
-        text-align: center; }
+        text-align: center;
+        color: rgba(0, 0, 0, 0.8); }
       #mobile-tools .gobackindex-btn {
         float: left;
         font-size: 18px; }
