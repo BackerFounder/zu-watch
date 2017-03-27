@@ -28,17 +28,29 @@
 }
 
 .zuwatch-btn {
+	max-width: 120px;
 	background-color: #fff;
-	line-height: 46px;
-	height: 46px;
+	line-height: 35px;
+	height: 35px;
+	font-size: 13px;
 	color: rgba(0,0,0,.9);
 	box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
+	margin: 0 auto;
+	border-radius: 4px;
+	transition: .3s ease;
 	i {
 		margin-right: 5px;
 		color: rgba(0,0,0,.5);
 	}
 	&#prev i, &#next i {
 		margin-right: 0;
+	}
+	&:hover {
+		background-color: #1D1D1D;
+		color: #fff;
+		i {
+			color: #fff;
+		}
 	}
 }
 .zuwatch-btn.null {
@@ -54,7 +66,7 @@
 
 .save-btn {
 	margin: 5px;
-	width: 160px;
+	width: 120px;
 	max-width: calc( 100% - 100px );
 	transition: .2s ease;
 }
@@ -164,4 +176,42 @@
 	0% { box-shadow: inset 0px 0 0px 0 rgba(255,255,255,0) }
 	50% { box-shadow: inset 80px 0 30px 0 rgba(255,255,255,.3) }
 	100% { box-shadow: inset 200px 0 100px 0 rgba(255,255,255,0) }
+}
+
+
+#mockup-area .zu-title {
+	position: absolute;
+	z-index: 11;
+	top: 10px;
+	right: 0;
+	left: 0;
+	width: 140px;
+}
+@media screen and (max-width: 992px) {
+	#preview .mockup-btns {
+		display: none;
+	}
+}
+#mockup-area .mockup-btns {
+	position: absolute;
+	z-index: 10;
+	top: 70px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	.mockup-btn {
+		display: inline-block;
+		width: 140px;
+		font-size: 15px;
+	}
+}
+#mockup-area .back .zuwatch-btn {
+	position: absolute;
+	bottom: 50px;
+	width: 140px;
+	font-size: 15px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 10;
 }

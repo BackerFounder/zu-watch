@@ -26,11 +26,12 @@
     </div>
     <div class="index-content">
       <a class="zu-title" href="javascript:;">
-        <h2>Zu WATCH</h2>
-        <span class="subtitle">BUILD YOUR OWN WATCH</span>
+        <span class="logo">
+          <img src="/assets/img/common/logo-w.svg" alt="">
+        </span>
       </a>
       <div class="index-action">
-        <h2>Choose your Zu WATCH SET:</h2>
+        <!-- <h2>Choose your Zu WATCH SET:</h2> -->
         <div data-hover-show="index-bg-basic"
              v-on:click="chooseStatus('basic')"
              class="btn">Zu WATCH / Basic</div>
@@ -45,9 +46,10 @@
   </div>
   <div class="build-bg"></div>
   <div class="zu-title flex-ac-jc-">
-    <a href="/">
-      <h1>Zu WATCH</h1>
-      <span class="subtitle">BUILD YOUR OWN WATCH</span>
+    <a class="zu-title" href="javascript:;">
+      <span class="logo">
+        <img src="/assets/img/common/logo.svg" alt="">
+      </span>
     </a>
   </div>
   <div class="content flex-jc-ac-">
@@ -92,7 +94,7 @@
         </div>
       </div>
       <div id="save">
-        <h2>Your Style</h2>
+        <h2>Save</h2>
         <div class="bottom-box normal-box flex-l4-jfs-">
           <div id="save-1" class="save-box {{ save.saveA.a }}">
             <div v-on:click="deleteElementsFromSave('saveA')"
@@ -160,17 +162,16 @@
       </div>
     </section>
     <section class="mid hide">
-      <label id="chill" for="">
+      <!-- <label id="chill" for="">
         <i class="fa fa-check-square" aria-hidden="true"></i>
         <i class="fa fa-square" aria-hidden="true"></i>
         Get Some Chill?
-      </label>
+      </label> -->
       <div id="preview">
         <div class="mockup-btns">
-          <div data-who="woman" class="mockup-btn">WOMAN</div>
-          <div data-who="man" class="mockup-btn">MAN</div>
-          <div id="mockup-back">
-            <i class="fa fa-angle-up" aria-hidden="true"></i>
+          <div data-who="woman" class="mockup-btn zuwatch-btn">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Preview
           </div>
         </div>
         <div id="mobile-tools">
@@ -183,7 +184,7 @@
           <div class="seecart-btn">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
           </div>
-          <div class="mockup-btn">
+          <div data-who="woman" class="mockup-btn">
             <i class="fa fa-eye" aria-hidden="true"></i>
           </div>
         </div>
@@ -209,12 +210,6 @@
                class="zuwatch-btn step-btn {{ preview.prev.a }}">
             <i class="fa fa-undo"></i>
           </div>-->
-          <div id="random"
-               v-on:click="randomElements"
-               class="zuwatch-btn save-btn active">
-            <i class="fa fa-random" aria-hidden="true"></i>
-            Random
-          </div>
           <div id="my_random"
                v-on:click="randomCartElements"
                class="zuwatch-btn save-btn">
@@ -224,6 +219,12 @@
                id="save" class="zuwatch-btn save-btn">
             <i class="fa fa-floppy-o" aria-hidden="true"></i>
             SAVE
+          </div>
+          <div id="random"
+               v-on:click="randomElements"
+               class="zuwatch-btn save-btn active">
+            <i class="fa fa-random" aria-hidden="true"></i>
+            Random
           </div>
           <div v-on:click="elementAddCart(preview.now.a, preview.now.b, preview.now.c)"
                id="addtocart" class="zuwatch-btn save-btn">
@@ -305,8 +306,6 @@
           </div>
           <div id="cart-bigger" class="btn">
             <i class="fa fa-angle-up" aria-hidden="true"></i>
-            <span class="b"></span>
-            <span class="s"></span>
           </div>
           Cart
           <div v-on:click="randomCartElements"
@@ -670,24 +669,26 @@
       <div id="code-result-copy" class="btn">Copy</div>
     </div>
   </div>
+  <footer>
+    COPYRIGHTS  ©  Zu WATCH ™ 2017
+  </footer>
   <div id="mockup-area">
-    <div class="back btn">BACK</div>
+    <a class="zu-title" href="javascript:;">
+      <span class="logo">
+        <img src="/assets/img/common/logo-w.svg" alt="">
+      </span>
+    </a>
+    <div class="back btn">
+      <div class="zuwatch-btn">BACK</div>
+    </div>
+    <div class="mockup-btns">
+      <div data-who="woman" class="mockup-btn zuwatch-btn">WOMAN</div>
+      <div data-who="man" class="mockup-btn zuwatch-btn">MAN</div>
+    </div>
     <div class="wrap">
-      <img class="mockup-man"
-           src="/assets/img/main/mockup/man.png"
-           srcset="/assets/img/main-mobile/mockup/man.png 850w"
-           alt="">
-      <img class="mockup-woman"
-           src="/assets/img/main/mockup/woman.png"
-           srcset="/assets/img/main-mobile/mockup/woman.png 850w"
-           alt="">
+      <img class="mockup-man" src="" alt="">
+      <img class="mockup-woman" src="" alt="">
       <div class="watch">
-        <!-- <img class="c"
-             :src="'/assets/img/main/product/pv-case/' + preview.now.a + '.png'" alt="">
-        <img class="ab d"
-             :src="'/assets/img/main/product/pv-dial/' + preview.now.b + '.png'" alt="">
-        <div :style="preview.now.c | strapPreviewSprite"
-              class="preview-3"></div -->
         <div :style="preview.now.a | casePreviewSprite"
              class="preview-1"></div>
         <div :style="preview.now.b | dialPreviewSprite"
@@ -697,8 +698,6 @@
     </div>
   </div>
   <div id="preload" style="display: none;">
-     <!-- <img v-for="c in elements.case" :src="'/assets/img/main/product/pv-case/' + c + '.png'" alt=""> -->
-     <!-- <img v-for="d in elements.dial" :src="'/assets/img/main/product/pv-dial/' + d + '.png'" alt=""> -->
   </div>
 </body>
 <script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>

@@ -14,7 +14,7 @@
 		height: 100%;
 		top: 0;
 		left: 0;
-		background-color: rgba(0,0,0,.5);
+		background-color: rgba(255,255,255,1);
 	}
 }
 section {
@@ -42,7 +42,7 @@ section.hide {
 }
 
 #my_random { display: none; }
-#random { display: none; }
+// #random { display: none; }
 section.mid {
 	@media screen and ( max-width: 992px ){
 		margin: 0;
@@ -117,8 +117,13 @@ section.left {
 }
 #cart-bigger {
 	display: block;
-	width: 120px;
-	left: 0;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	color: #fff;
+	top: 9px;
+	left: 8px;
+	background-color: rgba(0,0,0,.3);
 	span {
 		display: none;
 		font-size: 12px;
@@ -127,7 +132,10 @@ section.left {
 	}
 	&.active span.s { display: inline; }
 	&.active span.b { display: none; }
-	&.active i { transform: rotate(180deg) }
+	&.active i { 
+		transform: rotate(180deg);
+		transform-origin: 5px 8px;
+	}
 }
 #recommend-back {
 	display: none;
@@ -227,10 +235,25 @@ h2 {
 	height: 37px;
 	line-height: 37px;
 }
+
 #save, #code-and-share {
-	h2 { margin-top: 20px; }
+	h2 { margin-top: 0px; }
 }
 
+#save .normal-box:after {
+	content: 'You can save your watch stlye here!';
+	position: absolute;
+	display: inline-block;
+	width: 235px;
+	font-size: 13px;
+	color: rgba(0,0,0,.3);
+	top: 50%;
+	left: 50%;
+	transform: translate3d(-50%,-50%,0);
+}
+#save.hidetext .normal-box:after {
+	display: none;
+}
 .normal-box {
 	background-color: #fff;
 	box-shadow: inset 0 0 0 1px rgba(0,0,0,.1),
@@ -292,7 +315,7 @@ h2 {
 
 #recommend .top-box {
 	align-content: flex-start;
-	background-color: rgba(0,0,0,1);
+	// background-color: rgba(0,0,0,1);
 }
 
 .recommend-style {
@@ -326,54 +349,16 @@ h2 {
 	}
 }
 
-@media screen and ( max-width: 992px ) {
-	.recommend-random { display: none; }
-}
+.recommend-random { display: none; }
 
 // mockup
 .mockup-btns {
 	height: 43px;
 	margin-bottom: 8px;
-	.mockup-btn {
-		display: inline-block;
-		width: 120px;
-		line-height: 30px;
-		height: 30px;
-		font-size: 13px!important;
-		border-radius: 15px;
-		box-shadow: inset 0 0 0 2px rgba(255,255,255,.8);
-		margin: 0 3px;
-		&:hover {
-			background-color: #fff;
-			color: rgba(0,0,0,.7);
-		}
-	}
-	@media screen and (max-width: 992px) {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100vh;
-		z-index: 11;
-		background-color: rgba(0,0,0,.7);
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		display: flex;
-		transform: translateY(-100%)!important;
-		transition: .3s ease 0s!important;
-		margin-bottom: 0;
-		&.active {
-			transform: translateY(0%)!important;
-		}
-		.mockup-btn {
-			margin: 10px 0;
-		}
-	}
 }
 .preview-show {
 	position: relative;
-	margin: 0px 0 43px;
+	margin: 0px 0 33px;
 }
 .preview-show-body {
 	position: relative;
@@ -819,15 +804,6 @@ div.preview-3 {
 	width: 100%;
 	background-color: rgba(0,0,0,.8);
 	z-index: 12;
-	.back {
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		line-height: 50px;
-		z-index: 3;
-	}
 	.wrap {
 		font-size: 0;
 		position: relative;
@@ -846,14 +822,20 @@ div.preview-3 {
 	}
 	.watch {
 		position: absolute;
-		top: 13.7vw;
+		top: 15.45vw;
 		left: 0;
 		right: 0;
 		margin: 0 auto;
-		width: 16.5%;
+		width: 20.5%;
 		z-index: 1;
 		transform: translateX(2.5%);
-		padding-top: 31.15%;
+		padding-top: 37.1%;
+		@media screen and (max-width: 850px) {
+			top: 24.45vw;
+			width: 28.5%;
+			padding-top: 57.1%;
+			transform: translateX(3.6%);
+		}
 	}
 	.watch img {
 		position: relative;

@@ -38,12 +38,6 @@ $('#output-popup .close').click(function(){
 	$('#output-popup').fadeOut(300);
 })
 
-$("#chill").click(function() {
-	console.log('ff')
-	$(this).toggleClass('active')
-	$('div.preview-1, div.preview-2, div.preview-3').toggleClass('active')
-})
-
 
 // mobile
 // add to cart
@@ -67,16 +61,10 @@ $('#recommend-back, .recommend-style').click( function () {
 
 
 // mockup type select
-$('#mobile-tools .mockup-btn').click( function () {
-	$('.mockup-btns').addClass('active')
-})
 
-$('#mockup-back').click( function () {
-	$('.mockup-btns').removeClass('active')
-})
 
 // mockup show
-$('.mockup-btns .mockup-btn').click(function() {
+$('.mockup-btns .mockup-btn, #mobile-tools .mockup-btn').click(function() {
 	$('.mockup-btns').removeClass('active')
 	var t = $(this).attr('data-who')
 	$('#mockup-area').fadeIn(300);
@@ -93,3 +81,12 @@ $('#cart-bigger').click(function(){
 	$(this).toggleClass('active')
 	$('section.right').toggleClass('bigger')
 })
+
+
+if ( $(window).width() <= 850 ) {
+	$('.wrap .mockup-man').attr('src', '/assets/img/main-mobile/mockup/man.png')
+	$('.wrap .mockup-woman').attr('src', '/assets/img/main-mobile/mockup/woman.png')
+} else {
+	$('.wrap .mockup-man').attr('src', '/assets/img/main/mockup/man.png')
+	$('.wrap .mockup-woman').attr('src', '/assets/img/main/mockup/woman.png')
+}

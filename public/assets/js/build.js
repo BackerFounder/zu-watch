@@ -157,6 +157,10 @@ $(document).ready(function() {
         $('[data-selected=' + a +']').addClass('active');
         $('[data-selected=' + b +']').addClass('active');
         $('[data-selected=' + c +']').addClass('active');
+      },
+      saveLocalStorage: function() {
+        // 儲存在瀏覽器，讓重整不會掉
+        localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
       }
     },
 
@@ -221,6 +225,7 @@ $(document).ready(function() {
         this.status = type
       },
     	elementChange: function(a, b, c) {
+        $('div.preview-1, div.preview-2, div.preview-3').removeClass('active')
     		this.previewChange
     		if (a)
     			this.preview.now.a = a
@@ -229,10 +234,11 @@ $(document).ready(function() {
     		if (c)
     			this.preview.now.c = c
         this.whichElementSelected
-    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    		this.saveLocalStorage
     		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
       randomElements: function() {
+        $('div.preview-1, div.preview-2, div.preview-3').addClass('active')
         this.previewChange
         var a = this.elements.case
         var aN = this.elements.case.length
@@ -244,7 +250,7 @@ $(document).ready(function() {
         this.preview.now.b = b[Math.floor((Math.random() * bN))]
         this.preview.now.c = c[Math.floor((Math.random() * cN))]
         this.whichElementSelected
-        localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+        this.saveLocalStorage
         // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
       },
     	saveElements: function() {
@@ -267,24 +273,27 @@ $(document).ready(function() {
               this.whichElementSelected
 	    				localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
 	    				// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
-	    				return
+	    				break
 	    			}
 	    		}
 	    	}
+        if ($('.save-box.null').length == 4) { $('#save').addClass('hidetext') }
     	},
     	callSave: function(saveN) {
     		this.preview.now.a = this.save[saveN].a
     		this.preview.now.b = this.save[saveN].b
     		this.preview.now.c = this.save[saveN].c
         this.whichElementSelected
-    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    		this.saveLocalStorage
     		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	deleteElementsFromSave: function(saveN) {
-    		this.save[saveN].a = null
-    		this.save[saveN].b = null
-    		this.save[saveN].c = null
-    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+        this.save[saveN].a = null
+        this.save[saveN].b = null
+        this.save[saveN].c = null
+        // 判斷如果都為空，把狀態加回來
+        if ($('.save-box.null').length !== 4) { $('#save').removeClass('hidetext') }
+        this.saveLocalStorage
     		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	undoElements: function() {
@@ -298,7 +307,7 @@ $(document).ready(function() {
     		this.preview.prev.b = null
     		this.preview.prev.c = null
         this.whichElementSelected
-    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    		this.saveLocalStorage
     		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	nextElements: function() {
@@ -310,7 +319,7 @@ $(document).ready(function() {
     		this.preview.next.b = null
     		this.preview.next.c = null
         this.whichElementSelected
-    		localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    		this.saveLocalStorage
     		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
       calcElementsInCart: function() {
@@ -459,7 +468,7 @@ $(document).ready(function() {
               for (var i = 0; i <= 4; i ++ ) {
                 if ( !this.cart.double[ a[i+2] ] ) {
                   this.cart.double[ a[i+2] ] = b
-                  localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+                  this.saveLocalStorage
                   // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
                   break
                 }
@@ -482,7 +491,7 @@ $(document).ready(function() {
               for (var i = 0; i <= 4; i ++ ) {
                 if ( !this.cart.double[ a[i+7] ] ) {
                   this.cart.double[ a[i+7] ] = c
-                  localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+                  this.saveLocalStorage
                   // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
                   break
                 }
@@ -490,7 +499,7 @@ $(document).ready(function() {
             }
           }
         }
-        localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+        this.saveLocalStorage
         // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
       },
       deleteCartElement: function(type, item) {
@@ -519,7 +528,7 @@ $(document).ready(function() {
           this.preview.now.c = c[Math.floor((Math.random() * cN))]
         }
         this.whichElementSelected
-        localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+        this.saveLocalStorage
         // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
       },
     	generateCode: function() {
@@ -530,7 +539,7 @@ $(document).ready(function() {
     	inputCode: function() {
     		if ( $('input.code-section-area').val() !== '' ) {
     			this.$data = JSON.parse(atob($('input.code-section-area').val()))
-    			localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+    			this.saveLocalStorage
     			$('input.code-section-area').val("")
     			$('.input-code-section').removeClass('active')
     		}

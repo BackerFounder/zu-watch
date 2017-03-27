@@ -22,7 +22,7 @@ body {
 }
 
 body>.content {
-	height: calc( 100vh - 91px );
+	height: calc( 100vh - 101px );
 	@media screen and ( max-width: 992px ) {
 		height: auto;
 		min-height: 0;
@@ -37,15 +37,28 @@ h1 {
 	}
 }
 
+.logo {
+	img { width: 100%; }
+}
+
+footer {
+	font-size: 12px;
+	padding-bottom: 20px;
+	font-family: $fontp;
+	color: rgba(0,0,0,.2);
+}
+
 
 .zu-title {
 	height: auto;
 	padding: 10px 0;
+	max-width: 170px;
+	width: 90%;
+	margin: 0 auto;
 }
 .zu-title a { 
 	display: block;
 	@media screen and ( max-width: 992px ){
-		margin: 0 5px;
 		span  {
 			display: none;
 		}
