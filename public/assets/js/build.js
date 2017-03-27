@@ -1,5 +1,5 @@
 $(window).load(function() {
-	
+
 	$(".elements-tab-btn").click(function() {
 		var t = $(this).attr('data-tab')
 		$(".elements-tab-btn").removeClass('active')
@@ -17,7 +17,7 @@ $(window).load(function() {
 		$(".code-section[data-code='" + t + "']").addClass('active')
 	})
 
-	
+
 	// 暫時先放這
 	var clipboard = new Clipboard('#code-result-copy', {
     text: function() {
@@ -220,6 +220,8 @@ $(document).ready(function() {
     	fetchData: function() {
   			// this.$data = JSON.parse(atob(localStorage['fullPage']))
         this.whichElementSelected
+        var path = document.location.pathname.split("/")[1]
+        $('[data-hover-show="index-bg-' + path + '"]').click()
     	},
       chooseStatus: function(type) {
         this.status = type
@@ -550,4 +552,6 @@ $(document).ready(function() {
   }) // vue.js object end
 
 }); // document ready end
+
+
 

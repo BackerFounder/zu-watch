@@ -14,12 +14,13 @@ $('[data-hover-show]').on('mouseover', function(){
 	$('.build-bg').css('background-image', "url('/assets/img/main/bg/" + h + ".jpg')")
 })
 
-/// Choose the Reward to go to build page
+// Choose the Reward to go to build page
 $('.index-action .btn').click(function () {
   $('#index').fadeOut(300);
   $('section').removeClass('hide')
   $('body').css('overflow', 'auto')
 })
+
 
 /// Go back to index
 $('.gobackindex-btn, .zu-title a').click(function(e) {
