@@ -46,7 +46,7 @@ $('body').on('click', '.seecart-btn, .add-this-btn, #addtocart' , function () {
 	$('#code-and-share').addClass('active')
 })
 
-$('#cart-back').click( function () {
+$('#cart-back, .preview-show-body').click( function () {
 	$('#code-and-share').removeClass('active')
 })
 
@@ -56,7 +56,7 @@ $('#mobile-tools .hotstyle-btn').click( function () {
 	$('section.left').addClass('active')
 })
 
-$('#recommend-back, .recommend-style').click( function () {
+$('#recommend-back, .recommend-style, .preview-show-body').click( function () {
 	$('section.left').removeClass('active')
 })
 

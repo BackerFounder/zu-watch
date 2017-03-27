@@ -376,6 +376,7 @@ h2 {
 	@media screen and (max-width: 992px) {
 		padding-top: 0;
 		height: 100%;
+		pointer-events: visible;
 	}
 }
 #save .preview-show-body {
