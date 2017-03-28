@@ -98,3 +98,7 @@ if ( $(window).width() <= 850 ) {
 	$('.wrap .mockup-man').attr('src', '/assets/img/main/mockup/man.png')
 	$('.wrap .mockup-woman').attr('src', '/assets/img/main/mockup/woman.png')
 }
+
+
+console.log("Hi, I'm Doppler Kuo.")
+console.log("This is my website: http://www.doppler.rocks/")
