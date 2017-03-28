@@ -9,7 +9,8 @@ var observeMutationSupport = !!MutationObserver;
 /// OS Browser will be toggle its height of window. Q_Q
 if (/(iPhone)/i.test(navigator.userAgent)) {
   var ih = $('#preview .preview-show').height()
-  $('#preview .preview-show').height(ih - 40);
+  $('#preview .preview-show').height(ih - 100);
+  $('body').animate( { scrollTop: 0 }, 0);
 }
 
 /// change background form different Reward
@@ -25,6 +26,7 @@ $('.index-action .btn').click(function () {
   $('#index').fadeOut(300);
   $('section').removeClass('hide')
   $('body').css('overflow', 'auto')
+  $('body').animate( { scrollTop: 0 }, 0);
 })
 
 
