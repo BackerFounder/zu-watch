@@ -63,7 +63,6 @@ $('#recommend-back, .recommend-style, .preview-show-body').click( function () {
 
 // mockup type select
 
-
 // mockup show
 $('.mockup-btns .mockup-btn, #mobile-tools .mockup-btn').click(function() {
 	$('.mockup-btns').removeClass('active')
