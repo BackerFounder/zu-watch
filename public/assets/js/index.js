@@ -6,6 +6,12 @@ var MutationObserver = window.MutationObserver
 var observeMutationSupport = !!MutationObserver;
 ///
 
+/// OS Browser will be toggle its height of window. Q_Q
+if (/(iPhone)/i.test(navigator.userAgent)) {
+  var ih = $('#preview .preview-show').height()
+  $('#preview .preview-show').height(ih - 40);
+}
+
 /// change background form different Reward
 $('[data-hover-show]').on('mouseover', function(){
 	var h = $(this).attr('data-hover-show')
