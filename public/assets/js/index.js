@@ -64,7 +64,7 @@ $('body').on('click', '#mobile-tools .hotstyle-btn', function () {
 	$('section.left').addClass('active')
 })
 
-$('#recommend-back, .recommend-style, .preview-show-body').click( function () {
+$('body').on('click', '#recommend-back, .recommend-style, .preview-show-body', function () {
 	$('section.left').removeClass('active')
 })
 
@@ -72,7 +72,7 @@ $('#recommend-back, .recommend-style, .preview-show-body').click( function () {
 // mockup type select
 
 // mockup show
-$('.mockup-btns .mockup-btn, #mobile-tools .mockup-btn').click(function() {
+$('body').on('click', '.mockup-btns .mockup-btn, #mobile-tools .mockup-btn', function() {
 	$('.mockup-btns').removeClass('active')
 	var t = $(this).attr('data-who')
 	$('#mockup-area').fadeIn(300);
@@ -80,12 +80,12 @@ $('.mockup-btns .mockup-btn, #mobile-tools .mockup-btn').click(function() {
 	$('.wrap>img.mockup-' + t).css('opacity', '1');
 })
 
-$('#mockup-area .back').click( function () {
+$('body').on('click', '#mockup-area .back', function () {
 	$('#mockup-area').fadeOut(300);
 })
 
 // s -> b
-$('#cart-bigger').click(function(){
+$('body').on('click', '#cart-bigger', function(){
 	$(this).toggleClass('active')
 	$('section.right').toggleClass('bigger')
 })
