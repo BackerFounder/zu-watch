@@ -68,7 +68,8 @@
             </div>
           </h2>
           <div class="top-box normal-box flex-afs-">
-            <div v-on:click="randomElements"
+            <div v-if="location == 'jp'" 
+                 v-on:click="randomElements"
                 class="btn recommend-style recommend-random">
                 <b>Random</b>
                 <i class="fa fa-random" aria-hidden="true"></i>
@@ -224,6 +225,7 @@
               Save
             </div>
             <div id="random"
+                 v-if="location == 'jp'"
                  v-on:click="randomElements"
                  class="zuwatch-btn save-btn active">
               <i class="fa fa-random" aria-hidden="true"></i>
