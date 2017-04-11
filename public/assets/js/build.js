@@ -41,6 +41,7 @@ $(document).ready(function() {
   ZuWatch = new Vue ({
     el: '#zu-watch',
     data: {
+      location: 'jp',
       status: 'basic',
       elements: {
         case: [
@@ -222,24 +223,28 @@ $(document).ready(function() {
     methods: {
     	fetchData: function() {
   			// this.$data = JSON.parse(atob(localStorage['fullPage']))
-        this.whichElementSelected
-        var path = document.location.pathname.split("/")[1]
-        $('[data-hover-show="index-bg-' + path + '"]').click()
-        var caseCodeArray = []
-        var dialCodeArray = []
-        var strapCodeArray = []
-        this.elements.case.forEach(function(e){
-          caseCodeArray.push(e.code)
-        })
-        this.elements.dial.forEach(function(e){
-          dialCodeArray.push(e.code)
-        })
-        this.elements.strap.forEach(function(e){
-          strapCodeArray.push(e.code)
-        })
-        this.elements.caseCodeArray = caseCodeArray
-        this.elements.dialCodeArray = dialCodeArray
-        this.elements.strapCodeArray = strapCodeArray
+        if ( this.location == 'jp' ) {
+          this.whichElementSelected
+          var path = document.location.pathname.split("/")[1]
+          $('[data-hover-show="index-bg-' + path + '"]').click()
+          var caseCodeArray = []
+          var dialCodeArray = []
+          var strapCodeArray = []
+          this.elements.case.forEach(function(e){
+            caseCodeArray.push(e.code)
+          })
+          this.elements.dial.forEach(function(e){
+            dialCodeArray.push(e.code)
+          })
+          this.elements.strap.forEach(function(e){
+            strapCodeArray.push(e.code)
+          })
+          this.elements.caseCodeArray = caseCodeArray
+          this.elements.dialCodeArray = dialCodeArray
+          this.elements.strapCodeArray = strapCodeArray
+        } else if ( this.location == 'tw' ) {
+
+        }
     	},
       chooseStatus: function(type) {
         this.status = type
