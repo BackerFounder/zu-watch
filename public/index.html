@@ -110,14 +110,22 @@
               </div>
               <div v-on:click="callSave('saveA')"
                   class="btn preview-show-body">
-                <!-- <img class="preview-1"
-                    :src="'/assets/img/main/product/pv-case/' + save.saveA.a + '.png'" alt="">-->
-                <div :style="save.saveA.a | casePreviewSprite"
-                     class="preview-1"></div>
-                <div :style="save.saveA.b | dialPreviewSprite"
-                     class="preview-2"></div>
-                <div :style="save.saveA.c | strapPreviewSprite"
-                     class="preview-3"></div>
+                <template v-if="location == 'tw'">
+                  <img class="preview-1"
+                       :src="'/assets/img/main/product/pv-case/' + save.saveA.a + '.png'" alt="">
+                  <img class="preview-2"
+                       :src="'/assets/img/main/product/pv-dial/' + save.saveA.b + '.png'" alt="">
+                  <img class="preview-3"
+                       :src="'/assets/img/main/product/pv-strap/' + save.saveA.c + '.png'" alt="">
+                </template>
+                <template v-if="location == 'jp'">
+                  <div :style="save.saveA.a | casePreviewSprite"
+                       class="preview-1"></div>
+                  <div :style="save.saveA.b | dialPreviewSprite"
+                       class="preview-2"></div>
+                  <div :style="save.saveA.c | strapPreviewSprite"
+                       class="preview-3"></div>
+                </template>
               </div>
             </div>
             <div id="save-2" class="save-box {{ save.saveB.a }}">
@@ -127,12 +135,22 @@
               </div>
               <div v-on:click="callSave('saveB')"
                   class="btn preview-show-body">
-                <div :style="save.saveB.a | casePreviewSprite"
+                <template v-if="location == 'tw'">
+                  <img class="preview-1"
+                       :src="'/assets/img/main/product/pv-case/' + save.saveB.a + '.png'" alt="">
+                  <img class="preview-2"
+                       :src="'/assets/img/main/product/pv-dial/' + save.saveB.b + '.png'" alt="">
+                  <img class="preview-3"
+                       :src="'/assets/img/main/product/pv-strap/' + save.saveB.c + '.png'" alt="">
+                </template>
+                <template v-if="location == 'jp'">
+                  <div :style="save.saveB.a | casePreviewSprite"
                      class="preview-1"></div>
-                <div :style="save.saveB.b | dialPreviewSprite"
-                     class="preview-2"></div>
-                <div :style="save.saveB.c | strapPreviewSprite"
-                     class="preview-3"></div>
+                  <div :style="save.saveB.b | dialPreviewSprite"
+                       class="preview-2"></div>
+                  <div :style="save.saveB.c | strapPreviewSprite"
+                       class="preview-3"></div>
+                </template>
               </div>
             </div>
             <div id="save-3" class="save-box {{ save.saveC.a }}">
@@ -142,12 +160,22 @@
               </div>
               <div v-on:click="callSave('saveC')"
                   class="btn preview-show-body">
-                <div :style="save.saveC.a | casePreviewSprite"
+                <template v-if="location == 'tw'">
+                  <img class="preview-1"
+                       :src="'/assets/img/main/product/pv-case/' + save.saveC.a + '.png'" alt="">
+                  <img class="preview-2"
+                       :src="'/assets/img/main/product/pv-dial/' + save.saveC.b + '.png'" alt="">
+                  <img class="preview-3"
+                       :src="'/assets/img/main/product/pv-strap/' + save.saveC.c + '.png'" alt="">
+                </template>
+                <template v-if="location == 'jp'">
+                  <div :style="save.saveC.a | casePreviewSprite"
                      class="preview-1"></div>
-                <div :style="save.saveC.b | dialPreviewSprite"
-                     class="preview-2"></div>
-                <div :style="save.saveC.c | strapPreviewSprite"
-                     class="preview-3"></div>
+                  <div :style="save.saveC.b | dialPreviewSprite"
+                       class="preview-2"></div>
+                  <div :style="save.saveC.c | strapPreviewSprite"
+                       class="preview-3"></div>
+                </template>
               </div>
             </div>
             <div id="save-4" class="save-box {{ save.saveD.a }}">
@@ -157,12 +185,22 @@
               </div>
               <div v-on:click="callSave('saveD')"
                   class="btn preview-show-body">
-                <div :style="save.saveD.a | casePreviewSprite"
+                <template v-if="location == 'tw'">
+                  <img class="preview-1"
+                       :src="'/assets/img/main/product/pv-case/' + save.saveD.a + '.png'" alt="">
+                  <img class="preview-2"
+                       :src="'/assets/img/main/product/pv-dial/' + save.saveD.b + '.png'" alt="">
+                  <img class="preview-3"
+                       :src="'/assets/img/main/product/pv-strap/' + save.saveD.c + '.png'" alt="">
+                </template>
+                <template v-if="location == 'jp'">
+                  <div :style="save.saveD.a | casePreviewSprite"
                      class="preview-1"></div>
-                <div :style="save.saveD.b | dialPreviewSprite"
-                     class="preview-2"></div>
-                <div :style="save.saveD.c | strapPreviewSprite"
-                     class="preview-3"></div>
+                  <div :style="save.saveD.b | dialPreviewSprite"
+                       class="preview-2"></div>
+                  <div :style="save.saveD.c | strapPreviewSprite"
+                       class="preview-3"></div>
+                </template>
               </div>
             </div>
           </div>
