@@ -14,7 +14,7 @@ if (/(iPhone)/i.test(navigator.userAgent)) {
 }
 
 /// change background form different Reward
-$('[data-hover-show]').on('mouseover', function(){
+$('body').on('mouseover', '[data-hover-show]', function(){
 	var h = $(this).attr('data-hover-show')
 	$('.index-bg div').removeClass('show')
 	$('.' + h).addClass('show')
@@ -22,7 +22,7 @@ $('[data-hover-show]').on('mouseover', function(){
 })
 
 // Choose the Reward to go to build page
-$('.index-action .btn').click(function () {
+$('body').on('click', '.index-action .btn' ,function () {
   $('#index').fadeOut(300);
   $('section').removeClass('hide')
   $('body').css('overflow', 'auto')
