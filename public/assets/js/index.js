@@ -31,7 +31,7 @@ $('body').on('click', '.index-action .btn' ,function () {
 
 
 /// Go back to index
-$('.gobackindex-btn, .zu-title a').click(function(e) {
+$('body').on('click', '.gobackindex-btn, .zu-title a', function(e) {
 	e.preventDefault()
 	$('#index').fadeIn(300);
   $('section').addClass('hide')
@@ -40,10 +40,10 @@ $('.gobackindex-btn, .zu-title a').click(function(e) {
 
 
 // output modal
-$('#cart-code-btn').click(function(){
+$('body').on('click', '#cart-code-btn', function(){
 	$('#output-popup').fadeIn(300);
 })
-$('#output-popup .close').click(function(){
+$('body').on('click', '#output-popup .close', function(){
 	$('#output-popup').fadeOut(300);
 })
 
@@ -54,13 +54,13 @@ $('body').on('click', '.seecart-btn, .add-this-btn, #addtocart' , function () {
 	$('#code-and-share').addClass('active')
 })
 
-$('#cart-back, .preview-show-body').click( function () {
+$('body').on('click', '#cart-back, .preview-show-body', function () {
 	$('#code-and-share').removeClass('active')
 })
 
 
 // hotsyle
-$('#mobile-tools .hotstyle-btn').click( function () {
+$('body').on('click', '#mobile-tools .hotstyle-btn', function () {
 	$('section.left').addClass('active')
 })
 

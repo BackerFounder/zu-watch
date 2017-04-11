@@ -41,7 +41,7 @@ $(document).ready(function() {
   ZuWatch = new Vue ({
     el: '#zu-watch',
     data: {
-      location: 'jp',
+      location: 'tw',
       status: 'basic',
       elements: {
         case: [
@@ -393,7 +393,8 @@ $(document).ready(function() {
           $('#cart-code-btn').addClass('ok')
           $('#random-this-cart').addClass('ok')
           $('#cart-code-btn .pg').css( 'width', ((counts/total_counts)*100) + '%' )
-          return 'Output'
+          if ( this.location == 'tw' ) { return 'Buy' }
+          else if ( this.location == 'jp' ) { return 'Output' }
         }
       },
       elementAddCart: function(a, b, c) {

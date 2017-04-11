@@ -463,10 +463,17 @@ div.preview-3 {
 		line-height: 37px;
 		font-size: 13px;
 		margin: 0;
-		width: calc( 100% / 3 );
-		flex: 0 0 calc( 100% / 3 );
+		width: calc( 100% / 5 );
+		flex: 0 0 calc( 100% / 5 );
 		background-color: rgba(0,0,0,.1);
 	}
+	&.jp .elements-tab-btn {
+		width: calc( 100% / 3 );
+		flex: 0 0 calc( 100% / 3 );
+	}
+}
+.elements-tabbar::-webkit-scrollbar {
+	width: 0;
 }
 .elements-tab-btn {
 	transition: 0.3s ease;

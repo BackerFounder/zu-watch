@@ -44,7 +44,8 @@
              class="btn">Zu WATCH / Double</div>
         <div v-if="location == 'tw'"
              data-hover-show="index-bg-double"
-             class="btn"><a href="http://google.com/">Zu WATCH / Other</a></div>
+             v-on:click="chooseStatus('other')"
+             class="btn">Zu WATCH / Other</div>
       </div>
     </div>
   </div>
@@ -244,7 +245,7 @@
       <section class="right hide">
         <div id="elements">
           <div v-if="location == 'jp'" class="top-box normal-box">
-            <div class="elements-tabbar flex-ac-jfs-">
+            <div class="elements-tabbar jp flex-ac-jfs-">
               <div data-tab="case" class="elements-tab-btn active">
                 Case<b>{{ elementsCounts.case }}</b>
               </div>
@@ -304,18 +305,18 @@
             </div>
           </div>
           <div v-if="location == 'tw'" class="top-box normal-box">
-            <div class="elements-tabbar flex-ac-jfs-">
+            <div class="elements-tabbar flex-ac-jfs-nw-">
               <div data-tab="case" class="elements-tab-btn active">
-                Case<b>{{ elementsCounts.case }}</b>
+                Case
               </div>
               <div data-tab="dial" class="elements-tab-btn">
-                Dial<b>{{ elementsCounts.dial }}</b>
+                Dial
               </div>
               <div data-tab="strap" class="elements-tab-btn">
-                Strap<b>{{ elementsCounts.strap }}</b>
+                Strap
               </div>
               <div data-tab="case-back" class="elements-tab-btn">
-                Case Back
+                Back
               </div>
               <div data-tab="others" class="elements-tab-btn">
                 Others
@@ -614,7 +615,6 @@
               Cart
               <div v-on:click="randomCartElements"
                    id="random-this-cart" class="btn">
-                <!-- <img src="/assets/img/common/dice-cube-outline.svg" alt=""> -->
                 Show
               </div>
               <div id="cart-code-btn">
