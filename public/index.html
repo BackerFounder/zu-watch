@@ -758,138 +758,13 @@
                 </div>
               </div>
             </div>
-            <div v-if=" status === 'double' " class="bottom-box normal-box">
-              <h2>Zu WATCH / Double</h2>
-              <div class="cart-content flex-l4-jfs-afs-">
-                <div class="cart-item {{ cart.double.a1 }}">
-                  <div v-on:click="deleteCartElement('double', 'a1')"
-                       class="delete-btn {{ cart.double.a1 }}">
-                    <img src="/assets/img/common/icons/delete.svg" alt="">
-                  </div>
-                  <img v-on:click="elementChange( cart.double.a1, '', '')"
-                       :src="'/assets/img/main/product/case/' + cart.double.a1 + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/case/' + cart.double.a1 + '.png 850w'"
-                       alt="">
-                </div>
-                <div class="cart-item {{ cart.double.a2 }}">
-                  <div v-on:click="deleteCartElement('double', 'a2')"
-                       class="delete-btn {{ cart.double.a2 }}">
-                    <img src="/assets/img/common/icons/delete.svg" alt="">
-                  </div>
-                  <img v-on:click="elementChange( cart.double.a2, '', '')"
-                       :src="'/assets/img/main/product/case/' + cart.double.a2 + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/case/' + cart.double.a2 + '.png 850w'"
-                       alt="">
-                </div>
-                <div class="cart-item {{ cart.double.b1 }}">
-                  <div v-on:click="deleteCartElement('double', 'b1')"
-                       class="delete-btn {{ cart.double.b1 }}">
-                    <img src="/assets/img/common/icons/delete.svg" alt="">
-                  </div>
-                  <img v-on:click="elementChange('', cart.double.b1, '')"
-                       :src="'/assets/img/main/product/dial/' + cart.double.b1 + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b1 + '.png 850w'"
-                       alt="">
-                </div>
-                <div class="cart-item {{ cart.double.b2 }}">
-                  <div v-on:click="deleteCartElement('double', 'b2')"
-                       class="delete-btn {{ cart.double.b2 }}">
-                    <img src="/assets/img/common/icons/delete.svg" alt="">
-                  </div>
-                  <img v-on:click="elementChange('', cart.double.b2, '')"
-                       :src="'/assets/img/main/product/dial/' + cart.double.b2 + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b2 + '.png 850w'"
-                       alt="">
-                </div>
-                <div class="cart-item {{ cart.double.b3 }}">
-                  <div v-on:click="deleteCartElement('double', 'b3')"
-                       class="delete-btn {{ cart.double.b3 }}">
-                    <img src="/assets/img/common/icons/delete.svg" alt="">
-                  </div>
-                  <img v-on:click="elementChange('', cart.double.b3, '')"
-                       :src="'/assets/img/main/product/dial/' + cart.double.b3 + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b3 + '.png 850w'"
-                       alt="">
-                </div>
-                <div class="cart-item {{ cart.double.b4 }}">
-                  <div v-on:click="deleteCartElement('double', 'b4')"
-                       class="delete-btn {{ cart.double.b4 }}">
-                    <img src="/assets/img/common/icons/delete.svg" alt="">
-                  </div>
-                  <img v-on:click="elementChange('', cart.double.b4, '')"
-                       :src="'/assets/img/main/product/dial/' + cart.double.b4 + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b4 + '.png 850w'"
-                       alt="">
-                </div>
-                <div class="cart-item {{ cart.double.b5 }}">
-                  <div v-on:click="deleteCartElement('double', 'b5')"
-                       class="delete-btn {{ cart.double.b5 }}">
-                    <img src="/assets/img/common/icons/delete.svg" alt="">
-                  </div>
-                  <img v-on:click="elementChange('', cart.double.b5, '')"
-                       :src="'/assets/img/main/product/dial/' + cart.double.b5 + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/dial/' + cart.double.b5 + '.png 850w'"
-                       alt="">
-                </div>
-                <div class="cart-item {{ cart.double.c1 }}">
-                  <div v-on:click="deleteCartElement('double', 'c1')"
-                       class="delete-btn {{ cart.double.c1 }}">
-                    <img src="/assets/img/common/icons/delete.svg" alt="">
-                  </div>
-                  <img v-on:click="elementChange('', '', cart.double.c1)"
-                       :src="'/assets/img/main/product/strap/' + cart.double.c1 + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c1 + '.png 850w'"
-                       alt="">
-                </div>
-                <div class="cart-item {{ cart.double.c2 }}">
-                  <div v-on:click="deleteCartElement('double', 'c2')"
-                       class="delete-btn {{ cart.double.c2 }}">
-                    <img src="/assets/img/common/icons/delete.svg" alt="">
-                  </div>
-                  <img v-on:click="elementChange('', '', cart.double.c2)"
-                       :src="'/assets/img/main/product/strap/' + cart.double.c2 + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c2 + '.png 850w'"
-                       alt="">
-                </div>
-                <div class="cart-item {{ cart.double.c3 }}">
-                  <div v-on:click="deleteCartElement('double', 'c3')"
-                       class="delete-btn {{ cart.double.c3 }}">
-                    <img src="/assets/img/common/icons/delete.svg" alt="">
-                  </div>
-                  <img v-on:click="elementChange('', '', cart.double.c3)"
-                       :src="'/assets/img/main/product/strap/' + cart.double.c3 + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c3 + '.png 850w'"
-                       alt="">
-                </div>
-                <div class="cart-item {{ cart.double.c4 }}">
-                  <div v-on:click="deleteCartElement('double', 'c4')"
-                       class="delete-btn {{ cart.double.c4 }}">
-                    <img src="/assets/img/common/icons/delete.svg" alt="">
-                  </div>
-                  <img v-on:click="elementChange('', '', cart.double.c4)"
-                       :src="'/assets/img/main/product/strap/' + cart.double.c4 + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c4 + '.png 850w'"
-                       alt="">
-                </div>
-                <div class="cart-item {{ cart.double.c5 }}">
-                  <div v-on:click="deleteCartElement('double', 'c5')"
-                       class="delete-btn {{ cart.double.c5 }}">
-                    <img src="/assets/img/common/icons/delete.svg" alt="">
-                  </div>
-                  <img v-on:click="elementChange('', '', cart.double.c5)"
-                       :src="'/assets/img/main/product/strap/' + cart.double.c5 + '.png'"
-                       :srcset="'/assets/img/main-mobile/product/strap/' + cart.double.c5 + '.png 850w'"
-                       alt="">
-                </div>
-              </div>
-            </div>
           </template>
         </div>
       </section>
     </div>
     <div id="output-popup">
       <div class="close"></div>
-      <div class="content">
+      <div v-if="location == 'jp'" class="content">
         <div class="close">
           <img src="/assets/img/common/icons/delete.svg" alt="">
         </div>
@@ -1021,6 +896,38 @@
           </div>
         </h3>
         <div id="code-result-copy" class="btn">Copy</div>
+      </div>
+      <div v-if="location == 'tw'" class="content">
+        <form action='https://zuwatch.backme.tw/cashflow/shopping_cart_checkout?locale=zh-TW' 
+              method='post'>
+          <input 
+              style="display: none" 
+              type='hidden'
+              name='utf8' 
+              value='✓'>
+          <input 
+              style="display: none" 
+              type='hidden' 
+              name='flag' :value='utmFlag'>
+          <template v-for="(i, element) in rewardIdForForm">
+            <input 
+                style="display: none"
+                type='hidden'
+                :name="'items[' + i + '][project_id]'"
+                value='532'>
+            <input 
+                style="display: none" 
+                type='hidden'
+                :name="'items[' + i + '][reward_id]'"
+                :value='element.id'>
+            <input 
+                style="display: none" 
+                type='hidden'
+                :name="'items[' + i + '][quantity]'"
+                value='1'>
+          </template>
+          <input type="submit" value="送出">
+        </form>
       </div>
     </div>
     <footer>

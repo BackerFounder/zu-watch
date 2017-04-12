@@ -41,6 +41,8 @@ $(document).ready(function() {
   ZuWatch = new Vue ({
     el: '#zu-watch',
     data: {
+      apiData: [],
+      utmFlag: '',
       location: 'tw',
       status: 'basic',
       elements: {
@@ -143,6 +145,12 @@ $(document).ready(function() {
           c5: null
         }
       },
+      /// 台灣版結帳使用的表單
+      rewardIdForForm: [
+        2560,
+        2563,
+        2566
+      ],
       elementsCounts: {
         case: '',
         dial: '',
@@ -150,7 +158,7 @@ $(document).ready(function() {
       }
     },
 
-    ready: function() {
+    created: function() {
     	this.fetchData()
     },
 
@@ -194,6 +202,27 @@ $(document).ready(function() {
             $('#code-and-share .bottom-box').animate( { scrollLeft: d }, 400);
           }
         }
+      },
+      cart: {
+        /// 要觀察下面只要有 object 變化要這樣寫，我也不知道為什麼 by Doppler
+        handler: function (val, oldVal) {
+          var self = this
+          var valueArray = []
+          var mainObject = val[self.status]
+          var checkFormApiObject = self.apiData
+          Object.keys(mainObject).forEach(function(e) {
+            var mainValue = mainObject[e]
+            if ( mainValue !== null ) {
+              valueArray.push({
+                id: checkFormApiObject[mainValue].id,
+                code: mainValue,
+                price: checkFormApiObject[mainValue].price
+              })  
+            }
+          })
+          self.rewardIdForForm = valueArray
+        },
+        deep: true
       }
     },
 
@@ -257,18 +286,24 @@ $(document).ready(function() {
         } else if ( this.location == 'tw' ) {
           var self = this
           $.getJSON( "https://zuwatch.backme.tw/api/projects/532.json?token=a788fa70032f09bdfd3fe5af2b3ae6f3", function(data) {
+            var newApiObject = {}
             data.rewards.forEach(function(el) {
-              console.log(el)
+              var key = el.title
+              newApiObject[key] = {
+                id: el.id,
+                price: el.price,
+              }
               if ( el.quantity_limit == 400 ) {
                 self.twElements.case.push(el)
               }
-              else if ( el.quantity_limit == 800 ) {
+              else if ( el.quantity_limit == 250 ) {
                 self.twElements.dial.push(el)
               }
-              else if ( el.quantity_limit == 250 ) {
+              else if ( el.quantity_limit == 800 ) {
                 self.twElements.strap.push(el)
               }
             })
+            self.apiData = newApiObject
           });
         }
     	},
