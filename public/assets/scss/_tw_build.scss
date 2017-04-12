@@ -1,0 +1,31 @@
+.location_tw {
+	.e-c-b-c {
+		flex: 0 0 31%;
+		width: 31%;
+		margin: 1%;
+		padding: 10px;
+	}
+	.e-c-b-c-top-bar {
+		margin-bottom: 10px;
+		line-height: 1;
+		// text-align: left;
+	}
+	.e-c-b-c-top-bar span {
+		margin-top: 0;
+		height: auto;
+		cursor: pointer;
+		transition: .3s;
+		padding-right: 5px;
+		&:hover {
+			opacity: .7;
+		}
+		i {
+			margin-right: 5px;
+		}
+	}
+	.element-selected {
+		right: 8px;
+		top: 8px;
+	}
+	// .e-c-b-c-top-bar span:nth-child(2){ float: right; }
+}

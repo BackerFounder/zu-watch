@@ -97,6 +97,13 @@ $(document).ready(function() {
         dialCodeArray: [],
         strapCodeArray: []
       },
+      twElements: {
+        case: [],
+        dial: [],
+        strap: [],
+        backCase: [],
+        others: []
+      },
       preview: {
         prev: { a: null, b: null, c: null },
         now:  { a: 'ca-01', b: 'zu-01-b', c: 'lc-01' },
@@ -217,6 +224,11 @@ $(document).ready(function() {
         var bgs = 'background-size: auto ' + ( 100 * l ) + '%;'
         var bgp = 'background-position: center ' + ( 100 * n / ( l - 1 ) ) + '%;'
         return bgs + bgp
+      },
+      // taiwan
+      in_stock: function(v) {
+        var in_stock_count = v.quantity_limit - (v.pledged_count + v.wait_pledged_count)
+        return in_stock_count
       }
     },
 
@@ -243,7 +255,21 @@ $(document).ready(function() {
           this.elements.dialCodeArray = dialCodeArray
           this.elements.strapCodeArray = strapCodeArray
         } else if ( this.location == 'tw' ) {
-
+          var self = this
+          $.getJSON( "https://zuwatch.backme.tw/api/projects/532.json?token=a788fa70032f09bdfd3fe5af2b3ae6f3", function(data) {
+            data.rewards.forEach(function(el) {
+              console.log(el)
+              if ( el.quantity_limit == 400 ) {
+                self.twElements.case.push(el)
+              }
+              else if ( el.quantity_limit == 800 ) {
+                self.twElements.dial.push(el)
+              }
+              else if ( el.quantity_limit == 250 ) {
+                self.twElements.strap.push(el)
+              }
+            })
+          });
         }
     	},
       chooseStatus: function(type) {

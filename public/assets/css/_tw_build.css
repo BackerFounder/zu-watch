@@ -1556,33 +1556,6 @@ div.preview-3 {
   #mockup-area .watch img.s {
     z-index: 1; }
 
-.location_tw .e-c-b-c {
-  -webkit-flex: 0 0 31%;
-  -ms-flex: 0 0 31%;
-  flex: 0 0 31%;
-  width: 31%;
-  margin: 1%;
-  padding: 10px; }
-
-.location_tw .e-c-b-c-top-bar {
-  margin-bottom: 10px;
-  line-height: 1; }
-
-.location_tw .e-c-b-c-top-bar span {
-  margin-top: 0;
-  height: auto;
-  cursor: pointer;
-  transition: .3s;
-  padding-right: 5px; }
-  .location_tw .e-c-b-c-top-bar span:hover {
-    opacity: .7; }
-  .location_tw .e-c-b-c-top-bar span i {
-    margin-right: 5px; }
-
-.location_tw .element-selected {
-  right: 8px;
-  top: 8px; }
-
 body {
   background-color: #fff;
   color: #ECECEC;
