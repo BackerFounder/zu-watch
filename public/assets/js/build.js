@@ -288,18 +288,20 @@ $(document).ready(function() {
           $.getJSON( "https://zuwatch.backme.tw/api/projects/532.json?token=a788fa70032f09bdfd3fe5af2b3ae6f3", function(data) {
             var newApiObject = {}
             data.rewards.forEach(function(el) {
+              //
               var key = el.title
               newApiObject[key] = {
                 id: el.id,
                 price: el.price,
               }
-              if ( el.quantity_limit == 400 ) {
+              //
+              if ( el.category == 'case' ) {
                 self.twElements.case.push(el)
               }
-              else if ( el.quantity_limit == 250 ) {
+              else if ( el.category == 'dial' ) {
                 self.twElements.dial.push(el)
               }
-              else if ( el.quantity_limit == 800 ) {
+              else if ( el.category == 'strap' ) {
                 self.twElements.strap.push(el)
               }
             })
