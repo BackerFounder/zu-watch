@@ -368,7 +368,7 @@
                      :data-selected="c.tags[0]"
                      v-on:click="elementChange(c.tags[0], '', '')"
                      class="e-c-b-c">
-                  <div class="e-c-b-c-top-bar">
+                  <div class="e-c-b-c-top-bar" :data-details="c.tags[0]">
                     <span><i class="fa fa-search-plus" aria-hidden="true"></i>Details</span>
                   </div>
                   <div :data-selected="c.tags[0]"
@@ -386,7 +386,7 @@
                      :data-selected="d.tags[0]"
                      v-on:click="elementChange('', d.tags[0], '')"
                      class="e-c-b-c">
-                  <div class="e-c-b-c-top-bar">
+                  <div class="e-c-b-c-top-bar" :data-details="d.tags[0]">
                     <span><i class="fa fa-search-plus" aria-hidden="true"></i>Details</span>
                   </div>
                   <div :data-selected="d.tags[0]"
@@ -404,7 +404,7 @@
                      :data-selected="s.tags[0]"
                      v-on:click="elementChange('', '', s.tags[0])"
                      class="e-c-b-c">
-                  <div class="e-c-b-c-top-bar">
+                  <div class="e-c-b-c-top-bar" :data-details="s.tags[0]">
                     <span><i class="fa fa-search-plus" aria-hidden="true"></i>Details</span>
                   </div>
                   <div :data-selected="s.tags[0]"
@@ -941,6 +941,48 @@
           </template>
           <input class="submit-btn" type="submit" value="送出">
         </form>
+      </div>
+    </div>
+    <div id="details-popup"> 
+      <div class="close"></div>
+      <div v-for="content in twElements.case"
+           class="content"
+           :data-details="content.tags[0]">
+         <h2>{{ content.title }}</h2>
+         <img :src="content.avatar.url" alt="">
+         <p>
+           價錢：{{ content.price }} 元｜
+           庫存：{{ content | in_stock }} 個
+         </p>
+         <p>
+           {{ content.description }}
+         </p>
+      </div>
+      <div v-for="content in twElements.dial"
+           class="content"
+           :data-details="content.tags[0]">
+        <h2>{{ content.title }}</h2>
+         <img :src="content.avatar.url" alt="">
+         <p>
+           價錢：{{ content.price }} 元｜
+           庫存：{{ content | in_stock }} 個
+         </p>
+         <p>
+           {{ content.description }}
+         </p>
+      </div>
+      <div v-for="content in twElements.strap"
+           class="content"
+           :data-details="content.tags[0]">
+         <h2>{{ content.title }}</h2>
+         <img :src="content.avatar.url" alt="">
+         <p>
+           價錢：{{ content.price }} 元｜
+           庫存：{{ content | in_stock }} 個
+         </p>
+         <p>
+           {{ content.description }}
+         </p>
       </div>
     </div>
     <footer>

@@ -29,3 +29,14 @@
 	}
 	// .e-c-b-c-top-bar span:nth-child(2){ float: right; }
 }
+
+#details-popup .content img {
+	margin-bottom: 20px;
+}
+#details-popup .content p {
+	color: rgba(0,0,0,.4);
+	font-weight: 500;
+	font-family: $p500;
+	font-size: 15px;
+	margin: 5px auto;
+}

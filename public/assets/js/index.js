@@ -47,6 +47,16 @@ $('body').on('click', '#output-popup .close', function(){
 	$('#output-popup').fadeOut(300);
 })
 
+// details modal
+$('body').on('click', '[data-details]', function(){
+	var t = $(this).attr('data-details')
+	$('#details-popup').fadeIn(300);
+	$('#details-popup .content').hide();
+	$('#details-popup .content[data-details="' + t + '"]').show();
+})
+$('body').on('click', '#details-popup .close', function(){
+	$('#details-popup').fadeOut(300);
+})
 
 // mobile
 // add to cart

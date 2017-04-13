@@ -1406,7 +1406,7 @@ div.preview-3 {
   opacity: 1;
   pointer-events: visible; }
 
-#output-popup {
+#output-popup, #details-popup {
   display: none;
   position: fixed;
   left: 0;
@@ -1415,7 +1415,7 @@ div.preview-3 {
   height: 100vh;
   z-index: 1000;
   margin: 0 auto; }
-  #output-popup .close {
+  #output-popup .close, #details-popup .close {
     position: absolute;
     left: 0;
     top: 0;
@@ -1423,7 +1423,7 @@ div.preview-3 {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     cursor: pointer; }
-  #output-popup .content {
+  #output-popup .content, #details-popup .content {
     padding: 30px 0;
     position: relative;
     z-index: 2;
@@ -1436,7 +1436,7 @@ div.preview-3 {
     border-radius: 4px;
     box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.3);
     background-color: #fff; }
-    #output-popup .content .close {
+    #output-popup .content .close, #details-popup .content .close {
       width: 16px;
       height: 16px;
       right: 10px;
@@ -1444,7 +1444,7 @@ div.preview-3 {
       left: auto;
       background-color: transparent;
       color: rgba(0, 0, 0, 0.7); }
-  #output-popup h2 {
+  #output-popup h2, #details-popup h2 {
     background-color: transparent;
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1); }
 
@@ -1582,6 +1582,16 @@ div.preview-3 {
 .location_tw .element-selected {
   right: 8px;
   top: 8px; }
+
+#details-popup .content img {
+  margin-bottom: 20px; }
+
+#details-popup .content p {
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 500;
+  font-family: PingFangTC-Medium, xingothic-tc, sans-serif, Microsoft JhengHei;
+  font-size: 15px;
+  margin: 5px auto; }
 
 body {
   background-color: #fff;
