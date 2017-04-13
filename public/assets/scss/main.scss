@@ -105,4 +105,15 @@ img {
 	width: 100%;
 }
 
+.total-amount {
+	font-weight: 400;
+	font-family: $p400;
+	b {
+		color: #7ED321;
+		margin: 0 4px 0 0;
+	}
+}
 
+.submit-btn {
+	padding: 5px 15px;
+}

@@ -146,11 +146,8 @@ $(document).ready(function() {
         }
       },
       /// 台灣版結帳使用的表單
-      rewardIdForForm: [
-        2560,
-        2563,
-        2566
-      ],
+      rewardIdForForm: [],
+      totalAmount: 0,
       elementsCounts: {
         case: '',
         dial: '',
@@ -164,11 +161,13 @@ $(document).ready(function() {
 
     computed: {
 			previewChange: function() {
+        // 上一步功能，原本是為了怕大家按 Random 按過頭，手速度跟不上腦速
     		this.preview.prev.a = this.preview.now.a
     		this.preview.prev.b = this.preview.now.b
     		this.preview.prev.c = this.preview.now.c
     	},
       whichElementSelected: function() {
+        // 判斷那個物件被選取正在 preview，亮綠色點點
         var a = this.preview.now.a
         var b = this.preview.now.b
         var c = this.preview.now.c
@@ -204,10 +203,11 @@ $(document).ready(function() {
         }
       },
       cart: {
-        /// 要觀察下面只要有 object 變化要這樣寫，我也不知道為什麼 by Doppler
+        /// 要觀察 vue 巢狀物件下面值的變化要用 handler & deep，官方關鍵字「 深度 watcher 」
         handler: function (val, oldVal) {
           var self = this
           var valueArray = []
+          var totalAmount = 0
           var mainObject = val[self.status]
           var checkFormApiObject = self.apiData
           Object.keys(mainObject).forEach(function(e) {
@@ -217,10 +217,12 @@ $(document).ready(function() {
                 id: checkFormApiObject[mainValue].id,
                 code: mainValue,
                 price: checkFormApiObject[mainValue].price
-              })  
+              })
+              totalAmount += checkFormApiObject[mainValue].price
             }
           })
           self.rewardIdForForm = valueArray
+          self.totalAmount = totalAmount
         },
         deep: true
       }
@@ -256,8 +258,13 @@ $(document).ready(function() {
       },
       // taiwan
       in_stock: function(v) {
-        var in_stock_count = v.quantity_limit - (v.pledged_count + v.wait_pledged_count)
-        return in_stock_count
+        if ( v.quantity_limit == 0 ) {
+          return '∞'
+        } else {
+          var in_stock_count = v.quantity_limit - (v.pledged_count + v.wait_pledged_count)
+          var in_stock_count = in_stock_count > 0 ? in_stock_count : 0
+          return in_stock_count
+        }
       }
     },
 
@@ -286,25 +293,35 @@ $(document).ready(function() {
         } else if ( this.location == 'tw' ) {
           var self = this
           $.getJSON( "https://zuwatch.backme.tw/api/projects/532.json?token=a788fa70032f09bdfd3fe5af2b3ae6f3", function(data) {
+            // 將 api 資料格式轉成以產品元件編號為 key name 的物件格式，方便後續取用，不用再反查
             var newApiObject = {}
             data.rewards.forEach(function(el) {
-              //
-              var key = el.title
-              newApiObject[key] = {
-                id: el.id,
-                price: el.price,
-              }
-              //
-              if ( el.category == 'case' ) {
-                self.twElements.case.push(el)
-              }
-              else if ( el.category == 'dial' ) {
-                self.twElements.dial.push(el)
-              }
-              else if ( el.category == 'strap' ) {
-                self.twElements.strap.push(el)
+              // 判斷是公開的回饋
+              if ( el.status == 'publish' ) {
+                // 帶入 id 方便送出購買表單；帶入 price 方便計算價錢
+                var key = el.tags[0]
+                newApiObject[key] = {
+                  id: el.id,
+                  price: el.price,
+                }
+                // 將 api 回饋物件們分類到 vue 裡，方便後續取得
+                if ( el.category == 'case' ) {
+                  self.twElements.case.push(el)
+                }
+                else if ( el.category == 'dial' ) {
+                  self.twElements.dial.push(el)
+                }
+                else if ( el.category == 'strap' ) {
+                  self.twElements.strap.push(el)
+                }
+                else if ( el.category == 'back-case' ) {
+                  self.twElements.backCase.push(el)
+                } else {
+                  self.twElements.others.push(el)
+                }
               }
             })
+            // 跑完回圈，再將這物件存進 vue 裡，跟回圈裡下半段分類無關
             self.apiData = newApiObject
           });
         }

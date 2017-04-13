@@ -365,55 +365,55 @@
             <div class="elements-content">
               <div data-tab="case" class="elements-content-box flex-jfs-afs- active">
                 <div v-for="c in twElements.case"
-                     :data-selected="c.title"
-                     v-on:click="elementChange(c.title, '', '')"
+                     :data-selected="c.tags[0]"
+                     v-on:click="elementChange(c.tags[0], '', '')"
                      class="e-c-b-c">
                   <div class="e-c-b-c-top-bar">
                     <span><i class="fa fa-search-plus" aria-hidden="true"></i>Details</span>
                   </div>
-                  <div :data-selected="c.title"
+                  <div :data-selected="c.tags[0]"
                        class="element-selected"></div>
                   <img :src="c.avatar.small.url" alt="">
                   <span>{{ c.title }}
                     <div>Nventory: <b>{{ c | in_stock }}</b></div>
                   </span>
-                  <div v-on:click="elementAddCart(c.title, '', '')"
+                  <div v-on:click="elementAddCart(c.tags[0], '', '')"
                        class="add-this-btn">ADD TO CART</div>
                 </div>
               </div>
               <div data-tab="dial" class="elements-content-box flex-l3-jfs-afs-">
                 <div v-for="d in twElements.dial"
-                     :data-selected="d.title"
-                     v-on:click="elementChange('', d.title, '')"
+                     :data-selected="d.tags[0]"
+                     v-on:click="elementChange('', d.tags[0], '')"
                      class="e-c-b-c">
                   <div class="e-c-b-c-top-bar">
                     <span><i class="fa fa-search-plus" aria-hidden="true"></i>Details</span>
                   </div>
-                  <div :data-selected="d.title"
+                  <div :data-selected="d.tags[0]"
                        class="element-selected"></div>
                   <img :src="d.avatar.small.url" alt="">
                   <span>{{ d.title }}
                     <div>Nventory: <b>{{ d | in_stock }}</b></div>
                   </span>
-                  <div v-on:click="elementAddCart('', d.title, '')"
+                  <div v-on:click="elementAddCart('', d.tags[0], '')"
                        class="add-this-btn">ADD TO CART</div>
                 </div>
               </div>
               <div data-tab="strap" class="elements-content-box flex-l3-jfs-afs-">
                 <div v-for="s in twElements.strap"
-                     :data-selected="s.title"
-                     v-on:click="elementChange('', '', s.title)"
+                     :data-selected="s.tags[0]"
+                     v-on:click="elementChange('', '', s.tags[0])"
                      class="e-c-b-c">
                   <div class="e-c-b-c-top-bar">
                     <span><i class="fa fa-search-plus" aria-hidden="true"></i>Details</span>
                   </div>
-                  <div :data-selected="s.title"
+                  <div :data-selected="s.tags[0]"
                        class="element-selected"></div>
                   <img :src="s.avatar.small.url" alt="">
                   <span>{{ s.title }}
                     <div>Nventory: <b>{{ s | in_stock }}</b></div>
                   </span>
-                  <div v-on:click="elementAddCart('', '', s.title)"
+                  <div v-on:click="elementAddCart('', '', s.tags[0])"
                        class="add-this-btn">ADD TO CART</div>
                 </div>
               </div>
@@ -440,7 +440,8 @@
                 {{ calcElementsInCart() }}
               </div>
             </h2>
-            <div v-if=" status === 'basic' " class="bottom-box normal-box">
+            <div v-if=" status === 'basic' " 
+                 class="bottom-box normal-box">
               <h2>Zu WATCH / Basic</h2>
               <div class="cart-content flex-l4-jfs-afs-">
                 <div class="cart-item {{ cart.basic.a1 }}">
@@ -472,7 +473,8 @@
                 </div>
               </div>
             </div>
-            <div v-if=" status === 'pro' " class="bottom-box normal-box">
+            <div v-if=" status === 'pro' " 
+                 class="bottom-box normal-box">
               <h2>Zu WATCH / Pro</h2>
               <div class="cart-content flex-l4-jfs-afs-">
                 <div class="cart-item {{ cart.pro.a1 }}">
@@ -527,7 +529,8 @@
                 </div>
               </div>
             </div>
-            <div v-if=" status === 'double' " class="bottom-box normal-box">
+            <div v-if=" status === 'double' " 
+                 class="bottom-box normal-box">
               <h2>Zu WATCH / Double</h2>
               <div class="cart-content flex-l4-jfs-afs-">
                 <div class="cart-item {{ cart.double.a1 }}">
@@ -662,17 +665,22 @@
                 <i class="fa fa-angle-up" aria-hidden="true"></i>
               </div>
               Cart
-              <div v-on:click="randomCartElements"
+              <!-- <div v-on:click="randomCartElements"
                    id="random-this-cart" class="btn">
                 Show
-              </div>
+              </div> -->
               <div id="cart-code-btn">
                 <div class="pg"></div>
                 {{ calcElementsInCart() }}
               </div>
             </h2>
-            <div v-if=" status === 'basic' " class="bottom-box normal-box">
-              <h2>Zu WATCH / Basic</h2>
+            <div v-if=" status === 'basic' " 
+                 class="bottom-box normal-box">
+              <h2>Zu WATCH / Basic
+                <span class="total-amount">
+                  總金額：<b>{{ totalAmount }}</b>元
+                </span>
+              </h2>
               <div class="cart-content flex-l4-jfs-afs-">
                 <div class="cart-item {{ cart.basic.a1 }}">
                   <div v-on:click="deleteCartElement('basic', 'a1')"
@@ -703,8 +711,13 @@
                 </div>
               </div>
             </div>
-            <div v-if=" status === 'pro' " class="bottom-box normal-box">
-              <h2>Zu WATCH / Pro</h2>
+            <div v-if=" status === 'pro' " 
+                 class="bottom-box normal-box">
+              <h2>Zu WATCH / Pro｜
+                <span class="total-amount">
+                  總金額：<b>{{ totalAmount }}</b>元
+                </span>
+              </h2>
               <div class="cart-content flex-l4-jfs-afs-">
                 <div class="cart-item {{ cart.pro.a1 }}">
                   <div v-on:click="deleteCartElement('pro', 'a1')"
@@ -926,7 +939,7 @@
                 :name="'items[' + i + '][quantity]'"
                 value='1'>
           </template>
-          <input type="submit" value="送出">
+          <input class="submit-btn" type="submit" value="送出">
         </form>
       </div>
     </div>
