@@ -1639,6 +1639,17 @@ b.low {
 .location_tw .cart-content {
   height: calc( 150px - 37px - 50px + 70px); }
 
+.location_tw .cart-item {
+  margin-top: 0px;
+  margin-bottom: 0px; }
+
+.location_tw .cart-item > img {
+  width: 100%; }
+
+.location_tw .add-this-btn.out {
+  opacity: 0;
+  pointer-events: none; }
+
 #details-popup .content img {
   margin-bottom: 20px; }
 
@@ -1664,6 +1675,15 @@ b.low {
     position: absolute;
     left: 0;
     top: 0; }
+
+.cart-item-price {
+  display: inline-block;
+  width: 100%;
+  font-size: 12px;
+  font-family: "Rubik", sans-serif;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 10px; }
 
 body {
   background-color: #fff;

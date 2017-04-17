@@ -155,7 +155,7 @@ $(document).ready(function() {
       }
     },
 
-    created: function() {
+    ready: function() {
       this.locationChange()
     	this.fetchData()
     },
@@ -232,6 +232,7 @@ $(document).ready(function() {
     },
 
     filters: {
+      // 日本處理 css sprite 圖片
       casePreviewSprite: function(v) {
         var target = v
         var array = this.elements.caseCodeArray
@@ -276,6 +277,19 @@ $(document).ready(function() {
           }
           return in_stock_count
         }
+      },
+      // 處理購物車元件預設灰圖
+      cartCaseDefault: function(v) {
+        if (!v) { return '/assets/img/main-mobile/product/case/null.png'} 
+        else { return v }
+      },
+      cartDialDefault: function(v) {
+        if (!v) { return '/assets/img/main-mobile/product/dial/null.png'} 
+        else { return v }
+      },
+      cartStrapDefault: function(v) {
+        if (!v) { return '/assets/img/main-mobile/product/strap/null.png'} 
+        else { return v }
       }
     },
 
