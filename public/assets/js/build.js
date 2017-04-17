@@ -156,6 +156,7 @@ $(document).ready(function() {
     },
 
     created: function() {
+      this.locationChange()
     	this.fetchData()
     },
 
@@ -279,6 +280,13 @@ $(document).ready(function() {
     },
 
     methods: {
+      locationChange: function() {
+        if ( location.host.indexOf('jp') == 0 ) {
+          this.location = 'jp'
+        } else {
+          this.location = 'tw'
+        }
+      },
     	fetchData: function() {
   			// this.$data = JSON.parse(atob(localStorage['fullPage']))
         if ( this.location == 'jp' ) {
