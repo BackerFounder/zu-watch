@@ -1142,10 +1142,10 @@ div.preview-3 {
   margin-top: 4px;
   display: block; }
 
-b.Out {
+b.out {
   color: #D0011B; }
 
-b.Low {
+b.low {
   color: #F6A623; }
 
 .elements-content-box.active {
@@ -1648,6 +1648,22 @@ b.Low {
   font-family: PingFangTC-Medium, xingothic-tc, sans-serif, Microsoft JhengHei;
   font-size: 15px;
   margin: 5px auto; }
+
+#mockup-area .watch.tw {
+  padding-top: 0;
+  width: 19.3%;
+  top: 16vw;
+  -webkit-transform: translateX(3.1%);
+  -ms-transform: translateX(3.1%);
+  transform: translateX(3.1%); }
+  #mockup-area .watch.tw img:nth-child(2) {
+    position: absolute;
+    left: 0;
+    top: 0; }
+  #mockup-area .watch.tw img:nth-child(3) {
+    position: absolute;
+    left: 0;
+    top: 0; }
 
 body {
   background-color: #fff;

@@ -262,17 +262,17 @@ $(document).ready(function() {
       // taiwan
       in_stock: function(v) {
         if ( v.quantity_limit == 0 ) {
-          return '數量充足'
+          return 'sufficient stock'
         } else {
           var in_stock_count = v.quantity_limit - (v.pledged_count + v.wait_pledged_count)
           if ( in_stock_count >= 20 ) {
-            var in_stock_count = 'Unlimited Quantity'
+            var in_stock_count = 'sufficient stock'
           } 
           else if ( in_stock_count >= 5 ) {
-            var in_stock_count = 'Low Quantity'
+            var in_stock_count = 'low quantity'
           }
           else if ( in_stock_count >= 0 ) {
-            var in_stock_count = 'Out Of Stock'
+            var in_stock_count = 'out of stock'
           }
           return in_stock_count
         }
@@ -316,11 +316,12 @@ $(document).ready(function() {
             data.rewards.forEach(function(el) {
               // 判斷是公開的回饋
               if ( el.status == 'publish' ) {
-                // 帶入 id 方便送出購買表單；帶入 price 方便計算價錢
+                // 帶入 id 方便送出購買表單；帶入 price 方便計算價錢；帶入縮圖
                 var key = el.tags[0]
                 newApiObject[key] = {
                   id: el.id,
                   price: el.price,
+                  url: el.avatar.small.url,
                 }
                 // 將 api 回饋物件們分類到 vue 裡，方便後續取得
                 if ( el.category == 'case' ) {

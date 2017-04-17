@@ -47,3 +47,19 @@
 	font-size: 15px;
 	margin: 5px auto;
 }
+#mockup-area .watch.tw {
+	padding-top: 0;
+	width: 19.3%;
+	top: 16vw;
+  transform: translateX(3.1%);
+	img:nth-child(2) {
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	img:nth-child(3) {
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+}
