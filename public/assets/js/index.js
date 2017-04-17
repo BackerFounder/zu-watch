@@ -42,6 +42,10 @@ $('body').on('click', '.gobackindex-btn, .zu-title a', function(e) {
 // output modal
 $('body').on('click', '#cart-code-btn', function(){
 	$('#output-popup').fadeIn(300);
+	$('#output-popup').find('form').submit();
+})
+$('body').on('click', '.cart-price-section #cart-code-btn', function(){
+	$('#output-popup').find('form').submit();
 })
 $('body').on('click', '#output-popup .close', function(){
 	$('#output-popup').fadeOut(300);

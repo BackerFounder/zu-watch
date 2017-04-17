@@ -178,7 +178,7 @@ $(document).ready(function() {
       },
       saveLocalStorage: function() {
         // 儲存在瀏覽器，讓重整不會掉
-        localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+        // localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
       }
     },
 
@@ -210,19 +210,21 @@ $(document).ready(function() {
           var totalAmount = 0
           var mainObject = val[self.status]
           var checkFormApiObject = self.apiData
-          Object.keys(mainObject).forEach(function(e) {
-            var mainValue = mainObject[e]
-            if ( mainValue !== null ) {
-              valueArray.push({
-                id: checkFormApiObject[mainValue].id,
-                code: mainValue,
-                price: checkFormApiObject[mainValue].price
-              })
-              totalAmount += checkFormApiObject[mainValue].price
-            }
-          })
-          self.rewardIdForForm = valueArray
-          self.totalAmount = totalAmount
+          if ( this.location == 'tw' ) {
+            Object.keys(mainObject).forEach(function(e) {
+              var mainValue = mainObject[e]
+              if ( mainValue !== null ) {
+                valueArray.push({
+                  id: checkFormApiObject[mainValue].id,
+                  code: mainValue,
+                  price: checkFormApiObject[mainValue].price
+                })
+                totalAmount += checkFormApiObject[mainValue].price
+              }
+            })
+            self.rewardIdForForm = valueArray
+            self.totalAmount = totalAmount
+          }
         },
         deep: true
       }
@@ -259,10 +261,18 @@ $(document).ready(function() {
       // taiwan
       in_stock: function(v) {
         if ( v.quantity_limit == 0 ) {
-          return '∞'
+          return '數量充足'
         } else {
           var in_stock_count = v.quantity_limit - (v.pledged_count + v.wait_pledged_count)
-          var in_stock_count = in_stock_count > 0 ? in_stock_count : 0
+          if ( in_stock_count >= 20 ) {
+            var in_stock_count = 'Unlimited Quantity'
+          } 
+          else if ( in_stock_count >= 5 ) {
+            var in_stock_count = 'Low Quantity'
+          }
+          else if ( in_stock_count >= 0 ) {
+            var in_stock_count = 'Out Of Stock'
+          }
           return in_stock_count
         }
       }
@@ -376,13 +386,13 @@ $(document).ready(function() {
 	    				this.save[b[i]].b = this.preview.now.b
 	    				this.save[b[i]].c = this.preview.now.c
               this.whichElementSelected
-	    				localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+	    				// localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
 	    				// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
 	    				break
 	    			}
 	    		}
 	    	}
-        if ($('.save-box.null').length == 4) { $('#save').addClass('hidetext') }
+        $('#save').addClass('hidetext')
     	},
     	callSave: function(saveN) {
     		this.preview.now.a = this.save[saveN].a
@@ -396,8 +406,6 @@ $(document).ready(function() {
         this.save[saveN].a = null
         this.save[saveN].b = null
         this.save[saveN].c = null
-        // 判斷如果都為空，把狀態加回來
-        if ($('.save-box.null').length !== 4) { $('#save').removeClass('hidetext') }
         this.saveLocalStorage
     		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
@@ -473,7 +481,7 @@ $(document).ready(function() {
           $('#cart-code-btn').addClass('ok')
           $('#random-this-cart').addClass('ok')
           $('#cart-code-btn .pg').css( 'width', ((counts/total_counts)*100) + '%' )
-          if ( this.location == 'tw' ) { return 'Buy' }
+          if ( this.location == 'tw' ) { return 'CHECKOUT' }
           else if ( this.location == 'jp' ) { return 'Output' }
         }
       },

@@ -1,4 +1,8 @@
 .location_tw {
+	.elements-tabbar .elements-tab-btn {
+		width: calc( 100% / 5 );
+		flex: 0 0 calc( 100% / 5 );
+	}
 	.e-c-b-c {
 		flex: 0 0 31%;
 		width: 31%;
@@ -26,6 +30,9 @@
 	.element-selected {
 		right: 8px;
 		top: 8px;
+	}
+	.cart-content {
+		height: calc( 150px - 37px - 50px + #{$adjust_height});
 	}
 	// .e-c-b-c-top-bar span:nth-child(2){ float: right; }
 }

@@ -144,6 +144,20 @@
 		animation: bring 1.5s ease 0s infinite both;
 	}
 }
+.cart-price-section #cart-code-btn {
+	position: relative;
+	flex: 0 0 auto;
+	width: 140px;
+	height: 37px;
+  line-height: 37px;
+  right: auto;
+  top: 0;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	font-family: $fontt;
+	font-size: 12px;
+	animation-name: none;
+}
 #random-this-cart {
 	cursor: pointer;
 	position: absolute;

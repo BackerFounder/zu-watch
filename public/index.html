@@ -102,7 +102,7 @@
         </div>
         <div id="save">
           <h2>Save</h2>
-          <div class="bottom-box normal-box flex-l4-jfs-">
+          <div class="bottom-box normal-box flex-l4-jfs-ac-">
             <div id="save-1" class="save-box {{ save.saveA.a }}">
               <div v-on:click="deleteElementsFromSave('saveA')"
                   class="delete-btn">
@@ -375,7 +375,7 @@
                        class="element-selected"></div>
                   <img :src="c.avatar.small.url" alt="">
                   <span>{{ c.title }}
-                    <div>Nventory: <b>{{ c | in_stock }}</b></div>
+                    <div><b :class="c | in_stock">{{ c | in_stock }}</b></div>
                   </span>
                   <div v-on:click="elementAddCart(c.tags[0], '', '')"
                        class="add-this-btn">ADD TO CART</div>
@@ -393,7 +393,7 @@
                        class="element-selected"></div>
                   <img :src="d.avatar.small.url" alt="">
                   <span>{{ d.title }}
-                    <div>Nventory: <b>{{ d | in_stock }}</b></div>
+                    <div><b :class="d | in_stock">{{ d | in_stock }}</b></div>
                   </span>
                   <div v-on:click="elementAddCart('', d.tags[0], '')"
                        class="add-this-btn">ADD TO CART</div>
@@ -411,9 +411,45 @@
                        class="element-selected"></div>
                   <img :src="s.avatar.small.url" alt="">
                   <span>{{ s.title }}
-                    <div>Nventory: <b>{{ s | in_stock }}</b></div>
+                    <div><b :class="s | in_stock">{{ s | in_stock }}</b></div>
                   </span>
                   <div v-on:click="elementAddCart('', '', s.tags[0])"
+                       class="add-this-btn">ADD TO CART</div>
+                </div>
+              </div>
+              <div data-tab="case-back" class="elements-content-box flex-l3-jfs-afs-">
+                <div v-for="cb in twElements.backCase"
+                     :data-selected="cb.tags[0]"
+                     v-on:click="elementChange('', '', cb.tags[0])"
+                     class="e-c-b-c">
+                  <div class="e-c-b-c-top-bar" :data-details="cb.tags[0]">
+                    <span><i class="fa fa-search-plus" aria-hidden="true"></i>Details</span>
+                  </div>
+                  <div :data-selected="cb.tags[0]"
+                       class="element-selected"></div>
+                  <img :src="cb.avatar.small.url" alt="">
+                  <span>{{ cb.title }}
+                    <div><b :class="cb | in_stock">{{ cb | in_stock }}</b></div>
+                  </span>
+                  <div v-on:click="elementAddCart('', '', cb.tags[0])"
+                       class="add-this-btn">ADD TO CART</div>
+                </div>
+              </div>
+              <div data-tab="others" class="elements-content-box flex-l3-jfs-afs-">
+                <div v-for="o in twElements.others"
+                     :data-selected="o.tags[0]"
+                     v-on:click="elementChange('', '', o.tags[0])"
+                     class="e-c-b-c">
+                  <div class="e-c-b-c-top-bar" :data-details="o.tags[0]">
+                    <span><i class="fa fa-search-plus" aria-hidden="true"></i>Details</span>
+                  </div>
+                  <div :data-selected="o.tags[0]"
+                       class="element-selected"></div>
+                  <img :src="o.avatar.small.url" alt="">
+                  <span>{{ o.title }}
+                    <div><b :class="o | in_stock">{{ o | in_stock }}</b></div>
+                  </span>
+                  <div v-on:click="elementAddCart('', '', o.tags[0])"
                        class="add-this-btn">ADD TO CART</div>
                 </div>
               </div>
@@ -665,22 +701,10 @@
                 <i class="fa fa-angle-up" aria-hidden="true"></i>
               </div>
               Cart
-              <!-- <div v-on:click="randomCartElements"
-                   id="random-this-cart" class="btn">
-                Show
-              </div> -->
-              <div id="cart-code-btn">
-                <div class="pg"></div>
-                {{ calcElementsInCart() }}
-              </div>
             </h2>
             <div v-if=" status === 'basic' " 
                  class="bottom-box normal-box">
-              <h2>Zu WATCH / Basic
-                <span class="total-amount">
-                  總金額：<b>{{ totalAmount }}</b>元
-                </span>
-              </h2>
+              <h2>Zu WATCH / Basic</h2>
               <div class="cart-content flex-l4-jfs-afs-">
                 <div class="cart-item {{ cart.basic.a1 }}">
                   <div v-on:click="deleteCartElement('basic', 'a1')"
@@ -713,11 +737,7 @@
             </div>
             <div v-if=" status === 'pro' " 
                  class="bottom-box normal-box">
-              <h2>Zu WATCH / Pro｜
-                <span class="total-amount">
-                  總金額：<b>{{ totalAmount }}</b>元
-                </span>
-              </h2>
+              <h2>Zu WATCH / Pro</h2>
               <div class="cart-content flex-l4-jfs-afs-">
                 <div class="cart-item {{ cart.pro.a1 }}">
                   <div v-on:click="deleteCartElement('pro', 'a1')"
@@ -768,6 +788,14 @@
                        :src="'/assets/img/main/product/strap/' + cart.pro.c2 + '.png'"
                        :srcset="'/assets/img/main-mobile/product/strap/' + cart.pro.c2 + '.png 850w'"
                        alt="">
+                </div>
+              </div>
+              <div class="cart-price-section">
+                <div class="total">
+                  Total<b>{{ totalAmount }}</b>(NT)
+                </div>
+                <div id="cart-code-btn" class="btn">
+                  {{ calcElementsInCart() }}
                 </div>
               </div>
             </div>
@@ -939,7 +967,7 @@
                 :name="'items[' + i + '][quantity]'"
                 value='1'>
           </template>
-          <input class="submit-btn" type="submit" value="送出">
+          <img style="width: 40px; margin-top: 70px;" src="http://gifimage.net/wp-content/uploads/2017/02/Loading-GIF-Image-25.gif" alt="">
         </form>
       </div>
     </div>
@@ -951,11 +979,8 @@
          <h2>{{ content.title }}</h2>
          <img :src="content.avatar.url" alt="">
          <p>
-           價錢：{{ content.price }} 元｜
-           庫存：{{ content | in_stock }} 個
-         </p>
-         <p>
-           {{ content.description }}
+           Price：{{ content.price }} (NT)｜
+           <b :class="content | in_stock">{{ content | in_stock }} </b>
          </p>
       </div>
       <div v-for="content in twElements.dial"
@@ -964,11 +989,8 @@
         <h2>{{ content.title }}</h2>
          <img :src="content.avatar.url" alt="">
          <p>
-           價錢：{{ content.price }} 元｜
-           庫存：{{ content | in_stock }} 個
-         </p>
-         <p>
-           {{ content.description }}
+           Price：{{ content.price }} (NT)｜
+           <b :class="content | in_stock">{{ content | in_stock }} </b>
          </p>
       </div>
       <div v-for="content in twElements.strap"
@@ -977,11 +999,8 @@
          <h2>{{ content.title }}</h2>
          <img :src="content.avatar.url" alt="">
          <p>
-           價錢：{{ content.price }} 元｜
-           庫存：{{ content | in_stock }} 個
-         </p>
-         <p>
-           {{ content.description }}
+           Price：{{ content.price }} (NT)｜
+           <b :class="content | in_stock">{{ content | in_stock }} </b>
          </p>
       </div>
     </div>
