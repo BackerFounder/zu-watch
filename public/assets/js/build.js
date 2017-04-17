@@ -143,6 +143,10 @@ $(document).ready(function() {
           c3: null,
           c4: null,
           c5: null
+        },
+        common: {
+          backCase: 'backcase-01',
+          others: []
         }
       },
       /// 台灣版結帳使用的表單
@@ -155,7 +159,7 @@ $(document).ready(function() {
       }
     },
 
-    ready: function() {
+    created: function() {
       this.locationChange()
     	this.fetchData()
     },
@@ -205,13 +209,16 @@ $(document).ready(function() {
       },
       cart: {
         /// 要觀察 vue 巢狀物件下面值的變化要用 handler & deep，官方關鍵字「 深度 watcher 」
+        /// val 為變化後，oldVal 為變化前的值
         handler: function (val, oldVal) {
           var self = this
           var valueArray = []
           var totalAmount = 0
-          var mainObject = val[self.status]
+          var backCase = self.cart.common.backCase // 背殼
+          var mainObject = val[self.status] /// case, dial, strap
           var checkFormApiObject = self.apiData
           if ( this.location == 'tw' ) {
+            /// 背殼、others 額外處理，這裡只處理 case, dial, strap
             Object.keys(mainObject).forEach(function(e) {
               var mainValue = mainObject[e]
               if ( mainValue !== null ) {
@@ -222,6 +229,13 @@ $(document).ready(function() {
                 })
                 totalAmount += checkFormApiObject[mainValue].price
               }
+            })
+            /// 處理背殼的錢及送出表單
+            totalAmount += checkFormApiObject[backCase].price
+            valueArray.push({
+              id: checkFormApiObject[backCase].id,
+              code: backCase,
+              price: checkFormApiObject[backCase].price
             })
             self.rewardIdForForm = valueArray
             self.totalAmount = totalAmount
@@ -641,6 +655,10 @@ $(document).ready(function() {
       },
       deleteCartElement: function(type, item) {
         this.cart[type][item] = null;
+      },
+      // taiwan
+      ChangeCartBackCase: function(backcase) {
+        this.cart.common.backCase = backcase
       },
       randomCartElements: function() {
         this.previewChange

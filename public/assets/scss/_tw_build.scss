@@ -46,6 +46,22 @@
 		opacity: 0;
 		pointer-events: none;
 	}
+	@media screen and ( max-width: 992px ) {
+		section.right #code-and-share {
+			height: 235px;
+		}
+		section.mid .top-box {
+			height: calc( 100vh - 375px);
+		}
+		section.right .top-box .elements-content {
+			height: 230px;
+		}
+	}
+	@media screen and ( max-width: 500px ) {
+		section.right .e-c-b-c {
+			width: 32%;
+		}
+	}
 }
 
 #details-popup .content img {

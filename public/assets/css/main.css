@@ -1650,6 +1650,18 @@ b.low {
   opacity: 0;
   pointer-events: none; }
 
+@media screen and (max-width: 992px) {
+  .location_tw section.right #code-and-share {
+    height: 235px; }
+  .location_tw section.mid .top-box {
+    height: calc( 100vh - 375px); }
+  .location_tw section.right .top-box .elements-content {
+    height: 230px; } }
+
+@media screen and (max-width: 500px) {
+  .location_tw section.right .e-c-b-c {
+    width: 32%; } }
+
 #details-popup .content img {
   margin-bottom: 20px; }
 

@@ -78,7 +78,7 @@
                  style="background-image: url('/assets/img/main/hotstyle/1.jpg');"
                  class="btn recommend-style">
             </div>
-            <div v-on:click="elementChange('ca-03', 'zu-05-w', 'nl-03')"
+            <div v-if="location == 'jp'" v-on:click="elementChange('ca-03', 'zu-05-w', 'nl-03')"
                  style="background-image: url('/assets/img/main/hotstyle/2.jpg');"
                  class="btn recommend-style">
             </div>
@@ -86,7 +86,7 @@
                  style="background-image: url('/assets/img/main/hotstyle/3.jpg');"
                  class="btn recommend-style">
             </div>
-            <div v-on:click="elementChange('ca-02', 'zu-03-b', 'nl-03')"
+            <div v-if="location == 'jp'" v-on:click="elementChange('ca-02', 'zu-03-b', 'nl-03')"
                  style="background-image: url('/assets/img/main/hotstyle/4.jpg');"
                  class="btn recommend-style">
             </div>
@@ -94,7 +94,7 @@
                  style="background-image: url('/assets/img/main/hotstyle/5.jpg');"
                  class="btn recommend-style">
             </div>
-            <div v-on:click="elementChange('ca-03', 'zu-10-b', 'ny-03')"
+            <div v-if="location == 'jp'" v-on:click="elementChange('ca-03', 'zu-10-b', 'ny-03')"
                  style="background-image: url('/assets/img/main/hotstyle/6.jpg');"
                  class="btn recommend-style">
             </div>
@@ -431,7 +431,7 @@
                   <span>{{ cb.title }}
                     <div><b :class="cb | in_stock">{{ cb | in_stock }}</b></div>
                   </span>
-                  <div v-on:click=""
+                  <div v-on:click="ChangeCartBackCase(cb.tags[0])"
                        class="add-this-btn {{ cb | in_stock }}">ADD TO CART</div>
                 </div>
               </div>
@@ -743,6 +743,13 @@
                     {{ 'NT ' + apiData[cart.basic.c1].price }}
                   </span>
                 </div>
+                <div class="cart-item null">
+                  <img :src="apiData[cart.common.backCase].url"
+                       alt="">
+                  <span class="cart-item-price">
+                    {{ 'NT ' + apiData[cart.common.backCase].price }}
+                  </span>
+                </div>
               </div>
               <div class="cart-price-section">
                 <div class="total">
@@ -817,6 +824,13 @@
                     {{ 'NT ' + apiData[cart.pro.c2].price }}
                   </span>
                 </div>
+                <div class="cart-item null">
+                  <img :src="apiData[cart.common.backCase].url"
+                       alt="">
+                  <span class="cart-item-price">
+                    {{ 'NT ' + apiData[cart.common.backCase].price }}
+                  </span>
+                </div>
               </div>
               <div class="cart-price-section">
                 <div class="total">
@@ -837,7 +851,25 @@
                     <img src="/assets/img/common/icons/delete.svg" alt="">
                   </div>
                   <img v-on:click="elementChange(cart.basic.a1, '', '')"
-                       :src="" 
+                       :src="apiData[cart.basic.a1].url" 
+                       alt="">
+                </div>
+                <div class="cart-item {{ cart.basic.b1 }}">
+                  <div v-on:click="deleteCartElement('basic', 'b1')"
+                       class="delete-btn {{ cart.basic.b1 }}">
+                    <img src="/assets/img/common/icons/delete.svg" alt="">
+                  </div>
+                  <img v-on:click="elementChange('', cart.basic.b1, '')"
+                       :src="apiData[cart.basic.b1].url"
+                       alt="">
+                </div>
+                <div class="cart-item {{ cart.basic.c1 }}">
+                  <div v-on:click="deleteCartElement('basic', 'c1')"
+                       class="delete-btn {{ cart.basic.c1 }}">
+                    <img src="/assets/img/common/icons/delete.svg" alt="">
+                  </div>
+                  <img v-on:click="elementChange('', '', cart.basic.c1)"
+                       :src="apiData[cart.basic.c1].url"
                        alt="">
                 </div>
               </div>
@@ -1118,8 +1150,8 @@
 </body>
 <script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>
 <script src="/assets/js/vendor/jquery.router.js"></script>
-<script src="/assets/js/vendor/vue.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script> -->
+<!-- <script src="/assets/js/vendor/vue.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
 <script src="/assets/js/vendor/clipboard.min.js"></script>
 <script src="/assets/js/index.js?v=online"></script>
 <script src="/assets/js/build.js?v=online"></script>
