@@ -766,7 +766,8 @@ section.left {
     right: 0;
     margin: 0px 0; }
     section.right #cart-back {
-      display: block; }
+      display: block;
+      cursor: pointer; }
     section.right #cart-bigger {
       display: none; }
     section.right .top-box {
@@ -801,18 +802,16 @@ section.left {
       height: 187px;
       top: 0;
       right: 0;
-      -webkit-transform: translateY(-100%);
-      -ms-transform: translateY(-100%);
-      transform: translateY(-100%);
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
       transition-delay: 0;
       transition: .4s;
       overflow: hidden; }
       section.right #code-and-share > h2 {
         margin-top: 0; }
     section.right #code-and-share.active {
-      -webkit-transform: translateY(0%);
-      -ms-transform: translateY(0%);
-      transform: translateY(0%); }
+      -webkit-transform: translate3d(0, 0%, 0);
+      transform: translate3d(0, 0%, 0); }
     section.right .bottom-box {
       height: calc( 100% - 37px);
       overflow: auto;

@@ -166,6 +166,7 @@ section.right {
 		margin: 0px 0;
 		#cart-back {
 			display: block;
+			cursor: pointer;
 		}
 		#cart-bigger {
 			display: none;
@@ -196,14 +197,14 @@ section.right {
 			height: 187px;
 			top: 0;
 			right: 0;
-			transform: translateY(-100%);
+			transform: translate3d(0, -100%, 0);
 			transition-delay: 0;
 			transition: .4s;
 			overflow: hidden;
 			&>h2 { margin-top: 0; }
 		}
 		#code-and-share.active {
-			transform: translateY(0%);
+			transform: translate3d(0, 0%, 0);
 		}
 		.bottom-box {
 			height: calc( 100% - 37px );

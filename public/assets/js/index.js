@@ -64,21 +64,22 @@ $('body').on('click', '#details-popup .close', function(){
 
 // mobile
 // add to cart
-$('body').on('click', '.seecart-btn, .add-this-btn, #addtocart' , function () {
+$('body').on('click', '.seecart-btn, .add-this-btn, #addtocart' , function() {
 	$('#code-and-share').addClass('active')
 })
 
-$('body').on('click', '#cart-back, .preview-show-body', function () {
+$('body').on('click', '#cart-back, .preview-show-body', function(){
 	$('#code-and-share').removeClass('active')
 })
 
 
+
 // hotsyle
-$('body').on('click', '#mobile-tools .hotstyle-btn', function () {
+$('body').on('click', '#mobile-tools .hotstyle-btn', function() {
 	$('section.left').addClass('active')
 })
 
-$('body').on('click', '#recommend-back, .recommend-style, .preview-show-body', function () {
+$('body').on('click', '#recommend-back, .recommend-style, .preview-show-body', function() {
 	$('section.left').removeClass('active')
 })
 
@@ -94,7 +95,7 @@ $('body').on('click', '.mockup-btns .mockup-btn, #mobile-tools .mockup-btn', fun
 	$('.wrap>img.mockup-' + t).css('opacity', '1');
 })
 
-$('body').on('click', '#mockup-area .back', function () {
+$('body').on('click', '#mockup-area .back', function() {
 	$('#mockup-area').fadeOut(300);
 })
 
