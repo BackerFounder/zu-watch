@@ -31,7 +31,6 @@
         </span>
       </a>
       <div class="index-action">
-        <!-- <h2>Choose your Zu WATCH SET:</h2> -->
         <div data-hover-show="index-bg-basic"
              v-on:click="chooseStatus('basic')"
              class="btn">Zu WATCH / Basic</div>
@@ -42,10 +41,11 @@
              data-hover-show="index-bg-double"
              v-on:click="chooseStatus('double')"
              class="btn">Zu WATCH / Double</div>
-        <!-- <div v-if="location == 'tw'"
+        <!-- Intead of 'other', I named it's Vue.status as 'unlimited'.-->
+        <div v-if="location == 'tw'"
              data-hover-show="index-bg-double"
-             v-on:click="chooseStatus('other')"
-             class="btn">Zu WATCH / Other</div> -->
+             v-on:click="chooseStatus('unlimited')"
+             class="btn">Zu WATCH / Other</div>
       </div>
     </div>
   </div>
@@ -78,7 +78,7 @@
                  style="background-image: url('/assets/img/main/hotstyle/1.jpg');"
                  class="btn recommend-style">
             </div>
-            <div v-if="location == 'jp'" v-on:click="elementChange('ca-03', 'zu-05-w', 'nl-03')"
+            <div v-on:click="elementChange('ca-03', 'zu-05-w', 'nl-03')"
                  style="background-image: url('/assets/img/main/hotstyle/2.jpg');"
                  class="btn recommend-style">
             </div>
@@ -86,7 +86,7 @@
                  style="background-image: url('/assets/img/main/hotstyle/3.jpg');"
                  class="btn recommend-style">
             </div>
-            <div v-if="location == 'jp'" v-on:click="elementChange('ca-02', 'zu-03-b', 'nl-03')"
+            <div v-on:click="elementChange('ca-02', 'zu-03-b', 'nl-03')"
                  style="background-image: url('/assets/img/main/hotstyle/4.jpg');"
                  class="btn recommend-style">
             </div>
@@ -94,7 +94,7 @@
                  style="background-image: url('/assets/img/main/hotstyle/5.jpg');"
                  class="btn recommend-style">
             </div>
-            <div v-if="location == 'jp'" v-on:click="elementChange('ca-03', 'zu-10-b', 'ny-03')"
+            <div v-on:click="elementChange('ca-03', 'zu-10-b', 'ny-03')"
                  style="background-image: url('/assets/img/main/hotstyle/6.jpg');"
                  class="btn recommend-style">
             </div>
@@ -269,7 +269,12 @@
               <i class="fa fa-random" aria-hidden="true"></i>
               Random
             </div>
-            <div v-on:click="elementAddCart(preview.now.a, preview.now.b, preview.now.c)"
+            <div v-if="status !== 'unlimited'" v-on:click="elementAddCart(preview.now.a, preview.now.b, preview.now.c)"
+                 id="addtocart" class="zuwatch-btn save-btn">
+              <i class="fa fa-plus-circle" aria-hidden="true"></i>
+              Add to Cart
+            </div>
+            <div v-else v-on:click="elementsAddOtherCart()"
                  id="addtocart" class="zuwatch-btn save-btn">
               <i class="fa fa-plus-circle" aria-hidden="true"></i>
               Add to Cart
@@ -377,7 +382,12 @@
                   <span>{{ c.title }}
                     <div><b :class="c | in_stock">{{ c | in_stock }}</b></div>
                   </span>
-                  <div v-on:click="elementAddCart(c.tags[0], '', '')"
+                  <!-- other 的 add-to-cart function 會不同 -->
+                  <div v-if="status !== 'unlimited'"
+                       v-on:click="elementAddCart(c.tags[0], '', '')"
+                       class="add-this-btn {{ c | in_stock }}">ADD TO CART</div>
+                  <div v-else
+                       v-on:click="elementAddOtherCart(c.tags[0])"
                        class="add-this-btn {{ c | in_stock }}">ADD TO CART</div>
                 </div>
               </div>
@@ -395,7 +405,11 @@
                   <span>{{ d.title }}
                     <div><b :class="d | in_stock">{{ d | in_stock }}</b></div>
                   </span>
-                  <div v-on:click="elementAddCart('', d.tags[0], '')"
+                  <div v-if="status !== 'unlimited'"
+                       v-on:click="elementAddCart('', d.tags[0], '')"
+                       class="add-this-btn {{ d | in_stock }}">ADD TO CART</div>
+                  <div v-else
+                       v-on:click="elementAddOtherCart(d.tags[0])"
                        class="add-this-btn {{ d | in_stock }}">ADD TO CART</div>
                 </div>
               </div>
@@ -413,7 +427,11 @@
                   <span>{{ s.title }}
                     <div><b :class="s | in_stock">{{ s | in_stock }}</b></div>
                   </span>
-                  <div v-on:click="elementAddCart('', '', s.tags[0])"
+                  <div v-if="status !== 'unlimited'"
+                       v-on:click="elementAddCart('', '', s.tags[0])"
+                       class="add-this-btn {{ s | in_stock }}">ADD TO CART</div>
+                  <div v-else
+                       v-on:click="elementAddOtherCart(s.tags[0])"
                        class="add-this-btn {{ s | in_stock }}">ADD TO CART</div>
                 </div>
               </div>
@@ -431,11 +449,15 @@
                   <span>{{ cb.title }}
                     <div><b :class="cb | in_stock">{{ cb | in_stock }}</b></div>
                   </span>
-                  <div v-on:click="ChangeCartBackCase(cb.tags[0])"
+                  <div v-if="status !== 'unlimited'"
+                       v-on:click="ChangeCartBackCase(cb.tags[0])"
+                       class="add-this-btn {{ cb | in_stock }}">ADD TO CART</div>
+                  <div v-else
+                       v-on:click="elementAddOtherCart(cb.tags[0])"
                        class="add-this-btn {{ cb | in_stock }}">ADD TO CART</div>
                 </div>
               </div>
-              <div data-tab="others" class="elements-content-box flex-l3-jfs-afs-">
+              <!-- <div data-tab="others" class="elements-content-box flex-l3-jfs-afs-">
                 <div v-for="o in twElements.others"
                      :data-selected="o.tags[0]"
                      v-on:click=""
@@ -449,10 +471,10 @@
                   <span>{{ o.title }}
                     <div><b :class="o | in_stock">{{ o | in_stock }}</b></div>
                   </span>
-                  <div v-on:click=""
+                  <div v-on:click="elementAddOtherCart(cb.tags[0])"
                        class="add-this-btn {{ o | in_stock }}">ADD TO CART</div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -841,44 +863,32 @@
                 </div>
               </div>
             </div>
-            <div v-if=" status === 'other' " 
+            <div v-if=" status === 'unlimited'" 
                  class="bottom-box normal-box">
               <h2>Zu WATCH / Other</h2>
               <div class="cart-content flex-l4-jfs-afs-">
-                <div class="cart-item {{ cart.basic.a1 }}">
-                  <div v-on:click="deleteCartElement('basic', 'a1')"
-                       class="delete-btn {{ cart.basic.a1 }}">
+                <!-- vue 會自動過濾重複的元素，使用 track-by="$index" 可以讓他重複渲染 -->
+                <div v-for="(i, o) in cart.unlimited"
+                     track-by="$index" 
+                     class="cart-item {{ o }}">
+                  <div v-on:click="deleteOtherCartElement(i)"
+                       class="delete-btn {{ o }}">
                     <img src="/assets/img/common/icons/delete.svg" alt="">
                   </div>
-                  <img v-on:click="elementChange(cart.basic.a1, '', '')"
-                       :src="apiData[cart.basic.a1].url" 
+                  <img v-on:click=""
+                       :src="apiData[o].url" 
                        alt="">
-                </div>
-                <div class="cart-item {{ cart.basic.b1 }}">
-                  <div v-on:click="deleteCartElement('basic', 'b1')"
-                       class="delete-btn {{ cart.basic.b1 }}">
-                    <img src="/assets/img/common/icons/delete.svg" alt="">
-                  </div>
-                  <img v-on:click="elementChange('', cart.basic.b1, '')"
-                       :src="apiData[cart.basic.b1].url"
-                       alt="">
-                </div>
-                <div class="cart-item {{ cart.basic.c1 }}">
-                  <div v-on:click="deleteCartElement('basic', 'c1')"
-                       class="delete-btn {{ cart.basic.c1 }}">
-                    <img src="/assets/img/common/icons/delete.svg" alt="">
-                  </div>
-                  <img v-on:click="elementChange('', '', cart.basic.c1)"
-                       :src="apiData[cart.basic.c1].url"
-                       alt="">
+                  <span class="cart-item-price">
+                    {{ 'NT ' + apiData[o].price }}
+                  </span>
                 </div>
               </div>
               <div class="cart-price-section">
                 <div class="total">
                   Total<b>{{ totalAmount }}</b>(NT)
                 </div>
-                <div id="cart-code-btn" class="btn">
-                  {{ calcElementsInCart() }}
+                <div id="cart-code-btn" class="btn ok">
+                  CHECKOUT
                 </div>
               </div>
             </div>
@@ -1096,7 +1106,7 @@
            <b :class="content | in_stock">{{ content | in_stock }} </b>
          </p>
       </div>
-      <div v-for="content in twElements.others"
+      <!-- <div v-for="content in twElements.others"
            class="content"
            :data-details="content.tags[0]">
          <h2>{{ content.title }}</h2>
@@ -1105,7 +1115,7 @@
            Price：{{ content.price }} (NT)｜
            <b :class="content | in_stock">{{ content | in_stock }} </b>
          </p>
-      </div>
+      </div> -->
     </div>
     <footer>
       COPYRIGHTS  ©  Zu WATCH ™ 2017
@@ -1150,8 +1160,8 @@
 </body>
 <script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>
 <script src="/assets/js/vendor/jquery.router.js"></script>
-<script src="/assets/js/vendor/vue.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script> -->
+<!-- <script src="/assets/js/vendor/vue.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
 <script src="/assets/js/vendor/clipboard.min.js"></script>
 <script src="/assets/js/index.js?v=5"></script>
 <script src="/assets/js/build.js?v=5"></script>

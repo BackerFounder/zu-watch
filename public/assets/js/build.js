@@ -144,9 +144,19 @@ $(document).ready(function() {
           c4: null,
           c5: null
         },
+        /// it's named as 'other' in this website.
+        unlimited: [
+
+        ],
+        /// 這個 common 是給台灣地區，有 backCase & others 配件
         common: {
           backCase: 'backcase-01',
-          others: []
+          others: [
+            'backcase-01',
+            'backcase-01',
+            'backcase-01',
+            'backcase-01',
+          ]
         }
       },
       /// 台灣版結帳使用的表單
@@ -211,13 +221,16 @@ $(document).ready(function() {
         /// 要觀察 vue 巢狀物件下面值的變化要用 handler & deep，官方關鍵字「 深度 watcher 」
         /// val 為變化後，oldVal 為變化前的值
         handler: function (val, oldVal) {
-          var self = this
-          var valueArray = []
-          var totalAmount = 0
-          var backCase = self.cart.common.backCase // 背殼
-          var mainObject = val[self.status] /// case, dial, strap
-          var checkFormApiObject = self.apiData
-          if ( this.location == 'tw' ) {
+          /// 一切只在台灣預購才判斷
+          if ( this.location == 'tw') {
+            var self = this
+            var valueArray = []
+            var totalAmount = 0
+            var backCase = self.cart.common.backCase // 背殼
+            /// 如果是 pro double basic : 只處理 case, dial, strap
+            /// 如果是 unlimited(other) : 處理 case, dial, strap, backCase, others
+            var mainObject = val[self.status] 
+            var checkFormApiObject = self.apiData
             /// 背殼、others 額外處理，這裡只處理 case, dial, strap
             Object.keys(mainObject).forEach(function(e) {
               var mainValue = mainObject[e]
@@ -230,13 +243,16 @@ $(document).ready(function() {
                 totalAmount += checkFormApiObject[mainValue].price
               }
             })
-            /// 處理背殼的錢及送出表單
-            totalAmount += checkFormApiObject[backCase].price
-            valueArray.push({
-              id: checkFormApiObject[backCase].id,
-              code: backCase,
-              price: checkFormApiObject[backCase].price
-            })
+            /// 處理背殼的錢及送出表單，但因為 unlimited 是一起處理
+            /// 原因：在一般組合，backCase 只能則一；但 unlimited 可以無限加購，所以才分開處理
+            if ( self.status !== 'unlimited' ) {
+              totalAmount += checkFormApiObject[backCase].price
+              valueArray.push({
+                id: checkFormApiObject[backCase].id,
+                code: backCase,
+                price: checkFormApiObject[backCase].price
+              })
+            }
             self.rewardIdForForm = valueArray
             self.totalAmount = totalAmount
           }
@@ -656,10 +672,6 @@ $(document).ready(function() {
       deleteCartElement: function(type, item) {
         this.cart[type][item] = null;
       },
-      // taiwan
-      ChangeCartBackCase: function(backcase) {
-        this.cart.common.backCase = backcase
-      },
       randomCartElements: function() {
         this.previewChange
         if ( this.status == 'pro' ) {
@@ -685,6 +697,20 @@ $(document).ready(function() {
         this.whichElementSelected
         this.saveLocalStorage
         // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+      },
+      // taiwan
+      ChangeCartBackCase: function(backcase) {
+        this.cart.common.backCase = backcase
+      },
+      elementsAddOtherCart: function() {
+        this.cart.unlimited.push(this.preview.now.a, this.preview.now.b, this.preview.now.c)
+      },
+      // unlimited(other) 時，加選跟刪除行為跟原本的不一樣
+      elementAddOtherCart: function(code) {
+        this.cart.unlimited.push(code)
+      },
+      deleteOtherCartElement: function(index) {
+        this.cart.unlimited.splice(index, 1)
       },
     	generateCode: function() {
     		var c = btoa(JSON.stringify(this.$data))
