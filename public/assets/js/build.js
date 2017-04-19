@@ -1,5 +1,11 @@
 $(window).load(function() {
 
+  $("img").on('error', function(){
+    var $src = $(this).attr('src')
+    // console.log($src)
+    $(this).attr('src', $src)
+  })
+
 	$(".elements-tab-btn").click(function() {
 		var t = $(this).attr('data-tab')
 		$(".elements-tab-btn").removeClass('active')
