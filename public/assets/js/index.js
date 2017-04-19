@@ -62,6 +62,32 @@ $('#details-popup').on('click', '.close', function(){
 	$('#details-popup').fadeOut(300);
 })
 
+// onload
+$(document).on('error', 'img', function(){
+  var $src = $(this).attr('src')
+  $(this).attr('src', $src)
+})
+
+// tab change
+$("body").on('click', '.elements-tab-btn', function() {
+	var t = $(this).attr('data-tab')
+	$(".elements-tab-btn").removeClass('active')
+	$(".elements-content-box").removeClass('active')
+	$(".elements-tab-btn[data-tab='" + t + "']").addClass('active')
+	$(".elements-content-box[data-tab='" + t + "']").addClass('active')
+});
+
+
+$(".code-section-cancel[data-code]").click(function() {
+	var t = $(this).attr('data-code')
+	$(".code-section[data-code='" + t + "']").removeClass('active')
+})
+
+$(".code-btn[data-code]").click(function() {
+	var t = $(this).attr('data-code')
+	$(".code-section[data-code='" + t + "']").addClass('active')
+})
+
 // mobile
 // add to cart
 $('body').on('click', '.seecart-btn, .add-this-btn, #addtocart' , function() {

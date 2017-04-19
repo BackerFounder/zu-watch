@@ -1,28 +1,9 @@
 $(window).load(function() {
 
-  $("img").on('error', function(){
-    var $src = $(this).attr('src')
-    // console.log($src)
-    $(this).attr('src', $src)
+  $('#details-popup [data-detail-src]').each(function(){
+    var t = $(this).attr('data-detail-src')
+    $(this).attr('src', t)
   })
-
-	$(".elements-tab-btn").click(function() {
-		var t = $(this).attr('data-tab')
-		$(".elements-tab-btn").removeClass('active')
-		$(".elements-content-box").removeClass('active')
-		$(".elements-tab-btn[data-tab='" + t + "']").addClass('active')
-		$(".elements-content-box[data-tab='" + t + "']").addClass('active')
-	});
-	$(".code-section-cancel[data-code]").click(function() {
-		var t = $(this).attr('data-code')
-		$(".code-section[data-code='" + t + "']").removeClass('active')
-	})
-
-	$(".code-btn[data-code]").click(function() {
-		var t = $(this).attr('data-code')
-		$(".code-section[data-code='" + t + "']").addClass('active')
-	})
-
 
 	// 暫時先放這
 	var clipboard = new Clipboard('#code-result-copy', {
