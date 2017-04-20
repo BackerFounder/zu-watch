@@ -18,7 +18,7 @@ $('.index-action').on('mouseover', '[data-hover-show]', function(){
 	var h = $(this).attr('data-hover-show')
 	$('.index-bg div').removeClass('show')
 	$('.' + h).addClass('show')
-	$('.build-bg').css('background-image', "url('/assets/img/main/bg/" + h + ".jpg')")
+	$('.build-bg').css('background-image', "url('https://s3cdn.backer-founder.com/lp/zuwatch/img/main/bg/" + h + ".jpg')")
 })
 
 // Choose the Reward to go to build page
@@ -133,11 +133,11 @@ $('#code-and-share').on('click', '#cart-bigger', function(){
 
 
 if ( $(window).width() <= 850 ) {
-	$('.wrap .mockup-man').attr('src', '/assets/img/main-mobile/mockup/man.png')
-	$('.wrap .mockup-woman').attr('src', '/assets/img/main-mobile/mockup/woman.png')
+	$('.wrap .mockup-man').attr('src', 'https://s3cdn.backer-founder.com/lp/zuwatch/img/main-mobile/mockup/man.png')
+	$('.wrap .mockup-woman').attr('src', 'https://s3cdn.backer-founder.com/lp/zuwatch/img/main-mobile/mockup/woman.png')
 } else {
-	$('.wrap .mockup-man').attr('src', '/assets/img/main/mockup/man.png')
-	$('.wrap .mockup-woman').attr('src', '/assets/img/main/mockup/woman.png')
+	$('.wrap .mockup-man').attr('src', 'https://s3cdn.backer-founder.com/lp/zuwatch/img/main/mockup/man.png')
+	$('.wrap .mockup-woman').attr('src', 'https://s3cdn.backer-founder.com/lp/zuwatch/img/main/mockup/woman.png')
 }
 
 

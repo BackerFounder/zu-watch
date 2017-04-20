@@ -297,15 +297,15 @@ $(document).ready(function() {
       },
       // 處理購物車元件預設灰圖
       cartCaseDefault: function(v) {
-        if (!v) { return '/assets/img/main-mobile/product/case/null.png'} 
+        if (!v) { return 'https://s3cdn.backer-founder.com/lp/zuwatch/img/main-mobile/product/case/null.png'} 
         else { return v }
       },
       cartDialDefault: function(v) {
-        if (!v) { return '/assets/img/main-mobile/product/dial/null.png'} 
+        if (!v) { return 'https://s3cdn.backer-founder.com/lp/zuwatch/img/main-mobile/product/dial/null.png'} 
         else { return v }
       },
       cartStrapDefault: function(v) {
-        if (!v) { return '/assets/img/main-mobile/product/strap/null.png'} 
+        if (!v) { return 'https://s3cdn.backer-founder.com/lp/zuwatch/img/main-mobile/product/strap/null.png'} 
         else { return v }
       }
     },
