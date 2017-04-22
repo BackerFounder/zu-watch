@@ -408,6 +408,22 @@ $(document).ready(function() {
         this.saveLocalStorage
         // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
       },
+      // for taiwan
+      twRandomElements: function() {
+        this.previewChange
+        var a = this.twElements.case
+        var aN = a.length
+        var b = this.twElements.dial
+        var bN = b.length
+        var c = this.twElements.strap
+        var cN = c.length
+        this.preview.now.a = a[Math.floor((Math.random() * aN))].tags[0]
+        this.preview.now.b = b[Math.floor((Math.random() * bN))].tags[0]
+        this.preview.now.c = c[Math.floor((Math.random() * cN))].tags[0]
+        this.whichElementSelected
+        this.saveLocalStorage
+        // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
+      },
     	saveElements: function() {
     		// 檢查物件有無為空不用三個部位檢查，檢查一個就好
     		var checkA = this.save.saveA.a

@@ -281,6 +281,13 @@
               <i class="fa fa-random" aria-hidden="true"></i>
               Random
             </div>
+            <div id="random"
+                 v-if="location == 'tw'"
+                 v-on:click="twRandomElements"
+                 class="zuwatch-btn save-btn active">
+              <i class="fa fa-random" aria-hidden="true"></i>
+              Random
+            </div>
             <div v-if="status !== 'unlimited'" v-on:click="elementAddCart(preview.now.a, preview.now.b, preview.now.c)"
                  id="addtocart" class="zuwatch-btn save-btn">
               <i class="fa fa-plus-circle" aria-hidden="true"></i>
