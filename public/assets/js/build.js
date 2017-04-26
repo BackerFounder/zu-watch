@@ -334,8 +334,9 @@ $(document).ready(function() {
       },
       routeStatusChange: function() {
         /// 已經過濾掉後面的參數跟前面的網域名
-        var path = document.location.pathname.split("/")[1] == '' ? 'basic' : document.location.pathname.split("/")[1]
-        this.status = path
+        var path = document.location.pathname.split("/")[1]
+        if ( path == 'basic' | path == 'pro' | path == 'double' ) { this.status = path }
+        else if ( path == 'other' ) { this.status = 'unlimited' }
       },
     	fetchData: function() {
         if ( this.location == 'jp' ) {
