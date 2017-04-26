@@ -211,7 +211,7 @@ section.right {
 			overflow: auto;
 			-webkit-overflow-scrolling: touch;
 			.cart-content {
-				overflow: visible;
+				overflow-x: auto;
 				height: auto;
 				flex: 0 0 auto;
 				flex-wrap: nowrap;
@@ -376,6 +376,7 @@ h2 {
 		right: 0;
 		margin: auto;
 		animation: None 5s linear 0s infinite both;
+		transform: translateX(2.8%);
 	}
 	@media screen and (max-width: 992px) {
 		padding-top: 0;

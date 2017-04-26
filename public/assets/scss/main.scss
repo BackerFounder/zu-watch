@@ -117,3 +117,72 @@ img {
 .submit-btn {
 	padding: 5px 15px;
 }
+.status-exchange {
+	height: 40px;
+	line-height: 50px;
+	text-align: center;
+}
+.cart-status-btn {
+	display: inline-block;
+	font-size: 12px;
+	width: 30%;
+	height: 22px;
+	line-height: 22px;
+	text-align: center;
+	box-shadow: inset 0 0 0 1px rgba(0,0,0,.2);
+	color: rgba(0,0,0,.68);
+	max-width: 100px;
+	margin: 0 1%;
+	transition: .3s ease;
+}
+.cart-status-btn:hover {
+	background-color: rgba(0,0,0,.89);
+	color: #fff;
+}
+.cart-status-btn.active {
+	background-color: rgba(0,0,0,.89);
+	color: #fff;
+}
+
+/// css loading
+.loading {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	letter-spacing: 1px;
+}
+.sk-cube-grid {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 20px;
+}
+
+.sk-cube-grid .sk-cube {
+  width: 33%;
+  height: 33%;
+  background-color: #fff;
+  float: left;
+  animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
+}
+.sk-cube-grid .sk-cube1 { animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube2 { animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube3 { animation-delay: 0.4s; }
+.sk-cube-grid .sk-cube4 { animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube5 { animation-delay: 0.2s; }
+.sk-cube-grid .sk-cube6 { animation-delay: 0.3s; }
+.sk-cube-grid .sk-cube7 { animation-delay: 0s;   }
+.sk-cube-grid .sk-cube8 { animation-delay: 0.1s; }
+.sk-cube-grid .sk-cube9 { animation-delay: 0.2s; }
+
+@keyframes sk-cubeGridScaleDelay {
+  0%, 70%, 100% {
+    transform: scale3D(1, 1, 1);
+  } 35% {
+    transform: scale3D(0, 0, 1);
+  } 
+}

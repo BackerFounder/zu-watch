@@ -33,18 +33,14 @@ $('.index-action').on('click', '.btn' ,function () {
 /// Go back to index
 $('#customize').on('click', '.gobackindex-btn, .zu-title a', function(e) {
 	e.preventDefault()
-	$('#index').fadeIn(300);
-  $('section').addClass('hide')
-  $('body').css('overflow', 'hidden')
+	// $('#index').fadeIn(300);
+ //  $('section').addClass('hide')
+ //  $('body').css('overflow', 'hidden')
 })
 
 
 // output modal
-$('#code-and-share').on('click', '#cart-code-btn', function(){
-	$('#output-popup').fadeIn(300);
-	$('#output-popup').find('form').submit();
-})
-$('#code-and-share').on('click', '.cart-price-section #cart-code-btn', function(){
+$(document).on('click', '.cart-price-section #cart-code-btn', function(){
 	$('#output-popup').find('form').submit();
 })
 $('#output-popup').on('click', '.close', function(){

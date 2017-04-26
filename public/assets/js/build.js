@@ -1,6 +1,11 @@
 $(window).load(function() {
 
-  $('#details-popup [data-detail-src]').each(function(){
+  /// Loading 結束
+  $('#index').fadeOut(300);
+  $('section').removeClass('hide')
+  $('body').css('overflow', 'auto')
+
+  $('#details-popup').find('[data-detail-src]').each(function(){
     var t = $(this).attr('data-detail-src')
     $(this).attr('src', t)
   })
@@ -24,68 +29,69 @@ $(window).load(function() {
 
 
 $(document).ready(function() {
+  var jp_data = {
+    case: [
+      { code: 'ca-01', name: 'Silver Case' },
+      { code: 'ca-02', name: 'Black Case' },
+      { code: 'ca-03', name: 'Rose Gold Case' },
+    ],
+    dial: [
+      { code: 'zu-01-b', name: 'Simple-Black' },
+      { code: 'zu-01-w', name: 'Simple-White' },
+      { code: 'zu-02-b', name: 'Gentry-Black' },
+      { code: 'zu-02-w', name: 'Gentry-White' },
+      { code: 'zu-03-b', name: 'Precision-Black' },
+      { code: 'zu-03-w', name: 'Precision-White' },
+      { code: 'zu-04-b', name: 'Light-Black' },
+      { code: 'zu-04-w', name: 'Light-White' },
+      { code: 'zu-05-b', name: 'Marble-Black' },
+      { code: 'zu-05-w', name: 'Marble-White' },
+      { code: 'zu-06-b', name: 'Amiable-Black' },
+      { code: 'zu-06-w', name: 'Amiable-White' },
+      { code: 'zu-07-b', name: 'Roman-Black' },
+      { code: 'zu-07-w', name: 'Roman-White' },
+      { code: 'zu-08-b', name: 'Kaleidoscope-Black' },
+      { code: 'zu-08-w', name: 'Kaleidoscope-White' },
+      { code: 'zu-09-b', name: 'Flow-Black' },
+      { code: 'zu-09-w', name: 'Flow-White' },
+      { code: 'zu-10-b', name: 'Grilles-Black' },
+      { code: 'zu-10-w', name: 'Grilles-White' },
+      { code: 'zu-11-b', name: 'Space Oddity' },
+      { code: 'zu-11-w', name: 'Explorer' }
+    ],
+    strap: [
+      { code: 'lc-01', name: 'Classic Black' },
+      { code: 'lc-02', name: 'Classic White' },
+      { code: 'lc-03', name: 'Classic Apricot' },
+      { code: 'lc-04', name: 'Classic Gray' },
+      { code: 'lc-05', name: 'Classic Blue' },
+      { code: 'lf-01', name: 'Formal Black' },
+      { code: 'lf-02', name: 'Formal White' },
+      { code: 'lf-03', name: 'Formal Blue' },
+      { code: 'lf-04', name: 'Formal Mulberry' },
+      { code: 'me-01', name: 'Mesh Silver' },
+      { code: 'me-02', name: 'Mesh Black' },
+      { code: 'me-03', name: 'Mesh Rose Gold' },
+      { code: 'nl-01', name: 'Nato Black' },
+      { code: 'nl-02', name: 'Nato Chocolate' },
+      { code: 'nl-03', name: 'Nato Brown' },
+      { code: 'ny-01', name: 'Nylon Black' },
+      { code: 'ny-02', name: 'Nylon Gray' },
+      { code: 'ny-03', name: 'Nylon Army Green' }
+    ],
+    caseCodeArray: [],
+    dialCodeArray: [],
+    strapCodeArray: []
+  }
   // vue
   ZuWatch = new Vue ({
     el: '#zu-watch',
     data: {
-      apiData: [],
-      utmFlag: '',
-      location: 'tw',
-      status: 'basic',
-      elements: {
-        case: [
-          { code: 'ca-01', name: 'Silver Case' },
-          { code: 'ca-02', name: 'Black Case' },
-          { code: 'ca-03', name: 'Rose Gold Case' },
-        ],
-        dial: [
-          { code: 'zu-01-b', name: 'Simple-Black' },
-          { code: 'zu-01-w', name: 'Simple-White' },
-          { code: 'zu-02-b', name: 'Gentry-Black' },
-          { code: 'zu-02-w', name: 'Gentry-White' },
-          { code: 'zu-03-b', name: 'Precision-Black' },
-          { code: 'zu-03-w', name: 'Precision-White' },
-          { code: 'zu-04-b', name: 'Light-Black' },
-          { code: 'zu-04-w', name: 'Light-White' },
-          { code: 'zu-05-b', name: 'Marble-Black' },
-          { code: 'zu-05-w', name: 'Marble-White' },
-          { code: 'zu-06-b', name: 'Amiable-Black' },
-          { code: 'zu-06-w', name: 'Amiable-White' },
-          { code: 'zu-07-b', name: 'Roman-Black' },
-          { code: 'zu-07-w', name: 'Roman-White' },
-          { code: 'zu-08-b', name: 'Kaleidoscope-Black' },
-          { code: 'zu-08-w', name: 'Kaleidoscope-White' },
-          { code: 'zu-09-b', name: 'Flow-Black' },
-          { code: 'zu-09-w', name: 'Flow-White' },
-          { code: 'zu-10-b', name: 'Grilles-Black' },
-          { code: 'zu-10-w', name: 'Grilles-White' },
-          { code: 'zu-11-b', name: 'Space Oddity' },
-          { code: 'zu-11-w', name: 'Explorer' }
-        ],
-        strap: [
-          { code: 'lc-01', name: 'Classic Black' },
-          { code: 'lc-02', name: 'Classic White' },
-          { code: 'lc-03', name: 'Classic Apricot' },
-          { code: 'lc-04', name: 'Classic Gray' },
-          { code: 'lc-05', name: 'Classic Blue' },
-          { code: 'lf-01', name: 'Formal Black' },
-          { code: 'lf-02', name: 'Formal White' },
-          { code: 'lf-03', name: 'Formal Blue' },
-          { code: 'lf-04', name: 'Formal Mulberry' },
-          { code: 'me-01', name: 'Mesh Silver' },
-          { code: 'me-02', name: 'Mesh Black' },
-          { code: 'me-03', name: 'Mesh Rose Gold' },
-          { code: 'nl-01', name: 'Nato Black' },
-          { code: 'nl-02', name: 'Nato Chocolate' },
-          { code: 'nl-03', name: 'Nato Brown' },
-          { code: 'ny-01', name: 'Nylon Black' },
-          { code: 'ny-02', name: 'Nylon Gray' },
-          { code: 'ny-03', name: 'Nylon Army Green' }
-        ],
-        caseCodeArray: [],
-        dialCodeArray: [],
-        strapCodeArray: []
-      },
+      utmFlag: '', // 贊助標籤紀錄，還沒做
+      apiData: [], // 歸類好方便取得的 Rewards Array
+      location: 'tw', // 目前只有 jp 日本跟 tw 台灣
+      status: 'basic', // 目前只有 Basic Pro Double Other
+      elements: jp_data, // jp 的回饋們是寫死的資料
       twElements: {
         case: [],
         dial: [],
@@ -93,7 +99,7 @@ $(document).ready(function() {
         backCase: [],
         others: []
       },
-      preview: {
+      preview: { // 上一步 下一步
         prev: { a: null, b: null, c: null },
         now:  { a: 'ca-01', b: 'zu-01-b', c: 'lc-01' },
         next: { a: null, b: null, c: null }
@@ -158,6 +164,7 @@ $(document).ready(function() {
 
     created: function() {
       this.locationChange()
+      this.routeStatusChange()
     	this.fetchData()
     },
 
@@ -178,9 +185,47 @@ $(document).ready(function() {
         $('[data-selected=' + b +']').addClass('active');
         $('[data-selected=' + c +']').addClass('active');
       },
+      diffCartChange: function() {
+        // 切換 status 或 cart 加入刪除有更動，就重新計算金額跟要送出去 Backme 的東東們
+        /// 一切只在台灣預購才判斷
+        if ( this.location == 'tw') {
+          var self = this
+          var valueArray = []
+          var totalAmount = 0
+          var backCase = self.cart.common.backCase // 背殼
+          /// 如果是 pro double basic : 只處理 case, dial, strap
+          /// 如果是 unlimited(other) : 處理 case, dial, strap, backCase, others
+          var mainObject = this.cart[self.status] 
+          var checkFormApiObject = self.apiData
+          /// 背殼、others 額外處理，這裡只處理 case, dial, strap
+          Object.keys(mainObject).forEach(function(e) {
+            var mainValue = mainObject[e]
+            if ( mainValue !== null ) {
+              valueArray.push({
+                id: checkFormApiObject[mainValue].id,
+                code: mainValue,
+                price: checkFormApiObject[mainValue].price
+              })
+              totalAmount += checkFormApiObject[mainValue].price
+            }
+          })
+          /// 處理背殼的錢及送出表單，但因為 unlimited 是一起處理
+          /// 原因：在一般組合，backCase 只能則一；但 unlimited 可以無限加購，所以才分開處理
+          if ( self.status !== 'unlimited' ) {
+            totalAmount += checkFormApiObject[backCase].price
+            valueArray.push({
+              id: checkFormApiObject[backCase].id,
+              code: backCase,
+              price: checkFormApiObject[backCase].price
+            })
+          }
+          self.rewardIdForForm = valueArray
+          self.totalAmount = totalAmount
+        }
+      },
       saveLocalStorage: function() {
         // 儲存在瀏覽器，讓重整不會掉
-        // localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
+        localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
       }
     },
 
@@ -203,46 +248,15 @@ $(document).ready(function() {
             $('#code-and-share .bottom-box').animate( { scrollLeft: d }, 400);
           }
         }
+        // status 切換也會影響金額跟要送出去 Backme 的東東們
+        this.diffCartChange
       },
       cart: {
         /// 要觀察 vue 巢狀物件下面值的變化要用 handler & deep，官方關鍵字「 深度 watcher 」
         /// val 為變化後，oldVal 為變化前的值
         handler: function (val, oldVal) {
-          /// 一切只在台灣預購才判斷
-          if ( this.location == 'tw') {
-            var self = this
-            var valueArray = []
-            var totalAmount = 0
-            var backCase = self.cart.common.backCase // 背殼
-            /// 如果是 pro double basic : 只處理 case, dial, strap
-            /// 如果是 unlimited(other) : 處理 case, dial, strap, backCase, others
-            var mainObject = val[self.status] 
-            var checkFormApiObject = self.apiData
-            /// 背殼、others 額外處理，這裡只處理 case, dial, strap
-            Object.keys(mainObject).forEach(function(e) {
-              var mainValue = mainObject[e]
-              if ( mainValue !== null ) {
-                valueArray.push({
-                  id: checkFormApiObject[mainValue].id,
-                  code: mainValue,
-                  price: checkFormApiObject[mainValue].price
-                })
-                totalAmount += checkFormApiObject[mainValue].price
-              }
-            })
-            /// 處理背殼的錢及送出表單，但因為 unlimited 是一起處理
-            /// 原因：在一般組合，backCase 只能則一；但 unlimited 可以無限加購，所以才分開處理
-            if ( self.status !== 'unlimited' ) {
-              totalAmount += checkFormApiObject[backCase].price
-              valueArray.push({
-                id: checkFormApiObject[backCase].id,
-                code: backCase,
-                price: checkFormApiObject[backCase].price
-              })
-            }
-            self.rewardIdForForm = valueArray
-            self.totalAmount = totalAmount
-          }
+          // Cart 一更動就要計算金額跟送出的 Backme 的東東
+          this.diffCartChange
         },
         deep: true
       }
@@ -318,12 +332,14 @@ $(document).ready(function() {
           this.location = 'tw'
         }
       },
+      routeStatusChange: function() {
+        /// 已經過濾掉後面的參數跟前面的網域名
+        var path = document.location.pathname.split("/")[1] == '' ? 'basic' : document.location.pathname.split("/")[1]
+        this.status = path
+      },
     	fetchData: function() {
-  			// this.$data = JSON.parse(atob(localStorage['fullPage']))
         if ( this.location == 'jp' ) {
           this.whichElementSelected
-          var path = document.location.pathname.split("/")[1]
-          $('[data-hover-show="index-bg-' + path + '"]').click()
           var caseCodeArray = []
           var dialCodeArray = []
           var strapCodeArray = []
@@ -366,7 +382,8 @@ $(document).ready(function() {
                 }
                 else if ( el.category == 'back-case' ) {
                   self.twElements.backCase.push(el)
-                } else {
+                } 
+                else if ( el.category == 'others' ) {
                   self.twElements.others.push(el)
                 }
               }
@@ -381,20 +398,13 @@ $(document).ready(function() {
       },
     	elementChange: function(a, b, c) {
         $('div.preview-1, div.preview-2, div.preview-3').removeClass('active')
-    		this.previewChange
-    		if (a)
-    			this.preview.now.a = a
-    		if (b)
-    			this.preview.now.b = b
-    		if (c)
-    			this.preview.now.c = c
+    		if (a) this.preview.now.a = a
+    		if (b) this.preview.now.b = b
+    		if (c) this.preview.now.c = c
         this.whichElementSelected
-    		this.saveLocalStorage
-    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
       randomElements: function() {
         $('div.preview-1, div.preview-2, div.preview-3').addClass('active')
-        this.previewChange
         var a = this.elements.caseCodeArray
         var aN = this.elements.case.length
         var b = this.elements.dialCodeArray
@@ -405,12 +415,9 @@ $(document).ready(function() {
         this.preview.now.b = b[Math.floor((Math.random() * bN))]
         this.preview.now.c = c[Math.floor((Math.random() * cN))]
         this.whichElementSelected
-        this.saveLocalStorage
-        // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
       },
       // for taiwan
       twRandomElements: function() {
-        this.previewChange
         var a = this.twElements.case
         var aN = a.length
         var b = this.twElements.dial
@@ -421,8 +428,6 @@ $(document).ready(function() {
         this.preview.now.b = b[Math.floor((Math.random() * bN))].tags[0]
         this.preview.now.c = c[Math.floor((Math.random() * cN))].tags[0]
         this.whichElementSelected
-        this.saveLocalStorage
-        // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
       },
     	saveElements: function() {
     		// 檢查物件有無為空不用三個部位檢查，檢查一個就好
@@ -443,7 +448,6 @@ $(document).ready(function() {
 	    				this.save[b[i]].c = this.preview.now.c
               this.whichElementSelected
 	    				// localStorage['fullPage'] = btoa(JSON.stringify(this.$data))
-	    				// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
 	    				break
 	    			}
 	    		}
@@ -455,15 +459,11 @@ $(document).ready(function() {
     		this.preview.now.b = this.save[saveN].b
     		this.preview.now.c = this.save[saveN].c
         this.whichElementSelected
-    		this.saveLocalStorage
-    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	deleteElementsFromSave: function(saveN) {
         this.save[saveN].a = null
         this.save[saveN].b = null
         this.save[saveN].c = null
-        this.saveLocalStorage
-    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	undoElements: function() {
     		this.preview.next.a = this.preview.now.a
@@ -476,8 +476,6 @@ $(document).ready(function() {
     		this.preview.prev.b = null
     		this.preview.prev.c = null
         this.whichElementSelected
-    		this.saveLocalStorage
-    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
     	nextElements: function() {
     		this.previewChange
@@ -488,8 +486,6 @@ $(document).ready(function() {
     		this.preview.next.b = null
     		this.preview.next.c = null
         this.whichElementSelected
-    		this.saveLocalStorage
-    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
     	},
       calcElementsInCart: function() {
         var status = this.status
@@ -638,8 +634,6 @@ $(document).ready(function() {
               for (var i = 0; i <= 4; i ++ ) {
                 if ( !this.cart.double[ a[i+2] ] ) {
                   this.cart.double[ a[i+2] ] = b
-                  this.saveLocalStorage
-                  // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
                   break
                 }
               }
@@ -661,16 +655,12 @@ $(document).ready(function() {
               for (var i = 0; i <= 4; i ++ ) {
                 if ( !this.cart.double[ a[i+7] ] ) {
                   this.cart.double[ a[i+7] ] = c
-                  this.saveLocalStorage
-                  // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
                   break
                 }
               }
             }
           }
         }
-        this.saveLocalStorage
-        // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
       },
       deleteCartElement: function(type, item) {
         this.cart[type][item] = null;
@@ -698,13 +688,12 @@ $(document).ready(function() {
           this.preview.now.c = c[Math.floor((Math.random() * cN))]
         }
         this.whichElementSelected
-        this.saveLocalStorage
-        // window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'] );
       },
       // taiwan
       ChangeCartBackCase: function(backcase) {
         this.cart.common.backCase = backcase
       },
+      // taiwan Other's unlimitedCheckoutBtn()
       elementsAddOtherCart: function() {
         this.cart.unlimited.push(this.preview.now.a, this.preview.now.b, this.preview.now.c)
       },
@@ -714,20 +703,7 @@ $(document).ready(function() {
       },
       deleteOtherCartElement: function(index) {
         this.cart.unlimited.splice(index, 1)
-      },
-    	generateCode: function() {
-    		var c = btoa(JSON.stringify(this.$data))
-    		$('.generate-code-section .code-section-area').text(c)
-    		// window.history.pushState({}, 0, 'http://' + window.location.host + '/?' + localStorage['fullPage'])
-    	},
-    	inputCode: function() {
-    		if ( $('input.code-section-area').val() !== '' ) {
-    			this.$data = JSON.parse(atob($('input.code-section-area').val()))
-    			this.saveLocalStorage
-    			$('input.code-section-area').val("")
-    			$('.input-code-section').removeClass('active')
-    		}
-    	},
+      }
 
     } // methods end
 

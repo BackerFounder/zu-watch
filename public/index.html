@@ -12,7 +12,7 @@
   <meta content="Your first configurable watch for every style you carry." property="og:description">
   <meta content="https://s3-ap-northeast-1.amazonaws.com/zeczec-prod/asset_19649_image_original.jpg" property="og:image">
   <link href="http://static.wixstatic.com/media/495b64_5c92ae34812c48b1bd0b81f1a8180d64.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/495b64_5c92ae34812c48b1bd0b81f1a8180d64.png" rel="shortcut icon">
-  <link rel="stylesheet" href="/assets/css/main.css?v=5">
+  <link rel="stylesheet" href="/assets/css/main.css?v=online2">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700|Rubik:400,500,700" rel="stylesheet">
 </head>
@@ -20,9 +20,9 @@
 <body id="zu-watch" class="location_{{ location }}">
   <div id="index">
     <div class="index-bg">
-      <div class="index-bg-basic show"></div>
-      <div class="index-bg-pro"></div>
-      <div class="index-bg-double"></div>
+      <!-- <div class="index-bg-basic"></div> -->
+      <!-- <div class="index-bg-pro"></div> -->
+      <!-- <div class="index-bg-double  show"></div> -->
     </div>
     <div class="index-content">
       <a class="zu-title" href="javascript:;">
@@ -30,7 +30,21 @@
           <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/logo-w.svg" alt="">
         </span>
       </a>
-      <div class="index-action">
+      <div class="loading">
+        <div class="sk-cube-grid">
+          <div class="sk-cube sk-cube1"></div>
+          <div class="sk-cube sk-cube2"></div>
+          <div class="sk-cube sk-cube3"></div>
+          <div class="sk-cube sk-cube4"></div>
+          <div class="sk-cube sk-cube5"></div>
+          <div class="sk-cube sk-cube6"></div>
+          <div class="sk-cube sk-cube7"></div>
+          <div class="sk-cube sk-cube8"></div>
+          <div class="sk-cube sk-cube9"></div>
+        </div>
+        Loading ...
+      </div>
+      <!-- <div class="index-action">
         <div data-hover-show="index-bg-basic"
              v-on:click="chooseStatus('basic')"
              class="btn">Zu WATCH / Basic</div>
@@ -41,12 +55,11 @@
              data-hover-show="index-bg-double"
              v-on:click="chooseStatus('double')"
              class="btn">Zu WATCH / Double</div>
-        <!-- Intead of 'other', I named it's Vue.status as 'unlimited'.-->
         <div v-if="location == 'tw'"
              data-hover-show="index-bg-double"
              v-on:click="chooseStatus('unlimited')"
              class="btn">Zu WATCH / Other</div>
-      </div>
+      </div> -->
     </div>
   </div>
   <div id="customize">
@@ -517,10 +530,22 @@
                 {{ calcElementsInCart() }}
               </div>
             </h2>
-            <div v-if=" status === 'basic' " 
-                 class="bottom-box normal-box">
-              <h2>Zu WATCH / Basic</h2>
-              <div class="cart-content flex-l4-jfs-afs-">
+            <div class="bottom-box normal-box">
+              <div class="status-exchange">
+                <div class="cart-status-btn"
+                     :class="{ active: status == 'basic' }"
+                     v-on:click="chooseStatus('basic')">Basic
+                </div>
+                <div class="cart-status-btn" 
+                     :class="{ active: status == 'pro' }"
+                     v-on:click="chooseStatus('pro')">Pro
+                </div>
+                <div class="cart-status-btn" 
+                     :class="{ active: status == 'double' }"
+                     v-on:click="chooseStatus('double')">Double
+                </div>
+              </div>
+              <div v-if="status === 'basic'" class="cart-content flex-l4-jfs-afs-">
                 <div class="cart-item {{ cart.basic.a1 }}">
                   <div v-on:click="deleteCartElement('basic', 'a1')"
                        class="delete-btn {{ cart.basic.a1 }}">
@@ -549,11 +574,7 @@
                        :srcset="'https://s3cdn.backer-founder.com/lp/zuwatch/img/main-mobile/product/strap/' + cart.basic.c1 + '.png 850w'" alt="">
                 </div>
               </div>
-            </div>
-            <div v-if=" status === 'pro' " 
-                 class="bottom-box normal-box">
-              <h2>Zu WATCH / Pro</h2>
-              <div class="cart-content flex-l4-jfs-afs-">
+              <div v-if="status === 'pro'" class="cart-content flex-l4-jfs-afs-">
                 <div class="cart-item {{ cart.pro.a1 }}">
                   <div v-on:click="deleteCartElement('pro', 'a1')"
                        class="delete-btn {{ cart.pro.a1 }}">
@@ -605,11 +626,7 @@
                        alt="">
                 </div>
               </div>
-            </div>
-            <div v-if=" status === 'double' " 
-                 class="bottom-box normal-box">
-              <h2>Zu WATCH / Double</h2>
-              <div class="cart-content flex-l4-jfs-afs-">
+              <div v-if="status === 'double'" class="cart-content flex-l4-jfs-afs-">
                 <div class="cart-item {{ cart.double.a1 }}">
                   <div v-on:click="deleteCartElement('double', 'a1')"
                        class="delete-btn {{ cart.double.a1 }}">
@@ -744,10 +761,22 @@
               <i style="margin-right: 10px;" 
                  class="fa fa-shopping-cart" aria-hidden="true"></i>Cart
             </h2>
-            <div v-if=" status === 'basic' " 
-                 class="bottom-box normal-box">
-              <h2>Zu WATCH / Basic</h2>
-              <div class="cart-content flex-l4-jfs-afs-">
+            <div class="bottom-box normal-box">
+              <div class="status-exchange">
+                <div class="cart-status-btn" 
+                     :class="{ active: status == 'basic' }"
+                     v-on:click="chooseStatus('basic')">Basic
+                </div>
+                <div class="cart-status-btn" 
+                     :class="{ active: status == 'pro' }"
+                     v-on:click="chooseStatus('pro')">Pro
+                </div>
+                <div class="cart-status-btn" 
+                     :class="{ active: status == 'unlimited' }"
+                     v-on:click="chooseStatus('unlimited')">Other
+                </div>
+              </div>
+              <div v-if="status === 'basic'" class="cart-content flex-l4-jfs-afs-">
                 <div class="cart-item {{ cart.basic.a1 }}">
                   <div v-on:click="deleteCartElement('basic', 'a1')"
                        class="delete-btn {{ cart.basic.a1 }}">
@@ -792,19 +821,7 @@
                   </span>
                 </div>
               </div>
-              <div class="cart-price-section">
-                <div class="total">
-                  Total<b>{{ totalAmount }}</b>(NT)
-                </div>
-                <div id="cart-code-btn" class="btn">
-                  {{ calcElementsInCart() }}
-                </div>
-              </div>
-            </div>
-            <div v-if=" status === 'pro' " 
-                 class="bottom-box normal-box">
-              <h2>Zu WATCH / Pro</h2>
-              <div class="cart-content flex-l4-jfs-afs-">
+              <div v-if="status === 'pro'" class="cart-content flex-l4-jfs-afs-">
                 <div class="cart-item {{ cart.pro.a1 }}">
                   <div v-on:click="deleteCartElement('pro', 'a1')"
                        class="delete-btn {{ cart.pro.a1 }}">
@@ -873,19 +890,7 @@
                   </span>
                 </div>
               </div>
-              <div class="cart-price-section">
-                <div class="total">
-                  Total<b>{{ totalAmount }}</b>(NT)
-                </div>
-                <div id="cart-code-btn" class="btn">
-                  {{ calcElementsInCart() }}
-                </div>
-              </div>
-            </div>
-            <div v-if=" status === 'unlimited'" 
-                 class="bottom-box normal-box">
-              <h2>Zu WATCH / Other</h2>
-              <div class="cart-content flex-l4-jfs-afs-">
+              <div v-if="status === 'unlimited'" class="cart-content flex-l4-jfs-afs-">
                 <!-- vue 會自動過濾重複的元素，使用 track-by="$index" 可以讓他重複渲染 -->
                 <div v-for="(i, o) in cart.unlimited"
                      track-by="$index" 
@@ -906,8 +911,12 @@
                 <div class="total">
                   Total<b>{{ totalAmount }}</b>(NT)
                 </div>
-                <div id="cart-code-btn" class="btn ok">
+                <div v-if="status === 'unlimited'" id="cart-code-btn" class="btn"
+                     :class="{ ok: cart.unlimited.length >= 1 }">
                   CHECKOUT
+                </div>
+                <div v-else id="cart-code-btn" class="btn">
+                  {{ calcElementsInCart() }}
                 </div>
               </div>
             </div>
@@ -1181,8 +1190,8 @@
 <script src="/assets/js/vendor/vue.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script> -->
 <script src="/assets/js/vendor/clipboard.min.js"></script>
-<script src="/assets/js/index.js?v=5"></script>
-<script src="/assets/js/build.js?v=5"></script>
+<script src="/assets/js/index.js?v=online2"></script>
+<script src="/assets/js/build.js?v=online2"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
