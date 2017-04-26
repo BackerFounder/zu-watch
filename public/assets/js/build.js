@@ -251,6 +251,20 @@ $(document).ready(function() {
         // status 切換也會影響金額跟要送出去 Backme 的東東們
         this.diffCartChange
       },
+      save: {
+        handler: function (val, oldVal) {
+          var t1 = this.save.saveA.a == null
+          var t2 = this.save.saveB.a == null
+          var t3 = this.save.saveC.a == null
+          var t4 = this.save.saveD.a == null
+          if( t1 && t2 && t3 && t4 ) {
+            $('#save').removeClass('hidetext')
+          } else {
+            $('#save').addClass('hidetext')
+          }
+        },
+        deep: true
+      },
       cart: {
         /// 要觀察 vue 巢狀物件下面值的變化要用 handler & deep，官方關鍵字「 深度 watcher 」
         /// val 為變化後，oldVal 為變化前的值
@@ -453,7 +467,6 @@ $(document).ready(function() {
 	    			}
 	    		}
 	    	}
-        $('#save').addClass('hidetext')
     	},
     	callSave: function(saveN) {
     		this.preview.now.a = this.save[saveN].a

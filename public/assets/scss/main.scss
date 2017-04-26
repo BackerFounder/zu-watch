@@ -126,21 +126,22 @@ img {
 	display: inline-block;
 	font-size: 12px;
 	width: 30%;
-	height: 22px;
-	line-height: 22px;
+	height: 20px;
+	line-height: 20px;
 	text-align: center;
 	box-shadow: inset 0 0 0 1px rgba(0,0,0,.2);
 	color: rgba(0,0,0,.68);
-	max-width: 100px;
+	max-width: 105px;
+	border-radius: 3px;
 	margin: 0 1%;
 	transition: .3s ease;
 }
 .cart-status-btn:hover {
-	background-color: rgba(0,0,0,.89);
+	background-color: rgba(0,0,0,.7);
 	color: #fff;
 }
 .cart-status-btn.active {
-	background-color: rgba(0,0,0,.89);
+	background-color: rgba(0,0,0,.7);
 	color: #fff;
 }
 
