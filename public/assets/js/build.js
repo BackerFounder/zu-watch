@@ -311,10 +311,10 @@ $(document).ready(function() {
           return 'sufficient stock'
         } else {
           var in_stock_count = v.quantity_limit - (v.pledged_count + v.wait_pledged_count)
-          if ( in_stock_count >= 20 ) {
+          if ( in_stock_count >= 5 ) {
             var in_stock_count = 'sufficient stock'
           } 
-          else if ( in_stock_count >= 5 ) {
+          else if ( in_stock_count >= 2 ) {
             var in_stock_count = 'low quantity'
           }
           else if ( in_stock_count >= 0 ) {
