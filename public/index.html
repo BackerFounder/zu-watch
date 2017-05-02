@@ -783,7 +783,7 @@
                     <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
                   </div>
                   <img v-on:click="elementChange(cart.basic.a1, '', '')"
-                       :src="apiData[cart.basic.a1].url | cartCaseDefault" 
+                       :src="apiData[cart.basic.a1].avatar_small | cartCaseDefault" 
                        alt="">
                   <span class="cart-item-price">
                     {{ 'NT ' + apiData[cart.basic.a1].price }}
@@ -795,7 +795,7 @@
                     <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
                   </div>
                   <img v-on:click="elementChange('', cart.basic.b1, '')"
-                       :src="apiData[cart.basic.b1].url | cartDialDefault"
+                       :src="apiData[cart.basic.b1].avatar_small | cartDialDefault"
                        alt="">
                   <span class="cart-item-price">
                     {{ 'NT ' + apiData[cart.basic.b1].price }}
@@ -807,14 +807,14 @@
                     <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
                   </div>
                   <img v-on:click="elementChange('', '', cart.basic.c1)"
-                       :src="apiData[cart.basic.c1].url | cartStrapDefault"
+                       :src="apiData[cart.basic.c1].avatar_small | cartStrapDefault"
                        alt="">
                   <span class="cart-item-price">
                     {{ 'NT ' + apiData[cart.basic.c1].price }}
                   </span>
                 </div>
                 <div class="cart-item null">
-                  <img :src="apiData[cart.common.backCase].url"
+                  <img :src="apiData[cart.common.backCase].avatar_small"
                        alt="">
                   <span class="cart-item-price">
                     {{ 'NT ' + apiData[cart.common.backCase].price }}
@@ -828,7 +828,7 @@
                     <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
                   </div>
                   <img v-on:click="elementChange( cart.pro.a1, '', '')"
-                       :src="apiData[cart.pro.a1].url | cartCaseDefault"
+                       :src="apiData[cart.pro.a1].avatar_small | cartCaseDefault"
                        alt="">
                   <span class="cart-item-price">
                     {{ 'NT ' + apiData[cart.pro.a1].price }}
@@ -840,7 +840,7 @@
                     <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
                   </div>
                   <img v-on:click="elementChange('', cart.pro.b1, '')"
-                       :src="apiData[cart.pro.b1].url | cartDialDefault"
+                       :src="apiData[cart.pro.b1].avatar_small | cartDialDefault"
                        alt="">
                   <span class="cart-item-price">
                     {{ 'NT ' + apiData[cart.pro.b1].price }}
@@ -852,7 +852,7 @@
                     <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
                   </div>
                   <img v-on:click="elementChange('', cart.pro.b2, '')"
-                       :src="apiData[cart.pro.b2].url | cartDialDefault"
+                       :src="apiData[cart.pro.b2].avatar_small | cartDialDefault"
                        alt="">
                   <span class="cart-item-price">
                     {{ 'NT ' + apiData[cart.pro.b2].price }}
@@ -864,7 +864,7 @@
                     <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
                   </div>
                   <img v-on:click="elementChange('', '', cart.pro.c1)"
-                       :src="apiData[cart.pro.c1].url | cartStrapDefault"
+                       :src="apiData[cart.pro.c1].avatar_small | cartStrapDefault"
                        alt="">
                   <span class="cart-item-price">
                     {{ 'NT ' + apiData[cart.pro.c1].price }}
@@ -876,14 +876,14 @@
                     <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
                   </div>
                   <img v-on:click="elementChange('', '', cart.pro.c2)"
-                       :src="apiData[cart.pro.c2].url | cartStrapDefault"
+                       :src="apiData[cart.pro.c2].avatar_small | cartStrapDefault"
                        alt="">
                   <span class="cart-item-price">
                     {{ 'NT ' + apiData[cart.pro.c2].price }}
                   </span>
                 </div>
                 <div class="cart-item null">
-                  <img :src="apiData[cart.common.backCase].url"
+                  <img :src="apiData[cart.common.backCase].avatar_small"
                        alt="">
                   <span class="cart-item-price">
                     {{ 'NT ' + apiData[cart.common.backCase].price }}
@@ -900,7 +900,7 @@
                     <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
                   </div>
                   <img v-on:click=""
-                       :src="apiData[o].url" 
+                       :src="apiData[o].avatar_small" 
                        alt="">
                   <span class="cart-item-price">
                     {{ 'NT ' + apiData[o].price }}
@@ -911,11 +911,15 @@
                 <div class="total">
                   Total<b>{{ totalAmount }}</b>(NT)
                 </div>
-                <div v-if="status === 'unlimited'" id="cart-code-btn" class="btn"
+                <div v-if="status === 'unlimited'" 
+                     id="cart-code-btn" class="btn"
+                     v-on:click="formSubmit"
                      :class="{ ok: cart.unlimited.length >= 1 }">
                   CHECKOUT
                 </div>
-                <div v-else id="cart-code-btn" class="btn">
+                <div v-else id="cart-code-btn" 
+                     v-on:click="formSubmit"
+                     class="btn">
                   {{ calcElementsInCart() }}
                 </div>
               </div>
@@ -1187,8 +1191,8 @@
   </div>
 </body>
 <script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>
-<script src="/assets/js/vendor/vue.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script> -->
+<!-- <script src="/assets/js/vendor/vue.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
 <script src="/assets/js/vendor/clipboard.min.js"></script>
 <script src="/assets/js/index.js?v=online2"></script>
 <script src="/assets/js/build.js?v=online2"></script>

@@ -118,23 +118,39 @@ img {
 	padding: 5px 15px;
 }
 .status-exchange {
+	width: calc( 100% + 20px );
+	position: relative;
+	top: 0;
+	left: -10px;
 	height: 40px;
-	line-height: 50px;
 	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	@media screen and (max-width: 992px) {
+		width: 100%;
+		left: 0;
+	}
 }
 .cart-status-btn {
-	display: inline-block;
+	flex: 0 0 calc( 100% / 3 - 30px );
+	width: calc( 100% / 3 - 30px );
+	margin: 0 15px!important;
 	font-size: 12px;
-	width: 30%;
 	height: 20px;
 	line-height: 20px;
 	text-align: center;
-	box-shadow: inset 0 0 0 1px rgba(0,0,0,.2);
+	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35);
 	color: rgba(0,0,0,.68);
-	max-width: 105px;
 	border-radius: 3px;
 	margin: 0 1%;
 	transition: .3s ease;
+	font-family: $fontp;
+	@media screen and (max-width: 992px) {
+		flex: 0 0 calc( 100% / 3 - 10px );
+		width: calc( 100% / 3 - 10px );
+		margin: 0 5px!important;
+	}
 }
 .cart-status-btn:hover {
 	background-color: rgba(0,0,0,.7);

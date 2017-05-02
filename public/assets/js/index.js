@@ -39,10 +39,7 @@ $('#customize').on('click', '.gobackindex-btn, .zu-title a', function(e) {
 })
 
 
-// output modal
-$(document).on('click', '.cart-price-section #cart-code-btn', function(){
-	$('#output-popup').find('form').submit();
-})
+
 $('#output-popup').on('click', '.close', function(){
 	$('#output-popup').fadeOut(300);
 })

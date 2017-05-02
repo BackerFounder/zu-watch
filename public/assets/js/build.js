@@ -87,7 +87,6 @@ $(document).ready(function() {
   ZuWatch = new Vue ({
     el: '#zu-watch',
     data: {
-      utmFlag: '', // 贊助標籤紀錄，還沒做
       apiData: [], // 歸類好方便取得的 Rewards Array
       location: 'tw', // 目前只有 jp 日本跟 tw 台灣
       status: 'basic', // 目前只有 Basic Pro Double Other
@@ -101,7 +100,7 @@ $(document).ready(function() {
       },
       preview: { // 上一步 下一步
         prev: { a: null, b: null, c: null },
-        now:  { a: 'ca-01', b: 'zu-01-b', c: 'lc-01' },
+        now:  { a: 'ca-01', b: 'zu-01-w', c: 'lc-01' },
         next: { a: null, b: null, c: null }
       },
       save: {
@@ -204,7 +203,9 @@ $(document).ready(function() {
               valueArray.push({
                 id: checkFormApiObject[mainValue].id,
                 code: mainValue,
-                price: checkFormApiObject[mainValue].price
+                name: checkFormApiObject[mainValue].name,
+                price: checkFormApiObject[mainValue].price,
+                stock: checkFormApiObject[mainValue].stock
               })
               totalAmount += checkFormApiObject[mainValue].price
             }
@@ -216,7 +217,9 @@ $(document).ready(function() {
             valueArray.push({
               id: checkFormApiObject[backCase].id,
               code: backCase,
-              price: checkFormApiObject[backCase].price
+              name: checkFormApiObject[backCase].name,
+              price: checkFormApiObject[backCase].price,
+              stock: checkFormApiObject[backCase].stock
             })
           }
           self.rewardIdForForm = valueArray
@@ -383,7 +386,10 @@ $(document).ready(function() {
                 newApiObject[key] = {
                   id: el.id,
                   price: el.price,
-                  url: el.avatar.small.url,
+                  name: el.title,
+                  avatar_small: el.avatar.small.url,
+                  covers: el.covers,
+                  stock: el.quantity_limit == 0 ? 10 : el.quantity_limit - (el.pledged_count + el.wait_pledged_count) 
                 }
                 // 將 api 回饋物件們分類到 vue 裡，方便後續取得
                 if ( el.category == 'case' ) {
@@ -557,7 +563,7 @@ $(document).ready(function() {
             if ( this.cart.basic.a1 == null ) {
               this.cart.basic.a1 = a;
             } else {
-              if ( confirm("Do you want to replace with this Case?")) {
+              if ( confirm("Do you want to replace with this Case?") ) {
                 this.cart.basic.a1 = a
               }
             }
@@ -566,7 +572,7 @@ $(document).ready(function() {
             if ( this.cart.basic.b1 == null ) {
               this.cart.basic.b1 = b;
             } else {
-              if ( confirm("Do you want to replace with this Dial?")) {
+              if ( confirm("Do you want to replace with this Dial?") ) {
                 this.cart.basic.b1 = b
               }
             }
@@ -575,7 +581,7 @@ $(document).ready(function() {
             if ( this.cart.basic.c1 == null ) {
               this.cart.basic.c1 = c;
             } else {
-              if ( confirm("Do you want to replace with this Strap?")) {
+              if ( confirm("Do you want to replace with this Strap?") ) {
                 this.cart.basic.c1 = c
               }
             }
@@ -676,8 +682,20 @@ $(document).ready(function() {
           }
         }
       },
-      deleteCartElement: function(type, item) {
-        this.cart[type][item] = null;
+      formSubmit: function() {
+        var canSubmit = true
+        // check if everyone is 'out of stock' or not
+        // if the element is 'out of stock',alert its name and set canSumit = false
+        this.rewardIdForForm.forEach(function(el, i) {
+          if ( el.stock <= 1 ) {
+            alert("Sorry... '" + el.name + "' is out of stock.")
+            canSubmit = false
+          } 
+        });
+        if (canSubmit) { $('#output-popup').find('form').submit(); }
+      },
+      deleteCartElement: function(status, item) {
+        this.cart[status][item] = null;
       },
       randomCartElements: function() {
         this.previewChange
