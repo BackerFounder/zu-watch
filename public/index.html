@@ -264,11 +264,11 @@
             </div>
             <div v-if="location == 'tw'" class="preview-show-body">
               <img class="preview-1"
-                  :src="'https://s3cdn.backer-founder.com/lp/zuwatch/img/main/product/pv-case/' + preview.now.a + '.png'" alt="">
+                  :src="apiData[preview.now.a].covers[1].url" alt="">
               <img class="preview-2"
-                  :src="'https://s3cdn.backer-founder.com/lp/zuwatch/img/main/product/pv-dial/' + preview.now.b + '.png'" alt="">
+                  :src="apiData[preview.now.b].covers[1].url" alt="">
               <img class="preview-3"
-                  :src="'https://s3cdn.backer-founder.com/lp/zuwatch/img/main/product/pv-strap/' + preview.now.c + '.png'" alt="">
+                  :src="apiData[preview.now.c].covers[1].url" alt="">
             </div>
           </div>
           <div class="bottom-box preview-btns">
