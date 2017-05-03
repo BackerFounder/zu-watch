@@ -5,10 +5,13 @@ $(window).load(function() {
   $('section').removeClass('hide')
   $('body').css('overflow', 'auto')
 
-  $('#details-popup').find('[data-detail-src]').each(function(){
-    var t = $(this).attr('data-detail-src')
-    $(this).attr('src', t)
-  })
+  /// 經過五秒在 load detail 的大圖
+  setTimeout(function(){
+    $('#details-popup').find('[data-detail-src]').each(function(){
+      var t = $(this).attr('data-detail-src')
+      $(this).attr('src', t)
+    })
+  }, 3000)
 
 	// 暫時先放這
 	var clipboard = new Clipboard('#code-result-copy', {
@@ -234,7 +237,7 @@ $(document).ready(function() {
 
     watch: {
       status: function() {
-        // After v-if render to bind her elements
+        // After v-if render, to bind her elements
         $(".cart-item").each(function() {
           this.observer = new MutationObserver(observeItemChange);
           var config = {
@@ -246,9 +249,10 @@ $(document).ready(function() {
           this.observer.observe(this, config);
         });
         function observeItemChange(mutations) {
+          console.log(mutations)
           if ( mutations[0].target.className.indexOf("null") == -1 ) {
             var d = mutations[0].target.offsetLeft - 80
-            $('#code-and-share .bottom-box').animate( { scrollLeft: d }, 400);
+            $('#code-and-share .bottom-box .cart-content').animate( { scrollLeft: d }, 400);
           }
         }
         // status 切換也會影響金額跟要送出去 Backme 的東東們
