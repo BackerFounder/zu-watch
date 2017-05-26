@@ -469,6 +469,7 @@
               </div>
               <div data-tab="case-back" class="elements-content-box flex-l3-jfs-afs-">
                 <div v-for="cb in twElements.backCase"
+                     v-if="status !== 'unlimited' || cb.tags[0] == 'backcase-02'"
                      :data-selected="cb.tags[0]"
                      v-on:click=""
                      class="e-c-b-c">
