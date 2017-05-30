@@ -395,7 +395,7 @@
               <div data-tab="case-back" class="elements-tab-btn">
                 Back
               </div>
-              <div v-if="status == 'unlimited'" data-tab="others" class="elements-tab-btn">
+              <div data-tab="others" class="elements-tab-btn">
                 Others
               </div>
             </div>
@@ -504,7 +504,7 @@
                   <span>{{ o.title }}
                     <div><b :class="o | in_stock">{{ o | in_stock }}</b></div>
                   </span>
-                  <div v-on:click="elementAddOtherCart(o.tags[0])"
+                  <div v-on:click="elementAddOtherCartAndChangeStatus(o.tags[0])"
                        class="add-this-btn {{ o | in_stock }}">ADD TO CART</div>
                 </div>
               </div>

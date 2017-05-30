@@ -737,6 +737,15 @@ $(document).ready(function() {
       elementAddOtherCart: function(code) {
         this.cart.unlimited.push(code)
       },
+      elementAddOtherCartAndChangeStatus: function(code) {
+        if ( this.status !== 'unlimited' ) {
+          this.status = 'unlimited'
+          alert('This item will appear in the "OTHER" section of the Cart.')
+          this.cart.unlimited.push(code)
+        } else {
+          this.cart.unlimited.push(code)
+        }
+      },
       deleteOtherCartElement: function(index) {
         this.cart.unlimited.splice(index, 1)
       }
