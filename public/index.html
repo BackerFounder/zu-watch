@@ -395,7 +395,7 @@
               <div data-tab="case-back" class="elements-tab-btn">
                 Back
               </div>
-              <div data-tab="others" class="elements-tab-btn">
+              <div v-if="status == 'unlimited'" data-tab="others" class="elements-tab-btn">
                 Others
               </div>
             </div>
@@ -490,24 +490,24 @@
                        class="add-this-btn {{ cb | in_stock }}">ADD TO CART</div>
                 </div>
               </div>
-              <!-- <div data-tab="others" class="elements-content-box flex-l3-jfs-afs-">
+              <div data-tab="others" class="elements-content-box flex-l3-jfs-afs-">
                 <div v-for="o in twElements.others"
                      :data-selected="o.tags[0]"
                      v-on:click=""
                      class="e-c-b-c">
-                  <div class="e-c-b-c-top-bar" :data-details="o.tags[0]">
+                  <!-- <div class="e-c-b-c-top-bar" :data-details="o.tags[0]">
                     <span><i class="fa fa-search-plus" aria-hidden="true"></i>Details</span>
-                  </div>
+                  </div> -->
                   <div :data-selected="o.tags[0]"
                        class="element-selected"></div>
                   <img :src="o.avatar.small.url" alt="">
                   <span>{{ o.title }}
                     <div><b :class="o | in_stock">{{ o | in_stock }}</b></div>
                   </span>
-                  <div v-on:click="elementAddOtherCart(cb.tags[0])"
+                  <div v-on:click="elementAddOtherCart(o.tags[0])"
                        class="add-this-btn {{ o | in_stock }}">ADD TO CART</div>
                 </div>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>
@@ -1192,8 +1192,8 @@
   </div>
 </body>
 <script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>
-<script src="/assets/js/vendor/vue.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script> -->
+<!-- <script src="/assets/js/vendor/vue.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
 <script src="/assets/js/vendor/clipboard.min.js"></script>
 <script src="/assets/js/index.js?v=online3"></script>
 <script src="/assets/js/build.js?v=online3"></script>
