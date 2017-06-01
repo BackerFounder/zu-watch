@@ -350,7 +350,8 @@
                 </div>
               </div>
               <div data-tab="dial" class="elements-content-box flex-l3-jfs-afs-">
-                <div v-for="d in elements.dial"
+                <div v-for="(i, d) in elements.dial"
+                     v-if="i == 0 || i == 1 || i == 2 || i == 3 || i == 4 || i == 5 || i == 6 || i == 7 || i == 8 || i == 9 || i == 20 || i == 21"
                      :data-selected="d.code"
                      v-on:click="elementChange('', d.code, '')"
                      class="e-c-b-c">
@@ -365,7 +366,8 @@
                 </div>
               </div>
               <div data-tab="strap" class="elements-content-box flex-l3-jfs-afs-">
-                <div v-for="s in elements.strap"
+                <div v-for="(i, s) in elements.strap"
+                     v-if="i !== 12 && i !== 13 && i !== 14 && i !== 15 && i !== 16 && i !== 17"
                      :data-selected="s.code"
                      v-on:click="elementChange('', '', s.code)"
                      class="e-c-b-c">
@@ -521,12 +523,11 @@
                 <i class="fa fa-angle-up" aria-hidden="true"></i>
               </div>
               Cart
-              <div v-on:click="randomCartElements"
+              <!-- <div v-on:click="randomCartElements"
                    id="random-this-cart" class="btn">
-                <!-- <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/dice-cube-outline.svg" alt=""> -->
                 Show
-              </div>
-              <div id="cart-code-btn">
+              </div> -->
+              <div id="cart-code-btn" :data-modal="location">
                 <div class="pg"></div>
                 {{ calcElementsInCart() }}
               </div>

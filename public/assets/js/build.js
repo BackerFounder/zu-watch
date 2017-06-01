@@ -49,6 +49,7 @@ $(document).ready(function() {
       { code: 'zu-04-w', name: 'Light-White' },
       { code: 'zu-05-b', name: 'Marble-Black' },
       { code: 'zu-05-w', name: 'Marble-White' },
+      // 這邊
       { code: 'zu-06-b', name: 'Amiable-Black' },
       { code: 'zu-06-w', name: 'Amiable-White' },
       { code: 'zu-07-b', name: 'Roman-Black' },
@@ -59,6 +60,7 @@ $(document).ready(function() {
       { code: 'zu-09-w', name: 'Flow-White' },
       { code: 'zu-10-b', name: 'Grilles-Black' },
       { code: 'zu-10-w', name: 'Grilles-White' },
+      //
       { code: 'zu-11-b', name: 'Space Oddity' },
       { code: 'zu-11-w', name: 'Explorer' }
     ],
@@ -75,12 +77,14 @@ $(document).ready(function() {
       { code: 'me-01', name: 'Mesh Silver' },
       { code: 'me-02', name: 'Mesh Black' },
       { code: 'me-03', name: 'Mesh Rose Gold' },
+      // 這邊
       { code: 'nl-01', name: 'Nato Black' },
       { code: 'nl-02', name: 'Nato Chocolate' },
       { code: 'nl-03', name: 'Nato Brown' },
       { code: 'ny-01', name: 'Nylon Black' },
       { code: 'ny-02', name: 'Nylon Gray' },
       { code: 'ny-03', name: 'Nylon Army Green' }
+      //
     ],
     caseCodeArray: [],
     dialCodeArray: [],
@@ -249,7 +253,6 @@ $(document).ready(function() {
           this.observer.observe(this, config);
         });
         function observeItemChange(mutations) {
-          console.log(mutations)
           if ( mutations[0].target.className.indexOf("null") == -1 ) {
             var d = mutations[0].target.offsetLeft - 80
             $('#code-and-share .bottom-box .cart-content').animate( { scrollLeft: d }, 400);

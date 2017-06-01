@@ -38,7 +38,9 @@ $('#customize').on('click', '.gobackindex-btn, .zu-title a', function(e) {
  //  $('body').css('overflow', 'hidden')
 })
 
-
+$("body").on('click', '#cart-code-btn[data-modal="jp"]', function() {
+	$('#output-popup').fadeIn(300);
+});
 
 $('#output-popup').on('click', '.close', function(){
 	$('#output-popup').fadeOut(300);
