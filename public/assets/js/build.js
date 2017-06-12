@@ -439,9 +439,13 @@ $(document).ready(function() {
         var bN = this.elements.dial.length
         var c = this.elements.strapCodeArray
         var cN = this.elements.strap.length
+        console.log('B' + Math.floor((Math.random() * bN)))
+        console.log('C' + Math.floor((Math.random() * cN)))
+        var hardcodeB = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 20, 21, 21 ]
+        var hardcodeC = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5, 6 ]
         this.preview.now.a = a[Math.floor((Math.random() * aN))]
-        this.preview.now.b = b[Math.floor((Math.random() * bN))]
-        this.preview.now.c = c[Math.floor((Math.random() * cN))]
+        this.preview.now.b = b[hardcodeB[Math.floor((Math.random() * bN))]]
+        this.preview.now.c = c[hardcodeC[Math.floor((Math.random() * cN))]]
         this.whichElementSelected
       },
       // for taiwan
