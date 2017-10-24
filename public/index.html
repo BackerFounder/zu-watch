@@ -1091,7 +1091,7 @@
         <div id="code-result-copy" class="btn">Copy</div>
       </div>
       <div v-if="location == 'tw' || location == 'global'" class="content">
-        <form action='https://zuwatch.backme.tw/cashflow/shopping_cart_checkout?locale=zh-TW' 
+        <form :action="location == 'tw' ? 'https://zuwatch.backme.tw/cashflow/shopping_cart_checkout?locale=zh-TW' : 'https://zuwatch.backme.tw/cashflow/shopping_cart_checkout?locale=en'" 
               method='post'>
           <input 
               style="display: none" 
