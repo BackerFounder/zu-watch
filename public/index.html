@@ -55,7 +55,7 @@
              data-hover-show="index-bg-double"
              v-on:click="chooseStatus('double')"
              class="btn">Zu WATCH / Double</div>
-        <div v-if="location == 'tw'"
+        <div v-if="location == 'tw' || location == 'global'"
              data-hover-show="index-bg-double"
              v-on:click="chooseStatus('unlimited')"
              class="btn">Zu WATCH / Other</div>
@@ -91,7 +91,7 @@
                  style="background-image: url('https://s3cdn.backer-founder.com/lp/zuwatch/img/main/hotstyle/1.jpg');"
                  class="btn recommend-style">
             </div>
-            <div v-if="location == 'tw'" v-on:click="elementChange('ca-03', 'zu-05-w', 'nl-03-s')"
+            <div v-if="location == 'tw' || location == 'global'" v-on:click="elementChange('ca-03', 'zu-05-w', 'nl-03-s')"
                  style="background-image: url('https://s3cdn.backer-founder.com/lp/zuwatch/img/main/hotstyle/2.jpg');"
                  class="btn recommend-style">     
             </div>
@@ -99,7 +99,7 @@
                  style="background-image: url('https://s3cdn.backer-founder.com/lp/zuwatch/img/main/hotstyle/3.jpg');"
                  class="btn recommend-style">
             </div>
-            <div v-if="location == 'tw'" v-on:click="elementChange('ca-02', 'zu-03-b', 'nl-03-b')"
+            <div v-if="location == 'tw' || location == 'global'" v-on:click="elementChange('ca-02', 'zu-03-b', 'nl-03-b')"
                  style="background-image: url('https://s3cdn.backer-founder.com/lp/zuwatch/img/main/hotstyle/4.jpg');"
                  class="btn recommend-style">
             </div>
@@ -107,7 +107,7 @@
                  style="background-image: url('https://s3cdn.backer-founder.com/lp/zuwatch/img/main/hotstyle/5.jpg');"
                  class="btn recommend-style">
             </div>
-            <div v-if="location == 'tw'" v-on:click="elementChange('ca-03', 'zu-10-b', 'ny-03-g')"
+            <div v-if="location == 'tw' || location == 'global'" v-on:click="elementChange('ca-03', 'zu-10-b', 'ny-03-g')"
                  style="background-image: url('https://s3cdn.backer-founder.com/lp/zuwatch/img/main/hotstyle/6.jpg');"
                  class="btn recommend-style">
             </div>
@@ -123,7 +123,7 @@
               </div>
               <div v-on:click="callSave('saveA')"
                   class="btn preview-show-body">
-                <template v-if="location == 'tw'">
+                <template v-if="location == 'tw' || location == 'global'">
                   <img class="preview-1"
                        :src="'https://s3cdn.backer-founder.com/lp/zuwatch/img/main/product/pv-case/' + save.saveA.a + '.png'" alt="">
                   <img class="preview-2"
@@ -148,7 +148,7 @@
               </div>
               <div v-on:click="callSave('saveB')"
                   class="btn preview-show-body">
-                <template v-if="location == 'tw'">
+                <template v-if="location == 'tw' || location == 'global'">
                   <img class="preview-1"
                        :src="'https://s3cdn.backer-founder.com/lp/zuwatch/img/main/product/pv-case/' + save.saveB.a + '.png'" alt="">
                   <img class="preview-2"
@@ -173,7 +173,7 @@
               </div>
               <div v-on:click="callSave('saveC')"
                   class="btn preview-show-body">
-                <template v-if="location == 'tw'">
+                <template v-if="location == 'tw' || location == 'global'">
                   <img class="preview-1"
                        :src="'https://s3cdn.backer-founder.com/lp/zuwatch/img/main/product/pv-case/' + save.saveC.a + '.png'" alt="">
                   <img class="preview-2"
@@ -198,7 +198,7 @@
               </div>
               <div v-on:click="callSave('saveD')"
                   class="btn preview-show-body">
-                <template v-if="location == 'tw'">
+                <template v-if="location == 'tw' || location == 'global'">
                   <img class="preview-1"
                        :src="'https://s3cdn.backer-founder.com/lp/zuwatch/img/main/product/pv-case/' + save.saveD.a + '.png'" alt="">
                   <img class="preview-2"
@@ -250,7 +250,7 @@
               <div :style="preview.now.c | strapPreviewSprite"
                    class="preview-3"></div>
             </div>
-            <div v-if="location == 'tw'" class="preview-show-body">
+            <div v-if="location == 'tw' || location == 'global'" class="preview-show-body">
               <img class="preview-1"
                    :src="'https://s3cdn.backer-founder.com/lp/zuwatch/img/main/product/pv-case/' + preview.now.a + '.png'" alt="">
               <img class="preview-2"
@@ -283,7 +283,7 @@
               Random
             </div>
             <div id="random"
-                 v-if="location == 'tw'"
+                 v-if="location == 'tw' || location == 'global'"
                  v-on:click="twRandomElements"
                  class="zuwatch-btn save-btn active">
               <i class="fa fa-random" aria-hidden="true"></i>
@@ -371,7 +371,7 @@
               </div>
             </div>
           </div>
-          <div v-if="location == 'tw'" class="top-box normal-box">
+          <div v-if="location == 'tw' || location == 'global'" class="top-box normal-box">
             <div class="elements-tabbar flex-ac-jfs-nw-">
               <div data-tab="case" class="elements-tab-btn active">
                 Case
@@ -740,7 +740,7 @@
               </div>
             </div>
           </template>
-          <template v-if="location == 'tw'">
+          <template v-if="location == 'tw' || location == 'global'">
             <h2>
               <div id="cart-back">
                 <i class="fa fa-chevron-up" aria-hidden="true"></i>
@@ -775,8 +775,11 @@
                   <img v-on:click="elementChange(cart.basic.a1, '', '')"
                        :src="apiData[cart.basic.a1].avatar_small | cartCaseDefault" 
                        alt="">
-                  <span class="cart-item-price">
+                  <span class="cart-item-price" v-if="location == 'tw'">
                     {{ 'NT ' + apiData[cart.basic.a1].price }}
+                  </span>
+                  <span class="cart-item-price" v-if="location == 'global'">
+                    {{ 'USD ' + apiData[cart.basic.a1].price }}
                   </span>
                 </div>
                 <div class="cart-item {{ cart.basic.b1 }}">
@@ -787,8 +790,11 @@
                   <img v-on:click="elementChange('', cart.basic.b1, '')"
                        :src="apiData[cart.basic.b1].avatar_small | cartDialDefault"
                        alt="">
-                  <span class="cart-item-price">
+                  <span class="cart-item-price" v-if="location == 'tw'">
                     {{ 'NT ' + apiData[cart.basic.b1].price }}
+                  </span>
+                  <span class="cart-item-price" v-if="location == 'global'">
+                    {{ 'USD ' + apiData[cart.basic.b1].price }}
                   </span>
                 </div>
                 <div class="cart-item {{ cart.basic.c1 }}">
@@ -799,15 +805,22 @@
                   <img v-on:click="elementChange('', '', cart.basic.c1)"
                        :src="apiData[cart.basic.c1].avatar_small | cartStrapDefault"
                        alt="">
-                  <span class="cart-item-price">
+                  <span class="cart-item-price" v-if="location == 'tw'">
                     {{ 'NT ' + apiData[cart.basic.c1].price }}
+                  </span>
+                  <span class="cart-item-price" v-if="location == 'global'">
+                    {{ 'USD ' + apiData[cart.basic.c1].price }}
                   </span>
                 </div>
                 <div class="cart-item null">
                   <img :src="apiData[cart.common.backCase].avatar_small"
                        alt="">
-                  <span class="cart-item-price">
+                  <span class="cart-item-price" v-if="location == 'tw'">
                     {{ 'NT ' + apiData[cart.common.backCase].price }}
+                  </span>
+                       alt="">
+                  <span class="cart-item-price" v-if="location == 'global'">
+                    {{ 'USD ' + apiData[cart.common.backCase].price }}
                   </span>
                 </div>
               </div>
@@ -820,8 +833,11 @@
                   <img v-on:click="elementChange( cart.pro.a1, '', '')"
                        :src="apiData[cart.pro.a1].avatar_small | cartCaseDefault"
                        alt="">
-                  <span class="cart-item-price">
+                  <span class="cart-item-price" v-if="location == 'tw'">
                     {{ 'NT ' + apiData[cart.pro.a1].price }}
+                  </span>
+                  <span class="cart-item-price" v-if="location == 'global'">
+                    {{ 'USD ' + apiData[cart.pro.a1].price }}
                   </span>
                 </div>
                 <div class="cart-item {{ cart.pro.b1 }}">
@@ -832,8 +848,11 @@
                   <img v-on:click="elementChange('', cart.pro.b1, '')"
                        :src="apiData[cart.pro.b1].avatar_small | cartDialDefault"
                        alt="">
-                  <span class="cart-item-price">
+                  <span class="cart-item-price" v-if="location == 'tw'">
                     {{ 'NT ' + apiData[cart.pro.b1].price }}
+                  </span>
+                  <span class="cart-item-price" v-if="location == 'global'">
+                    {{ 'USD ' + apiData[cart.pro.b1].price }}
                   </span>
                 </div>
                 <div class="cart-item {{ cart.pro.b2 }}">
@@ -844,8 +863,11 @@
                   <img v-on:click="elementChange('', cart.pro.b2, '')"
                        :src="apiData[cart.pro.b2].avatar_small | cartDialDefault"
                        alt="">
-                  <span class="cart-item-price">
+                  <span class="cart-item-price" v-if="location == 'tw'">
                     {{ 'NT ' + apiData[cart.pro.b2].price }}
+                  </span>
+                  <span class="cart-item-price" v-if="location == 'global'">
+                    {{ 'USD ' + apiData[cart.pro.b2].price }}
                   </span>
                 </div>
                 <div class="cart-item {{ cart.pro.c1 }}">
@@ -856,8 +878,11 @@
                   <img v-on:click="elementChange('', '', cart.pro.c1)"
                        :src="apiData[cart.pro.c1].avatar_small | cartStrapDefault"
                        alt="">
-                  <span class="cart-item-price">
+                  <span class="cart-item-price" v-if="location == 'tw'">
                     {{ 'NT ' + apiData[cart.pro.c1].price }}
+                  </span>
+                  <span class="cart-item-price" v-if="location == 'global'">
+                    {{ 'USD ' + apiData[cart.pro.c1].price }}
                   </span>
                 </div>
                 <div class="cart-item {{ cart.pro.c2 }}">
@@ -868,15 +893,21 @@
                   <img v-on:click="elementChange('', '', cart.pro.c2)"
                        :src="apiData[cart.pro.c2].avatar_small | cartStrapDefault"
                        alt="">
-                  <span class="cart-item-price">
+                  <span class="cart-item-price" v-if="location == 'tw'">
                     {{ 'NT ' + apiData[cart.pro.c2].price }}
+                  </span>
+                  <span class="cart-item-price" v-if="location == 'global'">
+                    {{ 'USD ' + apiData[cart.pro.c2].price }}
                   </span>
                 </div>
                 <div class="cart-item null">
                   <img :src="apiData[cart.common.backCase].avatar_small"
                        alt="">
-                  <span class="cart-item-price">
+                  <span class="cart-item-price" v-if="location == 'tw'">
                     {{ 'NT ' + apiData[cart.common.backCase].price }}
+                  </span>
+                  <span class="cart-item-price" v-if="location == 'global'">
+                    {{ 'USD ' + apiData[cart.common.backCase].price }}
                   </span>
                 </div>
               </div>
@@ -892,14 +923,20 @@
                   <img v-on:click=""
                        :src="apiData[o].avatar_small" 
                        alt="">
-                  <span class="cart-item-price">
+                  <span class="cart-item-price" v-if="location == 'tw'">
                     {{ 'NT ' + apiData[o].price }}
+                  </span>
+                  <span class="cart-item-price" v-if="location == 'global'">
+                    {{ 'USD ' + apiData[o].price }}
                   </span>
                 </div>
               </div>
               <div class="cart-price-section">
-                <div class="total">
+                <div class="total" v-if="location == 'tw'">
                   Total<b>{{ totalAmount }}</b>(NT)
+                </div>
+                <div class="total" v-if="location == 'global'">
+                  Total<b>{{ totalAmount }}</b>(USD)
                 </div>
                 <div v-if="status === 'unlimited'" 
                      id="cart-code-btn" class="btn"
@@ -1053,7 +1090,7 @@
         </h3>
         <div id="code-result-copy" class="btn">Copy</div>
       </div>
-      <div v-if="location == 'tw'" class="content">
+      <div v-if="location == 'tw' || location == 'global'" class="content">
         <form action='https://zuwatch.backme.tw/cashflow/shopping_cart_checkout?locale=zh-TW' 
               method='post'>
           <input 
@@ -1068,9 +1105,16 @@
           <template v-for="(i, element) in rewardIdForForm">
             <input 
                 style="display: none"
+                v-if="location == 'tw'"
                 type='hidden'
                 :name="'items[' + i + '][project_id]'"
                 value='532'>
+            <input 
+                style="display: none"
+                v-if="location == 'global'"
+                type='hidden'
+                :name="'items[' + i + '][project_id]'"
+                value='704'>
             <input 
                 style="display: none" 
                 type='hidden'
@@ -1093,9 +1137,13 @@
            :data-details="content.tags[0]">
          <h2>{{ content.title }}</h2>
          <img data-detail-src="{{ content.avatar.url }}" alt="">
-         <p>
+         <p v-if="location == 'tw'">
            Price：{{ content.price }} (NT)｜
            <b :class="content | in_stock">{{ content | in_stock }} </b>
+         </p>
+         <p v-if="location == 'global'">
+            Price: {{ content.price }} (USD)|
+            <b :class="content | in_stock">{{ content | in_stock }}</b>
          </p>
       </div>
       <div v-for="content in twElements.dial"
@@ -1103,9 +1151,13 @@
            :data-details="content.tags[0]">
         <h2>{{ content.title }}</h2>
          <img data-detail-src="{{ content.avatar.url }}" alt="">
-         <p>
+         <p v-if="location == 'tw'">
            Price：{{ content.price }} (NT)｜
            <b :class="content | in_stock">{{ content | in_stock }} </b>
+         </p>
+         <p v-if="location == 'global'">
+            Price: {{ content.price }} (USD)|
+            <b :class="content | in_stock">{{ content | in_stock }}</b>
          </p>
       </div>
       <div v-for="content in twElements.strap"
@@ -1113,9 +1165,13 @@
            :data-details="content.tags[0]">
          <h2>{{ content.title }}</h2>
          <img data-detail-src="{{ content.avatar.url }}" alt="">
-         <p>
+         <p v-if="location == 'tw'">
            Price：{{ content.price }} (NT)｜
            <b :class="content | in_stock">{{ content | in_stock }} </b>
+         </p>
+         <p v-if="location == 'global'">
+            Price: {{ content.price }} (USD)|
+            <b :class="content | in_stock">{{ content | in_stock }}</b>
          </p>
       </div>
       <div v-for="content in twElements.backCase"
@@ -1123,9 +1179,13 @@
            :data-details="content.tags[0]">
          <h2>{{ content.title }}</h2>
          <img data-detail-src="{{ content.avatar.url }}" alt="">
-         <p>
+         <p v-if="location == 'tw'">
            Price：{{ content.price }} (NT)｜
            <b :class="content | in_stock">{{ content | in_stock }} </b>
+         </p>
+         <p v-if="location == 'global'">
+            Price: {{ content.price }} (USD)|
+            <b :class="content | in_stock">{{ content | in_stock }}</b>
          </p>
       </div>
       <!-- <div v-for="content in twElements.others"
@@ -1166,7 +1226,7 @@
           <div :style="preview.now.c | strapPreviewSprite"
                class="preview-3"></div>
         </div>
-        <div v-if="location == 'tw'" class="watch {{ location }}">
+        <div v-if="location == 'tw' || location == 'global'" class="watch {{ location }}">
           <img class="preview-1"
                :src="'https://s3cdn.backer-founder.com/lp/zuwatch/img/main/product/pv-case/' + preview.now.a + '.png'" alt="">
           <img class="preview-2"

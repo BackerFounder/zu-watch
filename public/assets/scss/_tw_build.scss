@@ -1,4 +1,4 @@
-.location_tw {
+.location_tw, .location_global {
 	.elements-tabbar .elements-tab-btn {
 		width: calc( 100% / 5 );
 		flex: 0 0 calc( 100% / 5 );
@@ -74,7 +74,7 @@
 	font-size: 15px;
 	margin: 5px auto;
 }
-#mockup-area .watch.tw {
+#mockup-area .watch.tw, #mockup-area .watch.global{
 	padding-top: 0;
 	width: 19.3%;
 	top: 16vw;

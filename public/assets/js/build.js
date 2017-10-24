@@ -95,7 +95,7 @@ $(document).ready(function() {
     el: '#zu-watch',
     data: {
       apiData: [], // 歸類好方便取得的 Rewards Array
-      location: 'tw', // 目前只有 jp 日本跟 tw 台灣
+      location: 'tw', // 目前只有 jp 日本跟 tw 台灣、glabal 國際
       status: 'basic', // 目前只有 Basic Pro Double Other
       elements: jp_data, // jp 的回饋們是寫死的資料
       twElements: {
@@ -193,8 +193,8 @@ $(document).ready(function() {
       },
       diffCartChange: function() {
         // 切換 status 或 cart 加入刪除有更動，就重新計算金額跟要送出去 Backme 的東東們
-        /// 一切只在台灣預購才判斷
-        if ( this.location == 'tw') {
+        /// 一切只在台灣與國際預購才判斷
+        if ( this.location == 'tw' || this.location == 'global') {
           var self = this
           var valueArray = []
           var totalAmount = 0
@@ -352,6 +352,8 @@ $(document).ready(function() {
       locationChange: function() {
         if ( location.host.indexOf('jp') == 0 ) {
           this.location = 'jp'
+        } else if ( location.host.indexOf('global') == 0 ) {
+          this.location = 'global'  
         } else {
           this.location = 'tw'
         }
@@ -364,6 +366,7 @@ $(document).ready(function() {
       },
     	fetchData: function() {
         if ( this.location == 'jp' ) {
+          
           this.whichElementSelected
           var caseCodeArray = []
           var dialCodeArray = []
@@ -380,9 +383,16 @@ $(document).ready(function() {
           this.elements.caseCodeArray = caseCodeArray
           this.elements.dialCodeArray = dialCodeArray
           this.elements.strapCodeArray = strapCodeArray
-        } else if ( this.location == 'tw' ) {
+
+        } else {
+          var apiUrl = ""
+          if ( this.location == 'tw' ) { 
+            apiUrl = "https://zuwatch.backme.tw/api/projects/532.json?token=a788fa70032f09bdfd3fe5af2b3ae6f3" 
+          } else if ( this.location == 'global' ) {
+            apiUrl = "https://zuwatch.backme.tw/api/projects/704.json?token=a788fa70032f09bdfd3fe5af2b3ae6f3" 
+          }
           var self = this
-          $.getJSON( "https://zuwatch.backme.tw/api/projects/532.json?token=a788fa70032f09bdfd3fe5af2b3ae6f3", function(data) {
+          $.getJSON( apiUrl, function(data) {
             // 將 api 資料格式轉成以產品元件編號為 key name 的物件格式，方便後續取用，不用再反查
             var newApiObject = {}
             data.rewards.forEach(function(el) {
@@ -564,7 +574,7 @@ $(document).ready(function() {
           $('#cart-code-btn').addClass('ok')
           $('#random-this-cart').addClass('ok')
           $('#cart-code-btn .pg').css( 'width', ((counts/total_counts)*100) + '%' )
-          if ( this.location == 'tw' ) { return 'CHECKOUT' }
+          if ( this.location == 'tw' || this.location == 'global') { return 'CHECKOUT' }
           else if ( this.location == 'jp' ) { return 'Output' }
         }
       },
