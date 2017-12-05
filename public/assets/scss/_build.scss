@@ -1,5 +1,10 @@
 $adjust_height: 70px;
 
+.all-wrapper {
+	max-width: 1200px;
+	margin: auto;
+}
+
 .build-bg {
 	position: fixed;
 	top: 0;
@@ -19,6 +24,7 @@ $adjust_height: 70px;
 		background-color: #fafafa;
 	}
 }
+
 section {
 	max-width: 450px;
 	.mockup-btns, .bottom-box, .top-box, h2 {
@@ -215,7 +221,7 @@ section.right {
 				height: auto;
 				flex: 0 0 auto;
 				flex-wrap: nowrap;
-				&>div {
+				.cart-item {
 					flex-basis: auto;
 					width: 80px;
 				}
@@ -247,7 +253,9 @@ h2 {
 	content: 'You can save your watch stlye here!';
 	position: absolute;
 	display: inline-block;
-	width: 235px;
+	width: 100%;
+	padding: 0 5px;
+	text-align: center;
 	font-size: 13px;
 	color: rgba(0,0,0,.3);
 	top: 50%;
@@ -265,8 +273,8 @@ h2 {
 
 .left .top-box {
 	// padding: 10px 10px;
-	height: calc( 100vh - 106px - 260px - #{$adjust_height} );
-	max-height: 496px;
+	height: calc( 90vh - 106px - 260px - #{$adjust_height} );
+	max-height: 400px;
 	overflow: auto;
 	@media screen and ( max-width: 992px ) {
 		max-height: 100%;
@@ -274,7 +282,7 @@ h2 {
 }
 .mid .top-box {
 	// padding: 10px 10px;
-	height: calc( 100vh - 51px - 91px - 43px - 76px - 10px );
+	height: calc( 90vh - 51px - 91px - 43px - 76px - 10px );
 	max-height: 496px;
 	overflow: auto;
 	@media screen and ( max-width: 992px ) {
@@ -287,8 +295,8 @@ h2 {
 }
 .right .top-box {
 	//
-	height: calc( 100vh - 69px - 260px - #{$adjust_height} );
-	max-height: 533px;
+	height: calc( 90vh - 69px - 260px - #{$adjust_height} );
+	max-height: 437px;
 	@media screen and ( max-width: 992px ) {
 		max-height: 100%;
 	}
@@ -296,17 +304,17 @@ h2 {
 @media screen and ( min-width: 992px ) {
 	.bigger.right .top-box {
 		height: calc( 100vh - 120px - 69px - 129px - 100px - 150px );
-		max-height: 283px;
+		max-height: 288px;
 	}
 	.bigger.right .bottom-box {
-		height: 389px;
+		height: 354px;
 		.cart-content {
 			height: calc( 400px - 48px - 50px );
 		}
 	}
 }
 .bottom-box {
-	height: calc( 150px + #{$adjust_height} );
+	height: calc( 135px + #{$adjust_height} );
 	overflow: hidden;
 }
 
@@ -587,7 +595,7 @@ b.low {
 	height: calc( 150px - 37px - 50px + #{$adjust_height} + 49px );
 	overflow: auto;
 	align-content: flex-start;
-	>div {
+	.cart-item {
 		position: relative;
 		text-align: left;
 		padding: 15px 0 0;
@@ -601,7 +609,7 @@ b.low {
 			}
 		}
 	}
-	>div.null {
+	.cart-item.null {
 		order: initial;
 		animation-name: none;
 		&>img {
@@ -616,6 +624,27 @@ b.low {
 	}
 }
 
+.double .cart-content-set-wrap {
+	margin-bottom: 12px;
+	position: relative;
+	padding-top: 10px;
+}
+
+.double .cart-content-set-wrap.active:after {
+	content: 'selected';
+	font-size: 12px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: #000;
+	z-index: 1;
+	padding: 2px 5px;
+}
+
+.double .cart-content-set-wrap.active {
+	background-color: rgba(0, 0, 0, .03);
+}
+
 .cart-price-section {
 	position: absolute;
 	width: 100%;
@@ -626,6 +655,7 @@ b.low {
 	display: flex;
 	box-shadow: inset 0 1px 0 0 rgba(0,0,0,.1);
 	.total {
+		background-color: #fff;
 		flex: 0 0 auto;
 		width: calc( 100% - 140px );
 		font-family: $fontt;
@@ -649,7 +679,7 @@ b.low {
 	50% { transform: scale3d(0,0,0) }
 	100% { transform: scale3d(1,1,1)}
 }
-.cart-content>div>img {
+.cart-content .cart-item img {
 	width: 90%;
 }
 
@@ -858,6 +888,7 @@ b.low {
 	width: 100%;
 	background-color: rgba(0,0,0,.8);
 	z-index: 12;
+	transform: translate3d(0, 0, 0);
 	.wrap {
 		font-size: 0;
 		position: relative;

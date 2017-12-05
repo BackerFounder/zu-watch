@@ -54,6 +54,8 @@ $ (document).ready (function () {
       },
       cart: {
         basic: {a1: null, b1: null, c1: null},
+        /// double 會保留 basic，額外再多一組 SET
+        double: {a1: null, b1: null, c1: null},
         /// it's named as 'other' in this website.
         unlimited: [],
         /// 這個 common 是給台灣地區，有 backCase & others 配件
@@ -61,6 +63,8 @@ $ (document).ready (function () {
           backCase: 'backcase-01',
           others: ['backcase-01', 'backcase-01', 'backcase-01', 'backcase-01'],
         },
+        /// 這個欄位是當 double set 的時候，選取配件是第一組手錶還是第二組
+        doubleWhich: 1,
       },
       /// 台灣版結帳使用的表單
       rewardIdForForm: [],
@@ -88,14 +92,14 @@ $ (document).ready (function () {
       diffCartChange: function () {
         // 切換 status 或 cart 加入刪除有更動，就重新計算金額跟要送出去 Backme 的東東們
         /// 一切只在台灣與國際預購才判斷
-        if (this.location == 'tw' || this.location == 'global') {
-          var self = this;
+        var self = this;
+        if (self.location == 'tw' || self.location == 'global') {
           var valueArray = [];
           var totalAmount = 0;
           var backCase = self.cart.common.backCase; // 背殼
           /// 如果是 pro double basic : 只處理 case, dial, strap
           /// 如果是 unlimited(other) : 處理 case, dial, strap, backCase, others
-          var mainObject = this.cart[self.status];
+          var mainObject = self.cart[self.status];
           var checkFormApiObject = self.apiData;
           /// 背殼、others 額外處理，這裡只處理 case, dial, strap
           Object.keys (mainObject).forEach (function (e) {
@@ -111,6 +115,25 @@ $ (document).ready (function () {
               totalAmount += checkFormApiObject[mainValue].price;
             }
           });
+
+          /// DOUBLE SET 要把 BASIC SET 也算進去
+          if (self.status === 'double') {
+            var basicMainObject = self.cart['basic'];
+            Object.keys (basicMainObject).forEach (function (e) {
+              var mainValue = basicMainObject[e];
+              if (mainValue !== null) {
+                valueArray.push ({
+                  id: checkFormApiObject[mainValue].id,
+                  code: mainValue,
+                  name: checkFormApiObject[mainValue].name,
+                  price: checkFormApiObject[mainValue].price,
+                  stock: checkFormApiObject[mainValue].stock,
+                });
+                totalAmount += checkFormApiObject[mainValue].price;
+              }
+            });
+
+          }
           /// 處理背殼的錢及送出表單，但因為 unlimited 是一起處理
           /// 原因：在一般組合，backCase 只能則一；但 unlimited 可以無限加購，所以才分開處理
           if (self.status !== 'unlimited') {
@@ -353,7 +376,9 @@ $ (document).ready (function () {
       calcElementsInCart: function () {
         var status = this.status;
         var cart = this.cart;
-        var array = Object.keys (this.cart[status]);
+        /// 如果是 DOUBLE SET，那必須包含 basic + double
+        var setObj = this.cart[status];
+        var array = Object.keys (setObj);
         var total_counts = array.length;
         var counts = 0;
         var case_counts = 0;
@@ -403,11 +428,7 @@ $ (document).ready (function () {
             'width',
             counts / total_counts * 100 + '%'
           );
-          if (this.location == 'tw' || this.location == 'global') {
-            return 'CHECKOUT';
-          } else if (this.location == 'jp') {
-            return 'Output';
-          }
+          return 'CHECKOUT';
         }
       },
       elementAddCart: function (a, b, c) {
@@ -439,87 +460,32 @@ $ (document).ready (function () {
               }
             }
           }
-        } else if (this.status == 'pro') {
-          if (a) {
-            if (this.cart.pro.a1 == null) {
-              this.cart.pro.a1 = a;
-            } else {
-              if (confirm ('Do you want to replace with this Case?')) {
-                this.cart.pro.a1 = a;
-              }
-            }
-          }
-          if (b) {
-            if (this.cart.pro.b1 == null) {
-              this.cart.pro.b1 = b;
-            } else if (this.cart.pro.b2 == null) {
-              this.cart.pro.b2 = b;
-            } else {
-              if (confirm ('Do you want to replace with this Dial?')) {
-                this.cart.pro.b2 = b;
-              }
-            }
-          }
-          if (c) {
-            if (this.cart.pro.c1 == null) {
-              this.cart.pro.c1 = c;
-            } else if (this.cart.pro.c2 == null) {
-              this.cart.pro.c2 = c;
-            } else {
-              if (confirm ('Do you want to replace with this Strap?')) {
-                this.cart.pro.c2 = c;
-              }
-            }
-          }
         } else if (this.status == 'double') {
+          var $doubleWhich = this.cart.doubleWhich === 1 ? 'basic' : 'double';
           if (a) {
-            if (this.cart.double.a1 == null) {
-              this.cart.double.a1 = a;
-            } else if (this.cart.double.a2 == null) {
-              this.cart.double.a2 = a;
+            if (this.cart[$doubleWhich].a1 == null) {
+              this.cart[$doubleWhich].a1 = a;
             } else {
               if (confirm ('Do you want to replace with this Case?')) {
-                this.cart.double.a2 = a;
+                this.cart[$doubleWhich].a1 = a;
               }
             }
           }
           if (b) {
-            var check1 = this.cart.double.b1;
-            var check2 = this.cart.double.b2;
-            var check3 = this.cart.double.b3;
-            var check4 = this.cart.double.b4;
-            var check5 = this.cart.double.b5;
-            var a = Object.keys (this.cart.double);
-            if (check1 && check2 && check3 && check4 && check5) {
-              if (confirm ('Do you want to replace with this Dial?')) {
-                this.cart.double.b5 = b;
-              }
+            if (this.cart[$doubleWhich].b1 == null) {
+              this.cart[$doubleWhich].b1 = b;
             } else {
-              for (var i = 0; i <= 4; i++) {
-                if (!this.cart.double[a[i + 2]]) {
-                  this.cart.double[a[i + 2]] = b;
-                  break;
-                }
+              if (confirm ('Do you want to replace with this Dial?')) {
+                this.cart[$doubleWhich].b1 = b;
               }
             }
           }
           if (c) {
-            var check1 = this.cart.double.c1;
-            var check2 = this.cart.double.c2;
-            var check3 = this.cart.double.c3;
-            var check4 = this.cart.double.c4;
-            var check5 = this.cart.double.c5;
-            var a = Object.keys (this.cart.double);
-            if (check1 && check2 && check3 && check4 && check5) {
-              if (confirm ('Do you want to replace with this Strap?')) {
-                this.cart.double.c5 = c;
-              }
+            if (this.cart[$doubleWhich].c1 == null) {
+              this.cart[$doubleWhich].c1 = c;
             } else {
-              for (var i = 0; i <= 4; i++) {
-                if (!this.cart.double[a[i + 7]]) {
-                  this.cart.double[a[i + 7]] = c;
-                  break;
-                }
+              if (confirm ('Do you want to replace with this Strap?')) {
+                this.cart[$doubleWhich].c1 = c;
               }
             }
           }

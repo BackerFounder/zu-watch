@@ -4,10 +4,10 @@
 		flex: 0 0 calc( 100% / 5 );
 	}
 	.e-c-b-c {
-		flex: 0 0 31%;
-		width: 31%;
-		margin: 1%;
-		padding: 10px;
+		flex: 0 0 calc( 33% - 6px );
+		width: calc( 33% - 6px );
+		margin: 3px;
+		padding: 4px;
 	}
 	.e-c-b-c-top-bar {
 		margin-bottom: 10px;

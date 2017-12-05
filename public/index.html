@@ -45,13 +45,13 @@
   <div id="customize">
     <div class="build-bg"></div>
     <div class="zu-title flex-ac-jc- logo-mobil-black">
-      <a class="zu-title" href="http://www.zu-watch.com/">
+      <a class="zu-title" href="https://www.zu-watch.com/">
         <span class="logo">
           <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/logo.svg" alt="">
         </span>
       </a>
     </div>
-    <div class="content flex-jc-ac-">
+    <div class="content flex-jc-ac- all-wrapper">
       <section class="left hide">
         <div id="recommend">
           <h2>
@@ -331,6 +331,9 @@
                      :data-selected="o.tags[0]"
                      v-on:click=""
                      class="e-c-b-c">
+                  <div class="e-c-b-c-top-bar" :data-details="o.tags[0]">
+                    <span><i class="fa fa-search-plus" aria-hidden="true"></i>Details</span>
+                  </div>
                   <div :data-selected="o.tags[0]"
                        class="element-selected"></div>
                   <img :src="o.avatar.small.url" alt="">
@@ -361,141 +364,102 @@
                     :class="{ active: status == 'basic' }"
                     v-on:click="chooseStatus('basic')">BASIC SET
               </div>
+              <div 
+                class="cart-status-btn" 
+                :class="{ active: status == 'double' }" 
+                v-on:click="chooseStatus('double')">
+                DOUBLE SET
+              </div>
               <div class="cart-status-btn" 
                     :class="{ active: status == 'unlimited' }"
                     v-on:click="chooseStatus('unlimited')">OTHER
               </div>
             </div>
-            <div v-if="status === 'basic'" class="cart-content flex-l4-jfs-afs-">
-              <div class="cart-item {{ cart.basic.a1 }}">
-                <div v-on:click="deleteCartElement('basic', 'a1')"
-                      class="delete-btn {{ cart.basic.a1 }}">
-                  <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+            <div v-if="status === 'basic' || status === 'double'" class="cart-content {{ status }}">
+              <div class="cart-content-set-wrap cart-content-basic-set flex-l4-jfs-afs-"
+                   v-on:click="cart.doubleWhich = 1"
+                  :class="{ active: cart.doubleWhich === 1 }">
+                <div class="cart-item {{ cart.basic.a1 }}">
+                  <div v-on:click="deleteCartElement('basic', 'a1')"
+                        class="delete-btn {{ cart.basic.a1 }}">
+                    <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+                  </div>
+                  <img v-on:click="elementChange(cart.basic.a1, '', '')"
+                        :src="apiData[cart.basic.a1].avatar_small | cartCaseDefault" 
+                        alt="">
+                  <span class="cart-item-price">
+                    {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.basic.a1].price }}
+                  </span>
                 </div>
-                <img v-on:click="elementChange(cart.basic.a1, '', '')"
-                      :src="apiData[cart.basic.a1].avatar_small | cartCaseDefault" 
-                      alt="">
-                <span class="cart-item-price">
-                  {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.basic.a1].price }}
-                </span>
-              </div>
-              <div class="cart-item {{ cart.basic.b1 }}">
-                <div v-on:click="deleteCartElement('basic', 'b1')"
-                      class="delete-btn {{ cart.basic.b1 }}">
-                  <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+                <div class="cart-item {{ cart.basic.b1 }}">
+                  <div v-on:click="deleteCartElement('basic', 'b1')"
+                        class="delete-btn {{ cart.basic.b1 }}">
+                    <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+                  </div>
+                  <img v-on:click="elementChange('', cart.basic.b1, '')"
+                        :src="apiData[cart.basic.b1].avatar_small | cartDialDefault"
+                        alt="">
+                  <span class="cart-item-price">
+                    {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.basic.b1].price }}
+                  </span>
                 </div>
-                <img v-on:click="elementChange('', cart.basic.b1, '')"
-                      :src="apiData[cart.basic.b1].avatar_small | cartDialDefault"
-                      alt="">
-                <span class="cart-item-price">
-                  {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.basic.b1].price }}
-                </span>
-              </div>
-              <div class="cart-item {{ cart.basic.c1 }}">
-                <div v-on:click="deleteCartElement('basic', 'c1')"
-                      class="delete-btn {{ cart.basic.c1 }}">
-                  <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+                <div class="cart-item {{ cart.basic.c1 }}">
+                  <div v-on:click="deleteCartElement('basic', 'c1')"
+                        class="delete-btn {{ cart.basic.c1 }}">
+                    <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+                  </div>
+                  <img v-on:click="elementChange('', '', cart.basic.c1)"
+                        :src="apiData[cart.basic.c1].avatar_small | cartStrapDefault"
+                        alt="">
+                  <span class="cart-item-price">
+                    {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.basic.c1].price }}
+                  </span>
                 </div>
-                <img v-on:click="elementChange('', '', cart.basic.c1)"
-                      :src="apiData[cart.basic.c1].avatar_small | cartStrapDefault"
-                      alt="">
-                <span class="cart-item-price">
-                  {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.basic.c1].price }}
-                </span>
-              </div>
-              <div class="cart-item null">
-                <img :src="apiData[cart.common.backCase].avatar_small"
-                      alt="">
-                <span class="cart-item-price">
-                  {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.common.backCase].price }}
-                </span>
-              </div>
-            </div>
-            <div v-if="status === 'pro'" class="cart-content flex-l4-jfs-afs-">
-              <div class="cart-item {{ cart.pro.a1 }}">
-                <div v-on:click="deleteCartElement('pro', 'a1')"
-                      class="delete-btn {{ cart.pro.a1 }}">
-                  <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+                <div class="cart-item null">
+                  <img :src="apiData[cart.common.backCase].avatar_small"
+                        alt="">
+                  <span class="cart-item-price">
+                    {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.common.backCase].price }}
+                  </span>
                 </div>
-                <img v-on:click="elementChange( cart.pro.a1, '', '')"
-                      :src="apiData[cart.pro.a1].avatar_small | cartCaseDefault"
-                      alt="">
-                <span class="cart-item-price" v-if="location == 'tw'">
-                  {{ 'NT ' + apiData[cart.pro.a1].price }}
-                </span>
-                <span class="cart-item-price" v-if="location == 'global'">
-                  {{ 'USD ' + apiData[cart.pro.a1].price }}
-                </span>
               </div>
-              <div class="cart-item {{ cart.pro.b1 }}">
-                <div v-on:click="deleteCartElement('pro', 'b1')"
-                      class="delete-btn {{ cart.pro.b1 }}">
-                  <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+              <div class="cart-content-set-wrap cart-content-double-set flex-l4-jfs-afs-" 
+                   v-if="status === 'double'"
+                   v-on:click="cart.doubleWhich = 2"
+                   :class="{ active: cart.doubleWhich === 2 }">
+                <div class="cart-item {{ cart.double.a1 }}">
+                  <div v-on:click="deleteCartElement('double', 'a1')" class="delete-btn {{ cart.double.a1 }}">
+                    <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+                  </div>
+                  <img v-on:click="elementChange(cart.double.a1, '', '')" :src="apiData[cart.double.a1].avatar_small | cartCaseDefault" alt="">
+                  <span class="cart-item-price">
+                    {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.double.a1].price }}
+                  </span>
                 </div>
-                <img v-on:click="elementChange('', cart.pro.b1, '')"
-                      :src="apiData[cart.pro.b1].avatar_small | cartDialDefault"
-                      alt="">
-                <span class="cart-item-price" v-if="location == 'tw'">
-                  {{ 'NT ' + apiData[cart.pro.b1].price }}
-                </span>
-                <span class="cart-item-price" v-if="location == 'global'">
-                  {{ 'USD ' + apiData[cart.pro.b1].price }}
-                </span>
-              </div>
-              <div class="cart-item {{ cart.pro.b2 }}">
-                <div v-on:click="deleteCartElement('pro', 'b2')"
-                      class="delete-btn {{ cart.pro.b2 }}">
-                  <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+                <div class="cart-item {{ cart.double.b1 }}">
+                  <div v-on:click="deleteCartElement('double', 'b1')" class="delete-btn {{ cart.double.b1 }}">
+                    <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+                  </div>
+                  <img v-on:click="elementChange('', cart.double.b1, '')" :src="apiData[cart.double.b1].avatar_small | cartDialDefault" alt="">
+                  <span class="cart-item-price">
+                    {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.double.b1].price }}
+                  </span>
                 </div>
-                <img v-on:click="elementChange('', cart.pro.b2, '')"
-                      :src="apiData[cart.pro.b2].avatar_small | cartDialDefault"
-                      alt="">
-                <span class="cart-item-price" v-if="location == 'tw'">
-                  {{ 'NT ' + apiData[cart.pro.b2].price }}
-                </span>
-                <span class="cart-item-price" v-if="location == 'global'">
-                  {{ 'USD ' + apiData[cart.pro.b2].price }}
-                </span>
-              </div>
-              <div class="cart-item {{ cart.pro.c1 }}">
-                <div v-on:click="deleteCartElement('pro', 'c1')"
-                      class="delete-btn {{ cart.pro.c1 }}">
-                  <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+                <div class="cart-item {{ cart.double.c1 }}">
+                  <div v-on:click="deleteCartElement('double', 'c1')" class="delete-btn {{ cart.double.c1 }}">
+                    <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+                  </div>
+                  <img v-on:click="elementChange('', '', cart.double.c1)" :src="apiData[cart.double.c1].avatar_small | cartStrapDefault" alt="">
+                  <span class="cart-item-price">
+                    {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.double.c1].price }}
+                  </span>
                 </div>
-                <img v-on:click="elementChange('', '', cart.pro.c1)"
-                      :src="apiData[cart.pro.c1].avatar_small | cartStrapDefault"
-                      alt="">
-                <span class="cart-item-price" v-if="location == 'tw'">
-                  {{ 'NT ' + apiData[cart.pro.c1].price }}
-                </span>
-                <span class="cart-item-price" v-if="location == 'global'">
-                  {{ 'USD ' + apiData[cart.pro.c1].price }}
-                </span>
-              </div>
-              <div class="cart-item {{ cart.pro.c2 }}">
-                <div v-on:click="deleteCartElement('pro', 'c2')"
-                      class="delete-btn {{ cart.pro.c2 }}">
-                  <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+                <div class="cart-item null">
+                  <img :src="apiData[cart.common.backCase].avatar_small" alt="">
+                  <span class="cart-item-price">
+                    {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.common.backCase].price }}
+                  </span>
                 </div>
-                <img v-on:click="elementChange('', '', cart.pro.c2)"
-                      :src="apiData[cart.pro.c2].avatar_small | cartStrapDefault"
-                      alt="">
-                <span class="cart-item-price" v-if="location == 'tw'">
-                  {{ 'NT ' + apiData[cart.pro.c2].price }}
-                </span>
-                <span class="cart-item-price" v-if="location == 'global'">
-                  {{ 'USD ' + apiData[cart.pro.c2].price }}
-                </span>
-              </div>
-              <div class="cart-item null">
-                <img :src="apiData[cart.common.backCase].avatar_small"
-                      alt="">
-                <span class="cart-item-price" v-if="location == 'tw'">
-                  {{ 'NT ' + apiData[cart.common.backCase].price }}
-                </span>
-                <span class="cart-item-price" v-if="location == 'global'">
-                  {{ 'USD ' + apiData[cart.common.backCase].price }}
-                </span>
               </div>
             </div>
             <div v-if="status === 'unlimited'" class="cart-content flex-l4-jfs-afs-">
@@ -619,16 +583,21 @@
           <b :class="content | in_stock">{{ content | in_stock }} </b>
         </p>
       </div>
+      <div v-for="content in twElements.others" 
+           class="content" 
+           :data-details="content.tags[0]">
+        <h2>{{ content.title }}</h2>
+        <img data-detail-src="{{ content.avatar.url }}" alt="">
+        <p>
+          Price：{{ content.price }} {{ location == 'tw' ? '(NT)' : '(USD)' }}｜
+          <b :class="content | in_stock">{{ content | in_stock }} </b>
+        </p>
+      </div>
     </div>
     <footer>
       COPYRIGHTS  ©  Zu WATCH ™ 2017
     </footer>
     <div id="mockup-area">
-      <a class="zu-title" href="http://www.zu-watch.com/">
-        <span class="logo">
-          <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/logo-w.svg" alt="">
-        </span>
-      </a>
       <div class="back btn">
         <div class="zuwatch-btn">BACK</div>
       </div>
@@ -652,8 +621,8 @@
   </div>
 </body>
 <script src="/assets/js/vendor/jquery-2.1.4.min.js"></script>
-<script src="/assets/js/vendor/vue.min.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script> -->
+<!-- <script src="/assets/js/vendor/vue.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.js"></script>
 <script src="/assets/js/vendor/clipboard.min.js"></script>
 <script src="/assets/js/index.js?v=online3"></script>
 <script src="/assets/js/build.js?v=online3"></script>
