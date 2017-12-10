@@ -1219,7 +1219,8 @@ div.preview-3 {
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
   -webkit-align-content: flex-start;
   -ms-flex-line-pack: start;
-  align-content: flex-start; }
+  align-content: flex-start;
+  overflow-y: scroll; }
 
 .elements-content-box div b {
   margin-top: 4px;
