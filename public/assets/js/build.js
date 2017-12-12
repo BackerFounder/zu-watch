@@ -4,7 +4,7 @@ $ (window).load (function () {
   $ ('section').removeClass ('hide');
   $ ('body').css ('overflow', 'auto');
 
-  /// 經過五秒在 load detail 的大圖
+  /// 經過 3 秒在 load detail 的大圖
   setTimeout (function () {
     $ ('#details-popup').find ('[data-detail-src]').each (function () {
       var t = $ (this).attr ('data-detail-src');
@@ -12,19 +12,6 @@ $ (window).load (function () {
     });
   }, 3000);
 
-  // 暫時先放這
-  var clipboard = new Clipboard ('#code-result-copy', {
-    text: function () {
-      return $ ('#code-result').text ();
-    },
-  });
-  clipboard.on ('success', function (e) {
-    alert ('Copy Success!');
-  });
-
-  clipboard.on ('error', function (e) {
-    alert ('Error Q_Q');
-  });
 });
 
 $ (document).ready (function () {
@@ -41,9 +28,9 @@ $ (document).ready (function () {
         strap: [],
         backCase: [],
         others: [],
+        collection: []
       },
       preview: {
-        // 上一步 下一步
         now: {a: 'ca-01', b: 'zu-01-w', c: 'lc-01'},
       },
       save: {
@@ -53,7 +40,7 @@ $ (document).ready (function () {
         saveD: {a: null, b: null, c: null},
       },
       cart: {
-        basic: {a1: null, b1: null, c1: null},
+        basic: {a1: 'ca-01', b1: 'zu-01-w', c1: 'lc-01'},
         /// double 會保留 basic，額外再多一組 SET
         double: {a1: null, b1: null, c1: null},
         /// it's named as 'other' in this website.
@@ -84,6 +71,8 @@ $ (document).ready (function () {
         var a = this.preview.now.a;
         var b = this.preview.now.b;
         var c = this.preview.now.c;
+        // 統一加入購物車
+        this.elementAddCart (a, b, c);
         $ ('[data-selected]').removeClass ('active');
         $ ('[data-selected=' + a + ']').addClass ('active');
         $ ('[data-selected=' + b + ']').addClass ('active');
@@ -132,8 +121,8 @@ $ (document).ready (function () {
                 totalAmount += checkFormApiObject[mainValue].price;
               }
             });
-
           }
+
           /// 處理背殼的錢及送出表單，但因為 unlimited 是一起處理
           /// 原因：在一般組合，backCase 只能則一；但 unlimited 可以無限加購，所以才分開處理
           if (self.status !== 'unlimited') {
@@ -307,6 +296,8 @@ $ (document).ready (function () {
                 self.twElements.backCase.push (el);
               } else if (el.category == 'others') {
                 self.twElements.others.push (el);
+              } else if (el.category == 'collection') {
+                self.twElements.collection.push (el);
               }
             }
           });
@@ -434,60 +425,24 @@ $ (document).ready (function () {
       elementAddCart: function (a, b, c) {
         if (this.status == 'basic') {
           if (a) {
-            if (this.cart.basic.a1 == null) {
-              this.cart.basic.a1 = a;
-            } else {
-              if (confirm ('Do you want to replace with this Case?')) {
-                this.cart.basic.a1 = a;
-              }
-            }
+            this.cart.basic.a1 = a;
           }
           if (b) {
-            if (this.cart.basic.b1 == null) {
-              this.cart.basic.b1 = b;
-            } else {
-              if (confirm ('Do you want to replace with this Dial?')) {
-                this.cart.basic.b1 = b;
-              }
-            }
+            this.cart.basic.b1 = b;
           }
           if (c) {
-            if (this.cart.basic.c1 == null) {
-              this.cart.basic.c1 = c;
-            } else {
-              if (confirm ('Do you want to replace with this Strap?')) {
-                this.cart.basic.c1 = c;
-              }
-            }
+            this.cart.basic.c1 = c;
           }
         } else if (this.status == 'double') {
           var $doubleWhich = this.cart.doubleWhich === 1 ? 'basic' : 'double';
           if (a) {
-            if (this.cart[$doubleWhich].a1 == null) {
-              this.cart[$doubleWhich].a1 = a;
-            } else {
-              if (confirm ('Do you want to replace with this Case?')) {
-                this.cart[$doubleWhich].a1 = a;
-              }
-            }
+            this.cart[$doubleWhich].a1 = a;
           }
           if (b) {
-            if (this.cart[$doubleWhich].b1 == null) {
-              this.cart[$doubleWhich].b1 = b;
-            } else {
-              if (confirm ('Do you want to replace with this Dial?')) {
-                this.cart[$doubleWhich].b1 = b;
-              }
-            }
+            this.cart[$doubleWhich].b1 = b;
           }
           if (c) {
-            if (this.cart[$doubleWhich].c1 == null) {
-              this.cart[$doubleWhich].c1 = c;
-            } else {
-              if (confirm ('Do you want to replace with this Strap?')) {
-                this.cart[$doubleWhich].c1 = c;
-              }
-            }
+            this.cart[$doubleWhich].c1 = c;
           }
         }
       },
