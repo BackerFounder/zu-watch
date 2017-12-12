@@ -293,9 +293,19 @@ $ (document).ready (function () {
               } else if (el.category == 'strap') {
                 self.twElements.strap.push (el);
               } else if (el.category == 'back-case') {
-                self.twElements.backCase.push (el);
+                // hotfixed to hide the backcase-01
+                // 為了防止 production 受影響
+                if ( el.tags[0] !== 'backcase-01') {
+                  self.twElements.backCase.push (el);
+                }
               } else if (el.category == 'others') {
-                self.twElements.others.push (el);
+                // hotfixed to hide the buckle
+                // 為了防止 production 受影響
+                if (el.tags[0] !== 'customize-buckle') {
+                  self.twElements.others.push (el);
+                } else {
+                  self.twElements.backCase.push (el);
+                }
               } else if (el.category == 'collection') {
                 self.twElements.collection.push (el);
               }

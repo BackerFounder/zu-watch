@@ -301,10 +301,12 @@
                        class="add-this-btn {{ s | in_stock }}">ADD TO CART</div>
                 </div>
               </div>
+
+              <!-- 刻字 CRAFT -->
               <div data-tab="craft" class="elements-content-box flex-l3-jfs-afs-">
                 <div 
                   v-for="cb in twElements.backCase" 
-                  v-if="status !== 'unlimited' || cb.tags[0] == 'backcase-02'" 
+                  v-if="status !== 'unlimited' || cb.tags[0] == 'backcase-02' || cb.tags[0] == 'backcase-01'" 
                   :data-selected="cb.tags[0]"
                   v-on:click="" class="e-c-b-c">
                   <div class="e-c-b-c-top-bar" :data-details="cb.tags[0]">
