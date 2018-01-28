@@ -2,7 +2,7 @@ $ (window).load (function () {
   /// Loading 結束
   $ ('#index').fadeOut (300);
   $ ('section').removeClass ('hide');
-  $ ('body').css ('overflow', 'auto');
+  // $ ('body').css ('overflow', 'auto');
 
   /// 經過 3 秒在 load detail 的大圖
   setTimeout (function () {
@@ -11,7 +11,6 @@ $ (window).load (function () {
       $ (this).attr ('src', t);
     });
   }, 3000);
-
 });
 
 $ (document).ready (function () {
@@ -28,7 +27,7 @@ $ (document).ready (function () {
         strap: [],
         backCase: [],
         others: [],
-        collection: []
+        collection: [],
       },
       preview: {
         now: {a: 'ca-01', b: 'zu-01-w', c: 'lc-01'},
@@ -48,7 +47,8 @@ $ (document).ready (function () {
         /// 這個 common 是給台灣地區，有 backCase & others 配件
         common: {
           backCase: 'backcase-01',
-          others: ['backcase-01', 'backcase-01', 'backcase-01', 'backcase-01'],
+          doubleSetBackCase: 'backcase-01',
+          others: ['', '', '', ''],
         },
         /// 這個欄位是當 double set 的時候，選取配件是第一組手錶還是第二組
         doubleWhich: 1,
@@ -100,9 +100,21 @@ $ (document).ready (function () {
                 name: checkFormApiObject[mainValue].name,
                 price: checkFormApiObject[mainValue].price,
                 stock: checkFormApiObject[mainValue].stock,
+                note: 'THE FIRST SET',
               });
               totalAmount += checkFormApiObject[mainValue].price;
             }
+            // 處理 CRAFT, 過去稱 BACKCASE(因為欄位變動)
+            valueArray.push ({
+              id: checkFormApiObject[backCase].id,
+              code: backCase,
+              name: checkFormApiObject[backCase].name,
+              price: checkFormApiObject[backCase].price,
+              stock: checkFormApiObject[backCase].stock,
+              note: 'THE FIRST SET',
+            });
+            totalAmount += checkFormApiObject[backCase].price;
+            //
           });
 
           /// DOUBLE SET 要把 BASIC SET 也算進去
@@ -117,24 +129,27 @@ $ (document).ready (function () {
                   name: checkFormApiObject[mainValue].name,
                   price: checkFormApiObject[mainValue].price,
                   stock: checkFormApiObject[mainValue].stock,
+                  note: 'THE SECOND SET',
                 });
                 totalAmount += checkFormApiObject[mainValue].price;
               }
             });
+            // 處理 CRAFT, 過去稱 BACKCASE(因為欄位變動)
+            valueArray.push ({
+              id: checkFormApiObject[self.cart.common.doubleSetBackCase].id,
+              code: self.cart.common.doubleSetBackCase,
+              name: checkFormApiObject[self.cart.common.doubleSetBackCase].name,
+              price: checkFormApiObject[self.cart.common.doubleSetBackCase]
+                .price,
+              stock: checkFormApiObject[self.cart.common.doubleSetBackCase]
+                .stock,
+              note: 'THE SECOND SET',
+            });
+            totalAmount +=
+              checkFormApiObject[self.cart.common.doubleSetBackCase].price;
+            //
           }
 
-          /// 處理背殼的錢及送出表單，但因為 unlimited 是一起處理
-          /// 原因：在一般組合，backCase 只能則一；但 unlimited 可以無限加購，所以才分開處理
-          if (self.status !== 'unlimited') {
-            totalAmount += checkFormApiObject[backCase].price;
-            valueArray.push ({
-              id: checkFormApiObject[backCase].id,
-              code: backCase,
-              name: checkFormApiObject[backCase].name,
-              price: checkFormApiObject[backCase].price,
-              stock: checkFormApiObject[backCase].stock,
-            });
-          }
           self.rewardIdForForm = valueArray;
           self.totalAmount = totalAmount;
         }
@@ -295,7 +310,7 @@ $ (document).ready (function () {
               } else if (el.category == 'back-case') {
                 // hotfixed to hide the backcase-01
                 // 為了防止 production 受影響
-                if ( el.tags[0] !== 'backcase-01') {
+                if (el.tags[0] !== 'backcase-01') {
                   self.twElements.backCase.push (el);
                 }
               } else if (el.category == 'others') {
@@ -377,9 +392,16 @@ $ (document).ready (function () {
       calcElementsInCart: function () {
         var status = this.status;
         var cart = this.cart;
-        /// 如果是 DOUBLE SET，那必須包含 basic + double
         var setObj = this.cart[status];
         var array = Object.keys (setObj);
+        /// 如果是 DOUBLE SET，那必須包含 basic + double
+        if (this.status === 'double') {
+          var basicArray = Object.keys (this.cart.basic);
+          basicArray.forEach (function (e) {
+            array.push (e);
+          });
+        }
+
         var total_counts = array.length;
         var counts = 0;
         var case_counts = 0;
@@ -456,6 +478,23 @@ $ (document).ready (function () {
           }
         }
       },
+      doubleWhichChange: function (whichNum) {
+        this.cart.doubleWhich = whichNum;
+        var $doubleWhich = this.cart.doubleWhich === 1 ? 'basic' : 'double';
+        var a1 = this.cart[$doubleWhich].a1;
+        var b1 = this.cart[$doubleWhich].b1;
+        var c1 = this.cart[$doubleWhich].c1;
+        if (a1) {
+          this.preview.now.a = a1;
+        }
+        if (b1) {
+          this.preview.now.b = b1;
+        }
+        if (c1) {
+          this.preview.now.c = c1;
+        }
+        this.whichElementSelected;
+      },
       formSubmit: function () {
         var canSubmit = true;
         // check if everyone is 'out of stock' or not
@@ -473,9 +512,15 @@ $ (document).ready (function () {
       deleteCartElement: function (status, item) {
         this.cart[status][item] = null;
       },
+      deleteCartCraft: function (item) {
+        this.cart.common[item] = 'backcase-01';
+      },
       // taiwan
-      ChangeCartBackCase: function (backcase) {
-        this.cart.common.backCase = backcase;
+      changeCartBackCase: function (backcase) {
+        var $doubleWhich = this.cart.doubleWhich === 1
+          ? 'backCase'
+          : 'doubleSetBackCase';
+        this.cart.common[$doubleWhich] = backcase;
       },
       // taiwan Other's unlimitedCheckoutBtn()
       elementsAddOtherCart: function () {

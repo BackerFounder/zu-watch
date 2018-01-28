@@ -31,7 +31,7 @@ $ ('.index-action').on ('mouseover', '[data-hover-show]', function () {
 $ ('.index-action').on ('click', '.btn', function () {
   $ ('#index').fadeOut (300);
   $ ('section').removeClass ('hide');
-  $ ('body').css ('overflow', 'auto');
+  // $ ('body').css ('overflow', 'auto');
   $ ('body').animate ({scrollTop: 0}, 0);
 });
 
@@ -111,7 +111,7 @@ $ ('.code-btn[data-code]').click (function () {
 
 // mobile
 // add to cart
-$ ('body').on ('click', '.seecart-btn, .add-this-btn, #addtocart', function () {
+$ ('body').on ('click', '.seecart-btn, .add-this-btn, #addtocart, #checkcart', function () {
   $ ('#code-and-share').addClass ('active');
 });
 

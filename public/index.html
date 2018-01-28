@@ -52,7 +52,7 @@
       </a>
     </div>
     <div class="content flex-jc-ac- all-wrapper" style="position: relative">
-      <div id="go-to-collection-btn">Collection</div>
+      <!-- <div id="go-to-collection-btn">Collection</div> -->
       <section class="left hide">
         <div id="recommend">
           <h2>
@@ -175,8 +175,11 @@
             <div data-who="woman" class="mockup-btn">
               <i class="fa fa-eye" aria-hidden="true"></i>
             </div>
+            <div id="cart-notification">
+              變更成功
+            </div>
           </div>
-          <div class="top-box preview-show">
+          <div class="top-box preview-show" style="pointer-events: none;">
             <div class="preview-show-body">
               <img class="preview-1"
                    :src="'https://s3cdn.backer-founder.com/lp/zuwatch/img/main/product/pv-case/' + preview.now.a + '.png'" alt="">
@@ -187,11 +190,6 @@
             </div>
           </div>
           <div class="bottom-box preview-btns">
-            <div id="my_random"
-                 v-on:click="randomCartElements"
-                 class="zuwatch-btn save-btn">
-              My Ramdom
-            </div>
             <div v-on:click="saveElements"
                  id="save" class="zuwatch-btn save-btn">
               <i class="fa fa-floppy-o" aria-hidden="true"></i>
@@ -203,17 +201,26 @@
               <i class="fa fa-random" aria-hidden="true"></i>
               Random
             </div>
-            <!-- <div v-if="status !== 'unlimited'" v-on:click="elementAddCart(preview.now.a, preview.now.b, preview.now.c)"
-                 id="addtocart" class="zuwatch-btn save-btn">
-              <i class="fa fa-plus-circle" aria-hidden="true"></i>
-              Add to Cart
-            </div> -->
+            <div v-if="status !== 'unlimited'"
+                 id="checkcart" class="zuwatch-btn save-btn">
+              My Cart
+            </div>
             <div v-if="status === 'unlimited'" v-on:click="elementsAddOtherCart()"
                  id="addtocart" class="zuwatch-btn save-btn">
               <i class="fa fa-plus-circle" aria-hidden="true"></i>
               Add to Cart
             </div>
           </div>
+        </div>
+        <div id="mobile-double-switch" v-if="status === 'double'">
+          <div 
+            class="btn" 
+            v-on:click="doubleWhichChange(1)"
+            :class="{ active: cart.doubleWhich == 1 }">1st Set</div>
+          <div 
+            class="btn" 
+            v-on:click="doubleWhichChange(2)"
+            :class="{ active: cart.doubleWhich == 2 }">2nd Set</div>
         </div>
       </section>
       <section class="right hide">
@@ -276,7 +283,7 @@
                   <!-- <div v-if="status !== 'unlimited'"
                        v-on:click="elementAddCart('', d.tags[0], '')"
                        class="add-this-btn {{ d | in_stock }}">ADD TO CART</div> -->
-                  <div v-if="status === 'unlimited'"v-on:click="elementAddOtherCart(d.tags[0])"
+                  <div v-if="status === 'unlimited'" v-on:click="elementAddOtherCart(d.tags[0])"
                        class="add-this-btn {{ d | in_stock }}">ADD TO CART</div>
                 </div>
               </div>
@@ -297,11 +304,10 @@
                   <!-- <div v-if="status !== 'unlimited'"
                        v-on:click="elementAddCart('', '', s.tags[0])"
                        class="add-this-btn {{ s | in_stock }}">ADD TO CART</div> -->
-                  <div v-if="status === 'unlimited'"v-on:click="elementAddOtherCart(s.tags[0])"
+                  <div v-if="status === 'unlimited'" v-on:click="elementAddOtherCart(s.tags[0])"
                        class="add-this-btn {{ s | in_stock }}">ADD TO CART</div>
                 </div>
               </div>
-
               <!-- 刻字 CRAFT -->
               <div data-tab="craft" class="elements-content-box flex-l3-jfs-afs-">
                 <div 
@@ -314,38 +320,16 @@
                       <i class="fa fa-search-plus" aria-hidden="true"></i>Details</span>
                   </div>
                   <div :data-selected="cb.tags[0]" class="element-selected"></div>
-                  <img :src="cb.avatar.small.url" alt="">
-                  <span>{{ cb.title }}
+                  <img :src="cb.avatar.small.url" alt="" v-on:click="changeCartBackCase(cb.tags[0])">
+                  <span v-on:click="changeCartBackCase(cb.tags[0])">{{ cb.title }}
                     <div>
                       <b :class="cb | in_stock">{{ cb | in_stock }}</b>
                     </div>
                   </span>
-                  <div v-if="status !== 'unlimited'" v-on:click="ChangeCartBackCase(cb.tags[0])" class="add-this-btn {{ cb | in_stock }}">ADD TO CART</div>
-                  <div v-else v-on:click="elementAddOtherCart(cb.tags[0])" class="add-this-btn {{ cb | in_stock }}">ADD TO CART</div>
+                  <div v-if="status === 'unlimited'" v-on:click="elementAddOtherCart(cb.tags[0])" class="add-this-btn {{ s | in_stock }}">ADD TO CART</div>
                 </div>
               </div>
-              <div data-tab="case-back" class="elements-content-box flex-l3-jfs-afs-">
-                <div v-for="cb in twElements.backCase"
-                     v-if="status !== 'unlimited' || cb.tags[0] == 'backcase-02'"
-                     :data-selected="cb.tags[0]"
-                     v-on:click=""
-                     class="e-c-b-c">
-                  <div class="e-c-b-c-top-bar" :data-details="cb.tags[0]">
-                    <span><i class="fa fa-search-plus" aria-hidden="true"></i>Details</span>
-                  </div>
-                  <div :data-selected="cb.tags[0]"
-                       class="element-selected"></div>
-                  <img :src="cb.avatar.small.url" alt="">
-                  <span>{{ cb.title }}
-                    <div><b :class="cb | in_stock">{{ cb | in_stock }}</b></div>
-                  </span>
-                  <!-- <div v-if="status !== 'unlimited'"
-                       v-on:click="ChangeCartBackCase(cb.tags[0])"
-                       class="add-this-btn {{ cb | in_stock }}">ADD TO CART</div> -->
-                  <div v-if="status === 'unlimited'"v-on:click="elementAddOtherCart(cb.tags[0])"
-                       class="add-this-btn {{ cb | in_stock }}">ADD TO CART</div>
-                </div>
-              </div>
+              <!-- 其他服務 Others -->
               <div data-tab="others" class="elements-content-box flex-l3-jfs-afs-">
                 <div v-for="o in twElements.others"
                      :data-selected="o.tags[0]"
@@ -356,11 +340,11 @@
                   </div>
                   <div :data-selected="o.tags[0]"
                        class="element-selected"></div>
-                  <img :src="o.avatar.small.url" alt="">
-                  <span>{{ o.title }}
+                  <img :src="o.avatar.small.url" alt="" v-on:click="elementAddOtherCartAndChangeStatus(o.tags[0])">
+                  <span v-on:click="elementAddOtherCartAndChangeStatus(o.tags[0])">{{ o.title }}
                     <div><b :class="o | in_stock">{{ o | in_stock }}</b></div>
                   </span>
-                  <div v-if="status === 'unlimited'"v-on:click="elementAddOtherCartAndChangeStatus(o.tags[0])"
+                  <div v-if="status === 'unlimited'" v-on:click="elementAddOtherCartAndChangeStatus(o.tags[0])"
                        class="add-this-btn {{ o | in_stock }}">ADD TO CART</div>
                 </div>
               </div>
@@ -397,7 +381,7 @@
             </div>
             <div v-if="status === 'basic' || status === 'double'" class="cart-content {{ status }}">
               <div class="cart-content-set-wrap cart-content-basic-set flex-l4-jfs-afs-"
-                   v-on:click="cart.doubleWhich = 1"
+                   v-on:click="doubleWhichChange(1)"
                   :class="{ active: cart.doubleWhich === 1 }">
                 <div class="cart-item {{ cart.basic.a1 }}">
                   <div v-on:click="deleteCartElement('basic', 'a1')"
@@ -429,13 +413,16 @@
                     <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
                   </div>
                   <img v-on:click="elementChange('', '', cart.basic.c1)"
-                        :src="apiData[cart.basic.c1].avatar_small | cartStrapDefault"
-                        alt="">
+                       :src="apiData[cart.basic.c1].avatar_small | cartStrapDefault"
+                       alt="">
                   <span class="cart-item-price">
                     {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.basic.c1].price }}
                   </span>
                 </div>
-                <div class="cart-item null">
+                <div class="cart-item {{ cart.common.backCase }}">
+                  <div v-on:click="deleteCartCraft('backCase')" class="delete-btn">
+                    <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+                  </div>
                   <img :src="apiData[cart.common.backCase].avatar_small"`
                         alt="">
                   <span class="cart-item-price">
@@ -445,7 +432,7 @@
               </div>
               <div class="cart-content-set-wrap cart-content-double-set flex-l4-jfs-afs-" 
                    v-if="status === 'double'"
-                   v-on:click="cart.doubleWhich = 2"
+                   v-on:click="doubleWhichChange(2)"
                    :class="{ active: cart.doubleWhich === 2 }">
                 <div class="cart-item {{ cart.double.a1 }}">
                   <div v-on:click="deleteCartElement('double', 'a1')" class="delete-btn {{ cart.double.a1 }}">
@@ -474,10 +461,13 @@
                     {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.double.c1].price }}
                   </span>
                 </div>
-                <div class="cart-item null">
-                  <img :src="apiData[cart.common.backCase].avatar_small" alt="">
+                <div class="cart-item {{ cart.common.doubleSetBackCase }}">
+                  <div v-on:click="deleteCartCraft('doubleSetBackCase')" class="delete-btn">
+                    <img src="https://s3cdn.backer-founder.com/lp/zuwatch/img/common/icons/delete.svg" alt="">
+                  </div>
+                  <img :src="apiData[cart.common.doubleSetBackCase].avatar_small" ` alt="">
                   <span class="cart-item-price">
-                    {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.common.backCase].price }}
+                    {{ (location === 'tw' ? 'NT ' : 'USD ') + apiData[cart.common.doubleSetBackCase].price }}
                   </span>
                 </div>
               </div>
@@ -556,6 +546,12 @@
                 type='hidden'
                 :name="'items[' + i + '][quantity]'"
                 value='1'>
+            <input 
+                v-if="this.status === 'double'"
+                style="display: none" 
+                type='hidden'
+                :name="'items[' + i + '][note]'"
+                :value='element.note'>
           </template>
           <img style="width: 40px; margin-top: 70px;" src="http://gifimage.net/wp-content/uploads/2017/02/Loading-GIF-Image-25.gif" alt="">
         </form>
