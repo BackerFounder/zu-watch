@@ -104,18 +104,17 @@ $ (document).ready (function () {
               });
               totalAmount += checkFormApiObject[mainValue].price;
             }
-            // 處理 CRAFT, 過去稱 BACKCASE(因為欄位變動)
-            valueArray.push ({
-              id: checkFormApiObject[backCase].id,
-              code: backCase,
-              name: checkFormApiObject[backCase].name,
-              price: checkFormApiObject[backCase].price,
-              stock: checkFormApiObject[backCase].stock,
-              note: 'THE FIRST SET',
-            });
-            totalAmount += checkFormApiObject[backCase].price;
-            //
           });
+          // 處理 CRAFT, 過去稱 BACKCASE(因為欄位變動)
+          valueArray.push ({
+            id: checkFormApiObject[backCase].id,
+            code: backCase,
+            name: checkFormApiObject[backCase].name,
+            price: checkFormApiObject[backCase].price,
+            stock: checkFormApiObject[backCase].stock,
+            note: 'THE FIRST SET',
+          });
+          totalAmount += checkFormApiObject[backCase].price;
 
           /// DOUBLE SET 要把 BASIC SET 也算進去
           if (self.status === 'double') {
