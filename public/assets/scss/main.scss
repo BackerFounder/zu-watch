@@ -200,6 +200,27 @@ img {
 .sk-cube-grid .sk-cube8 { animation-delay: 0.1s; }
 .sk-cube-grid .sk-cube9 { animation-delay: 0.2s; }
 
+#mobile-double-set-hint {
+	display: none;
+}
+.double #mobile-double-set-hint {
+	display: block;
+	position: absolute;
+	bottom: 40px;
+	color: #000;
+	pointer-events: none;
+	right: 15px;
+	text-align: center;
+	font-size: 25px;
+	animation: bringbring 1s linear 0s infinite;
+}
+
+@keyframes bringbring {
+	0% { opacity: 0; transform: translateY(-5px) }
+	50% { opacity: 0.5; transform: translateY(0px) }
+	100% { opacity: 0; transform: translateY(5px) }
+}
+
 @keyframes sk-cubeGridScaleDelay {
   0%, 70%, 100% {
     transform: scale3D(1, 1, 1);

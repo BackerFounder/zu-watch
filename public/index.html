@@ -380,6 +380,9 @@
               </div>
             </div>
             <div v-if="status === 'basic' || status === 'double'" class="cart-content {{ status }}">
+              <div id="mobile-double-set-hint">
+                  <i class="fa fa-angle-down"></i>
+              </div>
               <div class="cart-content-set-wrap cart-content-basic-set flex-l4-jfs-afs-"
                    v-on:click="doubleWhichChange(1)"
                   :class="{ active: cart.doubleWhich === 1 }">
