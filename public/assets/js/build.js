@@ -1,21 +1,23 @@
-$ (window).load (function () {
+$(window).load(function() {
   /// Loading 結束
-  $ ('#index').fadeOut (300);
-  $ ('section').removeClass ('hide');
+  $('#index').fadeOut(300);
+  $('section').removeClass('hide');
   // $ ('body').css ('overflow', 'auto');
 
   /// 經過 3 秒在 load detail 的大圖
-  setTimeout (function () {
-    $ ('#details-popup').find ('[data-detail-src]').each (function () {
-      var t = $ (this).attr ('data-detail-src');
-      $ (this).attr ('src', t);
-    });
+  setTimeout(function() {
+    $('#details-popup')
+      .find('[data-detail-src]')
+      .each(function() {
+        var t = $(this).attr('data-detail-src');
+        $(this).attr('src', t);
+      });
   }, 3000);
 });
 
-$ (document).ready (function () {
+$(document).ready(function() {
   // vue
-  ZuWatch = new Vue ({
+  ZuWatch = new Vue({
     el: '#zu-watch',
     data: {
       apiData: [], // 歸類好方便取得的 Rewards Array
@@ -27,58 +29,58 @@ $ (document).ready (function () {
         strap: [],
         backCase: [],
         others: [],
-        collection: [],
+        collection: []
       },
       preview: {
-        now: {a: 'ca-01', b: 'zu-01-w', c: 'lc-01'},
+        now: { a: 'ca-01', b: 'zu-01-w', c: 'lc-01' }
       },
       save: {
-        saveA: {a: null, b: null, c: null},
-        saveB: {a: null, b: null, c: null},
-        saveC: {a: null, b: null, c: null},
-        saveD: {a: null, b: null, c: null},
+        saveA: { a: null, b: null, c: null },
+        saveB: { a: null, b: null, c: null },
+        saveC: { a: null, b: null, c: null },
+        saveD: { a: null, b: null, c: null }
       },
       cart: {
-        basic: {a1: 'ca-01', b1: 'zu-01-w', c1: 'lc-01'},
+        basic: { a1: 'ca-01', b1: 'zu-01-w', c1: 'lc-01' },
         /// double 會保留 basic，額外再多一組 SET
-        double: {a1: null, b1: null, c1: null},
+        double: { a1: null, b1: null, c1: null },
         /// it's named as 'other' in this website.
         unlimited: [],
         /// 這個 common 是給台灣地區，有 backCase & others 配件
         common: {
           backCase: 'backcase-01',
           doubleSetBackCase: 'backcase-01',
-          others: ['', '', '', ''],
+          others: ['', '', '', '']
         },
         /// 這個欄位是當 double set 的時候，選取配件是第一組手錶還是第二組
-        doubleWhich: 1,
+        doubleWhich: 1
       },
       /// 台灣版結帳使用的表單
       rewardIdForForm: [],
       totalAmount: 0,
-      elementsCounts: {case: '', dial: '', strap: ''},
+      elementsCounts: { case: '', dial: '', strap: '' }
     },
 
-    created: function () {
-      this.locationChange ();
-      this.routeStatusChange ();
-      this.fetchData ();
+    created: function() {
+      this.locationChange();
+      this.routeStatusChange();
+      this.fetchData();
     },
 
     computed: {
-      whichElementSelected: function () {
+      whichElementSelected: function() {
         // 判斷那個物件被選取正在 preview，亮綠色點點
         var a = this.preview.now.a;
         var b = this.preview.now.b;
         var c = this.preview.now.c;
         // 統一加入購物車
-        this.elementAddCart (a, b, c);
-        $ ('[data-selected]').removeClass ('active');
-        $ ('[data-selected=' + a + ']').addClass ('active');
-        $ ('[data-selected=' + b + ']').addClass ('active');
-        $ ('[data-selected=' + c + ']').addClass ('active');
+        this.elementAddCart(a, b, c);
+        $('[data-selected]').removeClass('active');
+        $('[data-selected=' + a + ']').addClass('active');
+        $('[data-selected=' + b + ']').addClass('active');
+        $('[data-selected=' + c + ']').addClass('active');
       },
-      diffCartChange: function () {
+      diffCartChange: function() {
         // 切換 status 或 cart 加入刪除有更動，就重新計算金額跟要送出去 Backme 的東東們
         /// 一切只在台灣與國際預購才判斷
         var self = this;
@@ -91,58 +93,60 @@ $ (document).ready (function () {
           var mainObject = self.cart[self.status];
           var checkFormApiObject = self.apiData;
           /// 背殼、others 額外處理，這裡只處理 case, dial, strap
-          Object.keys (mainObject).forEach (function (e) {
+          Object.keys(mainObject).forEach(function(e) {
             var mainValue = mainObject[e];
             if (mainValue !== null) {
-              valueArray.push ({
+              valueArray.push({
                 id: checkFormApiObject[mainValue].id,
                 code: mainValue,
                 name: checkFormApiObject[mainValue].name,
                 price: checkFormApiObject[mainValue].price,
                 stock: checkFormApiObject[mainValue].stock,
-                note: 'THE FIRST SET',
+                note: 'THE FIRST SET'
               });
               totalAmount += checkFormApiObject[mainValue].price;
             }
           });
           // 處理 CRAFT, 過去稱 BACKCASE(因為欄位變動)
-          valueArray.push ({
-            id: checkFormApiObject[backCase].id,
-            code: backCase,
-            name: checkFormApiObject[backCase].name,
-            price: checkFormApiObject[backCase].price,
-            stock: checkFormApiObject[backCase].stock,
-            note: 'THE FIRST SET',
-          });
-          totalAmount += checkFormApiObject[backCase].price;
+          if (self.status !== 'unlimited') {
+            valueArray.push({
+              id: checkFormApiObject[backCase].id,
+              code: backCase,
+              name: checkFormApiObject[backCase].name,
+              price: checkFormApiObject[backCase].price,
+              stock: checkFormApiObject[backCase].stock,
+              note: 'THE FIRST SET'
+            });
+            totalAmount += checkFormApiObject[backCase].price;
+          }
 
           /// DOUBLE SET 要把 BASIC SET 也算進去
           if (self.status === 'double') {
             var basicMainObject = self.cart['basic'];
-            Object.keys (basicMainObject).forEach (function (e) {
+            Object.keys(basicMainObject).forEach(function(e) {
               var mainValue = basicMainObject[e];
               if (mainValue !== null) {
-                valueArray.push ({
+                valueArray.push({
                   id: checkFormApiObject[mainValue].id,
                   code: mainValue,
                   name: checkFormApiObject[mainValue].name,
                   price: checkFormApiObject[mainValue].price,
                   stock: checkFormApiObject[mainValue].stock,
-                  note: 'THE SECOND SET',
+                  note: 'THE SECOND SET'
                 });
                 totalAmount += checkFormApiObject[mainValue].price;
               }
             });
             // 處理 CRAFT, 過去稱 BACKCASE(因為欄位變動)
-            valueArray.push ({
+            valueArray.push({
               id: checkFormApiObject[self.cart.common.doubleSetBackCase].id,
               code: self.cart.common.doubleSetBackCase,
               name: checkFormApiObject[self.cart.common.doubleSetBackCase].name,
-              price: checkFormApiObject[self.cart.common.doubleSetBackCase]
-                .price,
-              stock: checkFormApiObject[self.cart.common.doubleSetBackCase]
-                .stock,
-              note: 'THE SECOND SET',
+              price:
+                checkFormApiObject[self.cart.common.doubleSetBackCase].price,
+              stock:
+                checkFormApiObject[self.cart.common.doubleSetBackCase].stock,
+              note: 'THE SECOND SET'
             });
             totalAmount +=
               checkFormApiObject[self.cart.common.doubleSetBackCase].price;
@@ -153,30 +157,30 @@ $ (document).ready (function () {
           self.totalAmount = totalAmount;
         }
       },
-      saveLocalStorage: function () {
+      saveLocalStorage: function() {
         // 儲存在瀏覽器，讓重整不會掉
-        localStorage['fullPage'] = btoa (JSON.stringify (this.$data));
-      },
+        localStorage['fullPage'] = btoa(JSON.stringify(this.$data));
+      }
     },
 
     watch: {
-      status: function () {
+      status: function() {
         // After v-if render, to bind her elements
-        $ ('.cart-item').each (function () {
-          this.observer = new MutationObserver (observeItemChange);
+        $('.cart-item').each(function() {
+          this.observer = new MutationObserver(observeItemChange);
           var config = {
             attributes: true,
             childList: false,
             characterData: false,
-            subtree: false,
+            subtree: false
           };
-          this.observer.observe (this, config);
+          this.observer.observe(this, config);
         });
-        function observeItemChange (mutations) {
-          if (mutations[0].target.className.indexOf ('null') == -1) {
+        function observeItemChange(mutations) {
+          if (mutations[0].target.className.indexOf('null') == -1) {
             var d = mutations[0].target.offsetLeft - 80;
-            $ ('#code-and-share .bottom-box .cart-content').animate (
-              {scrollLeft: d},
+            $('#code-and-share .bottom-box .cart-content').animate(
+              { scrollLeft: d },
               400
             );
           }
@@ -185,33 +189,33 @@ $ (document).ready (function () {
         this.diffCartChange;
       },
       save: {
-        handler: function (val, oldVal) {
+        handler: function(val, oldVal) {
           var t1 = this.save.saveA.a == null;
           var t2 = this.save.saveB.a == null;
           var t3 = this.save.saveC.a == null;
           var t4 = this.save.saveD.a == null;
           if (t1 && t2 && t3 && t4) {
-            $ ('#save').removeClass ('hidetext');
+            $('#save').removeClass('hidetext');
           } else {
-            $ ('#save').addClass ('hidetext');
+            $('#save').addClass('hidetext');
           }
         },
-        deep: true,
+        deep: true
       },
       cart: {
         /// 要觀察 vue 巢狀物件下面值的變化要用 handler & deep，官方關鍵字「 深度 watcher 」
         /// val 為變化後，oldVal 為變化前的值
-        handler: function (val, oldVal) {
+        handler: function(val, oldVal) {
           // Cart 一更動就要計算金額跟送出的 Backme 的東東
           this.diffCartChange;
         },
-        deep: true,
-      },
+        deep: true
+      }
     },
 
     filters: {
       // taiwan
-      in_stock: function (v) {
+      in_stock: function(v) {
         if (v.quantity_limit == 0) {
           return 'sufficient stock';
         } else {
@@ -228,49 +232,49 @@ $ (document).ready (function () {
         }
       },
       // 處理購物車元件預設灰圖
-      cartCaseDefault: function (v) {
+      cartCaseDefault: function(v) {
         if (!v) {
           return 'https://s3cdn.backer-founder.com/lp/zuwatch/img/main-mobile/product/case/null.png';
         } else {
           return v;
         }
       },
-      cartDialDefault: function (v) {
+      cartDialDefault: function(v) {
         if (!v) {
           return 'https://s3cdn.backer-founder.com/lp/zuwatch/img/main-mobile/product/dial/null.png';
         } else {
           return v;
         }
       },
-      cartStrapDefault: function (v) {
+      cartStrapDefault: function(v) {
         if (!v) {
           return 'https://s3cdn.backer-founder.com/lp/zuwatch/img/main-mobile/product/strap/null.png';
         } else {
           return v;
         }
-      },
+      }
     },
 
     methods: {
-      locationChange: function () {
-        if (location.host.indexOf ('jp') == 0) {
+      locationChange: function() {
+        if (location.host.indexOf('jp') == 0) {
           this.location = 'jp';
-        } else if (location.host.indexOf ('global') == 0) {
+        } else if (location.host.indexOf('global') == 0) {
           this.location = 'global';
         } else {
           this.location = 'tw';
         }
       },
-      routeStatusChange: function () {
+      routeStatusChange: function() {
         /// 已經過濾掉後面的參數跟前面的網域名
-        var path = document.location.pathname.split ('/')[1];
+        var path = document.location.pathname.split('/')[1];
         if ((path == 'basic') | (path == 'pro') | (path == 'double')) {
           this.status = path;
         } else if (path == 'other') {
           this.status = 'unlimited';
         }
       },
-      fetchData: function () {
+      fetchData: function() {
         var apiUrl = '';
         if (this.location == 'tw') {
           apiUrl =
@@ -280,10 +284,10 @@ $ (document).ready (function () {
             'https://zuwatch.backme.tw/api/projects/704.json?token=a788fa70032f09bdfd3fe5af2b3ae6f3';
         }
         var self = this;
-        $.getJSON (apiUrl, function (data) {
+        $.getJSON(apiUrl, function(data) {
           // 將 api 資料格式轉成以產品元件編號為 key name 的物件格式，方便後續取用，不用再反查
           var newApiObject = {};
-          data.rewards.forEach (function (el) {
+          data.rewards.forEach(function(el) {
             // 判斷是公開的回饋
             if (el.status == 'publish') {
               // 帶入 id 方便送出購買表單；帶入 price 方便計算價錢；帶入縮圖
@@ -294,34 +298,35 @@ $ (document).ready (function () {
                 name: el.title,
                 avatar_small: el.avatar.small.url,
                 covers: el.covers,
-                stock: el.quantity_limit == 0
-                  ? 10
-                  : el.quantity_limit -
-                      (el.pledged_count + el.wait_pledged_count),
+                stock:
+                  el.quantity_limit == 0
+                    ? 10
+                    : el.quantity_limit -
+                      (el.pledged_count + el.wait_pledged_count)
               };
               // 將 api 回饋物件們分類到 vue 裡，方便後續取得
               if (el.category == 'case') {
-                self.twElements.case.push (el);
+                self.twElements.case.push(el);
               } else if (el.category == 'dial') {
-                self.twElements.dial.push (el);
+                self.twElements.dial.push(el);
               } else if (el.category == 'strap') {
-                self.twElements.strap.push (el);
+                self.twElements.strap.push(el);
               } else if (el.category == 'craft') {
                 // hotfixed to hide the backcase-01
                 // 為了防止 production 受影響
                 if (el.tags[0] !== 'backcase-01') {
-                  self.twElements.backCase.push (el);
+                  self.twElements.backCase.push(el);
                 }
               } else if (el.category == 'others') {
                 // hotfixed to hide the buckle
                 // 為了防止 production 受影響
                 if (el.tags[0] !== 'customize-buckle') {
-                  self.twElements.others.push (el);
+                  self.twElements.others.push(el);
                 } else {
-                  self.twElements.backCase.push (el);
+                  self.twElements.backCase.push(el);
                 }
               } else if (el.category == 'collection') {
-                self.twElements.collection.push (el);
+                self.twElements.collection.push(el);
               }
             }
           });
@@ -329,32 +334,30 @@ $ (document).ready (function () {
           self.apiData = newApiObject;
         });
       },
-      chooseStatus: function (type) {
+      chooseStatus: function(type) {
         this.status = type;
       },
-      elementChange: function (a, b, c) {
-        $ ('div.preview-1, div.preview-2, div.preview-3').removeClass (
-          'active'
-        );
+      elementChange: function(a, b, c) {
+        $('div.preview-1, div.preview-2, div.preview-3').removeClass('active');
         if (a) this.preview.now.a = a;
         if (b) this.preview.now.b = b;
         if (c) this.preview.now.c = c;
         this.whichElementSelected;
       },
       // for taiwan
-      twRandomElements: function () {
+      twRandomElements: function() {
         var a = this.twElements.case;
         var aN = a.length;
         var b = this.twElements.dial;
         var bN = b.length;
         var c = this.twElements.strap;
         var cN = c.length;
-        this.preview.now.a = a[Math.floor (Math.random () * aN)].tags[0];
-        this.preview.now.b = b[Math.floor (Math.random () * bN)].tags[0];
-        this.preview.now.c = c[Math.floor (Math.random () * cN)].tags[0];
+        this.preview.now.a = a[Math.floor(Math.random() * aN)].tags[0];
+        this.preview.now.b = b[Math.floor(Math.random() * bN)].tags[0];
+        this.preview.now.c = c[Math.floor(Math.random() * cN)].tags[0];
         this.whichElementSelected;
       },
-      saveElements: function () {
+      saveElements: function() {
         // 檢查物件有無為空不用三個部位檢查，檢查一個就好
         var checkA = this.save.saveA.a;
         var checkB = this.save.saveB.a;
@@ -363,7 +366,7 @@ $ (document).ready (function () {
         var a = [checkA, checkB, checkC, checkD];
         var b = ['saveA', 'saveB', 'saveC', 'saveD'];
         if (checkA && checkB && checkC && checkD) {
-          alert ('Sorry... There is no space...');
+          alert('Sorry... There is no space...');
         } else {
           for (i = 0; i <= 3; i++) {
             if (!a[i]) {
@@ -377,27 +380,27 @@ $ (document).ready (function () {
           }
         }
       },
-      callSave: function (saveN) {
+      callSave: function(saveN) {
         this.preview.now.a = this.save[saveN].a;
         this.preview.now.b = this.save[saveN].b;
         this.preview.now.c = this.save[saveN].c;
         this.whichElementSelected;
       },
-      deleteElementsFromSave: function (saveN) {
+      deleteElementsFromSave: function(saveN) {
         this.save[saveN].a = null;
         this.save[saveN].b = null;
         this.save[saveN].c = null;
       },
-      calcElementsInCart: function () {
+      calcElementsInCart: function() {
         var status = this.status;
         var cart = this.cart;
         var setObj = this.cart[status];
-        var array = Object.keys (setObj);
+        var array = Object.keys(setObj);
         /// 如果是 DOUBLE SET，那必須包含 basic + double
         if (this.status === 'double') {
-          var basicArray = Object.keys (this.cart.basic);
-          basicArray.forEach (function (e) {
-            array.push (e);
+          var basicArray = Object.keys(this.cart.basic);
+          basicArray.forEach(function(e) {
+            array.push(e);
           });
         }
 
@@ -410,50 +413,50 @@ $ (document).ready (function () {
         var strap_counts = 0;
         var strap_total = 0;
         var self = this;
-        array.forEach (function (e, i) {
-          if (e.indexOf ('a') !== -1) {
+        array.forEach(function(e, i) {
+          if (e.indexOf('a') !== -1) {
             if (cart[status][e] !== null) {
               case_counts++;
             }
             case_total++;
             self.elementsCounts.case =
-              case_counts.toString () + '/' + case_total.toString ();
-          } else if (e.indexOf ('b') !== -1) {
+              case_counts.toString() + '/' + case_total.toString();
+          } else if (e.indexOf('b') !== -1) {
             if (cart[status][e] !== null) {
               dial_counts++;
             }
             dial_total++;
             self.elementsCounts.dial =
-              dial_counts.toString () + '/' + dial_total.toString ();
-          } else if (e.indexOf ('c') !== -1) {
+              dial_counts.toString() + '/' + dial_total.toString();
+          } else if (e.indexOf('c') !== -1) {
             if (cart[status][e] !== null) {
               strap_counts++;
             }
             strap_total++;
             self.elementsCounts.strap =
-              strap_counts.toString () + '/' + strap_total.toString ();
+              strap_counts.toString() + '/' + strap_total.toString();
           }
           counts = case_counts + dial_counts + strap_counts;
         });
         if (total_counts !== counts) {
-          $ ('#cart-code-btn').removeClass ('ok');
-          $ ('#random-this-cart').removeClass ('ok');
-          $ ('#cart-code-btn .pg').css (
+          $('#cart-code-btn').removeClass('ok');
+          $('#random-this-cart').removeClass('ok');
+          $('#cart-code-btn .pg').css(
             'width',
             counts / total_counts * 100 + '%'
           );
           return counts + '/' + total_counts;
         } else {
-          $ ('#cart-code-btn').addClass ('ok');
-          $ ('#random-this-cart').addClass ('ok');
-          $ ('#cart-code-btn .pg').css (
+          $('#cart-code-btn').addClass('ok');
+          $('#random-this-cart').addClass('ok');
+          $('#cart-code-btn .pg').css(
             'width',
             counts / total_counts * 100 + '%'
           );
           return 'CHECKOUT';
         }
       },
-      elementAddCart: function (a, b, c) {
+      elementAddCart: function(a, b, c) {
         if (this.status == 'basic') {
           if (a) {
             this.cart.basic.a1 = a;
@@ -477,7 +480,7 @@ $ (document).ready (function () {
           }
         }
       },
-      doubleWhichChange: function (whichNum) {
+      doubleWhichChange: function(whichNum) {
         this.cart.doubleWhich = whichNum;
         var $doubleWhich = this.cart.doubleWhich === 1 ? 'basic' : 'double';
         var a1 = this.cart[$doubleWhich].a1;
@@ -494,57 +497,58 @@ $ (document).ready (function () {
         }
         this.whichElementSelected;
       },
-      formSubmit: function () {
+      formSubmit: function() {
         var canSubmit = true;
         // check if everyone is 'out of stock' or not
         // if the element is 'out of stock',alert its name and set canSumit = false
-        this.rewardIdForForm.forEach (function (el, i) {
+        this.rewardIdForForm.forEach(function(el, i) {
           if (el.stock <= 1) {
-            alert ("Sorry... '" + el.name + "' is out of stock.");
+            alert("Sorry... '" + el.name + "' is out of stock.");
             canSubmit = false;
           }
         });
         if (canSubmit) {
-          $ ('#output-popup').find ('form').submit ();
+          $('#output-popup')
+            .find('form')
+            .submit();
         }
       },
-      deleteCartElement: function (status, item) {
+      deleteCartElement: function(status, item) {
         this.cart[status][item] = null;
       },
-      deleteCartCraft: function (item) {
+      deleteCartCraft: function(item) {
         this.cart.common[item] = 'backcase-01';
       },
       // taiwan
-      changeCartBackCase: function (backcase) {
-        var $doubleWhich = this.cart.doubleWhich === 1
-          ? 'backCase'
-          : 'doubleSetBackCase';
+      changeCartBackCase: function(backcase) {
+        var $doubleWhich =
+          this.cart.doubleWhich === 1 ? 'backCase' : 'doubleSetBackCase';
         this.cart.common[$doubleWhich] = backcase;
       },
       // taiwan Other's unlimitedCheckoutBtn()
-      elementsAddOtherCart: function () {
-        this.cart.unlimited.push (
+      elementsAddOtherCart: function() {
+        this.cart.unlimited.push(
           this.preview.now.a,
           this.preview.now.b,
           this.preview.now.c
         );
       },
       // unlimited(other) 時，加選跟刪除行為跟原本的不一樣
-      elementAddOtherCart: function (code) {
-        this.cart.unlimited.push (code);
+      elementAddOtherCart: function(code) {
+        this.cart.unlimited.push(code);
       },
-      elementAddOtherCartAndChangeStatus: function (code) {
+      elementAddOtherCartAndChangeStatus: function(code) {
         if (this.status !== 'unlimited') {
           this.status = 'unlimited';
-          alert ('This item will appear in the "OTHER" section of the Cart.');
-          this.cart.unlimited.push (code);
+          alert('This item will appear in the "OTHER" section of the Cart.');
+          this.cart.unlimited.push(code);
         } else {
-          this.cart.unlimited.push (code);
+          this.cart.unlimited.push(code);
         }
       },
-      deleteOtherCartElement: function (index) {
-        this.cart.unlimited.splice (index, 1);
-      },
-    }, // methods end
+      deleteOtherCartElement: function(index) {
+        this.cart.unlimited.splice(index, 1);
+      }
+    } // methods end
   }); // vue.js object end
 }); // document ready end
