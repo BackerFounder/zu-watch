@@ -306,7 +306,7 @@ $ (document).ready (function () {
                 self.twElements.dial.push (el);
               } else if (el.category == 'strap') {
                 self.twElements.strap.push (el);
-              } else if (el.category == 'back-case') {
+              } else if (el.category == 'craft') {
                 // hotfixed to hide the backcase-01
                 // 為了防止 production 受影響
                 if (el.tags[0] !== 'backcase-01') {
